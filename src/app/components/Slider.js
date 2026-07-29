@@ -51,9 +51,7 @@ export default function Slider() {
   }, [current, next]);
 
   return (
-    <section
-      className="relative w-full overflow-hidden bg-white h-[calc(100dvh-4rem)] min-h-[480px]"
-    >
+    <section className="relative w-full overflow-hidden bg-white h-[calc(100dvh-4rem)] min-h-[480px]">
       {/* Slide layers — crossfade + slow Ken Burns zoom */}
       {slides.map((slide, index) => (
         <div
@@ -83,16 +81,39 @@ export default function Slider() {
         </div>
       ))}
 
+      {/* Soft floating decorative circles, consistent with the rest of the site */}
+      <div className="pointer-events-none absolute left-10 top-16 z-[15] h-72 w-72 rounded-full bg-blue-300/20 blur-3xl animate-float" />
+      <div
+        className="pointer-events-none absolute left-52 bottom-24 z-[15] h-56 w-56 rounded-full bg-orange-200/25 blur-3xl animate-float"
+        style={{ animationDelay: "1.5s" }}
+      />
+
       {/* Text content — anchored near the left edge instead of centered,
           so it doesn't leave a large empty gutter on wide screens */}
       <div className="relative z-20 flex h-full items-center pl-6 sm:pl-10 md:pl-16 lg:pl-24 pr-6">
         <div className="max-w-xl">
+          {/* Trusted-partner badge with an animated shimmer sweep */}
+          <span
+            key={`badge-${current}`}
+            className="relative mb-5 inline-flex animate-fade-up items-center overflow-hidden rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100"
+          >
+            <span className="relative z-10">Trusted Technology Partner</span>
+            <span className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-blue-100/70 to-transparent animate-shimmer" />
+          </span>
+
           <h1
             key={current}
-            className="mb-6 animate-fade-up text-4xl font-extrabold leading-tight tracking-tight text-zinc-900 sm:text-5xl lg:text-6xl"
+            className="mb-6 animate-fade-up text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
           >
             {slides[current].heading.map((part, i) => (
-              <span key={i} className={part.accent ? "text-blue-600" : ""}>
+              <span
+                key={i}
+                className={
+                  part.accent
+                    ? "bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent"
+                    : "bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent"
+                }
+              >
                 {part.text}
               </span>
             ))}
@@ -108,9 +129,11 @@ export default function Slider() {
           <div key={`cta-${current}`} className="animate-fade-up [animation-delay:200ms]">
             <Link
               href={slides[current].ctaHref}
-              className="inline-flex items-center rounded-md bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-blue-500/25 transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/35 hover:from-blue-700 hover:to-blue-600"
+              className="group relative inline-flex items-center overflow-hidden rounded-md bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-blue-500/25 transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/35 hover:from-blue-700 hover:to-blue-600"
             >
-              {slides[current].ctaText}
+              <span className="relative z-10">{slides[current].ctaText}</span>
+              {/* Continuous auto sheen sweep across the button */}
+              <span className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
             </Link>
           </div>
         </div>

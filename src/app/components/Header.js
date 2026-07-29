@@ -3,10 +3,12 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowUpRight, LayoutGrid } from "lucide-react";
 import { servicesColumns, solutionsColumns } from "../lib/navigationData";
+import { casestudiesProjects } from "../lib/casestudiesData";
 
 const menuItems = [
-  { label: "About", href: "/about" },
+  { label: "Company", href: "/company" },
   {
     label: "Services",
     href: "/services",
@@ -35,8 +37,15 @@ const menuItems = [
       rating: "5",
     },
   },
+  {
+    label: "Case Studies",
+    href: "/casestudies",
+    hasMega: true,
+    type: "portfolio",
+    projects: casestudiesProjects,
+  },
   { label: "Industries", href: "/industries" },
-  { label: "Our Products", href: "/products" },
+  { label: "Careers", href: "/Careers" },
 ];
 
 export default function Header() {
@@ -121,73 +130,130 @@ export default function Header() {
                   onMouseEnter={() => openMenu(item.label)}
                   onMouseLeave={scheduleClose}
                 >
-                  <div className="relative mx-auto flex max-w-7xl">
-                    {/* Text columns */}
-                    <div className="grid flex-1 grid-cols-3 gap-10 px-8 py-10">
-                      {item.columns.map((col) => {
-                        const Icon = col.icon;
-                        return (
-                          <div key={col.slug}>
-                            <div className="mb-4 flex items-center gap-2.5 border-b-2 border-orange-400 pb-2.5">
-                              {Icon && (
-                                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                                  <Icon className="h-4.5 w-4.5" strokeWidth={2} />
+                  {item.type === "portfolio" ? (
+                    /* Portfolio mega menu — visual project grid */
+                    <div className="relative mx-auto max-w-7xl px-8 py-10">
+                      <div className="grid grid-cols-4 gap-5">
+                        {item.projects.map((project) => {
+                          const ProjectIcon = project.icon;
+                          return (
+                            <Link
+                              key={project.slug}
+                              href={`/portfolio/${project.slug}`}
+                              className="group flex flex-col overflow-hidden rounded-2xl border border-zinc-100 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-100 hover:shadow-xl hover:shadow-blue-900/10"
+                            >
+                              {/* Visual header — swap for a real screenshot via project.image later */}
+                              <div
+                                className={`relative flex h-28 items-center justify-center gap-2.5 bg-gradient-to-br ${project.from} ${project.to}`}
+                              >
+                                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-sm">
+                                  <ProjectIcon className="h-5.5 w-5.5" strokeWidth={2} />
                                 </span>
-                              )}
-                              <h3 className="text-lg font-bold text-zinc-900">
-                                {col.title}
-                              </h3>
-                            </div>
-                            <ul className="space-y-3.5">
-                              {col.links.map((link) => (
-                                <li key={link.slug}>
-                                  <Link
-                                    href={`${item.basePath}/${link.slug}`}
-                                    className="text-base font-medium text-zinc-700 hover:text-blue-600 transition-colors"
-                                  >
-                                    {link.name}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        );
-                      })}
+                                <span className="text-lg font-extrabold text-white">
+                                  {project.name}
+                                </span>
+                              </div>
+
+                              <div className="flex flex-1 flex-col p-4">
+                                <h4 className="mb-1.5 text-sm font-bold leading-snug text-zinc-900">
+                                  {project.tagline}
+                                </h4>
+                                <p className="mb-3 line-clamp-2 text-xs leading-relaxed text-zinc-500">
+                                  {project.description}
+                                </p>
+                                <span className="mt-auto inline-flex items-center gap-1 text-xs font-bold text-blue-600">
+                                  Discover More
+                                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                </span>
+                              </div>
+                            </Link>
+                          );
+                        })}
+
+                        {/* View All card */}
+                        <Link
+                          href="/portfolio"
+                          className="flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-blue-200 bg-blue-50/50 p-5 text-center transition-all duration-200 hover:border-blue-400 hover:bg-blue-50"
+                        >
+                          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-white">
+                            <LayoutGrid className="h-5.5 w-5.5" strokeWidth={2} />
+                          </span>
+                          <span className="text-sm font-bold text-blue-600">
+                            View All Projects
+                          </span>
+                        </Link>
+                      </div>
                     </div>
+                  ) : (
+                    /* Existing Services / Solutions mega menu — unchanged */
+                    <div className="relative mx-auto flex max-w-7xl">
+                      {/* Text columns */}
+                      <div className="grid flex-1 grid-cols-3 gap-10 px-8 py-10">
+                        {item.columns.map((col) => {
+                          const Icon = col.icon;
+                          return (
+                            <div key={col.slug}>
+                              <div className="mb-4 flex items-center gap-2.5 border-b-2 border-orange-400 pb-2.5">
+                                {Icon && (
+                                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                                    <Icon className="h-4.5 w-4.5" strokeWidth={2} />
+                                  </span>
+                                )}
+                                <h3 className="text-lg font-bold text-zinc-900">
+                                  {col.title}
+                                </h3>
+                              </div>
+                              <ul className="space-y-3.5">
+                                {col.links.map((link) => (
+                                  <li key={link.slug}>
+                                    <Link
+                                      href={`${item.basePath}/${link.slug}`}
+                                      className="text-base font-medium text-zinc-700 hover:text-blue-600 transition-colors"
+                                    >
+                                      {link.name}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          );
+                        })}
+                      </div>
 
-                    {/* Stat Card — Full-bleed dark photo card (Used for both Services & Solutions) */}
-                    {item.statCard && (
-                      <div className="relative w-100 shrink-0 overflow-hidden text-white">
-                        <div
-                          className="absolute inset-0 bg-cover bg-center"
-                          style={{
-                            backgroundImage: `url(${item.statCard.bgImage})`,
-                          }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/20 to-transparent" />
+                      {/* Stat Card — Full-bleed dark photo card (Used for both Services & Solutions) */}
+                      {item.statCard && (
+                        <div className="relative w-100 shrink-0 overflow-hidden text-white">
+                          <div
+                            className="absolute inset-0 bg-cover bg-center"
+                            style={{
+                              backgroundImage: `url(${item.statCard.bgImage})`,
+                            }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/20 to-transparent" />
 
-                        <div className="relative flex h-full min-h-[380px] flex-col justify-between p-7">
-                          <div className="flex items-start justify-between">
-                            <span className="text-3xl font-extrabold tracking-tight text-blue-300">
-                              {item.statCard.label}
-                            </span>
-                          </div>
+                          <div className="relative flex h-full min-h-[380px] flex-col justify-between p-7">
+                            <div className="flex items-start justify-between">
+                              <span className="text-3xl font-extrabold tracking-tight text-blue-300">
+                                {item.statCard.label}
+                              </span>
+                            </div>
 
-                          <div>
-                            <p className="mb-3 text-5xl font-extrabold">
-                              {item.statCard.stat}
-                            </p>
-                            <p className="mb-4 text-base leading-relaxed text-zinc-100">
-                              {item.statCard.text}
-                            </p>
-                            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">
-                              {"★".repeat(Number(item.statCard.rating))}
-                            </span>
+                            <div>
+                              <p className="mb-3 text-5xl font-extrabold">
+                                {item.statCard.stat}
+                              </p>
+                              <p className="mb-4 text-base leading-relaxed text-zinc-100">
+                                {item.statCard.text}
+                              </p>
+                              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">
+                                {"★".repeat(Number(item.statCard.rating))}
+                              </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -281,36 +347,79 @@ export default function Header() {
 
                     {mobileExpanded === item.label && (
                       <div className="pb-4 pl-2">
-                        {item.columns.map((col) => {
-                          const Icon = col.icon;
-                          return (
-                            <div key={col.slug} className="mb-4">
-                              <div className="mb-2 flex items-center gap-2">
-                                {Icon && (
-                                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-orange-50 text-orange-500">
-                                    <Icon className="h-3.5 w-3.5" strokeWidth={2.25} />
-                                  </span>
-                                )}
-                                <h4 className="text-sm font-bold uppercase tracking-wide text-orange-500">
-                                  {col.title}
-                                </h4>
-                              </div>
-                              <ul className="space-y-2 pl-8">
-                                {col.links.map((link) => (
-                                  <li key={link.slug}>
-                                    <Link
-                                      href={`${item.basePath}/${link.slug}`}
-                                      className="block py-1 text-base font-medium text-zinc-700"
-                                      onClick={() => setMobileOpen(false)}
+                        {item.type === "portfolio" ? (
+                          /* Portfolio — simplified list on mobile */
+                          <ul className="space-y-1">
+                            {item.projects.map((project) => {
+                              const ProjectIcon = project.icon;
+                              return (
+                                <li key={project.slug}>
+                                  <Link
+                                    href={`/portfolio/${project.slug}`}
+                                    className="flex items-center gap-3 rounded-lg py-2 pr-2"
+                                    onClick={() => setMobileOpen(false)}
+                                  >
+                                    <span
+                                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${project.from} ${project.to} text-white`}
                                     >
-                                      {link.name}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          );
-                        })}
+                                      <ProjectIcon className="h-4 w-4" strokeWidth={2} />
+                                    </span>
+                                    <span>
+                                      <span className="block text-base font-bold text-zinc-900">
+                                        {project.name}
+                                      </span>
+                                      <span className="block text-xs text-zinc-500">
+                                        {project.tagline}
+                                      </span>
+                                    </span>
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                            <li>
+                              <Link
+                                href="/portfolio"
+                                className="mt-2 flex items-center gap-2 py-2 text-sm font-bold text-blue-600"
+                                onClick={() => setMobileOpen(false)}
+                              >
+                                View All Projects
+                                <ArrowUpRight className="h-4 w-4" />
+                              </Link>
+                            </li>
+                          </ul>
+                        ) : (
+                          /* Existing Services / Solutions accordion — unchanged */
+                          item.columns.map((col) => {
+                            const Icon = col.icon;
+                            return (
+                              <div key={col.slug} className="mb-4">
+                                <div className="mb-2 flex items-center gap-2">
+                                  {Icon && (
+                                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-orange-50 text-orange-500">
+                                      <Icon className="h-3.5 w-3.5" strokeWidth={2.25} />
+                                    </span>
+                                  )}
+                                  <h4 className="text-sm font-bold uppercase tracking-wide text-orange-500">
+                                    {col.title}
+                                  </h4>
+                                </div>
+                                <ul className="space-y-2 pl-8">
+                                  {col.links.map((link) => (
+                                    <li key={link.slug}>
+                                      <Link
+                                        href={`${item.basePath}/${link.slug}`}
+                                        className="block py-1 text-base font-medium text-zinc-700"
+                                        onClick={() => setMobileOpen(false)}
+                                      >
+                                        {link.name}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            );
+                          })
+                        )}
                       </div>
                     )}
                   </>
