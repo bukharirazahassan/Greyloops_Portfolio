@@ -7,6 +7,7 @@ import CaseStudiesShowcase from "./components/CaseStudiesShowcase";
 import ContactUs from "./components/ContactUs";
 import Footer from "./components/Footer";
 import Wavedivider from "./components/Wavedivider"
+import PricingPlans from "./components/PricingPlans";
 
 export default function Home() {
   return (
@@ -14,9 +15,12 @@ export default function Home() {
       <Header />
       <Slider />
       <Offerings />
+      <Wavedivider />
       <TechStackShowcase />
+      <Wavedivider />
       <EngagementModels />
       <CaseStudiesShowcase />
+      <PricingPlans />
       <ContactUs />
       <Wavedivider />
       <Footer />

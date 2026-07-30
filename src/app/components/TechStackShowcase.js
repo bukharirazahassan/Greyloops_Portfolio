@@ -10,12 +10,14 @@ import {
   SiMysql,
   SiDotnet,
   SiAndroidstudio,
+  SiPython,
 } from "react-icons/si";
 
 const techs = [
   { name: "React", Icon: SiReact, color: "#61DAFB" },
   { name: "Next.js", Icon: SiNextdotjs, color: "#000000" },
   { name: "Node.js", Icon: SiNodedotjs, color: "#339933" },
+  { name: "Python", Icon: SiPython, color: "#3776AB" },
   { name: "Angular", Icon: SiAngular, color: "#DD0031" },
   { name: "MongoDB", Icon: SiMongodb, color: "#47A248" },
   { name: "MySQL", Icon: SiMysql, color: "#4479A1" },
@@ -24,7 +26,7 @@ const techs = [
   { name: "React Native", Icon: SiReact, color: "#61DAFB" },
 ];
 
-const techsRow2 = [...techs.slice(4), ...techs.slice(0, 4)];
+const techsRow2 = [...techs.slice(5), ...techs.slice(0, 5)];
 
 // Large background icons for texture — decorative only, tinted with
 // their real brand color at low opacity so they're recognizable
@@ -37,11 +39,12 @@ const floatingIcons = [
   { Icon: SiNextdotjs, top: "38%", left: "50%", size: 70, rotate: 6, color: "#000000" },
   { Icon: SiDotnet, top: "20%", left: "35%", size: 60, rotate: -6, color: "#512BD4" },
   { Icon: SiMysql, top: "78%", left: "60%", size: 65, rotate: 12, color: "#4479A1" },
+  { Icon: SiPython, top: "50%", left: "12%", size: 75, rotate: -10, color: "#3776AB" },
 ];
 
 function TechPill({ name, Icon, color }) {
   return (
-    <div className="flex shrink-0 items-center gap-2.5 rounded-xl border border-zinc-200 bg-white/90 backdrop-blur-sm px-5 py-3.5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-blue-200">
+    <div className="flex shrink-0 items-center gap-2.5 rounded-full border border-zinc-200 bg-white/90 backdrop-blur-sm px-5 py-3 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/10">
       <Icon className="h-5 w-5 shrink-0" style={{ color }} />
       <span className="whitespace-nowrap text-sm font-bold text-zinc-900">
         {name}
@@ -59,6 +62,14 @@ function MarqueeRow({ items, direction = "left", speed = 32 }) {
       className="relative w-full overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      style={{
+        // Real CSS mask fade — icons dissolve smoothly into transparency
+        // at both edges instead of being covered by a solid overlay div.
+        maskImage:
+          "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+        WebkitMaskImage:
+          "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+      }}
     >
       <div
         className={`flex w-max gap-4 ${
@@ -130,10 +141,6 @@ export default function TechStackShowcase() {
       </div>
 
       <div className="relative space-y-4">
-        {/* Edge fade gradients — match the section's own bg, not plain white */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-slate-50 to-transparent sm:w-32" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-blue-50/50 to-transparent sm:w-32" />
-
         <MarqueeRow items={techs} direction="left" speed={34} />
         <MarqueeRow items={techsRow2} direction="right" speed={38} />
       </div>

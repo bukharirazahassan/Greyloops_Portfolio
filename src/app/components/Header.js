@@ -3,12 +3,33 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, LayoutGrid } from "lucide-react";
+import {
+  ArrowUpRight,
+  LayoutGrid,
+  PhoneCall,
+  Mail,
+  Briefcase,
+  HelpCircle,
+  Building2,
+  TrendingUp,
+  Share2,
+} from "lucide-react";
 import { servicesColumns, solutionsColumns } from "../lib/navigationData";
 import { casestudiesProjects } from "../lib/casestudiesData";
+import {
+  companyColumns,
+  trendingBlogs,
+  socialLinks,
+} from "../lib/companyData";
 
 const menuItems = [
-  { label: "Company", href: "/company" },
+  {
+    label: "Company",
+    href: "/company",
+    hasMega: true,
+    type: "company",
+    columns: companyColumns,
+  },
   {
     label: "Services",
     href: "/services",
@@ -130,8 +151,235 @@ export default function Header() {
                   onMouseEnter={() => openMenu(item.label)}
                   onMouseLeave={scheduleClose}
                 >
-                  {item.type === "portfolio" ? (
-                    /* Portfolio mega menu — visual project grid */
+                  {item.type === "company" ? (
+                    /* Modern Full-Height Edge-to-Edge Company Mega Menu */
+                    <div className="relative mx-auto flex max-w-7xl justify-between items-stretch">
+                      {/* Left Side Navigation & Blog Links */}
+                      <div className="grid flex-1 grid-cols-8 gap-10 py-10 pl-8 pr-8">
+                        {/* Column 1: Company Links */}
+                        <div className="col-span-2 space-y-4">
+                          {companyColumns[0] && (
+                            <div>
+                              <div className="mb-4 flex items-center gap-2.5 border-b-2 border-orange-400 pb-2.5">
+                                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                                  <Building2 className="h-4.5 w-4.5" strokeWidth={2} />
+                                </span>
+                                <h3 className="text-lg font-bold text-zinc-900">
+                                  {companyColumns[0].title}
+                                </h3>
+                              </div>
+                              <ul className="space-y-3.5">
+                                {companyColumns[0].links.map((link) => (
+                                  <li key={link.slug}>
+                                    <Link
+                                      href={`/company/${link.slug}`}
+                                      className="text-base font-medium text-zinc-700 hover:text-blue-600 transition-colors block"
+                                    >
+                                      {link.name}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Column 2: Careers Links */}
+                        <div className="col-span-2 space-y-4">
+                          {companyColumns[1] && (
+                            <div>
+                              <div className="mb-4 flex items-center gap-2.5 border-b-2 border-orange-400 pb-2.5">
+                                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                                  <Briefcase className="h-4.5 w-4.5" strokeWidth={2} />
+                                </span>
+                                <h3 className="text-lg font-bold text-zinc-900">
+                                  {companyColumns[1].title}
+                                </h3>
+                              </div>
+                              <ul className="space-y-3.5">
+                                {companyColumns[1].links.map((link) => (
+                                  <li key={link.slug}>
+                                    <Link
+                                      href={`/careers/${link.slug}`}
+                                      className="text-base font-medium text-zinc-700 hover:text-blue-600 transition-colors block"
+                                    >
+                                      {link.name}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Column 3: Trending Blogs & Social Links */}
+                        <div className="col-span-4 space-y-6">
+                          {/* Trending Blogs */}
+                          <div>
+                            <div className="mb-4 flex items-center gap-2.5 border-b-2 border-orange-400 pb-2.5">
+                              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                                <TrendingUp className="h-4.5 w-4.5" strokeWidth={2} />
+                              </span>
+                              <h3 className="text-lg font-bold text-zinc-900">
+                                Trending Blogs
+                              </h3>
+                            </div>
+                            <div className="space-y-3.5">
+                              {trendingBlogs.map((blog, idx) => (
+                                <Link
+                                  key={idx}
+                                  href={blog.href}
+                                  className="group flex items-center gap-3 transition-colors"
+                                >
+                                  {/* Blog Image Thumbnail */}
+                                  <div className="relative h-11 w-16 shrink-0 overflow-hidden rounded-lg bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 flex items-center justify-center border border-slate-800 shadow-sm">
+                                    {blog.image ? (
+                                      <Image
+                                        src={blog.image}
+                                        alt={blog.title}
+                                        fill
+                                        className="object-cover transition-transform duration-200 group-hover:scale-105"
+                                      />
+                                    ) : (
+                                      <div className="flex h-full w-full items-center justify-center text-center">
+                                        <span className="text-[9px] font-black tracking-wider text-blue-400 uppercase">
+                                          Greyloops
+                                        </span>
+                                      </div>
+                                    )}
+                                  </div>
+
+                                  {/* Blog Title */}
+                                  <h4 className="text-sm font-medium text-zinc-700 leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
+                                    {blog.title}
+                                  </h4>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Find us on: Colorful Modern Icons */}
+                          <div>
+                            <div className="mb-3 flex items-center gap-2.5 border-b-2 border-orange-400 pb-2">
+                              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                                <Share2 className="h-4 w-4" strokeWidth={2} />
+                              </span>
+                              <h3 className="text-lg font-bold text-zinc-900">
+                                Find us on:
+                              </h3>
+                            </div>
+                            <div className="flex items-center gap-2.5 pt-1">
+                              {socialLinks.map((social) => {
+                                const IconComponent = social.icon;
+                                return (
+                                  <a
+                                    key={social.name}
+                                    href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={social.name}
+                                    className={`group flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr ${social.gradient} text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
+                                  >
+                                    <IconComponent className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+                                  </a>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right Side: Direct Contact Card - Touching Top & Bottom Full Bleed */}
+                      <div className="relative w-96 shrink-0 overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 p-7 text-white flex flex-col justify-between border-l border-slate-800 shadow-2xl">
+                        {/* Shimmer Sweep Animation Layer */}
+                        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                          <div className="animate-shimmer absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-transparent via-blue-400/10 to-transparent transform -skew-x-12" />
+                        </div>
+
+                        {/* Ambient Background Blur Glows */}
+                        <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-blue-500/20 blur-2xl pointer-events-none" />
+                        <div className="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-orange-500/15 blur-2xl pointer-events-none" />
+                        <HelpCircle className="absolute -right-4 top-10 h-32 w-32 text-white/5 pointer-events-none" />
+
+                        {/* Header Section */}
+                        <div className="relative z-10">
+                          <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                            <div>
+                              <span className="text-[10px] font-extrabold uppercase tracking-widest text-blue-400">
+                                Direct Contact
+                              </span>
+                              <h4 className="text-xl font-black text-white tracking-tight">
+                                Have Any Questions?
+                              </h4>
+                            </div>
+                            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-600/30 text-blue-300 backdrop-blur-md border border-blue-400/20 shadow-inner">
+                              <PhoneCall className="h-5 w-5" />
+                            </span>
+                          </div>
+
+                          {/* Contact Info List */}
+                          <div className="mt-6 space-y-4">
+                            {/* Phone Call */}
+                            <a
+                              href="tel:+180045647823"
+                              className="group flex items-center gap-3 text-base font-bold text-blue-300 hover:text-white transition-colors"
+                            >
+                              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white transition-transform group-hover:scale-105">
+                                <PhoneCall className="h-4 w-4" />
+                              </span>
+                              +1-800-456-478-23
+                            </a>
+
+                            {/* Business Email */}
+                            <div className="flex items-start gap-3">
+                              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-blue-300 mt-0.5">
+                                <Mail className="h-4 w-4" />
+                              </span>
+                              <div>
+                                <span className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                                  Business:
+                                </span>
+                                <a
+                                  href="mailto:query@greyloops.com"
+                                  className="text-sm font-semibold text-white hover:text-blue-300 transition-colors"
+                                >
+                                  query@greyloops.com
+                                </a>
+                              </div>
+                            </div>
+
+                            {/* Careers Email */}
+                            <div className="flex items-start gap-3">
+                              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-orange-400 mt-0.5">
+                                <Briefcase className="h-4 w-4" />
+                              </span>
+                              <div>
+                                <span className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                                  Careers:
+                                </span>
+                                <a
+                                  href="mailto:hr@greyloops.com"
+                                  className="text-sm font-semibold text-white hover:text-orange-300 transition-colors"
+                                >
+                                  hr@greyloops.com
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Direct Call to Action Button */}
+                        <Link
+                          href="/contact"
+                          className="relative z-10 mt-6 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 px-5 py-2.5 text-xs font-extrabold text-white shadow-lg transition-all hover:brightness-110 hover:shadow-blue-500/30"
+                        >
+                          Get in Touch
+                          <ArrowUpRight className="h-4 w-4" />
+                        </Link>
+                      </div>
+                    </div>
+                  ) : item.type === "portfolio" ? (
+                    /* Portfolio mega menu */
                     <div className="relative mx-auto max-w-7xl px-8 py-10">
                       <div className="grid grid-cols-4 gap-5">
                         {item.projects.map((project) => {
@@ -142,12 +390,14 @@ export default function Header() {
                               href={`/portfolio/${project.slug}`}
                               className="group flex flex-col overflow-hidden rounded-2xl border border-zinc-100 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-100 hover:shadow-xl hover:shadow-blue-900/10"
                             >
-                              {/* Visual header — swap for a real screenshot via project.image later */}
                               <div
                                 className={`relative flex h-28 items-center justify-center gap-2.5 bg-gradient-to-br ${project.from} ${project.to}`}
                               >
                                 <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-sm">
-                                  <ProjectIcon className="h-5.5 w-5.5" strokeWidth={2} />
+                                  <ProjectIcon
+                                    className="h-5.5 w-5.5"
+                                    strokeWidth={2}
+                                  />
                                 </span>
                                 <span className="text-lg font-extrabold text-white">
                                   {project.name}
@@ -185,18 +435,21 @@ export default function Header() {
                       </div>
                     </div>
                   ) : (
-                    /* Existing Services / Solutions mega menu — unchanged */
+                    /* Existing Services / Solutions mega menu */
                     <div className="relative mx-auto flex max-w-7xl">
                       {/* Text columns */}
                       <div className="grid flex-1 grid-cols-3 gap-10 px-8 py-10">
-                        {item.columns.map((col) => {
+                        {(item.columns || []).map((col) => {
                           const Icon = col.icon;
                           return (
                             <div key={col.slug}>
                               <div className="mb-4 flex items-center gap-2.5 border-b-2 border-orange-400 pb-2.5">
                                 {Icon && (
                                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                                    <Icon className="h-4.5 w-4.5" strokeWidth={2} />
+                                    <Icon
+                                      className="h-4.5 w-4.5"
+                                      strokeWidth={2}
+                                    />
                                   </span>
                                 )}
                                 <h3 className="text-lg font-bold text-zinc-900">
@@ -220,7 +473,7 @@ export default function Header() {
                         })}
                       </div>
 
-                      {/* Stat Card — Full-bleed dark photo card (Used for both Services & Solutions) */}
+                      {/* Stat Card */}
                       {item.statCard && (
                         <div className="relative w-100 shrink-0 overflow-hidden text-white">
                           <div
@@ -323,7 +576,7 @@ export default function Header() {
                       className="flex w-full items-center justify-between py-3.5 text-base font-semibold text-zinc-900"
                       onClick={() =>
                         setMobileExpanded((prev) =>
-                          prev === item.label ? null : item.label,
+                          prev === item.label ? null : item.label
                         )
                       }
                     >
@@ -347,8 +600,44 @@ export default function Header() {
 
                     {mobileExpanded === item.label && (
                       <div className="pb-4 pl-2">
-                        {item.type === "portfolio" ? (
-                          /* Portfolio — simplified list on mobile */
+                        {item.type === "company" ? (
+                          /* Mobile Company Accordion */
+                          <div className="space-y-4">
+                            {companyColumns.map((col) => (
+                              <div key={col.title}>
+                                <h4 className="mb-2 text-sm font-bold uppercase tracking-wide text-orange-500">
+                                  {col.title}
+                                </h4>
+                                <ul className="space-y-2 pl-4">
+                                  {col.links.map((link) => (
+                                    <li key={link.slug}>
+                                      <Link
+                                        href={`/company/${link.slug}`}
+                                        className="block py-1 text-base font-medium text-zinc-700"
+                                        onClick={() => setMobileOpen(false)}
+                                      >
+                                        {link.name}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ))}
+
+                            {/* Mobile Direct Contact Section */}
+                            <div className="mt-4 rounded-xl bg-slate-900 p-4 text-white">
+                              <h5 className="text-xs font-bold text-blue-400 uppercase tracking-wider mb-2">
+                                Direct Contact
+                              </h5>
+                              <p className="text-sm font-bold">+1-800-456-478-23</p>
+                              <div className="mt-2 text-xs text-slate-300 space-y-1">
+                                <p><span className="text-slate-400">Business:</span> query@greyloops.com</p>
+                                <p><span className="text-slate-400">Careers:</span> hr@greyloops.com</p>
+                              </div>
+                            </div>
+                          </div>
+                        ) : item.type === "portfolio" ? (
+                          /* Mobile Portfolio Accordion */
                           <ul className="space-y-1">
                             {item.projects.map((project) => {
                               const ProjectIcon = project.icon;
@@ -362,7 +651,10 @@ export default function Header() {
                                     <span
                                       className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${project.from} ${project.to} text-white`}
                                     >
-                                      <ProjectIcon className="h-4 w-4" strokeWidth={2} />
+                                      <ProjectIcon
+                                        className="h-4 w-4"
+                                        strokeWidth={2}
+                                      />
                                     </span>
                                     <span>
                                       <span className="block text-base font-bold text-zinc-900">
@@ -388,15 +680,18 @@ export default function Header() {
                             </li>
                           </ul>
                         ) : (
-                          /* Existing Services / Solutions accordion — unchanged */
-                          item.columns.map((col) => {
+                          /* Existing Services / Solutions accordion */
+                          (item.columns || []).map((col) => {
                             const Icon = col.icon;
                             return (
                               <div key={col.slug} className="mb-4">
                                 <div className="mb-2 flex items-center gap-2">
                                   {Icon && (
                                     <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-orange-50 text-orange-500">
-                                      <Icon className="h-3.5 w-3.5" strokeWidth={2.25} />
+                                      <Icon
+                                        className="h-3.5 w-3.5"
+                                        strokeWidth={2.25}
+                                      />
                                     </span>
                                   )}
                                   <h4 className="text-sm font-bold uppercase tracking-wide text-orange-500">

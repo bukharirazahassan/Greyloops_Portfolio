@@ -27,11 +27,6 @@ const rawServices = [
           "Greyloops crafts intuitive, high-converting interfaces with human-centered design and scalable design systems.",
       },
       {
-        name: "Accessibility Services",
-        description:
-          "Greyloops ensures WCAG/ADA-compliant digital products that are accessible to all users, on every device.",
-      },
-      {
         name: "Backend Development",
         description:
           "Greyloops engineers secure, scalable server-side architecture, robust APIs, and high-performance databases.",
@@ -50,11 +45,6 @@ const rawServices = [
         name: "SaaS Development",
         description:
           "Greyloops designs secure, scalable multi-tenant SaaS platforms built for seamless subscriptions and uptime.",
-      },
-      {
-        name: "MVP Development",
-        description:
-          "Greyloops turns ideas into market-ready MVPs fast, helping you validate concepts and accelerate launch.",
       },
       {
         name: "Software Consulting",
