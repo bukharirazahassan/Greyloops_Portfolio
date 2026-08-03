@@ -15,14 +15,11 @@ export default function Home() {
       <Header />
       <Slider />
       <Offerings />
-      <Wavedivider />
       <TechStackShowcase />
-      <Wavedivider />
       <EngagementModels />
       <CaseStudiesShowcase />
       <PricingPlans />
       <ContactUs />
-      <Wavedivider />
       <Footer />
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -66,25 +66,39 @@ const menuItems = [
     projects: casestudiesProjects,
   },
   { label: "Industries", href: "/industries" },
-  { label: "Careers", href: "/Careers" },
 ];
 
 export default function Header() {
   const [activeMenu, setActiveMenu] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState(null);
-  const closeTimer = useRef(null);
+  const navRef = useRef(null);
 
-  const openMenu = (label) => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    setActiveMenu(label);
+  // Click-to-toggle a mega menu (instead of hover)
+  const toggleMenu = (label) => {
+    setActiveMenu((prev) => (prev === label ? null : label));
   };
 
-  const scheduleClose = () => {
-    closeTimer.current = setTimeout(() => {
-      setActiveMenu(null);
-    }, 150);
-  };
+  // Close the open mega menu when clicking anywhere outside the nav
+  useEffect(() => {
+    if (!activeMenu) return;
+
+    const handleClickOutside = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setActiveMenu(null);
+      }
+    };
+    const handleEscape = (e) => {
+      if (e.key === "Escape") setActiveMenu(null);
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [activeMenu]);
 
   return (
     <header className="relative w-full sticky top-0 z-50">
@@ -109,24 +123,21 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex flex-1 items-center justify-center gap-1">
+        <nav ref={navRef} className="hidden md:flex flex-1 items-center justify-center gap-1">
           {menuItems.map((item) => (
-            <div
-              key={item.label}
-              className="relative"
-              onMouseEnter={() => item.hasMega && openMenu(item.label)}
-              onMouseLeave={() => item.hasMega && scheduleClose()}
-            >
-              <Link
-                href={item.href || "#"}
-                className={`flex items-center gap-1.5 rounded-full px-5 py-2.5 text-base font-semibold transition-all duration-200 ${
-                  activeMenu === item.label
-                    ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-md shadow-blue-500/25"
-                    : "text-zinc-800 hover:bg-white/70 hover:text-zinc-900 hover:shadow-sm"
-                }`}
-              >
-                {item.label}
-                {item.hasMega && (
+            <div key={item.label} className="relative">
+              {item.hasMega ? (
+                <button
+                  type="button"
+                  onClick={() => toggleMenu(item.label)}
+                  aria-expanded={activeMenu === item.label}
+                  className={`flex items-center gap-1.5 rounded-full px-5 py-2.5 text-base font-semibold transition-all duration-200 ${
+                    activeMenu === item.label
+                      ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-md shadow-blue-500/25"
+                      : "text-zinc-800 hover:bg-white/70 hover:text-zinc-900 hover:shadow-sm"
+                  }`}
+                >
+                  {item.label}
                   <svg
                     className={`h-4 w-4 transition-transform duration-200 ${
                       activeMenu === item.label ? "rotate-180" : ""
@@ -142,16 +153,20 @@ export default function Header() {
                       d="M19 9l-7 7-7-7"
                     />
                   </svg>
-                )}
-              </Link>
+                </button>
+              ) : (
+                <Link
+                  href={item.href || "#"}
+                  className="flex items-center gap-1.5 rounded-full px-5 py-2.5 text-base font-semibold text-zinc-800 transition-all duration-200 hover:bg-white/70 hover:text-zinc-900 hover:shadow-sm"
+                >
+                  {item.label}
+                </Link>
+              )}
 
               {item.hasMega && activeMenu === item.label && (
-                <div
-                  className="fixed left-0 top-16 w-full border-t border-blue-100 bg-white/95 backdrop-blur-md shadow-2xl shadow-blue-900/10 overflow-hidden"
-                  onMouseEnter={() => openMenu(item.label)}
-                  onMouseLeave={scheduleClose}
-                >
-                  {item.type === "company" ? (
+                <div className="fixed left-0 top-16 w-full border-t border-blue-100 bg-white/95 backdrop-blur-md shadow-2xl shadow-blue-900/10 overflow-hidden">
+                  {
+                  item.type === "company" ? (
                     /* Modern Full-Height Edge-to-Edge Company Mega Menu */
                     <div className="relative mx-auto flex max-w-7xl justify-between items-stretch">
                       {/* Left Side Navigation & Blog Links */}
@@ -173,6 +188,7 @@ export default function Header() {
                                   <li key={link.slug}>
                                     <Link
                                       href={`/company/${link.slug}`}
+                                      onClick={() => setActiveMenu(null)}
                                       className="text-base font-medium text-zinc-700 hover:text-blue-600 transition-colors block"
                                     >
                                       {link.name}
@@ -201,6 +217,7 @@ export default function Header() {
                                   <li key={link.slug}>
                                     <Link
                                       href={`/careers/${link.slug}`}
+                                      onClick={() => setActiveMenu(null)}
                                       className="text-base font-medium text-zinc-700 hover:text-blue-600 transition-colors block"
                                     >
                                       {link.name}
@@ -229,6 +246,7 @@ export default function Header() {
                                 <Link
                                   key={idx}
                                   href={blog.href}
+                                  onClick={() => setActiveMenu(null)}
                                   className="group flex items-center gap-3 transition-colors"
                                 >
                                   {/* Blog Image Thumbnail */}
@@ -371,6 +389,7 @@ export default function Header() {
                         {/* Direct Call to Action Button */}
                         <Link
                           href="/contact"
+                          onClick={() => setActiveMenu(null)}
                           className="relative z-10 mt-6 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 px-5 py-2.5 text-xs font-extrabold text-white shadow-lg transition-all hover:brightness-110 hover:shadow-blue-500/30"
                         >
                           Get in Touch
@@ -388,6 +407,7 @@ export default function Header() {
                             <Link
                               key={project.slug}
                               href={`/portfolio/${project.slug}`}
+                              onClick={() => setActiveMenu(null)}
                               className="group flex flex-col overflow-hidden rounded-2xl border border-zinc-100 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-100 hover:shadow-xl hover:shadow-blue-900/10"
                             >
                               <div
@@ -423,6 +443,7 @@ export default function Header() {
                         {/* View All card */}
                         <Link
                           href="/portfolio"
+                          onClick={() => setActiveMenu(null)}
                           className="flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-blue-200 bg-blue-50/50 p-5 text-center transition-all duration-200 hover:border-blue-400 hover:bg-blue-50"
                         >
                           <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-white">
@@ -461,6 +482,7 @@ export default function Header() {
                                   <li key={link.slug}>
                                     <Link
                                       href={`${item.basePath}/${link.slug}`}
+                                      onClick={() => setActiveMenu(null)}
                                       className="text-base font-medium text-zinc-700 hover:text-blue-600 transition-colors"
                                     >
                                       {link.name}
