@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
 import { companyColumns, findCompanyLinkBySlug } from "../../lib/companyData";
 import AboutUs from "../../components/company/AboutUs";
+import WhyChooseUs from "../../components/company/WhyChooseUs";
+import OurTeam from "../../components/company/OurTeam";
+import FaqsPage from "../../components/company/FaqsPage";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -16,13 +19,42 @@ export default async function CompanyDetailPage({ params }) {
 
   if (!companyItem) return notFound();
 
-  // About Us has its own full-width hero + sections, so it must NOT be
-  // nested inside the constrained/padded <main> used for generic pages below.
+  // Full-width custom pages logic
   if (slug === "about-us") {
     return (
       <div className="flex min-h-screen flex-col bg-white">
         <Header />
         <AboutUs />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (slug === "why-greyloops") {
+    return (
+      <div className="flex min-h-screen flex-col bg-white">
+        <Header />
+        <WhyChooseUs />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (slug === "our-team") {
+    return (
+      <div className="flex min-h-screen flex-col bg-white">
+        <Header />
+        <OurTeam />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (slug === "faqs") {
+    return (
+      <div className="flex min-h-screen flex-col bg-white">
+        <Header />
+        <FaqsPage />
         <Footer />
       </div>
     );
