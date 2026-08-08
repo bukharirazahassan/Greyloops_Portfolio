@@ -186,20 +186,17 @@ export default function AboutUs() {
                       item.stagger ? "sm:translate-y-8" : ""
                     }`}
                   >
-                    {/* Image: Default Light B&W -> Hover Full Original Color */}
+                    {/* Image: shown in full original color, no grayscale/dark filters */}
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 500px"
-                      className="object-cover grayscale brightness-105 contrast-125 opacity-75 transition-all duration-700 ease-out group-hover:scale-110 group-hover:grayscale-0 group-hover:brightness-100 group-hover:contrast-100 group-hover:opacity-100"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                     />
 
-                    {/* Light Slate Overlay Mask (Fades away on hover) */}
-                    <div className="absolute inset-0 bg-slate-200/40 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-0" />
-
-                    {/* Gradient for text legibility */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent transition-opacity duration-500 group-hover:from-slate-950/50" />
+                    {/* Gradient for text legibility only — kept minimal so the image stays bright */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/5 to-transparent" />
 
                     {/* Soft pulsing glow border, matches BentoCard treatment */}
                     <div className="pointer-events-none absolute inset-0 rounded-[inherit] animate-glow-blue opacity-0 transition-opacity duration-500 group-hover:opacity-100" />

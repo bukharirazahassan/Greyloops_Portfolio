@@ -17,8 +17,8 @@ export default function Home() {
       <Offerings />
       <TechStackShowcase />
       <EngagementModels />
-      <CaseStudiesShowcase />
-      <PricingPlans />
+      {/* <CaseStudiesShowcase /> */}
+      {/* <PricingPlans /> */}
       <ContactUs />
       <Footer />
     </div>

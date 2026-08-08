@@ -23,43 +23,35 @@ const rawServices = [
     links: [
       {
         name: "UX/UI Design",
-        description:
-          "Greyloops crafts intuitive, high-converting interfaces with human-centered design and scalable design systems.",
+        description: "Intuitive interfaces, built to convert.",
       },
       {
         name: "Backend Development",
-        description:
-          "Greyloops engineers secure, scalable server-side architecture, robust APIs, and high-performance databases.",
+        description: "Secure, scalable server-side architecture.",
       },
       {
         name: "Custom Software Development",
-        description:
-          "Greyloops builds tailor-made software solutions around your unique workflows and business goals.",
+        description: "Tailor-made software for your workflows.",
       },
       {
         name: "Software Testing",
-        description:
-          "Greyloops delivers thorough manual and automated QA to eliminate bugs and ensure flawless performance.",
+        description: "Manual & automated QA, zero bugs.",
       },
       {
         name: "SaaS Development",
-        description:
-          "Greyloops designs secure, scalable multi-tenant SaaS platforms built for seamless subscriptions and uptime.",
+        description: "Multi-tenant platforms built for scale.",
       },
       {
         name: "Software Consulting",
-        description:
-          "Greyloops provides strategic guidance on architecture and tech stacks to optimize your engineering roadmap.",
+        description: "Strategic guidance on architecture & stack.",
       },
       {
         name: "Frontend Development",
-        description:
-          "Greyloops builds fast, responsive, pixel-perfect web apps using modern frameworks like React and Next.js.",
+        description: "Fast, pixel-perfect apps in React/Next.js.",
       },
       {
         name: "Enterprise Software Development",
-        description:
-          "Greyloops architects mission-critical enterprise systems built for scale, security, and integration.",
+        description: "Mission-critical systems, built to scale.",
       },
     ],
   },
@@ -69,23 +61,19 @@ const rawServices = [
     links: [
       {
         name: "Mobile App Development",
-        description:
-          "Greyloops builds high-performing, cross-platform apps with smooth experiences on iOS and Android.",
+        description: "Cross-platform apps, smooth on both.",
       },
       {
         name: "Android App Development",
-        description:
-          "Greyloops creates scalable Android apps optimized for performance and Google Play standards.",
+        description: "Scalable apps, built for Google Play.",
       },
       {
         name: "iOS App Development",
-        description:
-          "Greyloops crafts premium native iOS apps tailored for Apple's ecosystem with sleek, flawless UI.",
+        description: "Premium native apps for Apple's ecosystem.",
       },
       {
         name: "Web App Development",
-        description:
-          "Greyloops develops fast, responsive progressive web apps that feel native across every browser.",
+        description: "Fast PWAs that feel native everywhere.",
       },
     ],
   },
@@ -95,18 +83,15 @@ const rawServices = [
     links: [
       {
         name: "DevOps Services",
-        description:
-          "Greyloops streamlines delivery with automated CI/CD pipelines, cloud orchestration, and continuous monitoring.",
+        description: "Automated CI/CD & cloud orchestration.",
       },
       {
         name: "Cybersecurity",
-        description:
-          "Greyloops safeguards your digital assets with threat detection, security audits, and proactive compliance.",
+        description: "Threat detection, audits & compliance.",
       },
       {
         name: "Infrastructure Design",
-        description:
-          "Greyloops architects resilient, scalable cloud infrastructure built for uptime and disaster recovery.",
+        description: "Resilient cloud infra, built for uptime.",
       },
     ],
   },
@@ -119,23 +104,19 @@ const rawSolutions = [
     links: [
       {
         name: "Data Engineering",
-        description:
-          "Greyloops builds robust data pipelines and architectures that turn raw data into a reliable, real-time asset.",
+        description: "Reliable pipelines, real-time data.",
       },
       {
         name: "BI & Data Analytics",
-        description:
-          "Greyloops transforms complex data into clear, actionable dashboards that drive smarter business decisions.",
+        description: "Clear dashboards, smarter decisions.",
       },
       {
         name: "Data Governance & Security",
-        description:
-          "Greyloops implements enterprise-grade governance and security frameworks to protect and control your data.",
+        description: "Enterprise-grade governance & protection.",
       },
       {
         name: "Data Migration",
-        description:
-          "Greyloops ensures seamless, zero-downtime migration of your data across platforms with no data loss.",
+        description: "Zero-downtime migration, zero data loss.",
       },
     ],
   },
@@ -145,23 +126,19 @@ const rawSolutions = [
     links: [
       {
         name: "Agentic AI",
-        description:
-          "Greyloops designs autonomous AI agents that execute complex workflows and decisions with minimal human input.",
+        description: "Autonomous agents, minimal human input.",
       },
       {
         name: "Deep Learning",
-        description:
-          "Greyloops builds advanced neural network models that solve complex pattern recognition and prediction challenges.",
+        description: "Neural networks for complex prediction.",
       },
       {
         name: "Generative AI",
-        description:
-          "Greyloops develops custom generative AI solutions that create content, code, and insights at scale.",
+        description: "Custom AI for content & code.",
       },
       {
         name: "Predictive Analysis",
-        description:
-          "Greyloops leverages predictive modeling to forecast trends and help you make proactive, data-driven decisions.",
+        description: "Forecast trends, act proactively.",
       },
     ],
   },
@@ -171,18 +148,15 @@ const rawSolutions = [
     links: [
       {
         name: "AI Chatbots & Support",
-        description:
-          "Greyloops builds intelligent chatbots that deliver instant, personalized customer support around the clock.",
+        description: "Instant, personalized 24/7 support.",
       },
       {
         name: "eCommerce Development",
-        description:
-          "Greyloops builds scalable, secure online stores designed to convert visitors into loyal customers.",
+        description: "Secure stores built to convert.",
       },
       {
         name: "Voice Commerce",
-        description:
-          "Greyloops enables voice-powered shopping experiences that make purchasing faster and more accessible.",
+        description: "Voice-powered shopping, made simple.",
       },
     ],
   },

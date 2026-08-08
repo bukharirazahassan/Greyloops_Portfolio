@@ -152,7 +152,7 @@ export default function FAQSection() {
 
       <div className="relative mx-auto max-w-7xl px-6 sm:px-12 lg:px-16">
         {/* ================= HEADER ================= */}
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-6xl text-center">
           <motion.span
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -168,9 +168,11 @@ export default function FAQSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="faq-display mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-950 sm:text-5xl lg:text-6xl"
+            className="faq-display mt-5 text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
           >
-            Frequently Asked{" "}
+            <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-blue-700 bg-clip-text text-transparent">
+              Frequently Asked{" "}
+            </span>
             <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600 bg-clip-text text-transparent">
               Questions
             </span>
@@ -181,7 +183,7 @@ export default function FAQSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-5 text-sm font-medium leading-relaxed text-slate-500 sm:text-base sm:leading-8 lg:text-lg"
+            className="mx-auto mt-5 max-w-2xl text-sm font-medium leading-relaxed text-slate-500 sm:text-base sm:leading-8 lg:text-lg"
           >
             Everything you need to know about Greyloops, our services,
             processes, and how we help businesses grow through intelligent
@@ -195,7 +197,7 @@ export default function FAQSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.25 }}
-          className="mx-auto mt-10 max-w-3xl overflow-hidden rounded-3xl border border-slate-200/80 bg-white/90 p-2.5 shadow-lg shadow-slate-200/50 backdrop-blur-md"
+          className="mx-auto mt-10 max-w-6xl overflow-hidden rounded-3xl border border-slate-200/80 bg-white/90 p-2.5 shadow-lg shadow-slate-200/50 backdrop-blur-md"
         >
           <div className="relative">
             <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
@@ -235,7 +237,7 @@ export default function FAQSection() {
         </motion.div>
 
         {/* ================= FAQ LIST ================= */}
-        <div className="mx-auto mt-12 max-w-3xl">
+        <div className="mx-auto mt-12 max-w-7xl">
           {filteredFaqs.length === 0 ? (
             <div className="rounded-2xl border border-slate-200 bg-white/90 p-12 text-center shadow-sm backdrop-blur-md">
               <p className="faq-display text-base font-bold text-slate-800">
@@ -313,7 +315,7 @@ export default function FAQSection() {
                         </span>
                         <h3
                           className={`faq-display truncate text-sm font-bold tracking-tight transition-colors sm:text-base lg:text-lg ${
-                            isOpen ? "text-blue-600" : "text-slate-900 group-hover:text-blue-600"
+                            isOpen ? "text-blue-600" : "text-slate-800 group-hover:text-blue-600"
                           }`}
                         >
                           {faq.question}
@@ -358,7 +360,7 @@ export default function FAQSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="group relative mx-auto mt-16 max-w-3xl overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-8 shadow-xl shadow-slate-200/60 sm:p-10"
+          className="group relative mx-auto mt-16 max-w-4xl overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-8 shadow-xl shadow-slate-200/60 sm:p-10"
         >
           <div
             className="pointer-events-none absolute inset-0 opacity-[0.2]"
@@ -378,8 +380,10 @@ export default function FAQSection() {
                 Still Have Questions?
               </span>
 
-              <h3 className="faq-display mt-3 text-2xl font-extrabold tracking-tight text-slate-950 sm:text-3xl">
-                Can&rsquo;t find the answer you&rsquo;re looking for?
+              <h3 className="faq-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
+                <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-blue-700 bg-clip-text text-transparent">
+                  Can&rsquo;t find the answer you&rsquo;re looking for?
+                </span>
               </h3>
 
               <p className="mt-2 text-sm font-medium leading-relaxed text-slate-500 sm:text-base">

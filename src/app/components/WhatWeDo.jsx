@@ -278,28 +278,76 @@ export default function WhatWeDo() {
       </section>
 
       {/* ================= SECTION 2: VALUES THAT DRIVE US ================= */}
-      <section className="relative w-full overflow-hidden bg-white py-20 sm:py-28">
-        <div className="pointer-events-none absolute -top-24 right-1/4 h-80 w-80 rounded-full bg-blue-100/40 blur-3xl" />
-        <div className="pointer-events-none absolute bottom-0 left-10 h-72 w-72 rounded-full bg-orange-50 blur-3xl" />
+      <section className="values-font relative w-full overflow-hidden bg-gradient-to-b from-white via-blue-50/40 to-slate-50 py-20 sm:py-28">
+        {/* Shared display font — same pairing used across the site */}
+        <style jsx global>{`
+          @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
+          .values-font {
+            font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+          }
+          .values-display {
+            font-family: "Sora", "Plus Jakarta Sans", ui-sans-serif, sans-serif;
+            letter-spacing: -0.02em;
+          }
+        `}</style>
+
+        {/* Local shimmer keyframe */}
+        <style jsx>{`
+          @keyframes valuesShimmer {
+            0% {
+              transform: translateX(-120%);
+            }
+            100% {
+              transform: translateX(220%);
+            }
+          }
+          .values-shimmer {
+            animation: valuesShimmer 2.8s ease-in-out infinite;
+          }
+        `}</style>
+
+        {/* Dot Grid Texture — matched to the rest of the site */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.32]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+            maskImage:
+              "radial-gradient(ellipse 90% 75% at 50% 20%, black 25%, transparent 100%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 90% 75% at 50% 20%, black 25%, transparent 100%)",
+          }}
+        />
+
+        {/* Ambient Glows — boosted to match site strength */}
+        <div className="pointer-events-none absolute -top-24 right-1/4 h-80 w-80 rounded-full bg-blue-300/35 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 left-10 h-72 w-72 rounded-full bg-indigo-200/40 blur-3xl" />
 
         <div className="relative mx-auto max-w-6xl px-6">
           {/* Section Header */}
           <div className="mx-auto mb-14 max-w-3xl text-center">
-            <span className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-600 shadow-sm ring-1 ring-blue-100">
+            <span className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-600 shadow-sm ring-1 ring-blue-100 backdrop-blur-md">
               <Sparkles className="h-3.5 w-3.5" />
               Guiding Principles
             </span>
-            <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-              Values That <span className="text-blue-600">Drive Us</span>
+            <h2 className="values-display text-3xl font-bold leading-[1.1] tracking-tight sm:text-4xl lg:text-5xl">
+              <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-blue-700 bg-clip-text text-transparent">
+                Values That{" "}
+              </span>
+              <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600 bg-clip-text text-transparent">
+                Drive Us
+              </span>
             </h2>
-            <p className="mt-3 text-base text-slate-600 sm:text-lg">
-              The foundational convictions guiding every solution we architect.
+            <p className="mt-3 text-sm font-medium leading-relaxed text-slate-500 sm:text-base sm:leading-8 lg:text-lg">
+              The foundational convictions guiding every solution we
+              architect.
             </p>
           </div>
 
           {/* Interactive connected timeline / accordion */}
           <div className="relative">
-            <div className="absolute bottom-4 left-6 top-4 w-px bg-gradient-to-b from-blue-200 via-blue-200 to-transparent sm:left-7" />
+            <div className="absolute bottom-4 left-6 top-4 w-px bg-gradient-to-b from-blue-300 via-blue-200 to-transparent sm:left-7" />
 
             <div className="space-y-3">
               {coreValues.map((value, index) => {
@@ -322,44 +370,59 @@ export default function WhatWeDo() {
                       }`}
                     >
                       {isOpen && (
-                        <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
+                        <span className="h-2 w-2 animate-pulse rounded-full bg-white" />
                       )}
                     </span>
 
                     <button
                       onClick={() => setOpenValue(isOpen ? -1 : index)}
-                      className={`flex w-full items-center justify-between gap-4 rounded-2xl border p-5 text-left transition-all duration-300 ${
+                      className={`group relative flex w-full items-center justify-between gap-4 overflow-hidden rounded-2xl border p-5 text-left backdrop-blur-md transition-all duration-300 ${
                         isOpen
-                          ? "border-blue-200 bg-blue-50/60 shadow-md shadow-blue-900/5"
-                          : "border-zinc-100 bg-white hover:border-blue-200 hover:bg-blue-50/30"
+                          ? "border-blue-300 bg-white shadow-lg shadow-blue-900/10"
+                          : "border-slate-200/80 bg-white/85 hover:border-blue-200 hover:bg-white hover:shadow-md"
                       }`}
                     >
-                      <div className="flex items-center gap-4">
+                      {/* Shimmer sweep — only plays on the active item */}
+                      {isOpen && (
+                        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                          <div className="values-shimmer absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-blue-100/50 to-transparent" />
+                        </div>
+                      )}
+
+                      <div className="relative z-10 flex items-center gap-4">
                         <span
-                          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors duration-300 ${
+                          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
                             isOpen
-                              ? "bg-blue-600 text-white"
-                              : "bg-blue-50 text-blue-600"
+                              ? "bg-blue-600 text-white shadow-md shadow-blue-600/25"
+                              : "bg-blue-50 text-blue-600 group-hover:scale-105"
                           }`}
                         >
                           <Icon className="h-5 w-5" strokeWidth={1.8} />
                         </span>
 
                         <div>
-                          <span className="mb-0.5 block text-[11px] font-bold uppercase tracking-wider text-blue-500">
+                          <span
+                            className={`mb-0.5 block text-[10px] font-bold uppercase tracking-[0.14em] transition-colors ${
+                              isOpen ? "text-blue-600" : "text-blue-500/70"
+                            }`}
+                          >
                             {value.step} — {value.badge}
                           </span>
-                          <h3 className="text-lg font-bold text-slate-900 sm:text-xl">
+                          <h3
+                            className={`values-display text-lg font-bold tracking-tight transition-colors sm:text-xl ${
+                              isOpen ? "text-blue-700" : "text-slate-800"
+                            }`}
+                          >
                             {value.title}
                           </h3>
                         </div>
                       </div>
 
                       <span
-                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
+                        className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
                           isOpen
-                            ? "rotate-45 bg-blue-600 text-white"
-                            : "bg-zinc-100 text-zinc-500"
+                            ? "rotate-45 border-blue-200 bg-blue-50 text-blue-600"
+                            : "border-slate-200 bg-white text-slate-400 group-hover:border-blue-200 group-hover:text-blue-600"
                         }`}
                       >
                         <Plus className="h-4 w-4" strokeWidth={2.5} />
@@ -375,7 +438,7 @@ export default function WhatWeDo() {
                           transition={{ duration: 0.3, ease: "easeInOut" }}
                           className="overflow-hidden"
                         >
-                          <p className="px-5 py-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+                          <p className="px-5 py-4 text-sm font-medium leading-relaxed text-slate-500 sm:text-base">
                             {value.description}
                           </p>
                         </motion.div>

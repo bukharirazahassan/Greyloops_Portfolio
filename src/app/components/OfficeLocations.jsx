@@ -112,13 +112,40 @@ export default function OfficeLocations() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-white py-24 text-slate-900 lg:py-32">
-      {/* Soft floating background light effect */}
-      <div className="pointer-events-none absolute left-10 top-16 z-0 h-72 w-72 rounded-full bg-blue-300/20 blur-3xl animate-float" />
+    <section
+      className="relative w-full overflow-hidden bg-gradient-to-b from-white via-blue-50/40 to-slate-50 py-24 text-slate-900 lg:py-32"
+      style={{ colorScheme: "light" }}
+    >
+      {/* Forces this section to render as light even if the browser/an extension
+          (e.g. Dark Reader) is auto-repainting light pages as dark. Belt-and-braces
+          alongside the color-scheme style above. */}
+      <style jsx>{`
+        section {
+          background-color: #ffffff;
+        }
+      `}</style>
+
+      {/* Dot Grid Texture — same treatment as the rest of the site */}
       <div
-        className="pointer-events-none absolute right-10 bottom-24 z-0 h-56 w-56 rounded-full bg-indigo-200/25 blur-3xl animate-float"
+        className="pointer-events-none absolute inset-0 opacity-[0.3]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          maskImage:
+            "radial-gradient(ellipse 90% 80% at 50% 20%, black 25%, transparent 100%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 90% 80% at 50% 20%, black 25%, transparent 100%)",
+        }}
+      />
+
+      {/* Soft floating background light effect — boosted to match site glow strength */}
+      <div className="pointer-events-none absolute left-10 top-16 z-0 h-80 w-80 rounded-full bg-blue-300/35 blur-3xl animate-float" />
+      <div
+        className="pointer-events-none absolute right-10 bottom-24 z-0 h-72 w-72 rounded-full bg-indigo-300/30 blur-3xl animate-float"
         style={{ animationDelay: "1.5s" }}
       />
+      <div className="pointer-events-none absolute left-1/2 top-1/3 z-0 h-64 w-[420px] -translate-x-1/2 rounded-full bg-cyan-200/25 blur-[100px]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* ================= HERO HEADER ================= */}
@@ -135,8 +162,8 @@ export default function OfficeLocations() {
             <span className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-blue-100/70 to-transparent animate-shimmer" />
           </span>
 
-          <h2 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+          <h2 className="mb-6 text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+            <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-blue-700 bg-clip-text text-transparent">
               Where We{" "}
             </span>
             <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
@@ -162,7 +189,7 @@ export default function OfficeLocations() {
                   className={`group relative flex items-center gap-2.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
                     isActive
                       ? "bg-blue-600 text-white shadow-md shadow-blue-500/25"
-                      : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 hover:text-slate-900"
+                      : "bg-white/80 text-zinc-600 ring-1 ring-zinc-200 hover:bg-white hover:text-slate-800"
                   }`}
                 >
                   <span className="text-base">{office.flag}</span>
@@ -171,7 +198,7 @@ export default function OfficeLocations() {
                     className={`hidden rounded-full px-2 py-0.5 text-[10px] uppercase tracking-wider sm:inline-block ${
                       isActive
                         ? "bg-white/20 text-white"
-                        : "bg-zinc-200 text-zinc-500"
+                        : "bg-zinc-100 text-zinc-500"
                     }`}
                   >
                     {office.country}
@@ -187,10 +214,10 @@ export default function OfficeLocations() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative mt-8 overflow-hidden rounded-2xl border border-zinc-200/80 bg-white shadow-xl lg:grid lg:grid-cols-12"
+            className="relative mt-8 overflow-hidden rounded-2xl border border-zinc-200/80 bg-white/90 shadow-xl backdrop-blur-md lg:grid lg:grid-cols-12"
           >
             {/* Left Info Panel */}
-            <div className="relative flex flex-col justify-between overflow-hidden bg-slate-50/50 p-8 lg:col-span-5 lg:p-10">
+            <div className="relative flex flex-col justify-between overflow-hidden bg-slate-50/60 p-8 lg:col-span-5 lg:p-10">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeOffice.id}
@@ -213,8 +240,8 @@ export default function OfficeLocations() {
                       </span>
                     </div>
 
-                    <h3 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
-                      <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+                    <h3 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+                      <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-blue-700 bg-clip-text text-transparent">
                         {activeOffice.title}
                       </span>
                     </h3>
@@ -317,20 +344,20 @@ export default function OfficeLocations() {
           </motion.div>
         </div>
 
-        {/* ================= ALL LOCATIONS CARDS GRID (REDESIGNED & ANIMATED) ================= */}
+        {/* ================= ALL LOCATIONS CARDS GRID ================= */}
         <div className="mt-24">
           <div className="mb-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
             <div>
               <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-blue-600">
                 <Compass className="h-4 w-4" /> Regional Footprint
               </span>
-              <h3 className="mt-1 text-3xl font-extrabold tracking-tight sm:text-4xl">
-                <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+              <h3 className="mt-1 text-3xl font-bold tracking-tight sm:text-4xl">
+                <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-blue-700 bg-clip-text text-transparent">
                   All Operating Hubs
                 </span>
               </h3>
             </div>
-            <span className="rounded-full bg-slate-100 px-3.5 py-1.5 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">
+            <span className="rounded-full bg-white/80 px-3.5 py-1.5 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">
               3 Active Command Centers
             </span>
           </div>
@@ -351,7 +378,7 @@ export default function OfficeLocations() {
                   whileHover={{ y: -8, scale: 1.01 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   onClick={() => setActiveTab(office.id)}
-                  className={`group relative flex cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-2xl ${office.gradientBorder} ${office.glowColor} ${
+                  className={`group relative flex cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border bg-white/90 p-8 shadow-sm backdrop-blur-md transition-all duration-300 hover:shadow-2xl ${office.gradientBorder} ${office.glowColor} ${
                     isSelected
                       ? "ring-2 ring-blue-500/80 border-transparent shadow-lg"
                       : "border-zinc-200/80 hover:border-zinc-300"
@@ -373,8 +400,8 @@ export default function OfficeLocations() {
                       </span>
                     </div>
 
-                    <h4 className="mt-6 text-2xl font-extrabold tracking-tight transition-colors">
-                      <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:to-blue-500">
+                    <h4 className="mt-6 text-2xl font-bold tracking-tight transition-colors">
+                      <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-blue-700 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:to-blue-500">
                         {office.title}
                       </span>
                     </h4>
@@ -408,7 +435,7 @@ export default function OfficeLocations() {
           </motion.div>
         </div>
 
-        {/* ================= QUICK CONTACT CHANNELS (ANIMATED) ================= */}
+        {/* ================= QUICK CONTACT CHANNELS ================= */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -421,7 +448,7 @@ export default function OfficeLocations() {
               key={channel.title}
               variants={cardVariants}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="relative overflow-hidden rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm transition-all hover:border-blue-200 hover:shadow-lg"
+              className="relative overflow-hidden rounded-2xl border border-zinc-200/80 bg-white/90 p-6 shadow-sm backdrop-blur-md transition-all hover:border-blue-200 hover:shadow-lg"
             >
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 shadow-inner">
@@ -431,7 +458,7 @@ export default function OfficeLocations() {
                   <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                     {channel.tag}
                   </p>
-                  <h4 className="text-sm font-extrabold tracking-tight text-slate-900">
+                  <h4 className="text-sm font-bold tracking-tight text-slate-800">
                     {channel.title}
                   </h4>
                 </div>
@@ -463,7 +490,7 @@ export default function OfficeLocations() {
           <motion.div
             variants={cardVariants}
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            className="relative overflow-hidden rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm transition-all hover:border-blue-200 hover:shadow-lg"
+            className="relative overflow-hidden rounded-2xl border border-zinc-200/80 bg-white/90 p-6 shadow-sm backdrop-blur-md transition-all hover:border-blue-200 hover:shadow-lg"
           >
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 shadow-inner">
@@ -473,7 +500,7 @@ export default function OfficeLocations() {
                 <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                   Direct Line
                 </p>
-                <h4 className="text-sm font-extrabold tracking-tight text-slate-900">
+                <h4 className="text-sm font-bold tracking-tight text-slate-800">
                   Speak to HQ
                 </h4>
               </div>
