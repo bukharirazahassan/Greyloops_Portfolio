@@ -1,9 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { Zap, ShieldCheck, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
+import {
+  Zap,
+  ShieldCheck,
+  ArrowRight,
+  Sparkles,
+  CheckCircle2,
+  MessageCircle,
+  Mail,
+  Phone,
+  Rocket,
+} from "lucide-react";
+
+const ORBIT_NODES = [
+  { icon: Mail, angle: 0, color: "#38bdf8" },
+  { icon: Phone, angle: 90, color: "#a78bfa" },
+  { icon: Rocket, angle: 180, color: "#fb923c" },
+  { icon: ShieldCheck, angle: 270, color: "#34d399" },
+];
 
 const COUNTRY_CODES = [
   { name: "United States", code: "+1", flag: "🇺🇸" },
@@ -101,11 +117,11 @@ export default function ContactUs() {
   };
 
   const inputClass =
-    "w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 placeholder-slate-400 shadow-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-100";
+    "w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 placeholder-zinc-400 shadow-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-100";
 
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-b from-white via-blue-50/40 to-slate-50 py-20 text-slate-900 sm:py-28">
-      {/* Background Dot Texture — matched to FAQ / OfficeLocations opacity + mask */}
+    <section className="relative w-full overflow-hidden bg-white py-16 lg:py-24 text-slate-900">
+      {/* Background Dot Texture */}
       <motion.div
         animate={{ opacity: [0.3, 0.45, 0.3] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -121,26 +137,12 @@ export default function ContactUs() {
         }}
       />
 
-      {/* Decorative Glow Blobs — stronger, same palette as the rest of the site */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          x: [0, 30, 0],
-          y: [0, -20, 0],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -left-20 top-1/3 h-80 w-80 rounded-full bg-blue-300/35 blur-3xl"
+      {/* Ambient background glows */}
+      <div className="pointer-events-none absolute -left-20 top-1/3 h-80 w-80 rounded-full bg-blue-300/20 blur-3xl animate-float" />
+      <div
+        className="pointer-events-none absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-orange-200/25 blur-3xl animate-float"
+        style={{ animationDelay: "1.5s" }}
       />
-      <motion.div
-        animate={{
-          scale: [1, 1.25, 1],
-          x: [0, -30, 0],
-          y: [0, 30, 0],
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-indigo-300/30 blur-3xl"
-      />
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[300px] w-[500px] -translate-x-1/2 rounded-full bg-cyan-200/25 blur-[100px]" />
 
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="mx-auto mb-14 max-w-3xl text-center">
@@ -148,9 +150,9 @@ export default function ContactUs() {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-600 shadow-sm ring-1 ring-blue-100"
+            className="mb-5 inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100"
           >
-            <Sparkles className="h-3.5 w-3.5" />
+            <Sparkles className="h-3.5 w-3.5 text-blue-500" />
             Get in Touch
           </motion.span>
           <motion.h2
@@ -158,19 +160,24 @@ export default function ContactUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mb-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
+            className="mb-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
           >
-            Let&rsquo;s Build <span className="text-blue-600">Something Great</span>
+            <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+              Let&rsquo;s Build{" "}
+            </span>
+            <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+              Something Great
+            </span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-base text-slate-600 sm:text-lg"
+            className="text-base leading-relaxed text-zinc-600 sm:text-lg"
           >
-            Have a vision for your platform? Connect with our technical
-            experts and we&rsquo;ll get back to you within 24 hours.
+            Have a vision for your platform? Connect with our technical experts
+            and we&rsquo;ll get back to you within 24 hours.
           </motion.p>
         </div>
 
@@ -179,7 +186,7 @@ export default function ContactUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="grid overflow-hidden rounded-3xl border border-slate-200/80 bg-white/90 shadow-2xl shadow-blue-900/10 backdrop-blur-md lg:grid-cols-12"
+          className="grid overflow-hidden rounded-3xl border border-slate-100 bg-white/90 shadow-2xl shadow-blue-900/10 backdrop-blur-md lg:grid-cols-12"
         >
           {/* Left: Branding Panel */}
           <div className="relative flex flex-col justify-between overflow-hidden border-b border-slate-100 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 p-8 sm:p-12 lg:col-span-5 lg:border-b-0 lg:border-r lg:border-slate-100/10 lg:p-14">
@@ -192,17 +199,6 @@ export default function ContactUs() {
               animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.4, 0.2] }}
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               className="pointer-events-none absolute -bottom-10 -right-10 h-72 w-72 rounded-full bg-indigo-500/30 blur-3xl"
-            />
-
-            <motion.div
-              initial={{ x: "-100%", y: "-100%" }}
-              animate={{ x: "200%", y: "200%" }}
-              transition={{
-                repeat: Infinity,
-                duration: 4,
-                ease: "easeInOut",
-              }}
-              className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-br from-transparent via-white/10 to-transparent"
             />
 
             <div className="relative z-10">
@@ -220,20 +216,83 @@ export default function ContactUs() {
               </p>
             </div>
 
+            {/* Orbit Animation Visual */}
             <div className="relative z-10 my-10 flex items-center justify-center">
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="relative h-52 w-full max-w-sm sm:h-64"
-              >
-                <Image
-                  src="/ContactUs.png"
-                  alt="Contact Illustration"
-                  fill
-                  className="object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.3)] transition-transform duration-500 hover:scale-105"
-                  priority
+              <div className="relative flex h-52 w-52 items-center justify-center sm:h-60 sm:w-60">
+                {/* Rings */}
+                <div className="absolute inset-0 rounded-full border border-white/10" />
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{
+                    duration: 22,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  className="absolute inset-6 rounded-full border border-dashed border-blue-400/25"
                 />
-              </motion.div>
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{
+                    duration: 30,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  className="absolute inset-14 rounded-full border border-cyan-400/25"
+                />
+
+                {/* Glowing core */}
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="relative flex h-20 w-20 items-center justify-center rounded-2xl border border-white/20 bg-gradient-to-br from-blue-500 via-indigo-500 to-cyan-400 shadow-[0_0_50px_rgba(59,130,246,0.45)] backdrop-blur-md"
+                >
+                  <MessageCircle className="h-9 w-9 text-white drop-shadow-md" />
+                </motion.div>
+
+                {/* Orbiting nodes */}
+                {ORBIT_NODES.map(({ icon: Icon, angle, color }, i) => (
+                  <motion.div
+                    key={angle}
+                    className="absolute inset-0"
+                    animate={{ rotate: [angle, angle + 360] }}
+                    transition={{
+                      duration: 20,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  >
+                    <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{
+                          opacity: 1,
+                          rotate: [-angle, -angle - 360],
+                        }}
+                        transition={{
+                          opacity: { duration: 0.5, delay: 0.3 + i * 0.1 },
+                          rotate: {
+                            duration: 20,
+                            repeat: Infinity,
+                            ease: "linear",
+                          },
+                        }}
+                        className="flex h-10 w-10 items-center justify-center rounded-xl border backdrop-blur-md"
+                        style={{
+                          borderColor: `${color}40`,
+                          backgroundColor: "rgba(15,23,42,0.85)",
+                          boxShadow: `0 0 20px ${color}55`,
+                        }}
+                      >
+                        <Icon className="h-4 w-4" style={{ color }} />
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
             <div className="relative z-10 flex flex-wrap items-center gap-6 border-t border-slate-700/50 pt-6 text-xs font-semibold text-slate-300 sm:text-sm">
@@ -242,7 +301,10 @@ export default function ContactUs() {
                 24-hour response time
               </span>
               <span className="flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-blue-400" strokeWidth={2} />
+                <ShieldCheck
+                  className="h-4 w-4 text-blue-400"
+                  strokeWidth={2}
+                />
                 100% Confidential
               </span>
             </div>
@@ -313,7 +375,7 @@ export default function ContactUs() {
                       placeholder="you@company.com"
                       className={inputClass}
                     />
-                    <span className="mt-1 block text-[11px] text-slate-400">
+                    <span className="mt-1 block text-[11px] text-zinc-600">
                       We recommend using your work email.
                     </span>
                   </div>
@@ -397,7 +459,7 @@ export default function ContactUs() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-blue-600 px-8 py-4 text-base font-bold text-white shadow-md shadow-blue-500/25 transition-all duration-300 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/35 active:scale-[0.99] disabled:opacity-70 sm:w-auto"
+                    className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-8 py-4 text-base font-bold text-white shadow-md shadow-blue-500/25 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/35 active:scale-[0.99] disabled:opacity-70 sm:w-auto"
                   >
                     <span>
                       {isSubmitting

@@ -16,11 +16,7 @@ import {
 } from "lucide-react";
 import { servicesColumns, solutionsColumns } from "../lib/navigationData";
 import { casestudiesProjects } from "../lib/casestudiesData";
-import {
-  companyColumns,
-  trendingBlogs,
-  socialLinks,
-} from "../lib/companyData";
+import { companyColumns, trendingBlogs, socialLinks } from "../lib/companyData";
 
 const menuItems = [
   {
@@ -123,7 +119,10 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav ref={navRef} className="hidden md:flex flex-1 items-center justify-center gap-1">
+        <nav
+          ref={navRef}
+          className="hidden md:flex flex-1 items-center justify-center gap-1"
+        >
           {menuItems.map((item) => (
             <div key={item.label} className="relative">
               {item.hasMega ? (
@@ -165,32 +164,63 @@ export default function Header() {
 
               {item.hasMega && activeMenu === item.label && (
                 <div className="fixed left-0 top-16 w-full border-t border-blue-100 bg-white/95 backdrop-blur-md shadow-2xl shadow-blue-900/10 overflow-hidden">
-                  {
-                  item.type === "company" ? (
-                    /* Modern Full-Height Edge-to-Edge Company Mega Menu */
-                    <div className="relative mx-auto flex max-w-7xl justify-between items-stretch">
+                  {item.type === "company" ? (
+                    <div className="company-menu-font relative mx-auto flex max-w-7xl justify-between items-stretch">
+                      {/* Shared display font, same pairing as the rest of the site */}
+                      <style jsx global>{`
+                        @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
+                        .company-menu-font {
+                          font-family:
+                            "Plus Jakarta Sans", ui-sans-serif, system-ui,
+                            sans-serif;
+                        }
+                        .company-menu-display {
+                          font-family:
+                            "Sora", "Plus Jakarta Sans", ui-sans-serif,
+                            sans-serif;
+                          letter-spacing: -0.02em;
+                        }
+                        @keyframes companyMenuShimmer {
+                          0% {
+                            transform: translateX(-120%) skewX(-12deg);
+                          }
+                          100% {
+                            transform: translateX(220%) skewX(-12deg);
+                          }
+                        }
+                        .company-menu-shimmer {
+                          animation: companyMenuShimmer 3.5s ease-in-out
+                            infinite;
+                        }
+                      `}</style>
+
                       {/* Left Side Navigation & Blog Links */}
                       <div className="grid flex-1 grid-cols-8 gap-10 py-10 pl-8 pr-8">
                         {/* Column 1: Company Links */}
                         <div className="col-span-2 space-y-4">
                           {companyColumns[0] && (
                             <div>
-                              <div className="mb-4 flex items-center gap-2.5 border-b-2 border-orange-400 pb-2.5">
+                              <div className="mb-4 flex items-center gap-2.5">
                                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                                  <Building2 className="h-4.5 w-4.5" strokeWidth={2} />
+                                  <Building2
+                                    className="h-4.5 w-4.5"
+                                    strokeWidth={2}
+                                  />
                                 </span>
-                                <h3 className="text-lg font-bold text-zinc-900">
+                                <h3 className="company-menu-display text-base font-bold tracking-tight text-slate-800">
                                   {companyColumns[0].title}
                                 </h3>
                               </div>
-                              <ul className="space-y-3.5">
+                              <div className="mb-4 h-px w-full bg-gradient-to-r from-blue-200 via-blue-100 to-transparent" />
+                              <ul className="space-y-3">
                                 {companyColumns[0].links.map((link) => (
                                   <li key={link.slug}>
                                     <Link
                                       href={`/company/${link.slug}`}
                                       onClick={() => setActiveMenu(null)}
-                                      className="text-base font-medium text-zinc-700 hover:text-blue-600 transition-colors block"
+                                      className="group flex items-center gap-1.5 text-sm font-semibold text-slate-600 transition-all duration-200 hover:translate-x-1 hover:text-blue-600"
                                     >
+                                      <span className="h-1 w-1 shrink-0 rounded-full bg-slate-300 transition-colors group-hover:bg-blue-500" />
                                       {link.name}
                                     </Link>
                                   </li>
@@ -204,22 +234,27 @@ export default function Header() {
                         <div className="col-span-2 space-y-4">
                           {companyColumns[1] && (
                             <div>
-                              <div className="mb-4 flex items-center gap-2.5 border-b-2 border-orange-400 pb-2.5">
+                              <div className="mb-4 flex items-center gap-2.5">
                                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                                  <Briefcase className="h-4.5 w-4.5" strokeWidth={2} />
+                                  <Briefcase
+                                    className="h-4.5 w-4.5"
+                                    strokeWidth={2}
+                                  />
                                 </span>
-                                <h3 className="text-lg font-bold text-zinc-900">
+                                <h3 className="company-menu-display text-base font-bold tracking-tight text-slate-800">
                                   {companyColumns[1].title}
                                 </h3>
                               </div>
-                              <ul className="space-y-3.5">
+                              <div className="mb-4 h-px w-full bg-gradient-to-r from-blue-200 via-blue-100 to-transparent" />
+                              <ul className="space-y-3">
                                 {companyColumns[1].links.map((link) => (
                                   <li key={link.slug}>
                                     <Link
                                       href={`/careers/${link.slug}`}
                                       onClick={() => setActiveMenu(null)}
-                                      className="text-base font-medium text-zinc-700 hover:text-blue-600 transition-colors block"
+                                      className="group flex items-center gap-1.5 text-sm font-semibold text-slate-600 transition-all duration-200 hover:translate-x-1 hover:text-blue-600"
                                     >
+                                      <span className="h-1 w-1 shrink-0 rounded-full bg-slate-300 transition-colors group-hover:bg-blue-500" />
                                       {link.name}
                                     </Link>
                                   </li>
@@ -231,36 +266,41 @@ export default function Header() {
 
                         {/* Column 3: Trending Blogs & Social Links */}
                         <div className="col-span-4 space-y-6">
-                          {/* Trending Blogs */}
+                          {/* Trending Blogs — now with real thumbnails from BlogSection */}
                           <div>
-                            <div className="mb-4 flex items-center gap-2.5 border-b-2 border-orange-400 pb-2.5">
+                            <div className="mb-4 flex items-center gap-2.5">
                               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                                <TrendingUp className="h-4.5 w-4.5" strokeWidth={2} />
+                                <TrendingUp
+                                  className="h-4.5 w-4.5"
+                                  strokeWidth={2}
+                                />
                               </span>
-                              <h3 className="text-lg font-bold text-zinc-900">
+                              <h3 className="company-menu-display text-base font-bold tracking-tight text-slate-800">
                                 Trending Blogs
                               </h3>
                             </div>
-                            <div className="space-y-3.5">
+                            <div className="mb-4 h-px w-full bg-gradient-to-r from-blue-200 via-blue-100 to-transparent" />
+                            <div className="space-y-3">
                               {trendingBlogs.map((blog, idx) => (
                                 <Link
                                   key={idx}
                                   href={blog.href}
                                   onClick={() => setActiveMenu(null)}
-                                  className="group flex items-center gap-3 transition-colors"
+                                  className="group flex items-center gap-3 rounded-xl p-1.5 transition-colors duration-200 hover:bg-blue-50/60"
                                 >
                                   {/* Blog Image Thumbnail */}
-                                  <div className="relative h-11 w-16 shrink-0 overflow-hidden rounded-lg bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 flex items-center justify-center border border-slate-800 shadow-sm">
+                                  <div className="relative h-12 w-16 shrink-0 overflow-hidden rounded-lg border border-slate-200/80 bg-slate-900 shadow-sm">
                                     {blog.image ? (
                                       <Image
                                         src={blog.image}
                                         alt={blog.title}
                                         fill
-                                        className="object-cover transition-transform duration-200 group-hover:scale-105"
+                                        sizes="64px"
+                                        className="object-cover transition-transform duration-300 group-hover:scale-110"
                                       />
                                     ) : (
-                                      <div className="flex h-full w-full items-center justify-center text-center">
-                                        <span className="text-[9px] font-black tracking-wider text-blue-400 uppercase">
+                                      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 text-center">
+                                        <span className="text-[9px] font-black uppercase tracking-wider text-blue-400">
                                           Greyloops
                                         </span>
                                       </div>
@@ -268,7 +308,7 @@ export default function Header() {
                                   </div>
 
                                   {/* Blog Title */}
-                                  <h4 className="text-sm font-medium text-zinc-700 leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
+                                  <h4 className="line-clamp-2 text-sm font-semibold leading-snug text-slate-700 transition-colors group-hover:text-blue-600">
                                     {blog.title}
                                   </h4>
                                 </Link>
@@ -276,17 +316,17 @@ export default function Header() {
                             </div>
                           </div>
 
-                          {/* Find us on: Colorful Modern Icons */}
+                          {/* Find us on: colorful, modern icons */}
                           <div>
-                            <div className="mb-3 flex items-center gap-2.5 border-b-2 border-orange-400 pb-2">
+                            <div className="mb-3 flex items-center gap-2.5">
                               <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
                                 <Share2 className="h-4 w-4" strokeWidth={2} />
                               </span>
-                              <h3 className="text-lg font-bold text-zinc-900">
-                                Find us on:
+                              <h3 className="company-menu-display text-sm font-bold tracking-tight text-slate-800">
+                                Find us on
                               </h3>
                             </div>
-                            <div className="flex items-center gap-2.5 pt-1">
+                            <div className="flex items-center gap-2.5">
                               {socialLinks.map((social) => {
                                 const IconComponent = social.icon;
                                 return (
@@ -307,94 +347,91 @@ export default function Header() {
                         </div>
                       </div>
 
-                      {/* Right Side: Direct Contact Card - Touching Top & Bottom Full Bleed */}
-                      <div className="relative w-96 shrink-0 overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 p-7 text-white flex flex-col justify-between border-l border-slate-800 shadow-2xl">
-                        {/* Shimmer Sweep Animation Layer */}
-                        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                          <div className="animate-shimmer absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-transparent via-blue-400/10 to-transparent transform -skew-x-12" />
+                      {/* Right Side: Direct Contact Card — full bleed, modernized */}
+                      <div className="relative w-96 shrink-0 overflow-hidden border-l border-slate-800 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-7 text-white shadow-2xl">
+                        {/* Ambient glows — blue/indigo, matched to the rest of the site */}
+                        <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-blue-500/20 blur-2xl" />
+                        <div className="pointer-events-none absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-indigo-500/15 blur-2xl" />
+                        <HelpCircle className="pointer-events-none absolute -right-4 top-10 h-32 w-32 text-white/5" />
+
+                        {/* Quiet shimmer sweep, self-contained */}
+                        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                          <div className="company-menu-shimmer absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent" />
                         </div>
 
-                        {/* Ambient Background Blur Glows */}
-                        <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-blue-500/20 blur-2xl pointer-events-none" />
-                        <div className="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-orange-500/15 blur-2xl pointer-events-none" />
-                        <HelpCircle className="absolute -right-4 top-10 h-32 w-32 text-white/5 pointer-events-none" />
-
-                        {/* Header Section */}
-                        <div className="relative z-10">
-                          <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                            <div>
-                              <span className="text-[10px] font-extrabold uppercase tracking-widest text-blue-400">
-                                Direct Contact
-                              </span>
-                              <h4 className="text-xl font-black text-white tracking-tight">
-                                Have Any Questions?
-                              </h4>
-                            </div>
-                            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-600/30 text-blue-300 backdrop-blur-md border border-blue-400/20 shadow-inner">
-                              <PhoneCall className="h-5 w-5" />
-                            </span>
-                          </div>
-
-                          {/* Contact Info List */}
-                          <div className="mt-6 space-y-4">
-                            {/* Phone Call */}
-                            <a
-                              href="tel:+180045647823"
-                              className="group flex items-center gap-3 text-base font-bold text-blue-300 hover:text-white transition-colors"
-                            >
-                              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white transition-transform group-hover:scale-105">
-                                <PhoneCall className="h-4 w-4" />
-                              </span>
-                              +1-800-456-478-23
-                            </a>
-
-                            {/* Business Email */}
-                            <div className="flex items-start gap-3">
-                              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-blue-300 mt-0.5">
-                                <Mail className="h-4 w-4" />
-                              </span>
+                        <div className="relative z-10 flex h-full flex-col justify-between">
+                          <div>
+                            <div className="flex items-center justify-between border-b border-white/10 pb-4">
                               <div>
-                                <span className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                                  Business:
+                                <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-blue-400">
+                                  Direct Contact
                                 </span>
-                                <a
-                                  href="mailto:query@greyloops.com"
-                                  className="text-sm font-semibold text-white hover:text-blue-300 transition-colors"
-                                >
-                                  query@greyloops.com
-                                </a>
+                                <h4 className="company-menu-display text-xl font-bold tracking-tight text-white">
+                                  Have Any Questions?
+                                </h4>
                               </div>
+                              <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-blue-400/20 bg-blue-600/20 text-blue-300 shadow-inner backdrop-blur-md">
+                                <PhoneCall className="h-5 w-5" />
+                              </span>
                             </div>
 
-                            {/* Careers Email */}
-                            <div className="flex items-start gap-3">
-                              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-orange-400 mt-0.5">
-                                <Briefcase className="h-4 w-4" />
-                              </span>
-                              <div>
-                                <span className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                                  Careers:
+                            {/* Contact Info List */}
+                            <div className="mt-6 space-y-4">
+                              <a
+                                href="tel:+180045647823"
+                                className="group flex items-center gap-3 text-base font-bold text-blue-300 transition-colors hover:text-white"
+                              >
+                                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white transition-transform group-hover:scale-105">
+                                  <PhoneCall className="h-4 w-4" />
                                 </span>
-                                <a
-                                  href="mailto:hr@greyloops.com"
-                                  className="text-sm font-semibold text-white hover:text-orange-300 transition-colors"
-                                >
-                                  hr@greyloops.com
-                                </a>
+                                +1-800-456-478-23
+                              </a>
+
+                              <div className="flex items-start gap-3">
+                                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-blue-300">
+                                  <Mail className="h-4 w-4" />
+                                </span>
+                                <div>
+                                  <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                                    Business:
+                                  </span>
+                                  <a
+                                    href="mailto:query@greyloops.com"
+                                    className="text-sm font-semibold text-white transition-colors hover:text-blue-300"
+                                  >
+                                    query@greyloops.com
+                                  </a>
+                                </div>
+                              </div>
+
+                              <div className="flex items-start gap-3">
+                                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-cyan-300">
+                                  <Briefcase className="h-4 w-4" />
+                                </span>
+                                <div>
+                                  <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                                    Careers:
+                                  </span>
+                                  <a
+                                    href="mailto:hr@greyloops.com"
+                                    className="text-sm font-semibold text-white transition-colors hover:text-cyan-300"
+                                  >
+                                    hr@greyloops.com
+                                  </a>
+                                </div>
                               </div>
                             </div>
                           </div>
+
+                          <Link
+                            href="/contact"
+                            onClick={() => setActiveMenu(null)}
+                            className="relative mt-6 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition-all hover:from-blue-700 hover:to-blue-600 hover:shadow-blue-500/35"
+                          >
+                            Get in Touch
+                            <ArrowUpRight className="h-4 w-4" />
+                          </Link>
                         </div>
-
-                        {/* Direct Call to Action Button */}
-                        <Link
-                          href="/contact"
-                          onClick={() => setActiveMenu(null)}
-                          className="relative z-10 mt-6 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 px-5 py-2.5 text-xs font-extrabold text-white shadow-lg transition-all hover:brightness-110 hover:shadow-blue-500/30"
-                        >
-                          Get in Touch
-                          <ArrowUpRight className="h-4 w-4" />
-                        </Link>
                       </div>
                     </div>
                   ) : item.type === "portfolio" ? (
@@ -447,7 +484,10 @@ export default function Header() {
                           className="flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-blue-200 bg-blue-50/50 p-5 text-center transition-all duration-200 hover:border-blue-400 hover:bg-blue-50"
                         >
                           <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-white">
-                            <LayoutGrid className="h-5.5 w-5.5" strokeWidth={2} />
+                            <LayoutGrid
+                              className="h-5.5 w-5.5"
+                              strokeWidth={2}
+                            />
                           </span>
                           <span className="text-sm font-bold text-blue-600">
                             View All Projects
@@ -598,7 +638,7 @@ export default function Header() {
                       className="flex w-full items-center justify-between py-3.5 text-base font-semibold text-zinc-900"
                       onClick={() =>
                         setMobileExpanded((prev) =>
-                          prev === item.label ? null : item.label
+                          prev === item.label ? null : item.label,
                         )
                       }
                     >
@@ -651,10 +691,22 @@ export default function Header() {
                               <h5 className="text-xs font-bold text-blue-400 uppercase tracking-wider mb-2">
                                 Direct Contact
                               </h5>
-                              <p className="text-sm font-bold">+1-800-456-478-23</p>
+                              <p className="text-sm font-bold">
+                                +1-800-456-478-23
+                              </p>
                               <div className="mt-2 text-xs text-slate-300 space-y-1">
-                                <p><span className="text-slate-400">Business:</span> query@greyloops.com</p>
-                                <p><span className="text-slate-400">Careers:</span> hr@greyloops.com</p>
+                                <p>
+                                  <span className="text-slate-400">
+                                    Business:
+                                  </span>{" "}
+                                  query@greyloops.com
+                                </p>
+                                <p>
+                                  <span className="text-slate-400">
+                                    Careers:
+                                  </span>{" "}
+                                  hr@greyloops.com
+                                </p>
                               </div>
                             </div>
                           </div>

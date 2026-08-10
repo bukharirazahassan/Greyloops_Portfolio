@@ -59,17 +59,6 @@ export default function Footer() {
         .footer-shimmer-line {
           animation: footerShimmerLine 4s ease-in-out infinite;
         }
-        @keyframes footerShimmerSweep {
-          0% {
-            transform: translateX(-120%) skewX(-15deg);
-          }
-          100% {
-            transform: translateX(220%) skewX(-15deg);
-          }
-        }
-        .footer-shimmer-sweep {
-          animation: footerShimmerSweep 3.2s ease-in-out infinite;
-        }
         @keyframes footerGlowPulse {
           0%,
           100% {
@@ -99,27 +88,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
           {/* Left Column: Logo & Punchy Heading */}
           <div className="space-y-4 lg:col-span-4 xl:col-span-4">
-            {/* Logo Container with Ambient + Shimmer Glow */}
-            <div className="group relative inline-block">
-              <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 opacity-30 blur-md transition duration-500 group-hover:opacity-60" />
-              <Link
-                href="/"
-                className="relative block overflow-hidden rounded-xl border border-white/10 bg-slate-900/90 p-3 backdrop-blur-md"
-              >
-                {/* Shimmer sweep across the logo card, always on */}
-                <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                  <div className="footer-shimmer-sweep absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                </div>
-                <Image
-                  src="/GreyLoop_Logo-01.png"
-                  alt="Greyloops Logo"
-                  width={240}
-                  height={65}
-                  className="relative h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105 sm:h-14"
-                  priority
-                />
-              </Link>
-            </div>
+            {/* Logo without card frame wrapper */}
+            <Link href="/" className="inline-block">
+              <Image
+                src="/GreyLoop_Logo-01.png"
+                alt="Greyloops Logo"
+                width={240}
+                height={65}
+                className="h-12 w-auto object-contain sm:h-14"
+                priority
+              />
+            </Link>
 
             <h3 className="text-xl font-extrabold leading-snug text-white sm:text-2xl lg:text-3xl">
               If{" "}
@@ -136,7 +115,7 @@ export default function Footer() {
               AI integrations tailored for growth.
             </p>
 
-            {/* Social Icons moved here for tighter left-column balance */}
+            {/* Social Icons */}
             <div className="flex flex-wrap items-center gap-2.5 pt-2">
               {socialLinks.map((social) => (
                 <a
@@ -145,14 +124,14 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
-                  className="group/social relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-slate-800 bg-slate-900/90 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500 hover:bg-slate-800 hover:shadow-md hover:shadow-blue-500/20"
+                  className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-slate-800 bg-slate-900/90 text-slate-400 hover:border-blue-500 hover:bg-slate-800 hover:text-white"
                 >
                   <Image
                     src={social.icon}
                     alt={social.name}
                     width={18}
                     height={18}
-                    className="relative h-4 w-4 opacity-70 transition-all duration-300 group-hover/social:scale-110 group-hover/social:opacity-100"
+                    className="h-4 w-4 opacity-70"
                   />
                 </a>
               ))}
@@ -172,11 +151,8 @@ export default function Footer() {
                   <li key={item.slug}>
                     <Link
                       href={`/services/${item.slug}`}
-                      className="group inline-flex items-center text-slate-400 transition-all duration-200 hover:translate-x-1 hover:text-white"
+                      className="inline-flex items-center text-slate-400 hover:text-white"
                     >
-                      <span className="mr-1.5 text-blue-400 opacity-0 transition-opacity group-hover:opacity-100">
-                        ›
-                      </span>
                       {item.name}
                     </Link>
                   </li>
@@ -195,11 +171,8 @@ export default function Footer() {
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="group inline-flex items-center text-slate-400 transition-all duration-200 hover:translate-x-1 hover:text-white"
+                      className="inline-flex items-center text-slate-400 hover:text-white"
                     >
-                      <span className="mr-1.5 text-sky-400 opacity-0 transition-opacity group-hover:opacity-100">
-                        ›
-                      </span>
                       {item.name}
                     </Link>
                   </li>
@@ -208,16 +181,10 @@ export default function Footer() {
             </div>
 
             {/* Direct Communication Box */}
-            <div className="relative space-y-3 overflow-hidden rounded-xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950/90 p-4 backdrop-blur-xl transition-all duration-300 hover:border-blue-500/40">
+            <div className="relative space-y-3 overflow-hidden rounded-xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950/90 p-4 backdrop-blur-xl">
               <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-blue-500/10 blur-xl" />
 
-              {/* Shimmer sweep across the box on loop */}
-              <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="footer-shimmer-sweep absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent [animation-delay:1.2s]" />
-              </div>
-
               <div className="relative flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-blue-400">
-                <span className="h-2 w-2 animate-ping rounded-full bg-blue-500" />
                 Direct Contact
               </div>
 
@@ -244,7 +211,7 @@ export default function Footer() {
                   </span>
                   <a
                     href="tel:+180045647823"
-                    className="text-xs font-bold text-white transition-colors hover:text-blue-400"
+                    className="text-xs font-bold text-white hover:text-blue-400"
                   >
                     +1-800-456-478-23
                   </a>
@@ -264,7 +231,7 @@ export default function Footer() {
                   <span className="text-[11px] text-slate-500">Business:</span>
                   <a
                     href="mailto:query@greyloops.com"
-                    className="font-semibold text-slate-200 transition-colors hover:text-blue-400"
+                    className="font-semibold text-slate-200 hover:text-blue-400"
                   >
                     query@greyloops.com
                   </a>
@@ -281,7 +248,7 @@ export default function Footer() {
                   <span className="text-[11px] text-slate-500">Careers:</span>
                   <a
                     href="mailto:hr@greyloops.com"
-                    className="font-semibold text-slate-200 transition-colors hover:text-blue-400"
+                    className="font-semibold text-slate-200 hover:text-blue-400"
                   >
                     hr@greyloops.com
                   </a>
@@ -291,7 +258,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Global Offices Section - Compact Dark Glass Container */}
+        {/* Global Offices Section */}
         <div className="relative mt-10 overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900/90 via-slate-900/60 to-slate-950 p-4 sm:p-6 lg:p-8">
           {/* World Map Overlay */}
           <div className="pointer-events-none absolute inset-0 opacity-15 mix-blend-screen">
@@ -301,11 +268,6 @@ export default function Footer() {
               fill
               className="object-cover object-center"
             />
-          </div>
-
-          {/* Slow shimmer sweep across the whole offices panel */}
-          <div className="pointer-events-none absolute inset-0 overflow-hidden">
-            <div className="footer-shimmer-sweep absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-transparent via-white/5 to-transparent [animation-duration:6s]" />
           </div>
 
           <div className="relative z-10">
@@ -326,7 +288,7 @@ export default function Footer() {
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               {/* UAE HQ */}
-              <div className="group relative overflow-hidden rounded-xl border border-slate-800/80 bg-slate-950/80 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10">
+              <div className="relative overflow-hidden rounded-xl border border-slate-800/80 bg-slate-950/80 p-4 backdrop-blur-md">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-xl">🇦🇪</span>
@@ -353,7 +315,7 @@ export default function Footer() {
               </div>
 
               {/* Engineering Team - Pakistan */}
-              <div className="group relative overflow-hidden rounded-xl border border-slate-800/80 bg-slate-950/80 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-lg hover:shadow-indigo-500/10">
+              <div className="relative overflow-hidden rounded-xl border border-slate-800/80 bg-slate-950/80 p-4 backdrop-blur-md">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-xl">🇵🇰</span>
@@ -374,7 +336,7 @@ export default function Footer() {
               </div>
 
               {/* Business Team - Australia */}
-              <div className="group relative overflow-hidden rounded-xl border border-slate-800/80 bg-slate-950/80 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-sky-500/50 hover:shadow-lg hover:shadow-sky-500/10">
+              <div className="relative overflow-hidden rounded-xl border border-slate-800/80 bg-slate-950/80 p-4 backdrop-blur-md">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-xl">🇦🇺</span>
@@ -397,7 +359,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright only now (socials moved up to left column) */}
+        {/* Bottom Bar */}
         <div className="mt-8 flex flex-col items-center justify-center gap-2 border-t border-slate-800/80 pt-5 text-center">
           <p className="text-xs text-slate-500">
             © {new Date().getFullYear()}{" "}

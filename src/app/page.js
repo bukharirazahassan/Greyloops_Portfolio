@@ -8,6 +8,8 @@ import ContactUs from "./components/ContactUs";
 import Footer from "./components/Footer";
 import Wavedivider from "./components/Wavedivider"
 import PricingPlans from "./components/PricingPlans";
+import BlogSection from "./components/BlogSection";
+import Industries from "./components/Industries";
 
 export default function Home() {
   return (
@@ -19,7 +21,9 @@ export default function Home() {
       <EngagementModels />
       {/* <CaseStudiesShowcase /> */}
       {/* <PricingPlans /> */}
+      <Industries/>
       <ContactUs />
+      <BlogSection/>
       <Footer />
     </div>
   );

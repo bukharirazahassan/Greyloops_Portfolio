@@ -87,21 +87,24 @@ export function findCompanyLinkBySlug(slug) {
   return null;
 }
 
+// Kept in sync with the `posts` array in BlogSection.jsx — same three
+// posts, same images (/1.jpg, /2.jpg, /3.jpg), same hrefs. Update both
+// places together if the featured posts change.
 export const trendingBlogs = [
   {
-    title: "Agentic AI for Enterprise: A 2026 Integration Guide",
-    href: "/blog/agentic-ai-enterprise-guide",
-    image: null,
+    title: "How AI is reshaping enterprise software delivery.",
+    href: "/blog/ai-reshaping-enterprise-software",
+    image: "/1.jpg",
   },
   {
-    title: "The Complete Guide to Cloud-Native Data Platforms",
-    href: "/blog/cloud-native-data-platforms",
-    image: null,
+    title: "Scaling a SaaS platform to 100K users, our playbook.",
+    href: "/blog/scaling-saas-platform",
+    image: "/2.jpg",
   },
   {
-    title: "Building HIPAA-Ready AI Systems for Healthcare",
-    href: "/blog/hipaa-ready-ai-healthcare",
-    image: null,
+    title: "Cloud infrastructure trends every CTO should watch.",
+    href: "/blog/cloud-infrastructure-trends",
+    image: "/3.jpg",
   },
 ];
 
