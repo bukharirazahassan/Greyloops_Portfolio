@@ -30,10 +30,6 @@ const rawServices = [
         description: "Secure, scalable server-side architecture.",
       },
       {
-        name: "Custom Software Development",
-        description: "Tailor-made software for your workflows.",
-      },
-      {
         name: "Software Testing",
         description: "Manual & automated QA, zero bugs.",
       },

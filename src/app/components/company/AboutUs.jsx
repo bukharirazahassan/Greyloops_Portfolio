@@ -11,7 +11,7 @@ import TalentOnDemand from "../../components/TalentOnDemand";
 const featureCards = [
   {
     title: "Our Mission",
-    image: "/company-mission.jpg",
+    image: "/Agencies.jpg",
     href: "#",
     stagger: false,
   },
