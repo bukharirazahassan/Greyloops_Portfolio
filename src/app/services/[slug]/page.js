@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { findServiceBySlug, servicesColumns } from "../../lib/navigationData";
 import UxUiDesign from "../../components/services/UxUiDesign";
 import BackendServicesCarousel from "../../components/services/BackendServicesCarousel";
+import SaasDevelopment from "../../components/services/SaasDevelopment";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -29,6 +30,12 @@ export default async function ServiceDetailPage({ params }) {
         <>
           <Header />
           <BackendServicesCarousel />
+          <Footer />
+        </>
+      ) : slug === "saas-development" ? (
+        <>
+          <Header />
+          <SaasDevelopment />
           <Footer />
         </>
       ) : (
