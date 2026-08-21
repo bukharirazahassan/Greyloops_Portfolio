@@ -17,6 +17,7 @@ import {
 import CoreSaasDevelopmentServices from "../../components/services/CoreSaasDevelopmentServices"
 import SaasDevelopmentProcess from "../../components/services/SaasDevelopmentProcess"
 import SaasFAQs from "../../components/services/SaasFAQs"
+import SaasExpert from "../../components/services/SaasExpert"
 
 export default function SaasDevelopmentPage() {
   const cardData = [
@@ -278,7 +279,8 @@ export default function SaasDevelopmentPage() {
 
       <CoreSaasDevelopmentServices />
       <SaasDevelopmentProcess />
-      <SaasFAQs />      
+      <SaasFAQs />
+      <SaasExpert />      
 
     </div>
   );

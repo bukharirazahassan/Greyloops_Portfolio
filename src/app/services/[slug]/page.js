@@ -3,6 +3,8 @@ import { findServiceBySlug, servicesColumns } from "../../lib/navigationData";
 import UxUiDesign from "../../components/services/UxUiDesign";
 import BackendServicesCarousel from "../../components/services/BackendServicesCarousel";
 import SaasDevelopment from "../../components/services/SaasDevelopment";
+import FrontendDevelopment from "../../components/services/FrontendDevelopment";
+import EnterpriseSoftwareDevelopment from "../../components/services/EnterpriseSoftwareDevelopment";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -37,6 +39,18 @@ export default async function ServiceDetailPage({ params }) {
           <Header />
           <SaasDevelopment />
           <Footer />
+        </>
+      ) : slug === "frontend-development" ? (
+        <>
+          <Header />
+          <FrontendDevelopment />
+          <Footer />
+        </>
+      ) : slug === "enterprise-software-development" ? (
+        <>
+          <Header />
+          <EnterpriseSoftwareDevelopment />
+          {/* <Footer /> */}
         </>
       ) : (
         <>
