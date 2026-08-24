@@ -116,8 +116,7 @@ export default function Offerings() {
             </span>
           </h2>
           <p className="text-base leading-relaxed text-zinc-600 sm:text-lg">
-            Pick a track on the left, or scroll your mouse over this card to
-            move through each category.
+            Delivering technical ingenuity and rapid innovation across industries.
           </p>
         </div>
 
@@ -286,7 +285,7 @@ export default function Offerings() {
                       className="absolute inset-0"
                     >
                       <Image
-                        src={`/${activeFrame.slug}.jpg`}
+                        src={`/${activeFrame.slug}.png`}
                         alt={activeFrame.title}
                         fill
                         priority

@@ -1,9 +1,12 @@
+// src/app/components/services/EnterpriseSoftwareDevelopment.jsx
+
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
-import CoreCapabilities from "../../components/services/EnterpriseServices/CoreCapabilities"
+import CoreCapabilities from "../../components/services/EnterpriseServices/CoreCapabilities";
+import CoreBusinessPlatforms from "../../components/services/EnterpriseServices/EnterpriseServices";
 
 const slides = [
   {
@@ -19,7 +22,6 @@ const slides = [
     caption:
       "Unify core business operations, automate workflows, and gain real-time visibility across your enterprise.",
   },
-
   {
     id: "crm",
     heading: [
@@ -33,7 +35,6 @@ const slides = [
     caption:
       "Connect customer, sales, marketing, and service data to create stronger and more consistent customer experiences.",
   },
-
   {
     id: "hr",
     heading: [
@@ -47,7 +48,6 @@ const slides = [
     caption:
       "Simplify workforce operations, improve employee visibility, and bring people processes into one connected platform.",
   },
-
   {
     id: "consulting",
     heading: [
@@ -69,15 +69,9 @@ export default function ServicesHeroSlider() {
   const [current, setCurrent] = useState(0);
   const autoplayTimeoutRef = useRef(null);
 
-  /*
-   * ============================================================
-   * NAVIGATION
-   * ============================================================
-   */
   const goTo = useCallback((index) => {
     const normalized =
       ((index % slides.length) + slides.length) % slides.length;
-
     setCurrent(normalized);
   }, []);
 
@@ -89,69 +83,35 @@ export default function ServicesHeroSlider() {
     goTo(current - 1);
   }, [current, goTo]);
 
-  const selectSlide = useCallback(
-    (index) => {
-      goTo(index);
-    },
-    [goTo]
-  );
-
-  /*
-   * ============================================================
-   * KEYBOARD NAVIGATION
-   * ============================================================
-   */
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === "ArrowRight") {
-        nextSlide();
-      }
-
-      if (event.key === "ArrowLeft") {
-        previousSlide();
-      }
+      if (event.key === "ArrowRight") nextSlide();
+      if (event.key === "ArrowLeft") previousSlide();
     };
 
     window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [nextSlide, previousSlide]);
 
-  /*
-   * ============================================================
-   * CONTINUOUS AUTOPLAY
-   * ============================================================
-   */
   useEffect(() => {
     autoplayTimeoutRef.current = setTimeout(() => {
       goTo(current + 1);
     }, AUTOPLAY_MS);
 
     return () => {
-      if (autoplayTimeoutRef.current) {
-        clearTimeout(autoplayTimeoutRef.current);
-      }
+      if (autoplayTimeoutRef.current) clearTimeout(autoplayTimeoutRef.current);
     };
   }, [current, goTo]);
 
   return (
     <div className="w-full bg-white">
-      <>
-      {/* ========================================================
-          HERO SLIDER
-      ======================================================== */}
+      {/* HERO SLIDER */}
       <section className="relative mx-auto h-[700px] w-full max-w-[1920px] overflow-hidden bg-white">
-        {/* ======================================================
-            ANIMATIONS
-        ====================================================== */}
         <style jsx global>{`
           @keyframes serviceHeroProgress {
             from {
               width: 0%;
             }
-
             to {
               width: 100%;
             }
@@ -162,7 +122,6 @@ export default function ServicesHeroSlider() {
               opacity: 0;
               transform: translateY(12px);
             }
-
             to {
               opacity: 1;
               transform: translateY(0);
@@ -170,9 +129,7 @@ export default function ServicesHeroSlider() {
           }
         `}</style>
 
-        {/* ======================================================
-            SLIDE BACKGROUND LAYERS
-        ====================================================== */}
+        {/* SLIDE BACKGROUND LAYERS */}
         {slides.map((slide, index) => (
           <div
             key={slide.id}
@@ -196,21 +153,16 @@ export default function ServicesHeroSlider() {
               />
             </div>
 
-            {/* Light Theme Gradient */}
             <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent sm:via-white/30" />
-
-            {/* Mobile Bottom Gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-transparent sm:hidden" />
           </div>
         ))}
 
-        {/* ======================================================
-            STANDARD DOT-GRID TEXTURE — matched to the rest of the site
-        ====================================================== */}
         <div
           className="pointer-events-none absolute inset-0 z-[12] opacity-[0.3]"
           style={{
-            backgroundImage: "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
+            backgroundImage:
+              "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
             backgroundSize: "28px 28px",
             maskImage:
               "radial-gradient(ellipse 85% 75% at 20% 40%, black 25%, transparent 100%)",
@@ -219,19 +171,13 @@ export default function ServicesHeroSlider() {
           }}
         />
 
-        {/* ======================================================
-            AMBIENT DECORATIVE GLOWS — standard light-blue shades
-        ====================================================== */}
         <div className="pointer-events-none absolute left-10 top-16 z-[15] h-72 w-72 animate-float rounded-full bg-blue-300/35 blur-3xl" />
-
         <div
           className="pointer-events-none absolute bottom-24 left-52 z-[15] h-56 w-56 animate-float rounded-full bg-indigo-200/30 blur-3xl"
           style={{ animationDelay: "1.5s" }}
         />
 
-        {/* ======================================================
-            PREVIOUS / NEXT BUTTONS
-        ====================================================== */}
+        {/* CONTROLS */}
         <div className="absolute right-4 top-1/2 z-30 flex -translate-y-1/2 flex-col gap-3 sm:right-8 lg:right-10">
           <button
             type="button"
@@ -252,26 +198,18 @@ export default function ServicesHeroSlider() {
           </button>
         </div>
 
-        {/* ======================================================
-            MAIN LEFT CONTENT
-        ====================================================== */}
+        {/* HERO TEXT */}
         <div className="relative z-20 flex h-full items-center px-6 pb-20 sm:px-10 md:px-16 lg:px-24">
           <div className="max-w-xl">
-            {/* Badge */}
             <span
               key={`badge-${current}`}
               className="relative mb-5 inline-flex animate-fade-up items-center gap-1.5 overflow-hidden rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100"
             >
               <Sparkles className="h-3.5 w-3.5 text-blue-500" />
-
-              <span className="relative z-10">
-                {slides[current].tab}
-              </span>
-
+              <span className="relative z-10">{slides[current].tab}</span>
               <span className="pointer-events-none absolute inset-y-0 left-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-blue-100/70 to-transparent" />
             </span>
 
-            {/* Heading */}
             <h1
               key={`heading-${current}`}
               className="mb-6 animate-fade-up text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
@@ -290,7 +228,6 @@ export default function ServicesHeroSlider() {
               ))}
             </h1>
 
-            {/* Description */}
             <p
               key={`sub-${current}`}
               className="mb-7 animate-fade-up text-base leading-relaxed text-zinc-600 [animation-delay:100ms] sm:text-lg"
@@ -301,24 +238,13 @@ export default function ServicesHeroSlider() {
         </div>
       </section>
 
-      {/* ========================================================
-          SEPARATE INFORMATION SECTION
-          
-          IMPORTANT:
-          This is OUTSIDE the 700px image slider.
-          It will NEVER appear over the image.
-
-          The autoplay progress indicator now lives here instead
-          of on top of the hero images: it runs as a soft animated
-          fill across this card's own background, restarting every
-          time the active slide changes.
-      ======================================================== */}
+      {/* BOTTOM INFO BAR */}
       <section className="relative z-40 w-full overflow-hidden border-t border-slate-100 bg-gradient-to-b from-white via-blue-50/30 to-white">
-        {/* Standard dot-grid + light-blue glow, matched to the hero above */}
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.25]"
           style={{
-            backgroundImage: "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
+            backgroundImage:
+              "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
             backgroundSize: "26px 26px",
             maskImage:
               "radial-gradient(ellipse 70% 100% at 50% 50%, black 30%, transparent 100%)",
@@ -326,17 +252,10 @@ export default function ServicesHeroSlider() {
               "radial-gradient(ellipse 70% 100% at 50% 50%, black 30%, transparent 100%)",
           }}
         />
-        <div className="pointer-events-none absolute -left-16 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-blue-200/40 blur-3xl" />
-        <div className="pointer-events-none absolute -right-16 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-indigo-200/35 blur-3xl" />
 
         <div className="relative mx-auto w-full max-w-[1920px] px-6 py-5 sm:px-10 sm:py-6 md:px-16 lg:px-24">
-          <div
-            key={`caption-${current}`}
-            className="animate-service-hero-caption"
-          >
+          <div key={`caption-${current}`} className="animate-service-hero-caption">
             <div className="relative w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/90 shadow-sm backdrop-blur-sm transition-all duration-500">
-              {/* Progress fill — runs as the card's own background,
-                  restarting from 0% every time `current` changes. */}
               <span
                 key={`progress-fill-${current}`}
                 aria-hidden="true"
@@ -347,20 +266,16 @@ export default function ServicesHeroSlider() {
               />
 
               <div className="relative z-10 flex w-full items-center gap-4 px-5 py-4 sm:px-6 sm:py-5">
-                {/* Number */}
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-sm font-bold text-white shadow-sm shadow-blue-600/20">
                   {String(current + 1).padStart(2, "0")}
                 </div>
 
-                {/* Information */}
                 <div className="min-w-0 flex-1">
                   <div className="mb-1 flex items-center gap-2">
                     <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-blue-600 sm:text-xs">
                       {slides[current].tab}
                     </span>
-
                     <span className="hidden h-1 w-1 rounded-full bg-slate-300 sm:block" />
-
                     <span className="hidden text-[10px] font-medium uppercase tracking-wider text-slate-400 sm:block">
                       Enterprise Technology
                     </span>
@@ -371,13 +286,11 @@ export default function ServicesHeroSlider() {
                   </p>
                 </div>
 
-                {/* Active Indicator */}
                 <div className="hidden shrink-0 items-center gap-2 sm:flex">
                   <span className="relative flex h-2.5 w-2.5">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-40" />
                     <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-600" />
                   </span>
-
                   <span className="text-xs font-semibold text-slate-500">
                     Active
                   </span>
@@ -387,8 +300,9 @@ export default function ServicesHeroSlider() {
           </div>
         </div>
       </section>
+
       <CoreCapabilities />
-      </>
+      <CoreBusinessPlatforms />
     </div>
   );
 }
