@@ -17,18 +17,18 @@ import {
 
 const baseIndustries = [
   {
-    id: "agencies",
-    title: "Agencies",
-    subtitle: "Connected Production Pipeline",
+    id: "healthcare",
+    title: "Healthcare",
+    subtitle: "Streamlined Admin & Compliance",
     description:
-      "Turn intake → scoping → proposals → project kickoff into one connected pipeline across email, docs, and your PM tool.",
-    image: "/Agencies.jpg",
-    icon: Briefcase,
+      "Reduce admin load by automating scheduling, intake routing, and internal handoffs—without touching sensitive clinical workflows.",
+    image: "/Healthcare.jpg",
+    icon: HeartPulse,
     details: {
-      challenges: "Scattered client requests, manual scoping bottlenecks, and delayed project kickoffs.",
-      solutions: "Automated workflow pipelines linking email, documentation, and project management tools.",
-      useCases: "Intake forms, automated proposal generation, and instant client onboarding.",
-      impact: "Faster deal closing, reduced admin overhead, and seamless project launches.",
+      challenges: "Heavy administrative burdens, patient scheduling delays, and fragmented team handoffs.",
+      solutions: "Secure automated administrative routing that preserves HIPAA-compliant patient privacy.",
+      useCases: "Automated appointment scheduling, intake processing, and department handoffs.",
+      impact: "Reduced staff fatigue, faster patient intake, and strict data security compliance.",
     },
   },
   {
@@ -61,21 +61,7 @@ const baseIndustries = [
       impact: "Higher customer satisfaction, lower support volume, and optimized inventory turn.",
     },
   },
-  {
-    id: "healthcare",
-    title: "Healthcare",
-    subtitle: "Streamlined Admin & Compliance",
-    description:
-      "Reduce admin load by automating scheduling, intake routing, and internal handoffs—without touching sensitive clinical workflows.",
-    image: "/Healthcare.jpg",
-    icon: HeartPulse,
-    details: {
-      challenges: "Heavy administrative burdens, patient scheduling delays, and fragmented team handoffs.",
-      solutions: "Secure automated administrative routing that preserves HIPAA-compliant patient privacy.",
-      useCases: "Automated appointment scheduling, intake processing, and department handoffs.",
-      impact: "Reduced staff fatigue, faster patient intake, and strict data security compliance.",
-    },
-  },
+  
   {
     id: "saas",
     title: "SaaS",
@@ -91,11 +77,26 @@ const baseIndustries = [
       impact: "99.99% system uptime, instant developer scaling, and smooth cross-platform integrations.",
     },
   },
+  {
+    id: "agencies",
+    title: "Agencies",
+    subtitle: "Connected Production Pipeline",
+    description:
+      "Turn intake → scoping → proposals → project kickoff into one connected pipeline across email, docs, and your PM tool.",
+    image: "/Agencies.jpg",
+    icon: Briefcase,
+    details: {
+      challenges: "Scattered client requests, manual scoping bottlenecks, and delayed project kickoffs.",
+      solutions: "Automated workflow pipelines linking email, documentation, and project management tools.",
+      useCases: "Intake forms, automated proposal generation, and instant client onboarding.",
+      impact: "Faster deal closing, reduced admin overhead, and seamless project launches.",
+    },
+  },
 ];
 
 export default function Industries() {
   // Default selected set to Agencies
-  const [activeId, setActiveId] = useState("agencies");
+  const [activeId, setActiveId] = useState("healthcare");
 
   const activeIndustry =
     baseIndustries.find((item) => item.id === activeId) || baseIndustries[0];

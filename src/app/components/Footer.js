@@ -233,7 +233,7 @@ export default function Footer() {
                     href="mailto:query@greyloops.com"
                     className="font-semibold text-slate-200 hover:text-blue-400"
                   >
-                    query@greyloops.com
+                    Info@greyloops.com
                   </a>
                 </div>
 
@@ -247,10 +247,10 @@ export default function Footer() {
                   />
                   <span className="text-[11px] text-slate-500">Careers:</span>
                   <a
-                    href="mailto:hr@greyloops.com"
+                    href="mailto:Info@greyloops.com"
                     className="font-semibold text-slate-200 hover:text-blue-400"
                   >
-                    hr@greyloops.com
+                    careers@greyloops.com
                   </a>
                 </div>
               </div>

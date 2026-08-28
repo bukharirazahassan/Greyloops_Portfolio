@@ -7,6 +7,8 @@ import Image from "next/image";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import CoreCapabilities from "../../components/services/EnterpriseServices/CoreCapabilities";
 import CoreBusinessPlatforms from "../../components/services/EnterpriseServices/EnterpriseServices";
+import EnterpriseDevelopmentServices from "../../components/services/EnterpriseServices/EnterpriseDevelopmentServices";
+import IndustrySpecificEnterpriseSystems from "../../components/services/EnterpriseServices/IndustrySpecificEnterpriseSystems";
 
 const slides = [
   {
@@ -303,6 +305,8 @@ export default function ServicesHeroSlider() {
 
       <CoreCapabilities />
       <CoreBusinessPlatforms />
+      <EnterpriseDevelopmentServices />
+      <IndustrySpecificEnterpriseSystems />
     </div>
   );
 }

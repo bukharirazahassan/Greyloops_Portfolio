@@ -72,7 +72,7 @@ const CONTACT_CHANNELS = [
   {
     icon: Sparkles,
     title: "Careers & Talent",
-    email: "hr@greyloops.com",
+    email: "careers@greyloops.com",
     tag: "Join our global team",
   },
 ];

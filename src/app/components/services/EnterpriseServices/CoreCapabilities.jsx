@@ -81,7 +81,7 @@ const advantages = [
 
 export default function CoreCapabilities() {
   return (
-    <div className="capabilities-font relative w-full bg-white pt-8 sm:pt-12">
+    <div className="capabilities-font relative w-full bg-white py-0">
       <style jsx global>{`
         @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
         .capabilities-font {
@@ -93,17 +93,17 @@ export default function CoreCapabilities() {
         }
       `}</style>
 
-      {/* CENTERED CONTAINER WITH EXPANDED CARD WIDTH (max-w-[90rem]) */}
-      <div className="relative z-10 mx-auto w-full max-w-[90rem] px-4 pb-24 sm:px-6 lg:px-8">
+      {/* CENTERED CONTAINER WITH EXPANDED CARD WIDTH */}
+      <div className="relative z-10 mx-auto w-full max-w-[90rem] px-4 pb-16 sm:px-6 lg:px-8">
         
         {/* ============================================================
             CARD 1: OUR CORE CAPABILITIES
         ============================================================ */}
         <div
-          className="sticky top-20 mb-20 flex min-h-[82vh] items-center justify-center"
+          className="sticky top-[calc(50vh-40vh)] mb-12 flex min-h-[80vh] items-center justify-center py-4"
           style={{ zIndex: 10 }}
         >
-          <div className="relative flex min-h-[82vh] w-full flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-2xl shadow-slate-900/10 transition-colors duration-300 lg:flex-row">
+          <div className="relative flex min-h-[78vh] w-full flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-2xl shadow-slate-900/10 transition-colors duration-300 lg:flex-row">
             
             {/* Ambient Background Glow */}
             <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
@@ -120,7 +120,7 @@ export default function CoreCapabilities() {
             </div>
 
             {/* LEFT SIDE: FULL FILL IMAGE CONTAINER */}
-            <div className="relative flex h-[400px] w-full shrink-0 flex-col justify-between overflow-hidden p-6 sm:p-8 lg:h-auto lg:min-h-full lg:w-[42%] lg:p-10">
+            <div className="relative flex h-[350px] w-full shrink-0 flex-col justify-between overflow-hidden p-6 sm:p-8 lg:h-auto lg:min-h-full lg:w-[42%] lg:p-10">
               <Image
                 src="/images/services/CoreCapabilities.png"
                 alt="Our Core Capabilities"
@@ -145,15 +145,15 @@ export default function CoreCapabilities() {
             </div>
 
             {/* RIGHT SIDE: EXPANDED TEXT AREA */}
-            <div className="relative z-10 flex w-full flex-col justify-between p-6 sm:p-10 md:p-12 lg:w-[58%] lg:py-10">
+            <div className="relative z-10 flex w-full flex-col justify-between p-6 sm:p-10 md:p-12 lg:w-[58%] lg:py-8">
               <div className="my-auto">
-                <span className="relative mb-5 inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100">
+                <span className="relative mb-4 inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100">
                   <Sparkles className="h-3.5 w-3.5 text-blue-500" />
                   <span className="relative z-10">ENTERPRISE ENGINEERING</span>
                   <span className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-blue-100/70 to-transparent" />
                 </span>
 
-                <h2 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+                <h2 className="mb-4 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
                   <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
                     OUR{" "}
                   </span>
@@ -162,7 +162,7 @@ export default function CoreCapabilities() {
                   </span>
                 </h2>
 
-                <div className="mt-5 flex flex-wrap gap-2.5">
+                <div className="mt-4 flex flex-wrap gap-2">
                   {capabilities.map((item) => (
                     <span
                       key={item}
@@ -177,7 +177,7 @@ export default function CoreCapabilities() {
                   ))}
                 </div>
 
-                <p className="mt-5 text-base leading-relaxed text-zinc-600 sm:text-lg">
+                <p className="mt-4 text-base leading-relaxed text-zinc-600 sm:text-lg">
                   We help organizations design, modernize, and scale enterprise
                   software that supports complex business operations — spanning
                   architecture, cloud platforms, integration, security, and
@@ -186,7 +186,7 @@ export default function CoreCapabilities() {
               </div>
 
               {/* STATS FOOTER */}
-              <div className="mt-8 border-t border-slate-200/80 pt-6">
+              <div className="mt-6 border-t border-slate-200/80 pt-4">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   {stats.map((stat, idx) => {
                     const Icon = stat.icon;
@@ -201,18 +201,18 @@ export default function CoreCapabilities() {
                           duration: 0.5,
                           type: "spring",
                         }}
-                        className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm transition-all hover:border-blue-300 hover:shadow-md"
+                        className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-3.5 shadow-sm transition-all hover:border-blue-300 hover:shadow-md"
                       >
                         <div
                           className={`absolute left-0 top-0 h-1 w-full bg-gradient-to-r ${stat.gradient} opacity-80`}
                         />
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-700 transition-colors group-hover:bg-blue-50 group-hover:text-blue-600">
-                              <Icon className="h-5 w-5" />
+                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-50 text-slate-700 transition-colors group-hover:bg-blue-50 group-hover:text-blue-600">
+                              <Icon className="h-4 w-4" />
                             </div>
                             <span
-                              className={`capabilities-display text-2xl font-black bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent sm:text-3xl`}
+                              className={`capabilities-display text-xl font-black bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent sm:text-2xl`}
                             >
                               {stat.value}
                             </span>
@@ -226,7 +226,7 @@ export default function CoreCapabilities() {
                           </div>
                         </div>
 
-                        <p className="mt-2 text-xs font-bold text-slate-600">
+                        <p className="mt-1.5 text-xs font-bold text-slate-600">
                           {stat.label}
                         </p>
                       </motion.div>
@@ -243,10 +243,10 @@ export default function CoreCapabilities() {
             CARD 2: INCREDIBLE ADVANTAGES
         ============================================================ */}
         <div
-          className="sticky top-20 mb-16 flex min-h-[82vh] items-center justify-center"
+          className="sticky top-[calc(50vh-40vh)] mb-6 flex min-h-[80vh] items-center justify-center py-4"
           style={{ zIndex: 20 }}
         >
-          <div className="relative flex min-h-[82vh] w-full flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-2xl shadow-slate-900/10 transition-colors duration-300 lg:flex-row">
+          <div className="relative flex min-h-[78vh] w-full flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-2xl shadow-slate-900/10 transition-colors duration-300 lg:flex-row">
             
             {/* Ambient Background Glow */}
             <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
@@ -263,7 +263,7 @@ export default function CoreCapabilities() {
             </div>
 
             {/* LEFT SIDE: FULL FILL IMAGE CONTAINER */}
-            <div className="relative flex h-[400px] w-full shrink-0 flex-col justify-between overflow-hidden p-6 sm:p-8 lg:h-auto lg:min-h-full lg:w-[42%] lg:p-10">
+            <div className="relative flex h-[350px] w-full shrink-0 flex-col justify-between overflow-hidden p-6 sm:p-8 lg:h-auto lg:min-h-full lg:w-[42%] lg:p-10">
               <Image
                 src="/images/services/IncredibleAdvantages.png"
                 alt="Incredible Advantages"
@@ -288,14 +288,14 @@ export default function CoreCapabilities() {
             </div>
 
             {/* RIGHT SIDE: EXPANDED ADVANTAGES GRID */}
-            <div className="relative z-10 flex w-full flex-col justify-center p-6 sm:p-10 md:p-12 lg:w-[58%] lg:py-10">
-              <span className="relative mb-4 inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100 w-fit">
+            <div className="relative z-10 flex w-full flex-col justify-center p-6 sm:p-10 md:p-12 lg:w-[58%] lg:py-8">
+              <span className="relative mb-3 inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100 w-fit">
                 <Sparkles className="h-3.5 w-3.5 text-blue-500" />
                 <span className="relative z-10">BUSINESS OPTIMIZATION</span>
                 <span className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-blue-100/70 to-transparent" />
               </span>
 
-              <h2 className="mb-6 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+              <h2 className="mb-4 text-2xl font-extrabold leading-tight tracking-tight sm:text-3xl lg:text-4xl">
                 <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
                   INCREDIBLE ADVANTAGES BY{" "}
                 </span>
@@ -304,7 +304,7 @@ export default function CoreCapabilities() {
                 </span>
               </h2>
 
-              <div className="mt-2 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+              <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {advantages.map((adv) => {
                   const Icon = adv.icon;
                   return (
@@ -314,17 +314,17 @@ export default function CoreCapabilities() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-20px" }}
                       transition={{ duration: 0.3 }}
-                      className="group flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-slate-50/60 p-3.5 backdrop-blur-sm transition-all hover:border-blue-300 hover:bg-white hover:shadow-md"
+                      className="group flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-slate-50/60 p-3 backdrop-blur-sm transition-all hover:border-blue-300 hover:bg-white hover:shadow-md"
                     >
-                      <div className="flex items-start gap-3">
-                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white">
-                          <Icon className="h-4 w-4" />
+                      <div className="flex items-start gap-2.5">
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                          <Icon className="h-3.5 w-3.5" />
                         </div>
                         <div>
-                          <h3 className="capabilities-display text-xs font-bold text-slate-900 sm:text-sm">
+                          <h3 className="capabilities-display text-xs font-bold text-slate-900">
                             {adv.title}
                           </h3>
-                          <p className="mt-1 text-xs font-medium leading-relaxed text-slate-600">
+                          <p className="mt-0.5 text-[11px] font-medium leading-relaxed text-slate-600">
                             {adv.desc}
                           </p>
                         </div>

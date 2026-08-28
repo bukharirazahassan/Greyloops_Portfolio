@@ -50,7 +50,7 @@ const rawCompanyColumns = [
     links: [
       { name: "About Us", href: "/company/about-us" },
       { name: "Why GreyLoops", href: "/company/why-greyloops" },
-      { name: "Our Team", href: "/company/our-team" },
+      // { name: "Our Team", href: "/company/our-team" },
       { name: "FAQs", href: "/company/faqs" },
       { name: "Blog", href: "/company/blog" },
     ],
@@ -93,17 +93,17 @@ export function findCompanyLinkBySlug(slug) {
 export const trendingBlogs = [
   {
     title: "How AI is reshaping enterprise software delivery.",
-    href: "/blog/ai-reshaping-enterprise-software",
+    href: "/about",
     image: "/1.jpg",
   },
   {
     title: "Scaling a SaaS platform to 100K users, our playbook.",
-    href: "/blog/scaling-saas-platform",
+    href: "/about",
     image: "/2.jpg",
   },
   {
     title: "Cloud infrastructure trends every CTO should watch.",
-    href: "/blog/cloud-infrastructure-trends",
+    href: "/about",
     image: "/3.jpg",
   },
 ];

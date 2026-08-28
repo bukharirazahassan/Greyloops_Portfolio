@@ -4,6 +4,7 @@ import AboutUs from "../../components/company/AboutUs";
 import WhyChooseUs from "../../components/company/WhyChooseUs";
 import OurTeam from "../../components/company/OurTeam";
 import FaqsPage from "../../components/company/FaqsPage";
+import CareersPage from "../../components/company/CareersPage";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -55,6 +56,16 @@ export default async function CompanyDetailPage({ params }) {
       <div className="flex min-h-screen flex-col bg-white">
         <Header />
         <FaqsPage />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (slug === "open-positions") {
+    return (
+      <div className="flex min-h-screen flex-col bg-white">
+        <Header />
+        <CareersPage />
         <Footer />
       </div>
     );

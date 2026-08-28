@@ -19,7 +19,7 @@ const CONTACT_NODES = [
 ];
 
 const QUICK_LINKS = [
-  { icon: Mail, label: "hello@greyloops.com", href: "mailto:hello@greyloops.com" },
+  { icon: Mail, label: "Info@greyloops.com", href: "mailto:info@greyloops.com" },
   { icon: Phone, label: "+1 (555) 010-2030", href: "tel:+15550102030" },
 ];
 

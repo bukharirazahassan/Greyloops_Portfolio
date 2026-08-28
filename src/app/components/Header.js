@@ -54,14 +54,14 @@ const menuItems = [
       rating: "5",
     },
   },
-  {
-    label: "Case Studies",
-    href: "/casestudies",
-    hasMega: true,
-    type: "portfolio",
-    projects: casestudiesProjects,
-  },
-  { label: "Industries", href: "/industries" },
+  // {
+  //   label: "Case Studies",
+  //   href: "/casestudies",
+  //   hasMega: true,
+  //   type: "portfolio",
+  //   projects: casestudiesProjects,
+  // },
+  // { label: "Industries", href: "/industries" },
 ];
 
 export default function Header() {
@@ -97,7 +97,7 @@ export default function Header() {
   }, [activeMenu]);
 
   return (
-<header className="relative w-full sticky top-0 z-50">
+    <header className="relative w-full sticky top-0 z-50">
       {/* Modern Crystal / Glassmorphic Header Frame */}
       <div className="absolute inset-0 border-b border-white/40 bg-white/60 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] transition-all duration-300" />
 
@@ -109,20 +109,20 @@ export default function Header() {
         {/* Left-Aligned Group: Logo + Navigation Links strictly pinned left */}
         <div className="flex items-center gap-6 md:gap-10 shrink-0">
           {/* Logo Container with Boosted Visual Scaling */}
-         <Link
-  href="/"
-  className="group relative flex h-16 w-40 md:w-52 items-center justify-center shrink-0 overflow-visible transition-transform duration-300 hover:scale-105"
-  aria-label="Greyloops home"
->
-  <Image
-    src="/GreyLoop_Logo.png"
-    alt="Greyloops"
-    width={2917}
-    height={2085}
-    priority
-    className="h-auto w-full max-w-none scale-115 md:scale-130 object-contain"
-  />
-</Link>
+          <Link
+            href="/"
+            className="group relative flex h-16 w-40 md:w-52 items-center justify-center shrink-0 overflow-visible transition-transform duration-300 hover:scale-105"
+            aria-label="Greyloops home"
+          >
+            <Image
+              src="/GreyLoop_Logo.png"
+              alt="Greyloops"
+              width={2917}
+              height={2085}
+              priority
+              className="h-auto w-full max-w-none scale-115 md:scale-130 object-contain"
+            />
+          </Link>
 
           {/* Desktop Nav - Attached to Logo on the Left */}
           <nav
@@ -256,7 +256,7 @@ export default function Header() {
                                   {companyColumns[1].links.map((link) => (
                                     <li key={link.slug}>
                                       <Link
-                                        href={`/careers/${link.slug}`}
+                                        href={`/company/${link.slug}`}
                                         onClick={() => setActiveMenu(null)}
                                         className="group flex items-center gap-1.5 text-sm font-semibold text-slate-600 transition-all duration-200 hover:translate-x-1 hover:text-blue-600"
                                       >

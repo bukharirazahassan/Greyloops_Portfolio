@@ -8,12 +8,12 @@ import { User, ArrowUpRight, Sparkles } from "lucide-react";
 const posts = [
   {
     id: 1,
-    image: "/1.jpg",
+    image: "/blog_hero_page_1.png",
     category: "Technology",
     author: "Greyloops Team",
     date: "12 August, 2024",
     title: "How AI is reshaping enterprise software delivery.",
-    href: "/blog/ai-reshaping-enterprise-software",
+    href: "/about",
     size: "large",
   },
   {
@@ -23,7 +23,7 @@ const posts = [
     author: "Greyloops Team",
     date: "13 August, 2024",
     title: "Scaling a SaaS platform to 100K users, our playbook.",
-    href: "/blog/scaling-saas-platform",
+    href: "/about",
     size: "small",
   },
   {
@@ -33,7 +33,7 @@ const posts = [
     author: "Greyloops Team",
     date: "14 August, 2024",
     title: "Cloud infrastructure trends every CTO should watch.",
-    href: "/blog/cloud-infrastructure-trends",
+    href: "/about",
     size: "small",
   },
 ];
