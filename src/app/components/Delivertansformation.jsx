@@ -40,7 +40,7 @@ const services = [
     ctaText: "View Artificial Intelligence Services",
     ctaLink: "/services/ai-data-analytics",
     description:
-       "We transform complex data into intelligent insights through AI, machine learning, advanced analytics, and modern data engineering. Our solutions help organizations automate processes, uncover patterns, predict outcomes, and make faster, data-driven decisions. From intelligent dashboards and predictive models to generative AI and enterprise data platforms, we build solutions around real business needs. We create scalable, secure, and continuously evolving intelligence systems that turn data into measurable business value and long-term competitive advantage.",
+      "We transform complex data into intelligent insights through AI, machine learning, advanced analytics, and modern data engineering. Our solutions help organizations automate processes, uncover patterns, predict outcomes, and make faster, data-driven decisions. From intelligent dashboards and predictive models to generative AI and enterprise data platforms, we build solutions around real business needs. We create scalable, secure, and continuously evolving intelligence systems that turn data into measurable business value and long-term competitive advantage.",
     Icon: BrainCircuit,
     color: "#2563EB",
     offset: 360,
@@ -133,12 +133,16 @@ export default function DeliverTransformation() {
   });
 
   return (
-    <section ref={containerRef} className="section-font relative h-[160vh] w-full bg-white">
+    <section
+      ref={containerRef}
+      className="section-font relative h-[160vh] w-full bg-white"
+    >
       <style jsx global>{`
         @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
 
         .section-font {
-          font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+          font-family:
+            "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
         }
         .section-display {
           font-family: "Sora", "Plus Jakarta Sans", ui-sans-serif, sans-serif;
@@ -146,14 +150,15 @@ export default function DeliverTransformation() {
         }
       `}</style>
 
-      <div className="sticky top-[72px] flex h-[calc(100vh-72px)] w-full flex-col justify-start gap-3 overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-slate-50 px-4 pt-2 pb-4 sm:px-8 sm:pt-4 sm:pb-6">
+      <div className="sticky top-0 flex h-screen w-full flex-col justify-start gap-3 overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-slate-50 px-4 pt-2 pb-4 sm:px-8 sm:pt-4 sm:pb-6">
         <div className="pointer-events-none absolute right-0 top-0 z-0 h-[500px] w-[650px] -translate-y-1/3 rounded-full bg-blue-200/30 blur-[140px]" />
         <div className="pointer-events-none absolute right-[8%] top-0 z-0 h-[400px] w-[400px] -translate-y-1/4 rounded-full bg-sky-200/30 blur-[100px]" />
 
         <div
           className="pointer-events-none absolute inset-0 z-0 opacity-[0.22]"
           style={{
-            backgroundImage: "radial-gradient(#94a3b8 1.2px, transparent 1.2px)",
+            backgroundImage:
+              "radial-gradient(#94a3b8 1.2px, transparent 1.2px)",
             backgroundSize: "24px 24px",
             maskImage:
               "radial-gradient(ellipse 90% 75% at 50% 20%, black 25%, transparent 100%)",
@@ -162,9 +167,9 @@ export default function DeliverTransformation() {
           }}
         />
 
-        {/* 2-Line Header */}
-        <div className="relative z-10 text-center px-4 pt-1 sm:pt-2">
-          <h2 className="section-display mx-auto max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+        {/* One-Line Header */}
+        <div className="relative z-10 px-4 pt-1 text-center sm:pt-2">
+          <h2 className="section-display mx-auto max-w-6xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl md:text-5xl lg:text-[3.25rem]">
             Beyond Development.
             <br />
             <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
@@ -172,7 +177,6 @@ export default function DeliverTransformation() {
             </span>
           </h2>
         </div>
-
         {/* Cards Grid */}
         <div className="relative z-10 grid w-full flex-1 grid-cols-1 border-y border-white/70 shadow-xs md:grid-cols-4 items-stretch">
           {services.map((service, index) => (

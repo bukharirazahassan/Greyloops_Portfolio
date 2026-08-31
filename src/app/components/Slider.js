@@ -17,7 +17,11 @@ import {
 const capabilitiesMap = {
   web: { id: "web", title: "Web Development", icon: Code },
   mobile: { id: "mobile", title: "Mobile App Development", icon: Smartphone },
-  enterprise: { id: "enterprise", title: "Enterprise Software", icon: Building2 },
+  enterprise: {
+    id: "enterprise",
+    title: "Enterprise Software",
+    icon: Building2,
+  },
   custom: { id: "custom", title: "Custom Solutions", icon: Cpu },
   cloud: { id: "cloud", title: "Cloud Technologies", icon: Cloud },
   ai: { id: "ai", title: "AI-Powered Solutions", icon: Bot },
@@ -151,10 +155,9 @@ export default function Slider() {
           }
         }
       `}</style>
-
-      {/* 1. Hero Slider Section - Fixed 1920x700 size */}
+      {/* 1. Hero Slider Section */}
       <section className="relative mx-auto h-[700px] w-full max-w-[1920px] overflow-hidden bg-white">
-        {/* Slide layers */}
+        {/* Slide Layers */}
         {slides.map((slide, index) => (
           <div
             key={slide.image + index}
@@ -173,26 +176,31 @@ export default function Slider() {
                 className="object-cover object-center"
               />
             </div>
+
             {/* Soft white readability gradient */}
             <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 sm:via-white/65 to-transparent" />
+
+            {/* Mobile bottom readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent sm:hidden" />
           </div>
         ))}
 
         {/* Text Content Overlay */}
-        <div className="relative z-20 flex h-full items-center pl-6 sm:pl-10 md:pl-16 lg:pl-24 pr-6 pb-16">
+        <div className="relative z-20 flex h-full items-center pl-6 pr-6 pb-16 sm:pl-10 md:pl-16 lg:pl-24">
           <div className="max-w-xl">
-            {/* Eyebrow Badge Standardized */}
+            {/* Eyebrow Badge */}
             <span
               key={`badge-${current}`}
               className="relative mb-5 inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100"
             >
               <Sparkles className="h-3.5 w-3.5 text-blue-500" />
+
               <span className="relative z-10">{slides[current].tab}</span>
+
               <span className="pointer-events-none absolute inset-y-0 left-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-blue-100/70 to-transparent" />
             </span>
 
-            {/* Main Heading Standardized */}
+            {/* Main Heading */}
             <h1 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
               {slides[current].heading.map((part, i) => (
                 <span
@@ -208,11 +216,12 @@ export default function Slider() {
               ))}
             </h1>
 
-            {/* Subtext Paragraph Standardized */}
+            {/* Description */}
             <p className="mb-8 text-base leading-relaxed text-zinc-600 sm:text-lg">
               {slides[current].subtext}
             </p>
 
+            {/* CTA */}
             <div>
               <Link
                 href={slides[current].ctaHref}
@@ -225,9 +234,9 @@ export default function Slider() {
           </div>
         </div>
       </section>
-
-      {/* 2. Bottom Information Section - Modern Equal Height Frames */}
+      {/* 2. Bottom Information Section */}
       <section className="relative z-40 w-full overflow-hidden border-t border-slate-100 bg-gradient-to-b from-white via-blue-50/30 to-white">
+        {/* Background Dot Pattern */}
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.25]"
           style={{
@@ -241,32 +250,33 @@ export default function Slider() {
           }}
         />
 
-        <div className="relative mx-auto w-full max-w-[1920px] px-6 py-4 sm:px-10 sm:py-5 md:px-16 lg:px-24">
-          <div className="flex flex-col lg:flex-row lg:items-stretch gap-3.5">
-            
-            {/* Outside Modern Capability Badges (Left Side) */}
+        <div className="relative mx-auto flex w-full max-w-[1920px] items-center px-6 py-5 sm:px-10 sm:py-7 md:px-16 md:py-9 lg:px-24 lg:py-10">
+          <div className="flex w-full flex-col gap-3.5 lg:flex-row lg:items-stretch">
+            {/* Capability Cards */}
             <div
               key={`outside-icons-${current}`}
               className="flex shrink-0 items-center gap-2.5 animate-[iconFade_400ms_ease-out_forwards]"
             >
               {activeIconObjs.map((item) => {
                 const IconComponent = item.icon;
+
                 return (
                   <div
                     key={item.id}
-                    className="group relative flex h-[82px] items-center gap-3 rounded-2xl border border-slate-200/90 bg-white/90 px-4 shadow-sm shadow-slate-200/50 backdrop-blur-md transition-all duration-300 hover:border-blue-300 hover:shadow-md hover:shadow-blue-500/10"
+                    className="group relative flex h-[100px] items-center gap-3 rounded-2xl border border-slate-200/90 bg-white/90 px-4 shadow-sm shadow-slate-200/50 backdrop-blur-md transition-all duration-300 hover:border-blue-300 hover:shadow-md hover:shadow-blue-500/10"
                   >
-                    {/* Modern Gradient Icon Tile */}
-                    <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-600 text-white shadow-md shadow-blue-500/20 transition-transform group-hover:scale-105">
+                    {/* Icon */}
+                    <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-600 text-white shadow-md shadow-blue-500/20 transition-transform group-hover:scale-105">
                       <IconComponent className="h-5 w-5" />
                     </div>
 
+                    {/* Text */}
                     <div className="flex flex-col">
-                      {/* Sub-label Standardized */}
                       <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-blue-600 sm:text-xs">
                         Capability
                       </span>
-                      <span className="text-xs font-bold text-slate-800 sm:text-sm whitespace-nowrap">
+
+                      <span className="whitespace-nowrap text-xs font-bold text-slate-800 sm:text-sm">
                         {item.title}
                       </span>
                     </div>
@@ -275,13 +285,13 @@ export default function Slider() {
               })}
             </div>
 
-            {/* Progress Card (Right Side) */}
+            {/* Progress / Caption Card */}
             <div
               key={`caption-${current}`}
-              className="flex-1 min-w-0 animate-[heroCaption_400ms_ease-out_forwards]"
+              className="min-w-0 flex-1 animate-[heroCaption_400ms_ease-out_forwards]"
             >
-              <div className="relative flex h-[82px] w-full items-center overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/90 shadow-sm backdrop-blur-sm transition-all duration-500">
-                {/* Reduced Width Animated Progress Fill */}
+              <div className="relative flex h-[100px] w-full items-center overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/90 shadow-sm backdrop-blur-sm transition-all duration-500">
+                {/* Animated Progress Fill */}
                 <span
                   key={`progress-fill-${current}`}
                   aria-hidden="true"
@@ -292,37 +302,37 @@ export default function Slider() {
                 />
 
                 <div className="relative z-10 flex w-full items-center gap-3.5 px-5 py-3 sm:px-6">
-                  {/* Index Counter Standardized */}
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-sm font-bold text-white shadow-sm shadow-blue-600/20">
+                  {/* Index */}
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-sm font-bold text-white shadow-sm shadow-blue-600/20">
                     {String(current + 1).padStart(2, "0")}
                   </div>
 
-                  {/* Single-Line Content Container */}
-                  <div className="min-w-0 flex-1 flex flex-col justify-center">
+                  {/* Caption Content */}
+                  <div className="flex min-w-0 flex-1 flex-col justify-center">
                     <div className="flex items-center gap-2">
-                      {/* Tag Standardized */}
-                      <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-blue-600 sm:text-xs shrink-0">
+                      <span className="shrink-0 text-[10px] font-bold uppercase tracking-[0.18em] text-blue-600 sm:text-xs">
                         {slides[current].tab}
                       </span>
-                      <span className="hidden h-1 w-1 rounded-full bg-slate-300 sm:block shrink-0" />
-                      {/* Eyebrow Sub-Label Standardized */}
-                      <span className="hidden text-[10px] font-medium uppercase tracking-wider text-slate-400 sm:block shrink-0">
+
+                      <span className="hidden h-1 w-1 shrink-0 rounded-full bg-slate-300 sm:block" />
+
+                      <span className="hidden shrink-0 text-[10px] font-medium uppercase tracking-wider text-slate-400 sm:block">
                         Core Expertise
                       </span>
                     </div>
 
-                    {/* Caption Line Standardized */}
-                    <p className="text-sm font-medium leading-6 text-slate-700 sm:text-base truncate">
+                    <p className="truncate text-sm font-medium leading-6 text-slate-700 sm:text-base">
                       {slides[current].caption}
                     </p>
                   </div>
 
-                  {/* Status Indicator Standardized */}
+                  {/* Active Status */}
                   <div className="hidden shrink-0 items-center gap-2 sm:flex">
                     <span className="relative flex h-2.5 w-2.5">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-40" />
                       <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-600" />
                     </span>
+
                     <span className="text-xs font-semibold text-slate-500">
                       Active
                     </span>
@@ -330,7 +340,6 @@ export default function Slider() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
