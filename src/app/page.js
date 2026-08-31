@@ -10,18 +10,22 @@ import Wavedivider from "./components/Wavedivider"
 import PricingPlans from "./components/PricingPlans";
 import BlogSection from "./components/BlogSection";
 import Industries from "./components/Industries";
+import Delivertansformation from "./components/Delivertansformation";
+import Industrieschallenges from "./components/Industrieschallenges";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Header />
       <Slider />
-      <Offerings />
+      <Delivertansformation />
+      <Offerings /> 
       <TechStackShowcase />
       <EngagementModels />
       {/* <CaseStudiesShowcase /> */}
       {/* <PricingPlans /> */}
-      <Industries/>
+      <Industrieschallenges />
+      {/* <Industries/> */}
       <ContactUs />
       <BlogSection/>
       <Footer />
