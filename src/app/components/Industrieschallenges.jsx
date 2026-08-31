@@ -24,11 +24,11 @@ const INDUSTRIES = [
     image: "/Industries_Banking_v1.png",
     text: "Technology capabilities designed to modernize banking operations, simplify financial workflows, enhance customer experiences, and strengthen security across digital banking environments. Supporting digital banking, account management, transaction processing, financial analytics, fraud prevention, and personalized services.",
   },
-  {
-    title: "Restaurant",
-    image: "/Industries_Restaurant_v1.png",
-    text: "Technology capabilities designed to streamline restaurant operations, improve customer experiences, simplify order management, and enhance day-to-day business efficiency. Supporting digital ordering, POS integration, inventory management, reservations, delivery workflows, analytics, and operational automation.",
-  },
+  // {
+  //   title: "Restaurant",
+  //   image: "/Industries_Restaurant_v1.png",
+  //   text: "Technology capabilities designed to streamline restaurant operations, improve customer experiences, simplify order management, and enhance day-to-day business efficiency. Supporting digital ordering, POS integration, inventory management, reservations, delivery workflows, analytics, and operational automation.",
+  // },
   {
     title: "eCommerce",
     image: "/Industries_eCommerce_v1.png",
@@ -39,11 +39,11 @@ const INDUSTRIES = [
     image: "/Industries_Saas_v1.png",
     text: "Technology capabilities designed to support scalable SaaS platforms, streamline subscription-based operations, and deliver seamless digital experiences for growing businesses. Supporting multi-tenant architectures, subscription management, user administration, integrations, analytics, automation, and secure cloud operations.",
   },
-  {
+  /* {
     title: "Travel",
     image: "/Industries_Travel_v1.png",
     text: "Technology capabilities designed to simplify travel operations, enhance customer journeys, and deliver seamless experiences across the travel ecosystem. Supporting booking platforms, reservations, itinerary management, travel analytics, personalized experiences, and operational automation.",
-  },
+  }, */
   {
     title: "Logistics",
     image: "/Industries_Logistics_v1.png",
@@ -59,21 +59,21 @@ const INDUSTRIES = [
     image: "/Industries_RealEstate_v1.png",
     text: "Technology capabilities designed to simplify property operations, improve customer engagement, and streamline real estate workflows across the property lifecycle. Supporting property management, listings, digital property tours, lead management, transactions, market analytics, and workflow automation.",
   },
-  {
-    title: "Oil and Gas",
-    image: "/Industries_OilandGas_v1.png",
-    text: "Technology capabilities designed to improve operational efficiency, strengthen asset visibility, and streamline complex workflows across the oil and gas industry. Supporting asset management, field operations, production monitoring, safety workflows, predictive analytics, and operational automation.",
-  },
-  {
-    title: "Automotive",
-    image: "/Industries_Automotive_v1.png",
-    text: "Technology capabilities designed to optimize automotive operations, improve connected experiences, and streamline workflows across the automotive ecosystem. Supporting vehicle management, fleet operations, manufacturing workflows, connected mobility, predictive analytics, and process automation.",
-  },
-  {
-    title: "Insurance",
-    image: "/Industries_Insurance_v1.png",
-    text: "Technology capabilities designed to streamline insurance operations, simplify complex workflows, improve customer experiences, and support data-driven decision-making. Supporting policy management, claims processing, underwriting, risk assessment, customer portals, analytics, and workflow automation.",
-  },
+  // {
+  //   title: "Oil and Gas",
+  //   image: "/Industries_OilandGas_v1.png",
+  //   text: "Technology capabilities designed to improve operational efficiency, strengthen asset visibility, and streamline complex workflows across the oil and gas industry. Supporting asset management, field operations, production monitoring, safety workflows, predictive analytics, and operational automation.",
+  // },
+  // {
+  //   title: "Automotive",
+  //   image: "/Industries_Automotive_v1.png",
+  //   text: "Technology capabilities designed to optimize automotive operations, improve connected experiences, and streamline workflows across the automotive ecosystem. Supporting vehicle management, fleet operations, manufacturing workflows, connected mobility, predictive analytics, and process automation.",
+  // },
+  // {
+  //   title: "Insurance",
+  //   image: "/Industries_Insurance_v1.png",
+  //   text: "Technology capabilities designed to streamline insurance operations, simplify complex workflows, improve customer experiences, and support data-driven decision-making. Supporting policy management, claims processing, underwriting, risk assessment, customer portals, analytics, and workflow automation.",
+  // },
   {
     title: "Manufacturing",
     image: "/Industries_Manufacturing_v1.png",
