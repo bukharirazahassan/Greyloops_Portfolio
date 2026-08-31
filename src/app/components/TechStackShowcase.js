@@ -13,7 +13,6 @@ import {
   SiPython,
 } from "react-icons/si";
 
-// Updated technology color mapping tailored for high contrast and modern light glass theme
 const stack = [
   { id: "U1", name: "React", role: "UI Library", Icon: SiReact, color: "#0088CC" },
   { id: "U2", name: "Next.js", role: "Web Framework", Icon: SiNextdotjs, color: "#0F172A" },
@@ -47,39 +46,39 @@ function ComponentCell({ id, name, role, Icon, color }) {
   return (
     <motion.div
       variants={cellVariants}
-      className="group relative flex flex-col justify-between overflow-hidden border border-white/80 bg-white/50 px-5 py-6 backdrop-blur-xl transition-all duration-300 hover:bg-white/80 hover:border-white hover:shadow-xl sm:px-6 sm:py-7"
+      className="group relative flex flex-col justify-between overflow-hidden bg-white/80 px-5 py-6 backdrop-blur-xl transition-all duration-300 hover:bg-white hover:shadow-xl sm:px-6 sm:py-7"
     >
-      {/* Top crystal light reflection edge */}
-      <span className="pointer-events-none absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent opacity-90" />
+      {/* Top light edge highlight */}
+      <span className="pointer-events-none absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent opacity-100" />
 
-      {/* Internal light dot matrix inside individual card */}
+      {/* Ambient dot matrix inside card */}
       <span
-        className="pointer-events-none absolute inset-0 z-0 opacity-[0.12] transition-opacity duration-300 group-hover:opacity-[0.25]"
+        className="pointer-events-none absolute inset-0 z-0 opacity-[0.10] transition-opacity duration-300 group-hover:opacity-[0.22]"
         style={{
-          backgroundImage: "radial-gradient(#64748b 1.2px, transparent 1.2px)",
+          backgroundImage: "radial-gradient(#3b82f6 1.2px, transparent 1.2px)",
           backgroundSize: "18px 18px",
         }}
       />
 
-      {/* Corner reference designator (PCB silkscreen style) */}
-      <span className="relative z-10 font-mono text-[11px] font-semibold tracking-wider text-slate-400 transition-colors duration-300 group-hover:text-slate-700">
+      {/* PCB designator ID */}
+      <span className="relative z-10 font-mono text-[11px] font-bold tracking-wider text-blue-500/70 transition-colors duration-300 group-hover:text-blue-600">
         {id}
       </span>
 
-      {/* Dynamic ambient color glow on hover */}
+      {/* Subtle brand color glow on hover */}
       <span
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-0"
         style={{
-          background: `radial-gradient(140px circle at 50% 35%, ${color}15, transparent 75%)`,
+          background: `radial-gradient(150px circle at 50% 35%, ${color}15, transparent 80%)`,
         }}
       />
 
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center gap-3 py-4">
-        {/* Crystal Glassmorphism Icon Frame */}
+        {/* Card Icon Container */}
         <div
-          className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/90 bg-white/70 shadow-md backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3 group-hover:bg-white/95 group-hover:shadow-lg"
+          className="flex h-16 w-16 items-center justify-center rounded-2xl border border-blue-100 bg-white shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-md"
           style={{
-            boxShadow: `0 8px 24px -8px ${color}30`,
+            boxShadow: `0 8px 24px -8px ${color}25`,
           }}
         >
           <Icon className="h-8 w-8 transition-transform duration-300" style={{ color }} />
@@ -87,15 +86,15 @@ function ComponentCell({ id, name, role, Icon, color }) {
 
         <div className="text-center">
           <p className="text-sm font-bold text-slate-900 sm:text-[15px]">{name}</p>
-          <p className="mt-0.5 font-mono text-[10.5px] uppercase tracking-wider text-slate-500 font-medium">
+          <p className="mt-0.5 font-mono text-[10.5px] uppercase tracking-wider text-slate-400 font-semibold">
             {role}
           </p>
         </div>
       </div>
 
-      {/* Bottom trace mark — expands and turns into brand color on hover */}
+      {/* Bottom accent indicator */}
       <div className="relative z-10">
-        <span className="block h-[2px] w-6 rounded-full bg-slate-200 transition-all duration-300 group-hover:w-10" />
+        <span className="block h-[2px] w-6 rounded-full bg-blue-100 transition-all duration-300 group-hover:w-10" />
         <span
           className="pointer-events-none absolute bottom-0 left-0 h-[2px] w-0 rounded-full transition-all duration-300 group-hover:w-10"
           style={{ backgroundColor: color }}
@@ -107,14 +106,14 @@ function ComponentCell({ id, name, role, Icon, color }) {
 
 export default function TechStackShowcase() {
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-slate-50 py-20 sm:py-28">
-      {/* Ambient glow background layers */}
-      <div className="pointer-events-none absolute right-0 top-0 z-0 h-[600px] w-[750px] -translate-y-1/3 rounded-full bg-blue-200/40 blur-[160px]" />
-      <div className="pointer-events-none absolute right-[8%] top-0 z-0 h-[500px] w-[500px] -translate-y-1/4 rounded-full bg-sky-200/40 blur-[120px]" />
+    <section className="relative w-full overflow-hidden bg-gradient-to-b from-white via-blue-50/20 to-slate-50 py-20 sm:py-28">
+      {/* Background ambient lighting */}
+      <div className="pointer-events-none absolute right-0 top-0 z-0 h-[600px] w-[750px] -translate-y-1/3 rounded-full bg-blue-100/50 blur-[160px]" />
+      <div className="pointer-events-none absolute right-[8%] top-0 z-0 h-[500px] w-[500px] -translate-y-1/4 rounded-full bg-sky-100/50 blur-[120px]" />
 
-      {/* Global section dot matrix background */}
+      {/* Background dot grid pattern */}
       <div
-        className="pointer-events-none absolute inset-0 z-0 opacity-[0.25]"
+        className="pointer-events-none absolute inset-0 z-0 opacity-[0.20]"
         style={{
           backgroundImage: "radial-gradient(#94a3b8 1.2px, transparent 1.2px)",
           backgroundSize: "24px 24px",
@@ -130,7 +129,7 @@ export default function TechStackShowcase() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-white/80 px-4 py-1.5 font-mono text-xs font-semibold tracking-wide text-blue-700 shadow-xs backdrop-blur-md"
+          className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-white px-4 py-1.5 font-mono text-xs font-semibold tracking-wide text-blue-700 shadow-xs"
         >
           <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
           stack.config
@@ -172,13 +171,13 @@ export default function TechStackShowcase() {
         </motion.p>
       </div>
 
-      {/* Tech grid container with glass backdrop */}
+      {/* Grid container with clean white border divider instead of slate-200 */}
       <motion.div
         variants={gridVariants}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
-        className="relative z-10 mx-auto grid max-w-5xl grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/80 bg-slate-200/50 p-px shadow-2xl backdrop-blur-2xl sm:grid-cols-3 lg:grid-cols-5"
+        className="relative z-10 mx-auto grid max-w-5xl grid-cols-2 gap-px overflow-hidden rounded-3xl border border-blue-100 bg-blue-100/60 p-px shadow-xl sm:grid-cols-3 lg:grid-cols-5"
       >
         {stack.map((item) => (
           <ComponentCell key={item.id} {...item} />

@@ -18,7 +18,7 @@ const services = [
     ctaText: "View Consulting Services",
     ctaLink: "/services/consulting",
     description:
-      "We align technology with your business vision through strategic planning, modern architecture, and practical transformation roadmaps. Our experts assess your existing technology landscape, identify opportunities, and design scalable solutions built around your operational needs. From modernization and system integration to cloud, data, and emerging technologies, we help you make smarter technology decisions. With a clear path from strategy to execution, we create a strong technology foundation that supports agility, innovation, and sustainable growth.",
+      "We help businesses turn technology into a strategic advantage through modern architecture, digital transformation, and scalable technology roadmaps. We evaluate existing systems, identify opportunities, and define practical strategies that improve agility, efficiency, and long-term growth.",
     Icon: Compass,
     color: "#2563EB",
     offset: 0,
@@ -29,10 +29,10 @@ const services = [
     ctaText: "View Product Engineering Services",
     ctaLink: "/services/product-engineering",
     description:
-      "We transform ideas into scalable, high-performance digital products through modern architecture, intuitive experiences, and agile engineering. From web and mobile applications to enterprise platforms, we engineer solutions designed for reliability, flexibility, and long-term growth. Our approach covers product discovery, UX, development, integrations, cloud readiness, and quality engineering to accelerate delivery without compromising performance. We continuously evolve and optimize products so they remain secure, competitive, and ready to adapt as your business grows.",
+      "We design and engineer modern digital products that combine strong technology, intuitive user experiences, and scalable architecture. From web and mobile applications to enterprise platforms, we build reliable solutions that accelerate delivery, improve performance, and evolve with changing business needs.",
     Icon: Boxes,
     color: "#16A34A",
-    offset: 180,
+    offset: 120,
   },
   {
     slug: "ai-data-analytics",
@@ -40,10 +40,10 @@ const services = [
     ctaText: "View Artificial Intelligence Services",
     ctaLink: "/services/ai-data-analytics",
     description:
-      "We transform complex data into intelligent insights through AI, machine learning, advanced analytics, and modern data engineering. Our solutions help organizations automate processes, uncover patterns, predict outcomes, and make faster, data-driven decisions. From intelligent dashboards and predictive models to generative AI and enterprise data platforms, we build solutions around real business needs. We create scalable, secure, and continuously evolving intelligence systems that turn data into measurable business value and long-term competitive advantage.",
+      "We turn data into actionable intelligence using AI, machine learning, advanced analytics, and modern data engineering. Our solutions automate processes, uncover valuable insights, improve forecasting, and enable faster, smarter decisions across the organization.",
     Icon: BrainCircuit,
     color: "#2563EB",
-    offset: 360,
+    offset: 240,
   },
   {
     slug: "cybersecurity",
@@ -51,10 +51,10 @@ const services = [
     ctaText: "View Cybersecurity Services",
     ctaLink: "/services/cybersecurity",
     description:
-      "We build secure, scalable cloud environments that keep applications, enterprise systems, and digital operations reliable, resilient, and ready to grow. Our approach combines cloud architecture, DevOps automation, continuous monitoring, and infrastructure optimization to improve performance and operational efficiency. We embed security across identities, applications, infrastructure, and data with proactive threat detection, access controls, and modern Zero Trust practices. From cloud modernization to ongoing security and operational support, we help organizations reduce risk, maintain continuity, and confidently scale their technology landscape.",
+      "We build secure and resilient cloud environments that support high performance, continuous availability, and business growth. By combining cloud engineering, DevOps automation, monitoring, infrastructure optimization, and proactive security, we help organizations reduce risk and operate with confidence.",
     Icon: ShieldCheck,
     color: "#2563EB",
-    offset: 540,
+    offset: 360,
   },
 ];
 
@@ -66,9 +66,11 @@ function ServiceCard({ service, progress, index, total }) {
   return (
     <motion.div
       style={{ y }}
-      className={`group relative flex h-full min-h-[480px] flex-col justify-between overflow-hidden border border-white/60 bg-white/40 p-6 backdrop-blur-2xl transition-colors duration-500 hover:bg-white/65 hover:border-white sm:min-h-[520px] sm:p-8 ${
-        index !== 0 ? "border-t md:border-l md:border-t-0" : ""
-      } ${index !== total - 1 ? "border-b md:border-b-0" : ""}`}
+      className={`group relative flex h-full min-h-[380px] flex-col justify-between overflow-hidden border border-white/60 bg-white/40 p-6 backdrop-blur-2xl transition-colors duration-500 hover:bg-white/65 hover:border-white sm:min-h-[440px] sm:p-7 lg:min-h-[500px] lg:p-8 xl:min-h-[530px] ${
+        index !== 0 ? "border-t" : ""
+      } ${index % 2 === 1 ? "sm:border-l" : "sm:border-l-0"} ${
+        index >= 2 ? "sm:border-t" : "sm:border-t-0"
+      } lg:border-t-0 ${index !== 0 ? "lg:border-l" : "lg:border-l-0"}`}
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent opacity-90" />
 
@@ -89,34 +91,37 @@ function ServiceCard({ service, progress, index, total }) {
         style={{ backgroundColor: color }}
       />
 
-      <div className="relative z-10 flex flex-col justify-between h-full">
+      <div className="relative z-10 flex h-full flex-col justify-between">
         <div>
           <div
-            className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/80 bg-white/70 shadow-md backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3 group-hover:bg-white/90"
+            className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/80 bg-white/70 shadow-xs backdrop-blur-md transition-all duration-300 group-hover:scale-105 group-hover:-rotate-3 group-hover:bg-white/90 sm:h-15 sm:w-15 lg:mb-6 lg:h-16 lg:w-16"
             style={{
-              boxShadow: `0 8px 24px -8px ${color}35`,
+              boxShadow: `0 8px 20px -8px ${color}35`,
             }}
           >
-            <Icon className="h-7 w-7" style={{ color }} strokeWidth={1.75} />
+            <Icon
+              className="h-7 w-7 lg:h-8 lg:w-8"
+              style={{ color }}
+              strokeWidth={1.75}
+            />
           </div>
 
-          <h3 className="section-display mb-3 whitespace-pre-line text-xl font-bold leading-tight text-slate-900 sm:text-2xl">
+          <h3 className="section-display mb-3.5 whitespace-pre-line text-xl font-bold leading-tight text-slate-900 sm:text-2xl lg:text-[25px]">
             {title}
           </h3>
 
-          <p className="text-sm leading-relaxed font-normal text-slate-600 antialiased sm:text-base">
+          <p className="text-sm leading-relaxed font-normal text-slate-700 antialiased sm:text-[15px] lg:text-[16px]">
             {description}
           </p>
         </div>
 
-        {/* Updated Theme-Matched Button Hover State */}
-        <div className="mt-8 pt-4">
+        <div className="mt-8 pt-4 sm:mt-10">
           <Link
             href={ctaLink}
-            className="group/btn inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-900 bg-transparent px-5 py-3 text-xs font-bold text-slate-900 shadow-xs transition-all duration-300 hover:border-blue-600 hover:bg-blue-600 hover:text-white hover:shadow-md hover:shadow-blue-500/20 sm:text-sm"
+            className="group/btn inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-900 bg-transparent px-5 py-3.5 text-xs font-bold text-slate-900 shadow-xs transition-all duration-300 hover:border-blue-600 hover:bg-blue-600 hover:text-white hover:shadow-md hover:shadow-blue-500/20 sm:text-sm"
           >
             <span>{ctaText}</span>
-            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+            <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
           </Link>
         </div>
       </div>
@@ -135,7 +140,7 @@ export default function DeliverTransformation() {
   return (
     <section
       ref={containerRef}
-      className="section-font relative h-[160vh] w-full bg-white"
+      className="section-font relative w-full bg-white lg:h-[170vh]"
     >
       <style jsx global>{`
         @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
@@ -150,9 +155,10 @@ export default function DeliverTransformation() {
         }
       `}</style>
 
-      <div className="sticky top-0 flex h-screen w-full flex-col justify-start gap-3 overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-slate-50 px-4 pt-2 pb-4 sm:px-8 sm:pt-4 sm:pb-6">
-        <div className="pointer-events-none absolute right-0 top-0 z-0 h-[500px] w-[650px] -translate-y-1/3 rounded-full bg-blue-200/30 blur-[140px]" />
-        <div className="pointer-events-none absolute right-[8%] top-0 z-0 h-[400px] w-[400px] -translate-y-1/4 rounded-full bg-sky-200/30 blur-[100px]" />
+      {/* Sticky container offset cleanly under navbar (80px + extra top padding for lower heading) */}
+      <div className="relative flex w-full flex-col justify-between overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-slate-50 px-4 py-8 sm:px-6 lg:sticky lg:top-[80px] lg:h-[calc(100vh-80px)] lg:px-8 lg:pt-10 lg:pb-8">
+        <div className="pointer-events-none absolute right-0 top-0 z-0 h-[280px] w-[280px] -translate-y-1/3 rounded-full bg-blue-200/30 blur-[100px] sm:h-[450px] sm:w-[550px] sm:blur-[140px]" />
+        <div className="pointer-events-none absolute right-[8%] top-0 z-0 h-[220px] w-[220px] -translate-y-1/4 rounded-full bg-sky-200/30 blur-[80px] sm:h-[350px] sm:w-[350px] sm:blur-[100px]" />
 
         <div
           className="pointer-events-none absolute inset-0 z-0 opacity-[0.22]"
@@ -167,9 +173,9 @@ export default function DeliverTransformation() {
           }}
         />
 
-        {/* One-Line Header */}
-        <div className="relative z-10 px-4 pt-1 text-center sm:pt-2">
-          <h2 className="section-display mx-auto max-w-6xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+        {/* Scaled & Lowered Heading */}
+        <div className="relative z-10 px-2 text-center sm:px-4 lg:pt-2 lg:pb-4">
+          <h2 className="section-display mx-auto max-w-5xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl xl:text-[3.15rem]">
             Beyond Development.
             <br />
             <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
@@ -177,8 +183,9 @@ export default function DeliverTransformation() {
             </span>
           </h2>
         </div>
-        {/* Cards Grid */}
-        <div className="relative z-10 grid w-full flex-1 grid-cols-1 border-y border-white/70 shadow-xs md:grid-cols-4 items-stretch">
+
+        {/* Taller Cards Container */}
+        <div className="relative z-10 my-auto grid w-full grid-cols-1 items-stretch border-y border-white/70 shadow-xs sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service, index) => (
             <ServiceCard
               key={service.slug}
