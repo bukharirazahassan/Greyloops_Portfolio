@@ -10,7 +10,7 @@ const models = [
     title: "IT Staff Augmentation",
     subtitle: "Scale Teams On-Demand",
     description:
-      "Fill critical skills gaps rapidly by embedding vetted tech professionals seamlessly into your existing workflows and tools.",
+      "Extend your technology capabilities with skilled software engineers, developers, QA specialists, DevOps engineers, and other IT professionals aligned with your project requirements. We provide flexible, scalable teams that integrate seamlessly with your existing workforce, helping you accelerate delivery, fill critical skill gaps, and scale engineering capacity without the overhead of long-term hiring.",
     image: "/IT_Staff_Augmentation.jpg",
     icon: Users,
   },
@@ -18,7 +18,7 @@ const models = [
     title: "Dedicated Teams",
     subtitle: "End-to-End Commitment",
     description:
-      "Deploy fully autonomous, cross-functional development teams aligned directly with your company culture, KPIs, and long-term goals.",
+      "Build a dedicated technology team tailored to your business goals, project requirements, and long-term roadmap. Our experienced developers, engineers, QA specialists, designers, and technical experts work as an extension of your organization, providing consistent collaboration, flexible scaling, and end-to-end ownership. This model helps you accelerate product development, maintain greater control, and build technology capabilities that grow with your business.",
     image: "/Dedicated_Teams.jpg",
     icon: UsersRound,
   },
@@ -26,7 +26,7 @@ const models = [
     title: "Software Development Outsourcing",
     subtitle: "Turnkey Product Delivery",
     description:
-      "Entrust full product lifecycle development to us—from strategy and design to deployment—so you can focus on core business growth.",
+      "Accelerate your digital initiatives by outsourcing software development to an experienced engineering team. We manage the complete development lifecycle—from planning and architecture to development, testing, deployment, and ongoing support—while maintaining clear communication and quality standards. Our flexible engagement models help businesses reduce development overhead, access specialized expertise, scale efficiently, and deliver reliable software faster.",
     image: "/Software_Development_Outsourcing_v2.png",
     icon: Rocket,
   },
@@ -120,7 +120,7 @@ export default function EngagementModels() {
         />
 
         <div className="relative z-10 mx-auto flex h-full w-full max-w-[1700px] items-center px-6 lg:px-12 py-6">
-          <div className="grid h-full max-h-[80vh] w-full items-center gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="grid h-full max-h-[82vh] w-full items-center gap-8 lg:grid-cols-12 lg:gap-12">
             
             {/* Left Column: Layered Covering Image Frame with Fixed Bottom Content */}
             <div className="relative h-full w-full overflow-hidden rounded-3xl border border-slate-100 bg-slate-900 shadow-2xl shadow-blue-900/10 lg:col-span-7">
@@ -175,32 +175,32 @@ export default function EngagementModels() {
               </div>
             </div>
 
-            {/* Right Column: Stationary Information & Interactive Timeline Navigation */}
-            <div className="flex h-full flex-col justify-center space-y-8 lg:col-span-5">
+            {/* Right Column: Anchored information + Timeline controls tucked directly underneath */}
+            <div className="flex h-full flex-col justify-start gap-8 py-2 lg:col-span-5 lg:gap-10">
               
               {/* Information Text Box */}
-              <div className="relative min-h-[180px]">
+              <div className="relative">
                 <motion.div
                   key={activeIndex}
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="absolute inset-x-0 top-0"
+                  className="w-full"
                 >
-                  <span className="mb-2 block text-xs font-bold uppercase tracking-widest text-blue-600">
+                  <span className="mb-2 block text-xs font-bold uppercase tracking-widest text-blue-600 sm:text-sm">
                     {current.subtitle}
                   </span>
-                  <h4 className="mb-4 text-3xl font-extrabold text-slate-900 lg:text-4xl">
+                  <h4 className="mb-3 text-3xl font-extrabold text-slate-900 lg:text-4xl">
                     {current.title}
                   </h4>
-                  <p className="text-base font-medium leading-relaxed text-zinc-600 lg:text-lg">
-                    &ldquo;{current.description}&rdquo;
+                  <p className="text-base font-normal leading-relaxed text-slate-700 antialiased sm:text-lg lg:text-[17px]">
+                    {current.description}
                   </p>
                 </motion.div>
               </div>
 
-              {/* Connected Dots Timeline Navigation */}
-              <div className="relative flex flex-col pl-2 space-y-3 pt-6">
+              {/* Connected Dots Timeline Navigation (Positioned directly under text) */}
+              <div className="relative flex flex-col pl-2 space-y-2 pt-6 border-t border-slate-100">
                 <div className="absolute left-[23px] top-10 bottom-4 w-0.5 bg-slate-200 z-0" />
 
                 {models.map((model, index) => {
@@ -215,7 +215,7 @@ export default function EngagementModels() {
                     >
                       <div className="relative flex h-8 w-8 shrink-0 items-center justify-center">
                         <div
-                          className={`h-3.5 w-3.5 rounded-full transition-all duration-300 ${
+                          className={`h-4 w-4 rounded-full transition-all duration-300 ${
                             isActive
                               ? "scale-125 bg-blue-600 ring-4 ring-blue-100"
                               : "bg-slate-300 group-hover:bg-blue-400"
@@ -223,21 +223,21 @@ export default function EngagementModels() {
                         />
                       </div>
 
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-3.5">
                         <span
-                          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors duration-300 ${
+                          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors duration-300 ${
                             isActive
                               ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white"
-                              : "bg-blue-50 text-blue-400 group-hover:text-blue-600"
+                              : "bg-blue-50 text-blue-500 group-hover:text-blue-600"
                           }`}
                         >
-                          <Icon className="h-4 w-4" strokeWidth={2} />
+                          <Icon className="h-5 w-5" strokeWidth={2} />
                         </span>
                         <span
-                          className={`text-sm font-bold tracking-tight transition-colors duration-300 lg:text-base ${
+                          className={`text-base font-bold tracking-tight transition-colors duration-300 lg:text-[17px] ${
                             isActive
                               ? "text-slate-900"
-                              : "text-zinc-600 group-hover:text-slate-900"
+                              : "text-slate-600 group-hover:text-slate-900"
                           }`}
                         >
                           {model.title}
