@@ -15,11 +15,17 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: {
-    default: "Innovative Tech Solutions",
+    default: "Greyloops | Software Development & Consulting",
     template: "%s",
   },
   description:
     "We empower businesses with AI, custom software, cloud technologies, and digital transformation services.",
+
+  icons: {
+    icon: "/favicon.jpg",
+    shortcut: "/favicon.jpg",
+    apple: "/favicon.jpg",
+  },
 };
 
 export default function RootLayout({ children }) {
