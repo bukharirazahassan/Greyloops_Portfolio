@@ -9,8 +9,8 @@ const slides = [
   {
     image: "/home_banner_1.webp",
     heading: [
-      { text: "Full Cycle ", accent: false },
-      { text: "Software Development", accent: true },
+      { text: "FROM IDEA", accent: false },
+      { text: "TO PRODUCT", accent: true },
     ],
     subtext:
       "We turn ideas into scalable digital products through strategy, modern engineering, intuitive design, and quality-driven development—from concept to launch and continuous improvement.",
@@ -18,13 +18,13 @@ const slides = [
       "From product strategy through engineering, design, and QA — we deliver complete software lifecycles built for long-term reliability.",
     ctaText: "Start a Project",
     ctaHref: "/contact",
-    tab: "01 — FROM IDEA TO PRODUCT",
+    tab: "01 — Full Cycle Software Development",
   },
   {
     image: "/home_banner_2.webp",
     heading: [
-      { text: "We Create Leading ", accent: false },
-      { text: "Digital Products", accent: true },
+      { text: "END-TO-END", accent: false },
+      { text: "DEVELOPMENT", accent: true },
     ],
     subtext:
       "We design and build high-performing web, mobile, and enterprise solutions that combine intuitive experiences, modern architecture, seamless integrations, and long-term scalability.",
@@ -32,13 +32,13 @@ const slides = [
       "High-performing web, mobile, and enterprise solutions built to scale.",
     ctaText: "Start a Project",
     ctaHref: "/contact",
-    tab: "02 — END-TO-END DEVELOPMENT",
+    tab: "02 — We Create Leading Digital Products",
   },
   {
     image: "/home_banner_1.webp",
     heading: [
-      { text: "Only ", accent: false },
-      { text: "High-Quality Services", accent: true },
+      { text: "SOFTWARE", accent: false },
+      { text: "IT OUTSOURCING", accent: true },
     ],
     subtext:
       "We provide reliable software development teams and flexible delivery models that extend your capabilities, accelerate product delivery, and maintain high standards of quality, security, and performance.",
@@ -46,7 +46,7 @@ const slides = [
       "Reliable outsourced teams delivering quality, security, and performance.",
     ctaText: "Start a Project",
     ctaHref: "/contact",
-    tab: "03 — SOFTWARE IT OUTSOURCING",
+    tab: "03 — Only High-Quality Services",
   },
 ];
 
@@ -170,11 +170,11 @@ export default function Slider() {
                   {slides[current].heading.map((part, i) => (
                     <span
                       key={i}
-                      className={
+                      className={`block ${
                         part.accent
                           ? "bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent"
                           : "bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent"
-                      }
+                      }`}
                     >
                       {part.text}
                     </span>
