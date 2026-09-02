@@ -5,6 +5,8 @@ import BackendServicesCarousel from "../../components/services/BackendServicesCa
 import SaasDevelopment from "../../components/services/SaasDevelopment";
 import FrontendDevelopment from "../../components/services/FrontendDevelopment";
 import EnterpriseSoftwareDevelopment from "../../components/services/EnterpriseSoftwareDevelopment";
+import SoftwareConsulting from "../../components/services/Consulting/SoftwareConsulting";
+import ConsultingProvider from "../../components/services/Consulting/ConsultingProvider";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -51,6 +53,13 @@ export default async function ServiceDetailPage({ params }) {
           <Header />
           <EnterpriseSoftwareDevelopment />
           {/* <Footer /> */}
+        </>
+      ) : slug === "software-consulting" ? (
+        <>
+          <Header />
+          <SoftwareConsulting />
+          <ConsultingProvider />
+           {/* <Footer />  */}
         </>
       ) : (
         <>
