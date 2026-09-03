@@ -24,7 +24,7 @@ const slidesData = [
     description:
       "Align technology with your business goals through strategic guidance across software, web, mobile, cloud, data, AI, and emerging technologies. We help organizations define technology strategies, drive digital transformation, design scalable architectures, modernize legacy systems, and build practical roadmaps for cloud, data, and AI adoption—accelerating innovation, scalability, security, and long-term business growth.",
     image: "/images/services/strategic_technology_consulting.png",
-    ctaText: "Explore Advisory Services",
+    ctaText: "Schedule a Consultation",
     ctaLink: "/contact",
   },
   {
@@ -34,7 +34,7 @@ const slidesData = [
     description:
       "Transform complex business requirements into practical, technology-driven solutions with expert consulting across supply chain, CRM, ecommerce, and corporate finance. We help organizations analyze business processes, identify the right platforms and technologies, optimize workflows, integrate systems, and develop scalable solution strategies that improve efficiency, customer experiences, and business performance.",
     image: "/images/services/solution_consulting.png",
-    ctaText: "Discover Solutions",
+    ctaText: "Schedule a Consultation",
     ctaLink: "/contact",
   },
 ];
