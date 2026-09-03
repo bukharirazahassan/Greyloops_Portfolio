@@ -8,16 +8,48 @@ import { motion, useScroll, useTransform } from "framer-motion";
 export default function ConsultingProvider() {
   const containerRef = useRef(null);
 
-  // Track scroll position across 4 stacked cards
+  // Track scroll position across 8 stacked cards
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Scroll ranges: Card 2 (0.15-0.35), Card 3 (0.4-0.6), Card 4 (0.65-0.85)
-  const card2Y = useTransform(scrollYProgress, [0.15, 0.35], ["100%", "0%"]);
-  const card3Y = useTransform(scrollYProgress, [0.4, 0.6], ["100%", "0%"]);
-  const card4Y = useTransform(scrollYProgress, [0.65, 0.85], ["100%", "0%"]);
+  // Scroll ranges evenly distributed for 8 cards (Card 1 is base / initial display):
+  // Card 2 (0.07 - 0.16), Card 3 (0.19 - 0.28), Card 4 (0.31 - 0.40), Card 5 (0.43 - 0.52), Card 6 (0.55 - 0.64), Card 7 (0.67 - 0.76), Card 8 (0.79 - 0.88)
+  const card2Y = useTransform(scrollYProgress, [0.07, 0.16], ["100%", "0%"]);
+  const card3Y = useTransform(scrollYProgress, [0.19, 0.28], ["100%", "0%"]);
+  const card4Y = useTransform(scrollYProgress, [0.31, 0.40], ["100%", "0%"]);
+  const card5Y = useTransform(scrollYProgress, [0.43, 0.52], ["100%", "0%"]);
+  const card6Y = useTransform(scrollYProgress, [0.55, 0.64], ["100%", "0%"]);
+  const card7Y = useTransform(scrollYProgress, [0.67, 0.76], ["100%", "0%"]);
+  const card8Y = useTransform(scrollYProgress, [0.79, 0.88], ["100%", "0%"]);
+
+  const softwareSelectionCapabilities = [
+    {
+      title: "Business & Requirements Assessment",
+      description: "Understand business goals, workflows, challenges, and functional requirements.",
+    },
+    {
+      title: "Software Evaluation & Selection",
+      description: "Compare platforms and solutions based on features, scalability, integration, security, and cost.",
+    },
+    {
+      title: "Technology Fit Assessment",
+      description: "Evaluate whether a solution aligns with your existing technology ecosystem and future needs.",
+    },
+    {
+      title: "Software Migration Strategy",
+      description: "Plan transitions from outdated or unsuitable systems to modern software platforms.",
+    },
+    {
+      title: "Implementation Planning",
+      description: "Define practical implementation strategies, timelines, integrations, and adoption requirements.",
+    },
+    {
+      title: "Solution Optimization",
+      description: "Identify opportunities to extend, configure, and optimize selected software to support evolving business needs.",
+    },
+  ];
 
   const webCapabilities = [
     {
@@ -135,10 +167,91 @@ export default function ConsultingProvider() {
     },
   ];
 
+  const techStackCapabilities = [
+    {
+      title: "Technology Stack Assessment",
+      description: "Evaluate existing technologies and identify the right tools, frameworks, and platforms for your needs.",
+    },
+    {
+      title: "Technology Selection",
+      description: "Select programming languages, frameworks, databases, cloud platforms, and development tools aligned with business and product goals.",
+    },
+    {
+      title: "Architecture & Framework Consulting",
+      description: "Define application architecture and select frameworks that support scalability, maintainability, and performance.",
+    },
+    {
+      title: "Frontend & Backend Strategy",
+      description: "Establish the right technology approach for modern web, mobile, API, and backend development.",
+    },
+    {
+      title: "Database & API Strategy",
+      description: "Select and structure databases, APIs, integrations, and data technologies for reliable application ecosystems.",
+    },
+    {
+      title: "Technology Modernization",
+      description: "Upgrade outdated technology stacks and introduce modern frameworks, platforms, and engineering practices for better performance and scalability.",
+    },
+  ];
+
+  const devopsCapabilities = [
+    {
+      title: "DevOps Strategy & Assessment",
+      description: "Evaluate development and operational workflows and define a practical DevOps roadmap.",
+    },
+    {
+      title: "CI/CD Automation",
+      description: "Build automated pipelines for continuous integration, testing, delivery, and deployment.",
+    },
+    {
+      title: "Infrastructure as Code",
+      description: "Automate infrastructure provisioning and configuration using modern IaC practices.",
+    },
+    {
+      title: "Cloud & Containerization",
+      description: "Implement scalable cloud infrastructure, containers, and orchestration environments.",
+    },
+    {
+      title: "DevSecOps & Security",
+      description: "Integrate security, vulnerability checks, and compliance practices throughout the development lifecycle.",
+    },
+    {
+      title: "Monitoring & Observability",
+      description: "Improve application visibility with centralized logging, monitoring, alerting, and performance insights.",
+    },
+  ];
+
+  const uxUiCapabilities = [
+    {
+      title: "UX Strategy & Research",
+      description: "Understand users, business goals, and product requirements to define effective experience strategies.",
+    },
+    {
+      title: "User Journey & Experience Design",
+      description: "Map intuitive user flows and journeys that simplify interactions and improve engagement.",
+    },
+    {
+      title: "UI & Visual Design",
+      description: "Create modern, consistent, and visually compelling interfaces for digital products.",
+    },
+    {
+      title: "Web & Mobile Design",
+      description: "Design responsive web and mobile experiences tailored to different platforms and devices.",
+    },
+    {
+      title: "Wireframing & Prototyping",
+      description: "Transform ideas into interactive prototypes to validate concepts and refine user experiences.",
+    },
+    {
+      title: "Design Systems & Brand Identity",
+      description: "Build cohesive design systems and brand identities that ensure consistency across digital experiences.",
+    },
+  ];
+
   return (
     <section
       ref={containerRef}
-      className="relative h-[450vh] w-full bg-slate-950 text-slate-100"
+      className="relative h-[850vh] w-full bg-slate-950 text-slate-100"
     >
       {/* Fixed Sticky Viewport Stage with Navbar Offset (top-20) */}
       <div className="sticky top-20 flex min-h-[calc(100vh-80px)] w-full flex-col justify-start overflow-hidden pt-4 pb-12">
@@ -189,8 +302,65 @@ export default function ConsultingProvider() {
           {/* Sticky Stacked Hero Container Stage */}
           <div className="relative mt-6 h-[480px] sm:h-[520px] lg:h-[550px] w-full overflow-hidden rounded-2xl bg-slate-900 shadow-2xl transition-all duration-300 hover:shadow-blue-900/10">
             
-            {/* CARD 1: Web Consulting */}
+            {/* CARD 1: Software Selection Consulting (FIRST DISPLAY) */}
             <div className="absolute inset-0 z-10 h-full w-full overflow-hidden">
+              <Image
+                src="/images/services/software-selection-consulting-hero.jpg"
+                alt="Software Selection Consulting Hero"
+                width={1920}
+                height={640}
+                priority
+                className="h-64 w-full object-cover object-right sm:h-80 md:h-96 lg:absolute lg:inset-0 lg:h-full"
+              />
+
+              <div className="pointer-events-none absolute inset-0 bg-white/95 lg:bg-transparent" />
+
+              <div className="relative z-10 flex h-full w-full flex-col items-start justify-center p-5 sm:p-8 md:p-10 lg:absolute lg:inset-y-0 lg:left-0 lg:max-w-2xl lg:p-10 xl:max-w-3xl xl:p-12">
+                <div className="flex w-full flex-col items-start text-left">
+                  <div className="mb-3 inline-flex items-center gap-2 self-start rounded-full border border-blue-200/80 bg-white/90 px-3 py-1 text-[11px] font-bold text-blue-600 shadow-sm backdrop-blur-md sm:px-3.5 sm:text-xs">
+                    <Sparkles className="h-3.5 w-3.5 text-blue-600" />
+                    <span>Software Development Consulting</span>
+                  </div>
+
+                  <h3 className="mb-2 text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl md:text-3xl lg:text-4xl lg:leading-[1.15]">
+                    Software Selection{" "}
+                    <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                      Consulting
+                    </span>
+                  </h3>
+
+                  <p className="mb-4 text-xs font-normal leading-relaxed text-slate-700 antialiased sm:text-sm md:text-base lg:leading-relaxed">
+                    Choose the right software solutions with expert guidance tailored to your business goals, processes, and technical requirements. We assess your current challenges, identify operational bottlenecks, evaluate suitable platforms and technologies, and recommend solutions that deliver the right balance of functionality, scalability, integration, and cost. From software migration and platform selection to implementation and complex functionality, we simplify the decision-making process and help you move forward with confidence.
+                  </p>
+
+                  <div className="w-full">
+                    <h4 className="mb-2.5 text-xs font-bold uppercase tracking-wider text-slate-900 sm:text-sm">
+                      Key Capabilities:
+                    </h4>
+
+                    <ul className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-x-4 md:gap-y-2.5">
+                      {softwareSelectionCapabilities.map((item, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-blue-600 sm:h-4 sm:w-4" />
+                          <span className="text-xs leading-snug text-slate-800 sm:text-sm">
+                            <strong className="font-semibold text-slate-950">
+                              {item.title}
+                            </strong>{" "}
+                            — {item.description}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CARD 2: Web Consulting */}
+            <motion.div
+              style={{ y: card2Y }}
+              className="absolute inset-0 z-20 h-full w-full overflow-hidden bg-slate-900"
+            >
               <Image
                 src="/images/services/web-consulting-hero.jpg"
                 alt="Web Consulting Hero"
@@ -241,12 +411,12 @@ export default function ConsultingProvider() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            {/* CARD 2: Mobile Consulting */}
+            {/* CARD 3: Mobile Consulting */}
             <motion.div
-              style={{ y: card2Y }}
-              className="absolute inset-0 z-20 h-full w-full overflow-hidden bg-slate-900"
+              style={{ y: card3Y }}
+              className="absolute inset-0 z-30 h-full w-full overflow-hidden bg-slate-900"
             >
               <Image
                 src="/images/services/mobile-consulting-hero.jpg"
@@ -300,10 +470,10 @@ export default function ConsultingProvider() {
               </div>
             </motion.div>
 
-            {/* CARD 3: SaaS Consulting */}
+            {/* CARD 4: SaaS Consulting */}
             <motion.div
-              style={{ y: card3Y }}
-              className="absolute inset-0 z-30 h-full w-full overflow-hidden bg-slate-900"
+              style={{ y: card4Y }}
+              className="absolute inset-0 z-40 h-full w-full overflow-hidden bg-slate-900"
             >
               <Image
                 src="/images/services/saas-consulting-hero.jpg"
@@ -357,10 +527,10 @@ export default function ConsultingProvider() {
               </div>
             </motion.div>
 
-            {/* CARD 4: Cloud Consulting */}
+            {/* CARD 5: Cloud Consulting */}
             <motion.div
-              style={{ y: card4Y }}
-              className="absolute inset-0 z-40 h-full w-full overflow-hidden bg-slate-900"
+              style={{ y: card5Y }}
+              className="absolute inset-0 z-50 h-full w-full overflow-hidden bg-slate-900"
             >
               <Image
                 src="/images/services/cloud-consulting-hero.jpg"
@@ -398,6 +568,177 @@ export default function ConsultingProvider() {
 
                     <ul className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-x-4 md:gap-y-2.5">
                       {cloudCapabilities.map((item, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-blue-600 sm:h-4 sm:w-4" />
+                          <span className="text-xs leading-snug text-slate-800 sm:text-sm">
+                            <strong className="font-semibold text-slate-950">
+                              {item.title}
+                            </strong>{" "}
+                            — {item.description}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CARD 6: Technology Stack Consulting */}
+            <motion.div
+              style={{ y: card6Y }}
+              className="absolute inset-0 z-[60] h-full w-full overflow-hidden bg-slate-900"
+            >
+              <Image
+                src="/images/services/technology-stack-consulting-hero.jpg"
+                alt="Technology Stack Consulting Hero"
+                width={1920}
+                height={640}
+                priority
+                className="h-64 w-full object-cover object-right sm:h-80 md:h-96 lg:absolute lg:inset-0 lg:h-full"
+              />
+
+              <div className="pointer-events-none absolute inset-0 bg-white/95 lg:bg-transparent" />
+
+              <div className="relative z-10 flex h-full w-full flex-col items-start justify-center p-5 sm:p-8 md:p-10 lg:absolute lg:inset-y-0 lg:left-0 lg:max-w-2xl lg:p-10 xl:max-w-3xl xl:p-12">
+                <div className="flex w-full flex-col items-start text-left">
+                  <div className="mb-3 inline-flex items-center gap-2 self-start rounded-full border border-blue-200/80 bg-white/90 px-3 py-1 text-[11px] font-bold text-blue-600 shadow-sm backdrop-blur-md sm:px-3.5 sm:text-xs">
+                    <Sparkles className="h-3.5 w-3.5 text-blue-600" />
+                    <span>Software Development Consulting</span>
+                  </div>
+
+                  <h3 className="mb-2 text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl md:text-3xl lg:text-4xl lg:leading-[1.15]">
+                    Technology Stack{" "}
+                    <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                      Consulting
+                    </span>
+                  </h3>
+
+                  <p className="mb-4 text-xs font-normal leading-relaxed text-slate-700 antialiased sm:text-sm md:text-base lg:leading-relaxed">
+                    Choose the right technologies to build scalable, secure, and high-performing digital solutions with expert technology stack guidance. We help businesses evaluate frameworks, programming languages, databases, cloud platforms, APIs, and development tools to create technology foundations aligned with product requirements, performance goals, scalability, and long-term growth.
+                  </p>
+
+                  <div className="w-full">
+                    <h4 className="mb-2.5 text-xs font-bold uppercase tracking-wider text-slate-900 sm:text-sm">
+                      Key Capabilities:
+                    </h4>
+
+                    <ul className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-x-4 md:gap-y-2.5">
+                      {techStackCapabilities.map((item, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-blue-600 sm:h-4 sm:w-4" />
+                          <span className="text-xs leading-snug text-slate-800 sm:text-sm">
+                            <strong className="font-semibold text-slate-950">
+                              {item.title}
+                            </strong>{" "}
+                            — {item.description}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CARD 7: DevOps Consulting */}
+            <motion.div
+              style={{ y: card7Y }}
+              className="absolute inset-0 z-[70] h-full w-full overflow-hidden bg-slate-900"
+            >
+              <Image
+                src="/images/services/devops-consulting-hero.jpg"
+                alt="DevOps Consulting Hero"
+                width={1920}
+                height={640}
+                priority
+                className="h-64 w-full object-cover object-right sm:h-80 md:h-96 lg:absolute lg:inset-0 lg:h-full"
+              />
+
+              <div className="pointer-events-none absolute inset-0 bg-white/95 lg:bg-transparent" />
+
+              <div className="relative z-10 flex h-full w-full flex-col items-start justify-center p-5 sm:p-8 md:p-10 lg:absolute lg:inset-y-0 lg:left-0 lg:max-w-2xl lg:p-10 xl:max-w-3xl xl:p-12">
+                <div className="flex w-full flex-col items-start text-left">
+                  <div className="mb-3 inline-flex items-center gap-2 self-start rounded-full border border-blue-200/80 bg-white/90 px-3 py-1 text-[11px] font-bold text-blue-600 shadow-sm backdrop-blur-md sm:px-3.5 sm:text-xs">
+                    <Sparkles className="h-3.5 w-3.5 text-blue-600" />
+                    <span>Software Development Consulting</span>
+                  </div>
+
+                  <h3 className="mb-2 text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl md:text-3xl lg:text-4xl lg:leading-[1.15]">
+                    DevOps{" "}
+                    <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                      Consulting
+                    </span>
+                  </h3>
+
+                  <p className="mb-4 text-xs font-normal leading-relaxed text-slate-700 antialiased sm:text-sm md:text-base lg:leading-relaxed">
+                    Modernize software delivery with DevOps expertise across CI/CD, automation, cloud infrastructure, security, and observability. We help businesses build faster, more reliable, and scalable development and deployment environments.
+                  </p>
+
+                  <div className="w-full">
+                    <h4 className="mb-2.5 text-xs font-bold uppercase tracking-wider text-slate-900 sm:text-sm">
+                      Key Capabilities:
+                    </h4>
+
+                    <ul className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-x-4 md:gap-y-2.5">
+                      {devopsCapabilities.map((item, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-blue-600 sm:h-4 sm:w-4" />
+                          <span className="text-xs leading-snug text-slate-800 sm:text-sm">
+                            <strong className="font-semibold text-slate-950">
+                              {item.title}
+                            </strong>{" "}
+                            — {item.description}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CARD 8: UX/UI Design Consulting */}
+            <motion.div
+              style={{ y: card8Y }}
+              className="absolute inset-0 z-[80] h-full w-full overflow-hidden bg-slate-900"
+            >
+              <Image
+                src="/images/services/ux-ui-design-consulting-hero.jpg"
+                alt="UX/UI Design Consulting Hero"
+                width={1920}
+                height={640}
+                priority
+                className="h-64 w-full object-cover object-right sm:h-80 md:h-96 lg:absolute lg:inset-0 lg:h-full"
+              />
+
+              <div className="pointer-events-none absolute inset-0 bg-white/95 lg:bg-transparent" />
+
+              <div className="relative z-10 flex h-full w-full flex-col items-start justify-center p-5 sm:p-8 md:p-10 lg:absolute lg:inset-y-0 lg:left-0 lg:max-w-2xl lg:p-10 xl:max-w-3xl xl:p-12">
+                <div className="flex w-full flex-col items-start text-left">
+                  <div className="mb-3 inline-flex items-center gap-2 self-start rounded-full border border-blue-200/80 bg-white/90 px-3 py-1 text-[11px] font-bold text-blue-600 shadow-sm backdrop-blur-md sm:px-3.5 sm:text-xs">
+                    <Sparkles className="h-3.5 w-3.5 text-blue-600" />
+                    <span>Software Development Consulting</span>
+                  </div>
+
+                  <h3 className="mb-2 text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl md:text-3xl lg:text-4xl lg:leading-[1.15]">
+                    UX/UI Design{" "}
+                    <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                      Consulting
+                    </span>
+                  </h3>
+
+                  <p className="mb-4 text-xs font-normal leading-relaxed text-slate-700 antialiased sm:text-sm md:text-base lg:leading-relaxed">
+                    Create intuitive, engaging, and consistent digital experiences with expert UX/UI design consulting across web, mobile, and digital products. We help businesses shape user journeys, define information architecture, develop wireframes and interactive prototypes, establish design systems and brand identities, and refine experiences through iterative design—turning complex requirements into simple, user-focused interfaces.
+                  </p>
+
+                  <div className="w-full">
+                    <h4 className="mb-2.5 text-xs font-bold uppercase tracking-wider text-slate-900 sm:text-sm">
+                      Key Capabilities:
+                    </h4>
+
+                    <ul className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-x-4 md:gap-y-2.5">
+                      {uxUiCapabilities.map((item, index) => (
                         <li key={index} className="flex items-start gap-2">
                           <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-blue-600 sm:h-4 sm:w-4" />
                           <span className="text-xs leading-snug text-slate-800 sm:text-sm">
