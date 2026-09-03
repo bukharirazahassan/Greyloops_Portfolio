@@ -7,6 +7,7 @@ import FrontendDevelopment from "../../components/services/FrontendDevelopment";
 import EnterpriseSoftwareDevelopment from "../../components/services/EnterpriseSoftwareDevelopment";
 import SoftwareConsulting from "../../components/services/Consulting/SoftwareConsulting";
 import ConsultingProvider from "../../components/services/Consulting/ConsultingProvider";
+import StrategicTechnologyConsulting from "../../components/services/Consulting/StrategicTechnologyConsulting"
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -59,7 +60,8 @@ export default async function ServiceDetailPage({ params }) {
           <Header />
           <SoftwareConsulting />
           <ConsultingProvider />
-           {/* <Footer />  */}
+          <StrategicTechnologyConsulting />
+          <Footer /> 
         </>
       ) : (
         <>

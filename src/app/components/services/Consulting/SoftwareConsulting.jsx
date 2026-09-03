@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const slidesData = [
@@ -39,6 +39,13 @@ const slidesData = [
   },
 ];
 
+const stats = [
+  { value: "100+", label: "Successful Projects" },
+  { value: "15+", label: "Years in IT" },
+  { value: "500+", label: "Happy Customers Globally" },
+  { value: "200+", label: "IT Experts" },
+];
+
 export default function SoftwareConsulting() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -47,13 +54,6 @@ export default function SoftwareConsulting() {
   const handleNext = useCallback(() => {
     setDirection(1);
     setCurrentIndex((prevIndex) => (prevIndex + 1) % slidesData.length);
-  }, []);
-
-  const handlePrev = useCallback(() => {
-    setDirection(-1);
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? slidesData.length - 1 : prevIndex - 1
-    );
   }, []);
 
   useEffect(() => {
@@ -103,7 +103,7 @@ export default function SoftwareConsulting() {
   };
 
   return (
-    <section className="relative flex min-h-[calc(100dvh-80px)] w-full flex-1 overflow-hidden bg-white">
+    <section className="relative flex min-h-[calc(100dvh-80px)] w-full flex-1 flex-col overflow-hidden bg-white">
       {/* Background Dot Texture */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.32]"
@@ -124,7 +124,7 @@ export default function SoftwareConsulting() {
 
       {/* Main Container */}
       <div className="relative z-10 grid w-full flex-1 items-stretch lg:grid-cols-12">
-        
+
         {/* Left Side: Text Content Slider */}
         <div className="relative flex flex-col justify-center px-6 py-8 sm:px-10 md:px-16 lg:col-span-5 lg:pl-16 lg:pr-6 xl:pl-24">
           <AnimatePresence mode="wait" custom={direction}>
@@ -169,48 +169,28 @@ export default function SoftwareConsulting() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Slider Navigation Controls */}
-          <div className="mt-8 flex items-center gap-4">
-            <div className="flex items-center gap-2">
+          {/* Pagination Dots — arrow controls removed */}
+          <div className="mt-8 flex items-center gap-2">
+            {slidesData.map((_, index) => (
               <button
-                onClick={handlePrev}
-                aria-label="Previous Slide"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/80 text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-blue-300 hover:bg-blue-50 hover:text-blue-600 active:scale-95"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                onClick={handleNext}
-                aria-label="Next Slide"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/80 text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-blue-300 hover:bg-blue-50 hover:text-blue-600 active:scale-95"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </div>
-
-            {/* Pagination Dots */}
-            <div className="flex items-center gap-2">
-              {slidesData.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setDirection(index > currentIndex ? 1 : -1);
-                    setCurrentIndex(index);
-                  }}
-                  aria-label={`Go to slide ${index + 1}`}
-                  className={`h-2.5 rounded-full transition-all duration-300 ${
-                    index === currentIndex
-                      ? "w-8 bg-blue-600"
-                      : "w-2.5 bg-slate-300 hover:bg-slate-400"
-                  }`}
-                />
-              ))}
-            </div>
+                key={index}
+                onClick={() => {
+                  setDirection(index > currentIndex ? 1 : -1);
+                  setCurrentIndex(index);
+                }}
+                aria-label={`Go to slide ${index + 1}`}
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? "w-8 bg-blue-600"
+                    : "w-2.5 bg-slate-300 hover:bg-slate-400"
+                }`}
+              />
+            ))}
           </div>
         </div>
 
         {/* Right Side: Image Slider */}
-        <div className="relative min-h-[400px] w-full lg:col-span-7 lg:min-h-full">
+        <div className="relative min-h-[320px] w-full lg:col-span-7 lg:min-h-full">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentIndex}
@@ -236,6 +216,37 @@ export default function SoftwareConsulting() {
           </AnimatePresence>
         </div>
 
+      </div>
+
+      {/* Stats Bar — true crystal-glass card. A soft color wash sits behind
+          it so the frosted blur actually has something to refract (plain
+          white-on-white made the previous version nearly invisible). */}
+      <div className="relative z-10 w-full shrink-0 px-6 pb-6 pt-4 sm:px-10 sm:pb-8 md:px-16 lg:px-16 xl:px-24">
+        <div className="relative mx-auto w-full max-w-5xl">
+          {/* Color wash behind the card so the glass effect is visible */}
+          <div className="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-r from-blue-200/40 via-indigo-100/40 to-blue-200/40 blur-2xl" />
+          <div className="pointer-events-none absolute -left-10 -top-10 -z-10 h-40 w-40 rounded-full bg-blue-400/20 blur-3xl" />
+          <div className="pointer-events-none absolute -right-10 -bottom-10 -z-10 h-40 w-40 rounded-full bg-indigo-400/20 blur-3xl" />
+
+          <div className="relative grid w-full grid-cols-2 divide-x divide-y divide-white/50 overflow-hidden rounded-2xl border border-white/70 bg-white/30 shadow-2xl shadow-blue-900/15 backdrop-blur-2xl sm:divide-y-0 sm:grid-cols-4">
+            {/* Glass sheen highlight along the top edge */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
+
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="relative flex flex-col items-center justify-center px-4 py-5 text-center sm:px-6 sm:py-6"
+              >
+                <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent sm:text-2xl lg:text-3xl">
+                  {stat.value}
+                </span>
+                <span className="mt-1 text-[10px] font-semibold uppercase tracking-wider text-slate-600 sm:text-xs">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
