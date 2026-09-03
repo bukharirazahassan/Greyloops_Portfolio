@@ -51,11 +51,6 @@ const slides = [
 ];
 
 const AUTOPLAY_MS = 6000;
-
-// Height of the fixed/static site header in px. Adjust this to match your
-// actual nav bar height — everything below relies on it to make the hero +
-// bottom bar fit exactly within the first screen on desktop, so the next
-// section never peeks into view on load.
 const HEADER_HEIGHT_PX = 80;
 
 export default function Slider() {
@@ -76,14 +71,7 @@ export default function Slider() {
   }, [current, next]);
 
   return (
-    <div
-      className="relative flex w-full flex-col bg-white lg:overflow-hidden"
-      style={{
-        // On large screens, pin the total height (hero + bottom bar) to
-        // exactly fill the viewport below the header. Below lg, let it flow
-        // naturally so mobile/tablet content never feels cramped.
-      }}
-    >
+    <div className="relative flex w-full flex-col bg-white lg:overflow-hidden">
       <div
         className="relative flex w-full flex-col lg:min-h-[560px]"
         style={{ ["--header-h"]: `${HEADER_HEIGHT_PX}px` }}
@@ -117,10 +105,7 @@ export default function Slider() {
         `}</style>
 
         <div className="hero-fit-wrap flex w-full flex-col">
-          {/* 1. Hero Slider Section — fixed vh sizing on mobile/tablet so it
-              never feels cramped; on lg it becomes a flex child that grows
-              to fill whatever space is left after the bottom bar, so hero +
-              bar always sum to exactly one screen. */}
+          {/* 1. Hero Slider Section */}
           <section className="relative mx-auto h-[68vh] min-h-[420px] max-h-[620px] w-full max-w-[1920px] overflow-hidden bg-white sm:h-[70vh] sm:max-h-[640px] lg:h-auto lg:min-h-0 lg:max-h-none lg:flex-1">
             {/* Slide Layers */}
             {slides.map((slide, index) => (
@@ -141,12 +126,6 @@ export default function Slider() {
                     className="object-cover object-center"
                   />
                 </div>
-
-                {/* Soft white readability gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 sm:via-white/65 to-transparent" />
-
-                {/* Mobile bottom readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent sm:hidden" />
               </div>
             ))}
 
@@ -159,9 +138,7 @@ export default function Slider() {
                   className="relative mb-4 inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-white px-4 py-1.5 text-xs font-semibold tracking-wide text-blue-600 shadow-sm ring-1 ring-blue-100 sm:mb-5 sm:text-sm"
                 >
                   <Sparkles className="h-3.5 w-3.5 text-blue-500" />
-
                   <span className="relative z-10">{slides[current].tab}</span>
-
                   <span className="pointer-events-none absolute inset-y-0 left-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-blue-100/70 to-transparent" />
                 </span>
 
@@ -200,67 +177,49 @@ export default function Slider() {
             </div>
           </section>
 
-          {/* 2. Bottom Progress / Caption Bar — stays a fixed, compact size
-              (lg:shrink-0) so the hero section above absorbs whatever space
-              is left, keeping the pair locked to exactly one screen. */}
-          <section className="relative z-40 w-full overflow-hidden border-t border-slate-100 bg-gradient-to-b from-white via-blue-50/30 to-white lg:shrink-0">
-            {/* Background Dot Pattern */}
-            <div
-              className="pointer-events-none absolute inset-0 opacity-[0.25]"
-              style={{
-                backgroundImage:
-                  "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
-                backgroundSize: "26px 26px",
-                maskImage:
-                  "radial-gradient(ellipse 70% 100% at 50% 50%, black 30%, transparent 100%)",
-                WebkitMaskImage:
-                  "radial-gradient(ellipse 70% 100% at 50% 50%, black 30%, transparent 100%)",
-              }}
-            />
+          {/* 2. Bottom Progress / Caption Bar */}
+          <section className="relative z-40 w-full overflow-hidden border-t border-slate-100 bg-white lg:shrink-0">
+            {/* Top Modern Full-Width Sleek Progress Line */}
+            <div className="absolute top-0 left-0 right-0 z-30 h-1 w-full bg-slate-100">
+              <span
+                key={`progress-line-${current}`}
+                className="block h-full bg-gradient-to-r from-blue-600 via-sky-500 to-blue-600 shadow-[0_0_12px_rgba(37,99,235,0.6)]"
+                style={{
+                  animation: `heroProgress ${AUTOPLAY_MS}ms linear forwards`,
+                }}
+              />
+            </div>
 
-            <div className="relative mx-auto flex w-full max-w-[1920px] items-center px-6 py-4 sm:px-10 sm:py-5 md:px-16 lg:px-24 lg:py-4">
-              {/* Progress / Caption Card — constrained width, centered */}
+            <div className="relative mx-auto flex w-full max-w-[1920px] items-center px-6 py-2.5 sm:px-10 sm:py-3 md:px-16 lg:px-24">
+              {/* Progress / Caption Card */}
               <div
                 key={`caption-${current}`}
-                className="mx-auto w-full max-w-3xl animate-[heroCaption_400ms_ease-out_forwards] lg:max-w-4xl xl:max-w-5xl"
+                className="w-full animate-[heroCaption_400ms_ease-out_forwards]"
               >
-                <div className="relative flex h-[76px] w-full items-center overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/90 shadow-sm backdrop-blur-sm transition-all duration-500 sm:h-[84px]">
-                  {/* Animated Progress Fill */}
-                  <span
-                    key={`progress-fill-${current}`}
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-y-0 left-0 z-0 bg-gradient-to-r from-blue-50 via-blue-100/80 to-blue-200/60"
-                    style={{
-                      animation: `heroProgress ${AUTOPLAY_MS}ms linear forwards`,
-                    }}
-                  />
-
-                  <div className="relative z-10 flex w-full items-center gap-3 px-4 py-2.5 sm:gap-3.5 sm:px-5">
+                <div className="relative flex h-12 w-full items-center overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50/60 px-3.5 shadow-sm backdrop-blur-md sm:h-14 sm:px-5">
+                  <div className="relative z-10 flex w-full items-center gap-3 sm:gap-4">
                     {/* Index */}
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-xs font-bold text-white shadow-sm shadow-blue-600/20 sm:h-10 sm:w-10 sm:text-sm">
+                    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-[11px] font-bold text-white shadow-sm shadow-blue-600/20 sm:h-8 sm:w-8 sm:text-xs">
                       {String(current + 1).padStart(2, "0")}
                     </div>
 
                     {/* Caption Content */}
-                    <div className="flex min-w-0 flex-1 flex-col justify-center">
-                      <div className="flex items-center gap-2">
-                        <span className="shrink-0 text-[10px] font-bold uppercase tracking-[0.18em] text-blue-600 sm:text-xs">
-                          {slides[current].tab}
-                        </span>
-                      </div>
-
-                      <p className="truncate text-xs font-medium leading-6 text-slate-700 sm:text-sm">
+                    <div className="flex min-w-0 flex-1 items-center gap-2.5 sm:gap-4">
+                      <span className="shrink-0 text-[10px] font-bold uppercase tracking-[0.16em] text-blue-600 sm:text-xs">
+                        {slides[current].tab}
+                      </span>
+                      <span className="hidden h-3 w-px bg-slate-300 md:inline-block" />
+                      <p className="truncate text-xs font-medium text-slate-700 sm:text-sm">
                         {slides[current].caption}
                       </p>
                     </div>
 
                     {/* Active Status */}
                     <div className="hidden shrink-0 items-center gap-2 sm:flex">
-                      <span className="relative flex h-2.5 w-2.5">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-40" />
-                        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-600" />
+                      <span className="relative flex h-2 w-2">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-50" />
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-600" />
                       </span>
-
                       <span className="text-xs font-semibold text-slate-500">
                         Active
                       </span>
