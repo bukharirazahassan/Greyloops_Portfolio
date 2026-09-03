@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const slidesData = [
   {
     badge: "Expert Software Advisory",
-    titlePrefix: "Software Development ",
+    titlePrefix: "Software Development",
     titleGradient: "Consulting Services",
     description:
       "Build scalable and high-performing digital solutions with expert guidance across enterprise software, web applications, and mobile platforms. We help businesses define the right architecture, technology stack, cloud strategy, integrations, security, and development roadmap to turn ideas into reliable, future-ready products.",
@@ -19,7 +19,7 @@ const slidesData = [
   },
   {
     badge: "Strategic Advisory & Innovation",
-    titlePrefix: "Strategic Technology ",
+    titlePrefix: "Strategic Technology",
     titleGradient: "Consulting",
     description:
       "Align technology with your business goals through strategic guidance across software, web, mobile, cloud, data, AI, and emerging technologies. We help organizations define technology strategies, drive digital transformation, design scalable architectures, modernize legacy systems, and build practical roadmaps for cloud, data, and AI adoption—accelerating innovation, scalability, security, and long-term business growth.",
@@ -29,7 +29,7 @@ const slidesData = [
   },
   {
     badge: "Enterprise Platform Advisory",
-    titlePrefix: "Solution ",
+    titlePrefix: "Solution",
     titleGradient: "Consulting",
     description:
       "Transform complex business requirements into practical, technology-driven solutions with expert consulting across supply chain, CRM, ecommerce, and corporate finance. We help organizations analyze business processes, identify the right platforms and technologies, optimize workflows, integrate systems, and develop scalable solution strategies that improve efficiency, customer experiences, and business performance.",
@@ -104,7 +104,7 @@ export default function SoftwareConsulting() {
 
   return (
     <section className="relative flex min-h-[calc(100vh-80px)] w-full flex-col overflow-hidden bg-white text-slate-900">
-      {/* Background Dot Pattern */}
+      {/* Light Theme Background Dot Texture */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.3]"
         style={{
@@ -115,16 +115,15 @@ export default function SoftwareConsulting() {
         }}
       />
 
-      {/* Ambient Radial Background Glows */}
+      {/* Ambient Radial Glows */}
       <div className="pointer-events-none absolute -left-20 top-20 h-96 w-96 rounded-full bg-blue-300/15 blur-3xl" />
       <div className="pointer-events-none absolute -right-20 bottom-10 h-80 w-80 rounded-full bg-indigo-100/20 blur-3xl" />
 
-      {/* Main Grid Content Container */}
+      {/* Main Grid Content Stage */}
       <div className="relative z-10 grid w-full flex-grow items-stretch lg:grid-cols-12">
-        {/* Left Side Content Column */}
+        {/* Left Side Column */}
         <div className="relative flex flex-col justify-between px-6 py-10 sm:px-12 sm:py-14 md:px-16 lg:col-span-5 lg:pl-16 lg:pr-8 xl:pl-24 xl:pr-12">
           
-          {/* Top/Middle Text Content Container with Flex Growth */}
           <div className="flex flex-1 flex-col justify-center py-4">
             <AnimatePresence
               mode="wait"
@@ -145,29 +144,29 @@ export default function SoftwareConsulting() {
                 }}
                 className="flex flex-col items-start"
               >
-                {/* Badge */}
+                {/* Eyebrow Badge */}
                 <motion.div
                   variants={textElementVariants}
                   custom={direction}
-                  className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50/70 px-4 py-1.5 text-xs font-semibold text-blue-700 shadow-sm backdrop-blur-md"
+                  className="mb-4 inline-flex items-center gap-2 self-start rounded-full border border-blue-200/80 bg-blue-50/90 px-3.5 py-1 text-xs font-bold text-blue-600 shadow-sm backdrop-blur-md sm:px-4 sm:py-1.5"
                 >
-                  <Sparkles className="h-3.5 w-3.5 text-blue-500" />
+                  <Sparkles className="h-3.5 w-3.5 text-blue-600" />
                   <span>{currentSlide.badge}</span>
                 </motion.div>
 
-                {/* Heading */}
+                {/* 2-Line High-Impact Heading */}
                 <motion.h1
                   variants={textElementVariants}
                   custom={direction}
-                  className="mb-5 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl lg:text-4xl xl:text-5xl lg:leading-[1.12]"
+                  className="mb-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl md:text-5xl xl:text-6xl lg:leading-[1.12]"
                 >
-                  {currentSlide.titlePrefix}
-                  <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-indigo-600 bg-clip-text text-transparent">
+                  <span className="block">{currentSlide.titlePrefix}</span>
+                  <span className="block bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
                     {currentSlide.titleGradient}
                   </span>
                 </motion.h1>
 
-                {/* Description with Bottom Margin (mb-8) providing space above CTA */}
+                {/* Body Paragraph */}
                 <motion.p
                   variants={textElementVariants}
                   custom={direction}
@@ -178,7 +177,7 @@ export default function SoftwareConsulting() {
               </motion.div>
             </AnimatePresence>
 
-            {/* CTA Button — Positioned below text with explicit separation */}
+            {/* Pinned Action Button */}
             <div className="pt-2">
               <Link
                 href={currentSlide.ctaLink}
@@ -204,7 +203,7 @@ export default function SoftwareConsulting() {
             </div>
           </div>
 
-          {/* Dots Pagination Navigation — Pinned cleanly at bottom */}
+          {/* Dots Pagination Track */}
           <div className="relative z-20 pt-6 flex items-center gap-2.5">
             {slidesData.map((_, index) => (
               <button
@@ -236,7 +235,7 @@ export default function SoftwareConsulting() {
             >
               <Image
                 src={currentSlide.image}
-                alt={currentSlide.titlePrefix + currentSlide.titleGradient}
+                alt={currentSlide.titlePrefix + " " + currentSlide.titleGradient}
                 fill
                 priority={currentIndex === 0}
                 sizes="(max-width: 1024px) 100vw, 58vw"
