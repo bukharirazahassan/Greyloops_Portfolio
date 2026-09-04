@@ -61,7 +61,7 @@ export default async function ServiceDetailPage({ params }) {
           <SoftwareConsulting />
           <ConsultingProvider />
           <StrategicTechnologyConsulting />
-          <Footer /> 
+          {/* <Footer />  */}
         </>
       ) : (
         <>

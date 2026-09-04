@@ -269,9 +269,8 @@ export default function ConsultingProvider() {
           }}
         />
 
-        {/* Radial Background Glows */}
+        {/* Radial Background Glow */}
         <div className="pointer-events-none absolute -top-40 left-1/2 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-blue-600/20 blur-[100px] sm:h-[500px] sm:w-[500px] sm:blur-[120px]" />
-        <div className="pointer-events-none absolute -bottom-40 left-1/2 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-indigo-600/20 blur-[100px] sm:h-[500px] sm:w-[500px] sm:blur-[120px]" />
 
         {/* Main Content Container */}
         <div className="relative z-10 flex h-full w-full flex-1 flex-col px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24">
