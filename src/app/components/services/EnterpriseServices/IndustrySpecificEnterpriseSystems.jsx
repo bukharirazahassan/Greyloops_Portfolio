@@ -12,7 +12,6 @@ import {
   Sparkles,
 } from "lucide-react";
 import * as healthcareData from "@/app/lib/HealthcareData";
-import * as healthcareData2 from "@/app/lib/HealthcareData";
 
 const AUTO_ROTATE_TIME = 6000;
 
@@ -24,9 +23,7 @@ const TOP_IMAGE = {
 };
 
 /* ------------------------------------------------------------------ */
-/* SHARED DASHBOARD BLOCK — LEFT NAV CARD + RIGHT IMAGE/DETAIL CARDS  */
-/* Reused for both the primary and the stacked/second dataset so the  */
-/* two sections stay pixel-identical in structure and styling.        */
+/* SERVICE DASHBOARD BLOCK — LEFT NAV CARD + RIGHT IMAGE/DETAIL CARDS */
 /* ------------------------------------------------------------------ */
 function ServiceDashboard({
   dataset,
@@ -249,10 +246,7 @@ export default function IndustrySpecificEnterpriseSystems() {
   const [currentDataset] = useState(healthcareData);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const [currentDataset2] = useState(healthcareData2);
-  const [activeIndex2, setActiveIndex2] = useState(0);
-
-  // Dynamic hash listener supporting Healthcare routing (primary dataset only)
+  // Dynamic hash listener supporting Healthcare routing
   useEffect(() => {
     const handleHashSync = () => {
       const hash = window.location.hash;
@@ -277,7 +271,7 @@ export default function IndustrySpecificEnterpriseSystems() {
     return () => window.removeEventListener("hashchange", handleHashSync);
   }, []);
 
-  // Auto-rotation timer — primary dataset
+  // Auto-rotation timer
   useEffect(() => {
     const timer = setTimeout(() => {
       if (currentDataset?.servicesData?.length) {
@@ -289,19 +283,6 @@ export default function IndustrySpecificEnterpriseSystems() {
 
     return () => clearTimeout(timer);
   }, [activeIndex, currentDataset]);
-
-  // Auto-rotation timer — second/stacked dataset
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (currentDataset2?.servicesData?.length) {
-        setActiveIndex2(
-          (prev) => (prev + 1) % currentDataset2.servicesData.length
-        );
-      }
-    }, AUTO_ROTATE_TIME);
-
-    return () => clearTimeout(timer);
-  }, [activeIndex2, currentDataset2]);
 
   const handleNext = () => {
     if (currentDataset?.servicesData?.length) {
@@ -319,28 +300,10 @@ export default function IndustrySpecificEnterpriseSystems() {
     }
   };
 
-  const handleNext2 = () => {
-    if (currentDataset2?.servicesData?.length) {
-      setActiveIndex2(
-        (prev) => (prev + 1) % currentDataset2.servicesData.length
-      );
-    }
-  };
-
-  const handlePrev2 = () => {
-    if (currentDataset2?.servicesData?.length) {
-      setActiveIndex2(
-        (prev) =>
-          (prev - 1 + currentDataset2.servicesData.length) %
-          currentDataset2.servicesData.length
-      );
-    }
-  };
-
   return (
     <section
       id="industry-systems"
-      className="ent-dev-font relative w-full bg-slate-50 text-slate-900"
+      className="ent-dev-font relative w-full bg-slate-50 text-slate-900 overflow-hidden"
     >
       <style jsx global>{`
         @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
@@ -389,9 +352,7 @@ export default function IndustrySpecificEnterpriseSystems() {
         }
       `}</style>
 
-      {/* AMBIENT LIGHT EFFECTS — clipped in their own wrapper, kept as a
-          SIBLING (not an ancestor) of the sticky bands below, so overflow
-          clipping never interferes with position: sticky. */}
+      {/* AMBIENT LIGHT EFFECTS */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute -left-20 top-1/4 h-[500px] w-[500px] rounded-full bg-blue-400/15 blur-[140px]" />
         <div className="absolute -right-20 bottom-1/4 h-[600px] w-[600px] rounded-full bg-sky-400/15 blur-[180px]" />
@@ -404,74 +365,47 @@ export default function IndustrySpecificEnterpriseSystems() {
         />
       </div>
 
-      {/* CENTERED HEADER — SHOWN ONCE, ABOVE BOTH STACKED DASHBOARDS */}
-      <div className="relative z-10 w-full flex flex-col items-center p-4 sm:p-6 lg:px-8 lg:pt-10">
-        <div className="mb-8 lg:mb-10 max-w-3xl mx-auto text-center shrink-0 flex flex-col items-center">
-          <span className="relative mb-5 inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100">
-            <Sparkles className="h-3.5 w-3.5 text-blue-500" />
-            <span className="relative z-10">Industry Solutions</span>
-          </span>
-
-          <h2 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-              Industry-Specific{" "}
+      {/* HEADER SECTION — SPLIT GRID LAYOUT */}
+      <div className="relative z-10 mx-auto w-full max-w-[100rem] px-4 pt-10 pb-8 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-12 items-center">
+          {/* LEFT SIDE: BADGE & TITLE */}
+          <div className="lg:col-span-6 flex flex-col items-start text-left">
+            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100">
+              <Sparkles className="h-3.5 w-3.5 text-blue-500" />
+              <span>Industry Solutions</span>
             </span>
-            <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-              Enterprise Systems
-            </span>
-          </h2>
 
-          <p className="mb-7 text-base leading-relaxed text-zinc-600 sm:text-lg max-w-2xl">
-            Tailored digital platforms designed to handle complex workflows,
-            operational compliance, and specialized infrastructure
-            requirements across key vertical industries.
-          </p>
+            <h2 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+              <span className="block bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+                Industry-Specific
+              </span>
+              <span className="block bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                Enterprise Systems
+              </span>
+            </h2>
+          </div>
+
+          {/* RIGHT SIDE: DESCRIPTION */}
+          <div className="lg:col-span-6 flex flex-col justify-center items-start text-left lg:pt-6">
+            <p className="text-base sm:text-lg leading-relaxed text-zinc-600 font-medium">
+              Tailored digital platforms designed to handle complex workflows,
+              operational compliance, and specialized infrastructure
+              requirements across key vertical industries.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* STICKY STACKED DASHBOARDS — mirrors the CoreCapabilities pattern:
-          sticky is applied directly to each block (no artificial spacer
-          wrapper), each block's own min-height provides the scroll runway,
-          and increasing z-index makes the second one visually cover the
-          first as it scrolls up and locks into place. */}
+      {/* DASHBOARD FRAME */}
       <div className="relative z-10 mx-auto w-full max-w-[100rem] px-4 pb-16 sm:px-6 lg:px-8">
-        {/* BAND 1 — PRIMARY DATASET */}
-        <div
-          className="sticky top-[calc(50vh-40vh)] mb-12 flex min-h-[80vh] items-center justify-center py-4"
-          style={{ zIndex: 10 }}
-        >
-          {/* Opaque backdrop so nothing behind this band can bleed through
-              the grid's gaps or the glass cards' translucency. */}
-          <div className="absolute inset-0 -z-10 bg-slate-50" />
-
-          <ServiceDashboard
-            dataset={currentDataset}
-            activeIndex={activeIndex}
-            onSelect={setActiveIndex}
-            onNext={handleNext}
-            onPrev={handlePrev}
-            topImage={TOP_IMAGE}
-          />
-        </div>
-
-        {/* BAND 2 — SECOND DATASET, SLIDES UP AND COVERS BAND 1 */}
-        <div
-          className="sticky top-[calc(50vh-40vh)] mb-6 flex min-h-[80vh] items-center justify-center py-4"
-          style={{ zIndex: 20 }}
-        >
-          {/* Opaque backdrop — this is what lets Band 2 fully cover Band 1
-              instead of ghosting through its translucent cards. */}
-          <div className="absolute inset-0 -z-10 bg-slate-50" />
-
-          <ServiceDashboard
-            dataset={currentDataset2}
-            activeIndex={activeIndex2}
-            onSelect={setActiveIndex2}
-            onNext={handleNext2}
-            onPrev={handlePrev2}
-            topImage={TOP_IMAGE}
-          />
-        </div>
+        <ServiceDashboard
+          dataset={currentDataset}
+          activeIndex={activeIndex}
+          onSelect={setActiveIndex}
+          onNext={handleNext}
+          onPrev={handlePrev}
+          topImage={TOP_IMAGE}
+        />
       </div>
     </section>
   );

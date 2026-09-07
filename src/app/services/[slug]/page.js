@@ -7,13 +7,17 @@ import FrontendDevelopment from "../../components/services/FrontendDevelopment";
 import EnterpriseSoftwareDevelopment from "../../components/services/EnterpriseSoftwareDevelopment";
 import SoftwareConsulting from "../../components/services/Consulting/SoftwareConsulting";
 import ConsultingProvider from "../../components/services/Consulting/ConsultingProvider";
-import StrategicTechnologyConsulting from "../../components/services/Consulting/StrategicTechnologyConsulting"
+import StrategicTechnologyConsulting from "../../components/services/Consulting/StrategicTechnologyConsulting";
+import MobileConsulting from "../../components/services/Consulting/MobileConsulting";
+import MobileDevelopment from "../../components/services/MobileService/mobiledevelopment";
+import FAQSection from "../../components/FAQSection";
+
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 export function generateStaticParams() {
   return servicesColumns.flatMap((col) =>
-    col.links.map((link) => ({ slug: link.slug }))
+    col.links.map((link) => ({ slug: link.slug })),
   );
 }
 
@@ -53,7 +57,14 @@ export default async function ServiceDetailPage({ params }) {
         <>
           <Header />
           <EnterpriseSoftwareDevelopment />
-          {/* <Footer /> */}
+          <FAQSection />
+          <Footer />
+        </>
+      ) : slug === "mobile-app-development" ? (
+        <>
+          <Header />
+          <MobileDevelopment />
+          <Footer />
         </>
       ) : slug === "software-consulting" ? (
         <>
@@ -61,7 +72,9 @@ export default async function ServiceDetailPage({ params }) {
           <SoftwareConsulting />
           <ConsultingProvider />
           <StrategicTechnologyConsulting />
-          {/* <Footer />  */}
+          <MobileConsulting />
+          <FAQSection />
+          <Footer />
         </>
       ) : (
         <>
