@@ -5,6 +5,9 @@ import Image from "next/image";
 import { Sparkles, Check } from "lucide-react";
 import MobileBenefitsSection from "../../../components/services/MobileService/MobileBenefitsSection";
 import MobileServicesProvider from "../../../components/services/MobileService/MobileServicesProvider";
+import MobileDevelopmentCycle from "../../../components/services/MobileService/Mobiledevelopmentcycle";
+import FrequentlyAskedQuestions_Mobile from "../../../components/services/MobileService/FrequentlyAskedQuestions_Mobile"
+import CollaborateMobileDevelopment from "../../../components/services/MobileService/CollaborateMobileDevelopment"
 
 export default function MobileDevelopment() {
   const heroServices = [
@@ -94,6 +97,12 @@ export default function MobileDevelopment() {
 
       {/* Imported Mobile Services Provider Component Section */}
       <MobileServicesProvider />
+
+      <MobileDevelopmentCycle />
+
+      <FrequentlyAskedQuestions_Mobile />
+      <CollaborateMobileDevelopment />         
+
     </div>
   );
 }
