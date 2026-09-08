@@ -18,7 +18,7 @@ function StickyCard({ card, index, total, progress }) {
     <div
       ref={containerRef}
       style={{ zIndex: index + 1 }}
-      className="sticky top-20 flex items-start justify-center pt-2"
+      className="sticky top-20 flex w-full justify-center items-start pt-2"
     >
       <motion.div
         style={{
@@ -154,9 +154,11 @@ export default function MobileConsulting() {
     <div className="w-full bg-[#0a0c14] font-sans text-slate-100">
       {/* Top Section: Heading & Description */}
       <section className="relative w-full border-t border-slate-800/80 bg-[#0a0c14] px-6 pt-6 pb-2 sm:px-10 lg:px-16 lg:pt-16 xl:px-20">
-        {/* Blue Circle Glow */}
-        <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-blue-600/20 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl" />
+        {/* Glow Container: Clips floating blurred elements without breaking sticky parents */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-blue-600/20 blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl" />
+        </div>
 
         {/* Ambient Dot Background */}
         <div
