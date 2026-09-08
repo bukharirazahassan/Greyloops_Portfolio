@@ -1,0 +1,122 @@
+export const mobileServicesData = [
+  {
+    id: "native-ios",
+    badge: "iOS Engineering",
+    titleLine1: "Native iOS App",
+    titleLine2: "Development",
+    highlights: [
+      "Swift & SwiftUI Development",
+      "iPhone & iPad Application Development",
+      "iOS UI/UX & Design Implementation",
+      "API & Third-Party Integration",
+      "Testing, Optimization & App Store Deployment",
+    ],
+    description:
+      "We develop high-quality native iOS applications across the complete product lifecycle—from product discovery and technical architecture to development, quality assurance, deployment, and App Store release. Our team builds reliable iPhone and iPad applications using modern Apple technologies, with a strong focus on performance, usability, security, scalability, and long-term maintainability. Whether you are launching a consumer application or an enterprise mobile solution, Greyloops delivers iOS experiences designed to perform reliably and grow with your business.",
+    imageSrc: "/images/services/native_iOS_app.png",
+    imageAlt: "Native iOS App Development",
+    priorityImage: true,
+  },
+  {
+    id: "native-android",
+    badge: "Android Engineering",
+    titleLine1: "Native Android",
+    titleLine2: "Development",
+    highlights: [
+      "Kotlin & Jetpack Compose Development",
+      "Android UI/UX & Responsive Experiences",
+      "Custom Device & API Integration",
+      "Secure Flows & Background Services",
+      "Multi-Device Testing & Performance Optimization",
+    ],
+    description:
+      "Build secure, scalable, and high-performance native Android applications using modern Android technologies and engineering practices. Greyloops develops solutions with Kotlin and Jetpack Compose, supporting custom device integrations, background services, secure user flows, APIs, and scalable architectures. Our development process includes comprehensive testing across devices and Android versions to ensure reliable performance for consumer applications, enterprise mobile solutions, and platform extensions.",
+    imageSrc: "/images/services/native_android_development.png",
+    imageAlt: "Native Android Development",
+  },
+  {
+    id: "cross-platform",
+    badge: "Multi-Platform Solutions",
+    titleLine1: "Cross-Platform",
+    titleLine2: "Software Development",
+    highlights: [
+      "React Native & Flutter Development",
+      "Shared iOS & Android Codebase",
+      "Native Module Integration",
+      "API & Third-Party Integration",
+      "Cross-Platform Testing & Optimization",
+    ],
+    description:
+      "Build efficient, scalable mobile applications with a shared codebase across iOS and Android using modern cross-platform technologies. Greyloops uses approaches such as React Native and Flutter to balance development speed, cost, performance, and maintainability while integrating native capabilities whenever required. Our solutions are designed for reliable user experiences, seamless integrations, and long-term product growth.",
+    imageSrc: "/images/services/cross-platform-software-development.png",
+    imageAlt: "Cross-Platform Software Development",
+  },
+  {
+    id: "hybrid-mobile",
+    badge: "Shared Architecture",
+    titleLine1: "Hybrid Mobile",
+    titleLine2: "Development",
+    highlights: [
+      "Kotlin Multiplatform Development",
+      "Shared Business Logic",
+      "Native UI & Platform Features",
+      "API & Backend Integration",
+      "Performance & Architecture Optimization",
+    ],
+    description:
+      "Build flexible mobile applications by combining native experiences with shared business logic where it delivers the greatest value. Greyloops uses hybrid approaches such as Kotlin Multiplatform to reduce code duplication while preserving platform-specific performance, functionality, and user experiences. We help businesses evaluate the right architecture and create scalable solutions that balance development efficiency, maintainability, and product requirements.",
+    imageSrc: "/images/services/hybrid-mobile-development.png",
+    imageAlt: "Hybrid Mobile Development",
+  },
+  {
+    id: "mobile-sdk",
+    badge: "Integration & Tools",
+    titleLine1: "Mobile SDK",
+    titleLine2: "Development",
+    highlights: [
+      "iOS & Android SDK Development",
+      "Authentication & Security SDKs",
+      "Payment & Financial Integrations",
+      "Analytics & Device Feature SDKs",
+      "API Integration & SDK Documentation",
+    ],
+    description:
+      "Build reliable and reusable mobile SDKs that enable seamless integration with third-party applications, platforms, and services. Greyloops develops well-structured SDKs for iOS and Android, supporting capabilities such as authentication, payments, analytics, device features, and API integrations. Our SDK solutions are designed for easy adoption, strong security, clear documentation, and long-term maintainability.",
+    imageSrc: "/images/services/mobile-SDK-development.png",
+    imageAlt: "Mobile SDK Development",
+  },
+  {
+    id: "mobile-modernization",
+    badge: "App Refactoring & Growth",
+    titleLine1: "Mobile App",
+    titleLine2: "Modernization",
+    highlights: [
+      "Legacy iOS & Android Modernization",
+      "Architecture & Codebase Refactoring",
+      "SwiftUI & Jetpack Compose Migration",
+      "Performance & Security Improvements",
+      "Modern Feature Integration",
+    ],
+    description:
+      "Modernize legacy mobile applications without disrupting the value of your existing technology investment. Greyloops helps businesses assess outdated iOS and Android applications, reduce technical debt, refactor legacy architectures, and adopt modern technologies such as SwiftUI and Jetpack Compose. We develop practical modernization strategies that improve performance, security, scalability, maintainability, and user experience while avoiding unnecessary rebuilds.",
+    imageSrc: "/images/services/mobile-app-modernization.png",
+    imageAlt: "Mobile App Modernization",
+  },
+  {
+    id: "mobile-backend",
+    badge: "Infrastructure & APIs",
+    titleLine1: "Mobile Backend",
+    titleLine2: "& API",
+    highlights: [
+      "RESTful & GraphQL API Development",
+      "ERP, CRM & Payment Integration",
+      "Authentication & Data Security",
+      "Real-Time Data Synchronization",
+      "Notifications & Backend Services",
+    ],
+    description:
+      "Build secure and scalable backend foundations that power reliable mobile applications and connected digital experiences. Greyloops designs robust RESTful and GraphQL APIs that connect mobile applications with ERP, CRM, payment, cloud, analytics, and third-party systems. Our solutions support secure authentication, data synchronization, notifications, real-time communication, and efficient data exchange, providing a dependable backend foundation for mobile products.",
+    imageSrc: "/images/services/mobile-backend-API.png",
+    imageAlt: "Mobile Backend & API",
+  },
+];

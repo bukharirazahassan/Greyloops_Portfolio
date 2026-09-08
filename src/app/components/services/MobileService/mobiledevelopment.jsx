@@ -2,15 +2,24 @@
 
 import React from "react";
 import Image from "next/image";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Check } from "lucide-react";
 import MobileBenefitsSection from "../../../components/services/MobileService/MobileBenefitsSection";
 import MobileServicesProvider from "../../../components/services/MobileService/MobileServicesProvider";
 
 export default function MobileDevelopment() {
+  const heroServices = [
+    "App Consulting & Technology Strategy",
+    "Mobile App Integration",
+    "Mobile UI/UX Design",
+    "App Modernization & Revitalization",
+    "Custom Mobile App Development",
+    "Mobile App Maintenance & Support",
+  ];
+
   return (
     <div className="w-full bg-slate-50 font-sans text-slate-900 overflow-hidden">
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex flex-col justify-center border-t border-slate-200/80 px-6 py-12 sm:px-10 lg:px-16 xl:px-20 overflow-hidden">
+      <section className="relative w-full min-h-screen flex flex-col justify-start pt-24 sm:pt-28 lg:pt-32 border-t border-slate-200/80 px-6 sm:px-12 md:px-16 lg:pl-16 lg:pr-8 xl:pl-24 xl:pr-12 overflow-hidden">
         {/* Full-Screen Background Image with Clear Right Side */}
         <div className="absolute inset-0 w-full h-full z-0">
           <Image
@@ -22,7 +31,7 @@ export default function MobileDevelopment() {
             className="object-cover object-center"
           />
           {/* Soft Left-to-Right Fade for High Contrast Text & Full Image Clarity */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-50 via-slate-50/80 via-45% to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-50 via-slate-50/85 via-50% to-transparent" />
         </div>
 
         {/* Blue Ambient Glow Circles */}
@@ -38,11 +47,11 @@ export default function MobileDevelopment() {
           }}
         />
 
-        <div className="relative z-10 grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-12 w-full max-w-7xl mx-auto my-auto">
-          {/* Left Side Content Overlay */}
-          <div className="lg:col-span-8 flex flex-col justify-center items-start text-left">
+        <div className="relative z-10 w-full flex flex-col items-start text-left">
+          {/* Left Side Content Overlay - Moved Towards Top */}
+          <div className="max-w-3xl flex flex-col items-start text-left">
             {/* Tag Badge */}
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-600 backdrop-blur-md sm:text-sm">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-600 backdrop-blur-md sm:text-sm">
               <Sparkles className="h-3.5 w-3.5 text-blue-500" />
               <span>Mobile Services</span>
             </div>
@@ -55,13 +64,27 @@ export default function MobileDevelopment() {
               </span>
             </h1>
 
-            {/* Underline under Heading */}
-            <div className="mb-6 h-1 w-32 rounded-full bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600" />
+            {/* Gradient Underline */}
+            <div className="mb-6 h-1 w-28 rounded-full bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600" />
 
-            {/* Full Updated Description Displayed */}
-            <p className="text-left text-base font-normal leading-relaxed text-slate-600 antialiased sm:text-lg lg:text-xl lg:leading-relaxed max-w-2xl">
+            {/* Description */}
+            <p className="text-left text-base font-normal leading-relaxed text-slate-600 antialiased sm:text-lg lg:text-xl lg:leading-relaxed mb-8 max-w-2xl">
               Ensure the success of your mobile applications with Greyloops’ experienced software engineering team. We combine modern mobile technologies, thoughtful UX, scalable architecture, and proven development practices to build secure, high-performing applications that deliver exceptional user experiences and support long-term business growth.
             </p>
+
+            {/* Sleek Modern Tick Mark List */}
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 w-full">
+              {heroServices.map((service, index) => (
+                <li key={index} className="flex items-center gap-3">
+                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-600/10 text-blue-600 border border-blue-500/20 shadow-sm backdrop-blur-sm">
+                    <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+                  </div>
+                  <span className="text-sm font-semibold text-slate-800 sm:text-base">
+                    {service}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
