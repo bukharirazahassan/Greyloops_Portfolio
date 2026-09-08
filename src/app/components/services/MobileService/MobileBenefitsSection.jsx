@@ -56,20 +56,19 @@ export default function MobileBenefitsSection() {
   ];
 
   return (
-    <section className="relative w-full bg-slate-50 py-24 font-sans text-slate-900 overflow-hidden">
-      {/* Wave Dot Matrix Pattern Matching Reference Image */}
+    <section className="relative w-full overflow-hidden bg-slate-50 py-24 font-sans text-slate-900">
+      {/* Blue Ambient Glow Circles Matching Theme */}
+      <div className="pointer-events-none absolute -left-20 top-1/4 z-0 h-[500px] w-[500px] rounded-full bg-blue-400/15 blur-[140px]" />
+      <div className="pointer-events-none absolute -right-20 bottom-1/4 z-0 h-[600px] w-[600px] rounded-full bg-sky-400/15 blur-[160px]" />
+
+      {/* Full Section Ambient Light Dot Matrix Background Overlay */}
       <div
-        className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 z-0 h-[600px] w-[600px] opacity-35"
+        className="pointer-events-none absolute inset-0 z-0 opacity-40"
         style={{
-          backgroundImage: `radial-gradient(#3b82f6 1.5px, transparent 1.5px)`,
-          backgroundSize: `20px 20px`,
-          maskImage: `radial-gradient(ellipse at left, black 40%, transparent 80%)`,
-          WebkitMaskImage: `radial-gradient(ellipse at left, black 40%, transparent 80%)`,
+          backgroundImage: `radial-gradient(#94a3b8 1.2px, transparent 1.2px)`,
+          backgroundSize: `24px 24px`,
         }}
       />
-
-      {/* Ambient Blue Background Glow */}
-      <div className="pointer-events-none absolute right-1/4 top-1/3 z-0 h-[500px] w-[500px] rounded-full bg-blue-400/10 blur-[150px]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
         {/* Section Header */}
@@ -87,7 +86,7 @@ export default function MobileBenefitsSection() {
           </h2>
         </div>
 
-        {/* 3-Column Layout without Heavy Cards */}
+        {/* 3-Column Layout */}
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-6">
           {/* Left Side Items */}
           <div className="flex flex-col gap-12 lg:col-span-4 lg:items-end lg:text-right">
@@ -98,15 +97,15 @@ export default function MobileBenefitsSection() {
                   key={index}
                   className="group flex flex-col items-start gap-5 lg:flex-row-reverse lg:items-start"
                 >
-                  {/* Clean Icon Badge */}
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 transition-all duration-300 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-500/25">
+                  {/* Icon Badge */}
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-blue-500/20 bg-blue-600/10 text-blue-600 shadow-sm backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-500/25">
                     <IconComponent className="h-7 w-7" />
                   </div>
                   <div>
                     <h3 className="mb-2 text-xl font-bold tracking-tight text-slate-900 transition-colors group-hover:text-blue-600">
                       {item.title}
                     </h3>
-                    <p className="max-w-xs text-sm leading-relaxed text-slate-500 transition-colors group-hover:text-slate-700">
+                    <p className="max-w-xs text-sm leading-relaxed text-slate-600 transition-colors group-hover:text-slate-800">
                       {item.description}
                     </p>
                   </div>
@@ -138,15 +137,15 @@ export default function MobileBenefitsSection() {
                   key={index}
                   className="group flex flex-col items-start gap-5 lg:flex-row lg:items-start"
                 >
-                  {/* Clean Icon Badge */}
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 transition-all duration-300 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-500/25">
+                  {/* Icon Badge */}
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-blue-500/20 bg-blue-600/10 text-blue-600 shadow-sm backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-500/25">
                     <IconComponent className="h-7 w-7" />
                   </div>
                   <div>
                     <h3 className="mb-2 text-xl font-bold tracking-tight text-slate-900 transition-colors group-hover:text-blue-600">
                       {item.title}
                     </h3>
-                    <p className="max-w-xs text-sm leading-relaxed text-slate-500 transition-colors group-hover:text-slate-700">
+                    <p className="max-w-xs text-sm leading-relaxed text-slate-600 transition-colors group-hover:text-slate-800">
                       {item.description}
                     </p>
                   </div>

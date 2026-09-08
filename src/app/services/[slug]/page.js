@@ -1,3 +1,5 @@
+//src/app/services/[slug]/page.js
+
 import { notFound } from "next/navigation";
 import { findServiceBySlug, servicesColumns } from "../../lib/navigationData";
 import UxUiDesign from "../../components/services/UxUiDesign";
@@ -28,7 +30,7 @@ export default async function ServiceDetailPage({ params }) {
   if (!service) return notFound();
 
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <main className="w-full bg-white">
       {slug === "ux-ui-design" ? (
         <>
           <Header />
@@ -77,7 +79,7 @@ export default async function ServiceDetailPage({ params }) {
           <Footer />
         </>
       ) : (
-        <>
+        <div className="mx-auto max-w-7xl px-6 py-24">
           <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-orange-500">
             {service.columnTitle}
           </p>
@@ -87,8 +89,8 @@ export default async function ServiceDetailPage({ params }) {
           <p className="text-lg text-zinc-600">
             Content for {service.name} coming soon.
           </p>
-        </>
+        </div>
       )}
-    </div>
+    </main>
   );
 }
