@@ -1,5 +1,3 @@
-//src/app/services/[slug]/page.js
-
 import { notFound } from "next/navigation";
 import { findServiceBySlug, servicesColumns } from "../../lib/navigationData";
 import UxUiDesign from "../../components/services/UxUiDesign";
@@ -12,6 +10,7 @@ import ConsultingProvider from "../../components/services/Consulting/ConsultingP
 import StrategicTechnologyConsulting from "../../components/services/Consulting/StrategicTechnologyConsulting";
 import MobileConsulting from "../../components/services/Consulting/MobileConsulting";
 import MobileDevelopment from "../../components/services/MobileService/mobiledevelopment";
+import AndroidAppDevelopment from "../../components/services/MobileService/AndroidAppDevelopment";
 import FAQSection from "../../components/FAQSection";
 
 import Header from "../../components/Header";
@@ -67,6 +66,12 @@ export default async function ServiceDetailPage({ params }) {
           <Header />
           <MobileDevelopment />
           <Footer />
+        </>
+      ) : slug === "android-app-development" ? (
+        <>
+          <Header />
+          <AndroidAppDevelopment />
+          {/* <Footer /> */}
         </>
       ) : slug === "software-consulting" ? (
         <>
