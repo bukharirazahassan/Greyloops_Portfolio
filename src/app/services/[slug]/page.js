@@ -71,7 +71,7 @@ export default async function ServiceDetailPage({ params }) {
         <>
           <Header />
           <AndroidAppDevelopment />
-          {/* <Footer /> */}
+          <Footer />
         </>
       ) : slug === "software-consulting" ? (
         <>

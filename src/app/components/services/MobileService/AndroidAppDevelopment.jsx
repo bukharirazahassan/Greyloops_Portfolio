@@ -12,6 +12,10 @@ import {
   Globe2,
   Cpu,
 } from "lucide-react";
+import MobileTech from "@/app/components/services/MobileService/MobileTech";
+import BuildingIndustry from "@/app/components/services/MobileService/Buildingindustry";
+import DevelopmentProcess from "@/app/components/services/MobileService/Developmentprocess"
+import AndroidFAQs from "@/app/components/services/MobileService/AndroidFAQs"
 
 export default function AndroidAppDevelopment() {
   const heroServices = [
@@ -79,6 +83,19 @@ export default function AndroidAppDevelopment() {
       title: "Enterprise Experience Design",
       description:
         "Design structured, scalable interfaces for complex enterprise workflows, ensuring usability, accessibility, consistency, and efficient interaction across business applications and devices.",
+    },
+  ];
+
+  const customDevSubItems = [
+    {
+      title: "Native Development",
+      description:
+        "Kotlin-based applications optimized for high performance, advanced device capabilities, seamless integrations, and enterprise-grade reliability.",
+    },
+    {
+      title: "Scalable Architecture",
+      description:
+        "Modular architectures designed to support product expansion, complex business workflows, high transaction volumes, and evolving enterprise requirements.",
     },
   ];
 
@@ -236,7 +253,7 @@ export default function AndroidAppDevelopment() {
       </section>
 
       {/* SECTION 3: STICKY STACKING CARDS */}
-      <section className="relative w-full border-t border-slate-200/80 bg-slate-50 py-12 sm:py-16 pb-32">
+      <section className="relative w-full border-t border-slate-200/80 bg-slate-50 py-12 sm:py-16 pb-16">
         <div className="pointer-events-none absolute right-0 top-1/3 z-0 h-[500px] w-[500px] max-w-full rounded-full bg-blue-400/15 blur-[150px]" />
         <div className="pointer-events-none absolute left-0 bottom-1/3 z-0 h-[500px] w-[500px] max-w-full rounded-full bg-sky-400/15 blur-[150px]" />
 
@@ -266,9 +283,9 @@ export default function AndroidAppDevelopment() {
             </div>
           </div>
 
-          <div className="relative flex w-full flex-col gap-12 pb-24">
+          <div className="relative flex w-full flex-col gap-12 pb-16">
             {/* CARD 1 */}
-            <div className="sticky top-28 z-10 box-border grid w-full grid-cols-1 items-stretch gap-6 rounded-3xl border border-slate-200/80 bg-slate-50 p-2 shadow-2xl lg:grid-cols-12 lg:gap-8">
+            <div className="sticky top-24 z-10 box-border grid w-full grid-cols-1 items-stretch gap-6 rounded-3xl border border-slate-200/80 bg-slate-50 p-2 shadow-2xl lg:grid-cols-12 lg:gap-8">
               <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 p-6 shadow-2xl backdrop-blur-2xl lg:col-span-5 sm:p-8 xl:p-10">
                 <div
                   className="pointer-events-none absolute inset-0 z-0 opacity-25"
@@ -283,6 +300,9 @@ export default function AndroidAppDevelopment() {
 
                 <div className="relative z-10 flex h-full flex-col justify-between text-left">
                   <div>
+                    <div className="mb-4 inline-flex items-center rounded-full border border-blue-400/30 bg-blue-500/10 px-3 py-1 text-xs font-bold text-blue-400 backdrop-blur-md">
+                      01
+                    </div>
                     <h3 className="mb-4 text-left text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-3xl xl:text-4xl">
                       <span className="text-white">Android App </span>
                       <span className="bg-gradient-to-r from-blue-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">
@@ -326,7 +346,7 @@ export default function AndroidAppDevelopment() {
             </div>
 
             {/* CARD 2 */}
-            <div className="sticky top-36 z-20 box-border grid w-full grid-cols-1 items-stretch gap-6 rounded-3xl border border-slate-200/80 bg-slate-50 p-2 shadow-2xl lg:grid-cols-12 lg:gap-8">
+            <div className="sticky top-32 z-20 box-border grid w-full grid-cols-1 items-stretch gap-6 rounded-3xl border border-slate-200/80 bg-slate-50 p-2 shadow-2xl lg:grid-cols-12 lg:gap-8">
               <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 p-6 shadow-2xl backdrop-blur-2xl lg:col-span-5 sm:p-8 xl:p-10">
                 <div
                   className="pointer-events-none absolute inset-0 z-0 opacity-25"
@@ -341,6 +361,9 @@ export default function AndroidAppDevelopment() {
 
                 <div className="relative z-10 flex h-full flex-col justify-between text-left">
                   <div>
+                    <div className="mb-4 inline-flex items-center rounded-full border border-blue-400/30 bg-blue-500/10 px-3 py-1 text-xs font-bold text-blue-400 backdrop-blur-md">
+                      02
+                    </div>
                     <h3 className="mb-4 text-left text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-3xl xl:text-4xl">
                       <span className="text-white">Android </span>
                       <span className="bg-gradient-to-r from-blue-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">
@@ -383,8 +406,8 @@ export default function AndroidAppDevelopment() {
               </div>
             </div>
 
-            {/* CARD 3 */}
-            <div className="sticky top-44 z-30 box-border grid w-full grid-cols-1 items-stretch gap-6 rounded-3xl border border-slate-200/80 bg-slate-50 p-2 shadow-2xl lg:grid-cols-12 lg:gap-8">
+            {/* CARD 3: CUSTOM ANDROID APP DEVELOPMENT */}
+            <div className="sticky top-40 z-30 box-border grid w-full grid-cols-1 items-stretch gap-6 rounded-3xl border border-slate-200/80 bg-slate-50 p-2 shadow-2xl lg:grid-cols-12 lg:gap-8">
               <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 p-6 shadow-2xl backdrop-blur-2xl lg:col-span-5 sm:p-8 xl:p-10">
                 <div
                   className="pointer-events-none absolute inset-0 z-0 opacity-25"
@@ -399,6 +422,70 @@ export default function AndroidAppDevelopment() {
 
                 <div className="relative z-10 flex h-full flex-col justify-between text-left">
                   <div>
+                    <div className="mb-4 inline-flex items-center rounded-full border border-blue-400/30 bg-blue-500/10 px-3 py-1 text-xs font-bold text-blue-400 backdrop-blur-md">
+                      03
+                    </div>
+                    <h3 className="mb-4 text-left text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-3xl xl:text-4xl">
+                      <span className="text-white">Custom Android </span>
+                      <span className="bg-gradient-to-r from-blue-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">
+                        App Development
+                      </span>
+                    </h3>
+
+                    <p className="mb-8 text-sm font-normal leading-relaxed text-slate-300 antialiased sm:text-base">
+                      Our experts build tailored Android digital products and enterprise applications around specific business workflows, user requirements, integration needs, compliance standards, and long-term scalability.
+                    </p>
+                  </div>
+
+                  <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+                    {customDevSubItems.map((sub, idx) => (
+                      <div
+                        key={idx}
+                        className="flex flex-col justify-start rounded-2xl border border-slate-800 bg-slate-900/80 p-5 shadow-inner backdrop-blur-md transition-all duration-300 hover:border-blue-500/40 hover:bg-slate-900"
+                      >
+                        <h4 className="mb-2 text-sm font-bold text-white sm:text-base">
+                          {sub.title}
+                        </h4>
+                        <p className="text-xs font-normal leading-relaxed text-slate-400 sm:text-sm">
+                          {sub.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative min-h-[380px] w-full overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-xl backdrop-blur-xl lg:col-span-7 lg:min-h-[500px]">
+                <Image
+                  src="/images/services/mobile-backend-API.png"
+                  alt="Custom Android App Development Backend API"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  className="object-cover object-center"
+                />
+              </div>
+            </div>
+
+            {/* CARD 4 */}
+            <div className="sticky top-48 z-40 box-border grid w-full grid-cols-1 items-stretch gap-6 rounded-3xl border border-slate-200/80 bg-slate-50 p-2 shadow-2xl lg:grid-cols-12 lg:gap-8">
+              <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 p-6 shadow-2xl backdrop-blur-2xl lg:col-span-5 sm:p-8 xl:p-10">
+                <div
+                  className="pointer-events-none absolute inset-0 z-0 opacity-25"
+                  style={{
+                    backgroundImage: `radial-gradient(#64748b 1.2px, transparent 1.2px)`,
+                    backgroundSize: `24px 24px`,
+                  }}
+                />
+
+                <div className="pointer-events-none absolute -left-16 -top-16 z-0 h-64 w-64 rounded-full bg-blue-600/25 blur-[90px]" />
+                <div className="pointer-events-none absolute -bottom-16 -right-16 z-0 h-64 w-64 rounded-full bg-sky-500/20 blur-[90px]" />
+
+                <div className="relative z-10 flex h-full flex-col justify-between text-left">
+                  <div>
+                    <div className="mb-4 inline-flex items-center rounded-full border border-blue-400/30 bg-blue-500/10 px-3 py-1 text-xs font-bold text-blue-400 backdrop-blur-md">
+                      04
+                    </div>
                     <h3 className="mb-4 text-left text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-3xl xl:text-4xl">
                       <span className="text-white">Android App </span>
                       <span className="bg-gradient-to-r from-blue-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">
@@ -441,8 +528,8 @@ export default function AndroidAppDevelopment() {
               </div>
             </div>
 
-            {/* CARD 4 */}
-            <div className="sticky top-52 z-40 box-border grid w-full grid-cols-1 items-stretch gap-6 rounded-3xl border border-slate-200/80 bg-slate-50 p-2 shadow-2xl lg:grid-cols-12 lg:gap-8">
+            {/* CARD 5 */}
+            <div className="sticky top-56 z-50 box-border grid w-full grid-cols-1 items-stretch gap-6 rounded-3xl border border-slate-200/80 bg-slate-50 p-2 shadow-2xl lg:grid-cols-12 lg:gap-8">
               <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 p-6 shadow-2xl backdrop-blur-2xl lg:col-span-5 sm:p-8 xl:p-10">
                 <div
                   className="pointer-events-none absolute inset-0 z-0 opacity-25"
@@ -457,6 +544,9 @@ export default function AndroidAppDevelopment() {
 
                 <div className="relative z-10 flex h-full flex-col justify-between text-left">
                   <div>
+                    <div className="mb-4 inline-flex items-center rounded-full border border-blue-400/30 bg-blue-500/10 px-3 py-1 text-xs font-bold text-blue-400 backdrop-blur-md">
+                      05
+                    </div>
                     <h3 className="mb-4 text-left text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-3xl xl:text-4xl">
                       <span className="text-white">Multi-platform </span>
                       <span className="bg-gradient-to-r from-blue-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">
@@ -501,6 +591,35 @@ export default function AndroidAppDevelopment() {
           </div>
         </div>
       </section>
+
+      {/* FULL-WIDTH DESKTOP TECH STACK SECTION */}
+      <section className="relative w-full">
+        <div className="w-full">
+          <MobileTech />
+        </div>
+      </section>
+      {/* FULL-WIDTH DESKTOP TECH INDUSTRY SECTION */}
+      <section className="relative w-full">
+        <div className="w-full">
+          <BuildingIndustry />
+        </div>
+      </section>
+      {/* FULL-WIDTH DESKTOP Development SECTION */}
+      <section className="relative w-full">
+        <div className="w-full">
+          <DevelopmentProcess />
+        </div>
+      </section>
+      {/* FULL-WIDTH DESKTOP AndroidFAQs SECTION */}
+      <section className="relative w-full">
+        <div className="w-full">
+          <AndroidFAQs />
+        </div>
+      </section>
+      
+              
+                    
+      
     </div>
   );
 }
