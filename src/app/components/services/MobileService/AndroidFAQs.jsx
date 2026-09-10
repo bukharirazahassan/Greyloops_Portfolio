@@ -269,13 +269,15 @@ export default function AndroidFAQs() {
                   />
                 </div>
 
-                <button className="w-full bg-blue-600 text-white font-medium text-base py-3.5 rounded-full hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/25 mb-3 cursor-pointer">
-                  Get free consultation
-                </button>
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <p className="text-base sm:text-lg font-medium text-slate-800 text-left">
+                    Have more questions? Talk to our Android experts today.
+                  </p>
 
-                <p className="text-center text-sm font-medium text-slate-600">
-                  Have more questions? Talk to our Android experts today.
-                </p>
+                  <button className="bg-blue-600 text-white font-medium text-sm px-5 py-2.5 rounded-full hover:bg-blue-700 transition-colors shadow-md shadow-blue-500/20 cursor-pointer whitespace-nowrap">
+                    Get free consultation
+                  </button>
+                </div>
               </div>
             </motion.div>
           </div>
