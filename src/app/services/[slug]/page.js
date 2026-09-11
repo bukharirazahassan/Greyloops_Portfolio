@@ -11,7 +11,7 @@ import StrategicTechnologyConsulting from "../../components/services/Consulting/
 import MobileConsulting from "../../components/services/Consulting/MobileConsulting";
 import MobileDevelopment from "../../components/services/MobileService/mobiledevelopment";
 import AndroidAppDevelopment from "../../components/services/MobileService/AndroidAppDevelopment";
-import IOSAppDevelopment from "../../components/services/MobileService/iosappdevelopment";
+import IOSAppDevelopment from "../../components/services/MobileService/IOSAPPDevelopment";
 import FAQSection from "../../components/FAQSection";
 
 import Header from "../../components/Header";
