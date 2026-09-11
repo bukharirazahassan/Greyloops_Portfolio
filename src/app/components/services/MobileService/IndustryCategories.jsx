@@ -141,6 +141,108 @@ const industries = [
       },
     ],
   },
+  {
+    titleFirst: "Automotive",
+    titleSecond: "",
+    description:
+      "We build secure, scalable digital automotive solutions that enhance connected vehicle experiences, streamline dealership and fleet operations, and enable smarter, data-driven mobility services.",
+    imageSrc: "/images/services/automotive.png",
+    imageAlt: "Automotive Solutions",
+    subItems: [
+      {
+        title: "Connected Vehicle Platforms",
+        description: "Digital platforms for vehicle connectivity, remote monitoring, diagnostics, driver experiences, and connected services across modern automotive ecosystems.",
+      },
+      {
+        title: "Automotive Applications",
+        description: "Feature-rich web and mobile applications for vehicle owners, dealerships, service centers, bookings, vehicle management, and customer engagement.",
+      },
+      {
+        title: "Fleet & Vehicle Management",
+        description: "Real-time vehicle tracking, fleet monitoring, maintenance scheduling, driver management, and operational analytics to improve fleet performance.",
+      },
+      {
+        title: "Automotive Commerce",
+        description: "Digital platforms for vehicle discovery, online sales, financing workflows, parts ordering, service bookings, and seamless customer purchasing experiences.",
+      },
+      {
+        title: "Automotive Data & Analytics",
+        description: "Real-time vehicle data, performance dashboards, predictive insights, customer analytics, and operational intelligence for better automotive decision-making.",
+      },
+      {
+        title: "AI-Powered Mobility",
+        description: "AI-driven predictive maintenance, intelligent vehicle diagnostics, personalized experiences, demand forecasting, automation, and smarter mobility solutions.",
+      },
+    ],
+  },
+  {
+    titleFirst: "SaaS",
+    titleSecond: "",
+    description:
+      "We build scalable SaaS platforms that simplify complex business processes, automate workflows, and deliver secure, flexible digital experiences for growing businesses and enterprises.",
+    imageSrc: "/images/services/mobile_saas.png",
+    imageAlt: "SaaS Solutions",
+    subItems: [
+      {
+        title: "SaaS Product Development",
+        description: "End-to-end SaaS platforms with scalable architecture, intuitive interfaces, powerful features, and reliable performance across web and mobile.",
+      },
+      {
+        title: "Multi-Tenant Architecture",
+        description: "Secure multi-tenant systems with isolated customer data, role-based access, tenant management, and flexible configurations for different users and organizations.",
+      },
+      {
+        title: "Cloud-Native SaaS",
+        description: "Cloud-based applications designed for scalability, high availability, efficient infrastructure management, and seamless deployment across modern cloud environments.",
+      },
+      {
+        title: "SaaS Integrations",
+        description: "Seamless connectivity with CRM, ERP, payment gateways, APIs, third-party applications, and enterprise systems to create connected business workflows.",
+      },
+      {
+        title: "Automation & Analytics",
+        description: "Intelligent workflow automation, real-time dashboards, reporting, business insights, and operational analytics to improve productivity and decision-making.",
+      },
+      {
+        title: "AI-Powered SaaS",
+        description: "AI-driven automation, intelligent recommendations, predictive insights, natural language capabilities, and personalized experiences built directly into SaaS platforms.",
+      },
+    ],
+  },
+  {
+    titleFirst: "Education",
+    titleSecond: "",
+    description:
+      "We build secure, scalable digital education solutions that create engaging learning experiences, streamline academic operations, and connect students, educators, institutions, and learning resources through modern technology.",
+    imageSrc: "/images/services/mobile_education.png",
+    imageAlt: "Education Solutions",
+    subItems: [
+      {
+        title: "Digital Learning Platforms",
+        description: "Interactive learning platforms for online courses, student portals, virtual classrooms, assessments, learning resources, and personalized educational experiences.",
+      },
+      {
+        title: "Learning Management Systems",
+        description: "Scalable LMS solutions for course management, student enrollment, assignments, grading, progress tracking, certifications, and centralized academic administration.",
+      },
+      {
+        title: "Virtual Classrooms",
+        description: "Connected virtual learning environments with live classes, video sessions, collaboration tools, digital communication, and interactive learning experiences.",
+      },
+      {
+        title: "Student & Academic Management",
+        description: "Integrated solutions for student records, attendance, scheduling, admissions, academic workflows, faculty management, and institutional operations.",
+      },
+      {
+        title: "Education Analytics",
+        description: "Real-time dashboards, student performance insights, learning analytics, progress tracking, reporting, and data-driven tools for improving educational outcomes.",
+      },
+      {
+        title: "AI-Powered Learning",
+        description: "AI-driven personalized learning, intelligent recommendations, automated assessments, virtual assistance, predictive student insights, and adaptive educational experiences.",
+      },
+    ],
+  },
 ];
 
 // Smooth acceleration/deceleration curve applied to each card's own local
@@ -199,7 +301,7 @@ export default function IndustryCategories() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full bg-slate-50 border-t border-slate-200/80 h-[400vh]"
+      className="relative w-full bg-slate-50 border-t border-slate-200/80 h-[700vh]"
     >
       {/* Background Glows & Dot Pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
