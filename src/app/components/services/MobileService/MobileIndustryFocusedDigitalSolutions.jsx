@@ -30,7 +30,7 @@ export default function MobileIndustryFocusedDigitalSolutions() {
             <h2 className="text-3xl font-extrabold tracking-tight leading-[1.15] sm:text-4xl lg:text-5xl">
               <span className="block">Industry-Focused</span>
               <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">
-                Digital Solutions
+                Mobile Solutions
               </span>
             </h2>
           </div>

@@ -6,6 +6,10 @@ import OfferingiSODevelopment from "@/app/components/services/MobileService/Offe
 import MobileIndustryFocusedDigitalSolutions from "@/app/components/services/MobileService/MobileIndustryFocusedDigitalSolutions";
 import IndustryCategories from "@/app/components/services/MobileService/IndustryCategories";
 
+import MobileTech from "@/app/components/services/MobileService/MobileTech";
+import DevelopmentProcess from "@/app/components/services/MobileService/Developmentprocess"
+import AndroidFAQs from "@/app/components/services/MobileService/AndroidFAQs"
+
 const iosServices = [
   "Custom iOS App Development",
   "Digital Product Engineering",
@@ -57,7 +61,13 @@ export default function IOSAPPDevelopment() {
             </h1>
 
             <p className="mb-8 max-w-2xl text-left text-base font-normal leading-relaxed text-slate-700 antialiased sm:text-lg">
-              We build secure, scalable iOS applications and digital products that transform ideas into high-performance experiences for modern businesses and enterprises. From customer-facing mobile products to complex enterprise applications, we combine intuitive UX, robust architecture, seamless integrations, and scalable technology to create reliable solutions built for long-term growth.
+              We build secure, scalable iOS applications and digital products
+              that transform ideas into high-performance experiences for modern
+              businesses and enterprises. From customer-facing mobile products
+              to complex enterprise applications, we combine intuitive UX,
+              robust architecture, seamless integrations, and scalable
+              technology to create reliable solutions built for long-term
+              growth.
             </p>
 
             <ul className="grid w-full grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
@@ -80,6 +90,9 @@ export default function IOSAPPDevelopment() {
       <OfferingiSODevelopment />
       <MobileIndustryFocusedDigitalSolutions />
       <IndustryCategories />
+      <MobileTech />
+      <DevelopmentProcess />
+      <AndroidFAQs />
     </>
   );
 }

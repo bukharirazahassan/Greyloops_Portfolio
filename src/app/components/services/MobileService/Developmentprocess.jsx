@@ -7,27 +7,27 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 const STEPS = [
   {
     title: "Discovery & Strategy",
-    text: "We begin by listening and understanding your business goals, user needs, and industry rules. This helps us shape a clear plan for your Android app development.",
+    text: "We begin by understanding your business goals, target users, technical requirements, and industry needs. This helps us define a clear strategy for building a successful Android and iOS application.",
   },
   {
     title: "UI/UX Design",
-    text: "Our design team creates Android interfaces that feel natural, fast, and easy to use. Wireframes and prototypes make sure you see the flow before a single line of code is written.",
+    text: "Our design team creates intuitive, responsive experiences tailored to Android and iOS users. Wireframes and interactive prototypes help validate the user journey and experience before development begins.",
   },
   {
     title: "Development",
-    text: "As a custom Android app development company, we use secure, scalable code to bring ideas to life. Agile sprints keep progress visible and allow for quick changes when needed.",
+    text: "Our developers build secure, scalable mobile applications using the right technologies for your project. Whether native Android, native iOS, or a cross-platform approach, agile development keeps progress transparent and flexible.",
   },
   {
     title: "Testing & Quality Assurance",
-    text: "Every Android application goes through careful testing. From security checks to performance under heavy load, we make sure nothing slips through before launch.",
+    text: "Every mobile application goes through comprehensive testing across devices, screen sizes, operating systems, performance conditions, and security scenarios to ensure a reliable and consistent experience.",
   },
   {
     title: "Deployment",
-    text: "We manage the rollout of your Android app on Google Play and enterprise environments. Compliance, integrations, and updates are handled so the launch is smooth.",
+    text: "We manage the launch of your application across the Apple App Store, Google Play, and enterprise environments. From app store requirements to integrations and release preparation, we help ensure a smooth deployment.",
   },
   {
     title: "Support & Evolution",
-    text: "Post-launch isn't the end. As an Android app development agency, we continue with monitoring, upgrades, and new features so your app keeps pace with user expectations.",
+    text: "Our work continues after launch with monitoring, maintenance, performance improvements, OS updates, security enhancements, and new features to keep your Android and iOS applications reliable and competitive.",
   },
 ];
 
@@ -99,7 +99,7 @@ export default function DevelopmentProcess() {
               <span>From Vision to Reality</span>
             </div>
             <h2 className="text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl md:text-5xl lg:leading-[1.12]">
-              <span className="block text-slate-900">Our Android</span>
+              <span className="block text-slate-900">Our Mobile</span>
               <span className="block bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
                 Development Process
               </span>
@@ -108,9 +108,10 @@ export default function DevelopmentProcess() {
 
           <div className="lg:col-span-6 lg:pt-2">
             <p className="text-sm font-normal leading-relaxed text-slate-600 antialiased sm:text-base lg:text-lg">
-              We keep Android app development simple but structured. Every step is
-              designed to reduce risk, cut delays, and make sure you end up with
-              an Android app that performs at scale.
+              We keep mobile app development simple but structured. Every step
+              is designed to reduce risk, improve quality, and ensure you get
+              a reliable Android and iOS application built for long-term
+              performance and growth.
             </p>
           </div>
         </div>
@@ -119,7 +120,7 @@ export default function DevelopmentProcess() {
         <div className="relative max-w-5xl mx-auto">
           {/* Continuous segmented background lines or precise gaps so line doesn't cross the circles */}
           <div className="hidden sm:block absolute left-1/2 -translate-x-1/2 top-[18px] bottom-[18px] w-[2px] bg-slate-200 pointer-events-none" />
-          
+
           <motion.div
             className="hidden sm:block absolute left-1/2 -translate-x-1/2 top-[18px] w-[2px] bg-gradient-to-b from-blue-600 to-sky-400 rounded-full pointer-events-none origin-top"
             style={{ height: heightPercent }}
@@ -169,3 +170,4 @@ export default function DevelopmentProcess() {
     </section>
   );
 }
+
