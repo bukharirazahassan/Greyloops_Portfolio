@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Sparkles } from "lucide-react";
+import WhyChooseUs from "@/app/components/services/WhyChooseUs";
 
 // Smooth acceleration/deceleration curve so the reveal doesn't feel linear/mechanical.
 function easeInOutCubic(t) {
@@ -91,9 +92,7 @@ export default function WebAppDevelopment() {
       const rect = containerRef.current.getBoundingClientRect();
       const scrollable = rect.height - window.innerHeight;
       target =
-        scrollable > 0
-          ? Math.min(Math.max(-rect.top / scrollable, 0), 1)
-          : 0;
+        scrollable > 0 ? Math.min(Math.max(-rect.top / scrollable, 0), 1) : 0;
     };
 
     const tick = () => {
@@ -133,9 +132,11 @@ export default function WebAppDevelopment() {
     progress <= secondaryFadeStart
       ? 0
       : progress >= secondaryFadeEnd
-      ? 1
-      : (progress - secondaryFadeStart) / (secondaryFadeEnd - secondaryFadeStart);
-  const secondaryPointerEvents = progress < secondaryFadeStart ? "none" : "auto";
+        ? 1
+        : (progress - secondaryFadeStart) /
+          (secondaryFadeEnd - secondaryFadeStart);
+  const secondaryPointerEvents =
+    progress < secondaryFadeStart ? "none" : "auto";
 
   // Banner content visibility tied strictly to the intro scroll progress
   const bannerOpacity = 1 - introProgress;
@@ -149,7 +150,8 @@ export default function WebAppDevelopment() {
         <style jsx global>{`
           @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
           .service-font {
-            font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+            font-family:
+              "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
           }
           .service-display {
             font-family: "Sora", "Plus Jakarta Sans", ui-sans-serif, sans-serif;
@@ -186,7 +188,11 @@ export default function WebAppDevelopment() {
           </h1>
 
           <p className="mt-4 mx-auto max-w-3xl text-sm leading-relaxed text-slate-300 sm:text-base">
-            As a trusted website app development company, we offer a comprehensive range of web development services. Our skilled developers delve deep into your unique business challenges to deliver perfectly tailored solutions that not only meet but exceed your expectations.
+            As a trusted website app development company, we offer a
+            comprehensive range of web development services. Our skilled
+            developers delve deep into your unique business challenges to
+            deliver perfectly tailored solutions that not only meet but exceed
+            your expectations.
           </p>
 
           <div className="flex justify-center mt-6">
@@ -286,203 +292,215 @@ export default function WebAppDevelopment() {
   }
 
   return (
-    <section
-      ref={containerRef}
-      className="service-font relative w-full h-[720vh] bg-slate-950 border-t border-slate-800 text-white"
-    >
-      <style jsx global>{`
-        @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
-        .service-font {
-          font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-        }
-        .service-display {
-          font-family: "Sora", "Plus Jakarta Sans", ui-sans-serif, sans-serif;
-          letter-spacing: -0.02em;
-        }
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(18px);
+    <>
+      <section
+        ref={containerRef}
+        className="service-font relative w-full h-[720vh] bg-slate-950 border-t border-slate-800 text-white"
+      >
+        <style jsx global>{`
+          @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
+          .service-font {
+            font-family:
+              "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
           }
-          to {
-            opacity: 1;
-            transform: translateY(0);
+          .service-display {
+            font-family: "Sora", "Plus Jakarta Sans", ui-sans-serif, sans-serif;
+            letter-spacing: -0.02em;
           }
-        }
-      `}</style>
+          @keyframes fadeUp {
+            from {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        `}</style>
 
-      <div className="sticky top-16 h-[calc(100vh-4rem)] w-full overflow-hidden flex flex-col">
-        {/* Dark-theme background */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 bg-slate-950">
-          <div className="absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 h-[700px] w-[700px] rounded-full bg-blue-600/25 blur-[160px]" />
-          <div className="absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 h-[420px] w-[420px] rounded-full bg-sky-400/15 blur-[120px]" />
+        <div className="sticky top-16 h-[calc(100vh-4rem)] w-full overflow-hidden flex flex-col">
+          {/* Dark-theme background */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 bg-slate-950">
+            <div className="absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 h-[700px] w-[700px] rounded-full bg-blue-600/25 blur-[160px]" />
+            <div className="absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 h-[420px] w-[420px] rounded-full bg-sky-400/15 blur-[120px]" />
+            <div
+              className="absolute inset-0 opacity-25"
+              style={{
+                backgroundImage: `radial-gradient(#475569 1.2px, transparent 1.2px)`,
+                backgroundSize: `24px 24px`,
+              }}
+            />
+          </div>
+
+          {/* Rising image with balanced overall opacity so the picture remains fully visible */}
           <div
-            className="absolute inset-0 opacity-25"
+            className="absolute inset-0 z-10 will-change-transform opacity-80"
+            style={{ transform: `translateY(${imageTranslateY}%)` }}
+          >
+            <Image
+              src="/images/services/web_application_development.png"
+              alt="Web Application Development"
+              fill
+              className="object-cover object-top"
+              sizes="100vw"
+              priority
+            />
+          </div>
+
+          {/* First section banner heading with a clean central dark backdrop vignette */}
+          <div
+            className="absolute inset-x-0 top-0 z-30 w-full px-6 sm:px-12 lg:px-20 xl:px-28 pt-8 sm:pt-10 lg:pt-12 text-center will-change-[opacity,transform] flex flex-col items-center"
             style={{
-              backgroundImage: `radial-gradient(#475569 1.2px, transparent 1.2px)`,
-              backgroundSize: `24px 24px`,
+              opacity: bannerOpacity,
+              transform: `translateY(${bannerTranslateY}px)`,
+              pointerEvents: bannerPointerEvents,
             }}
-          />
-        </div>
-
-        {/* Rising image with balanced overall opacity so the picture remains fully visible */}
-        <div
-          className="absolute inset-0 z-10 will-change-transform opacity-80"
-          style={{ transform: `translateY(${imageTranslateY}%)` }}
-        >
-          <Image
-            src="/images/services/web_application_development.png"
-            alt="Web Application Development"
-            fill
-            className="object-cover object-top"
-            sizes="100vw"
-            priority
-          />
-        </div>
-
-        {/* First section banner heading with a clean central dark backdrop vignette */}
-        <div
-          className="absolute inset-x-0 top-0 z-30 w-full px-6 sm:px-12 lg:px-20 xl:px-28 pt-8 sm:pt-10 lg:pt-12 text-center will-change-[opacity,transform] flex flex-col items-center"
-          style={{
-            opacity: bannerOpacity,
-            transform: `translateY(${bannerTranslateY}px)`,
-            pointerEvents: bannerPointerEvents,
-          }}
-        >
-          {/* Focused central contrast card so text pops out while image stays clear on sides */}
-          <div className="relative max-w-4xl w-full px-6 py-8 sm:px-10 sm:py-10 rounded-3xl bg-slate-950/75 backdrop-blur-md border border-slate-800/80 shadow-2xl shadow-black/60">
-            <span className="animate-[fadeUp_0.9s_ease-out_0.05s_both] mb-4 inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-slate-900/90 px-4 py-1.5 text-sm font-semibold text-blue-400 shadow-sm ring-1 ring-blue-500/30">
-              <Sparkles className="h-3.5 w-3.5 text-blue-400" />
-              Expertise
-            </span>
-
-            <h1 className="service-display animate-[fadeUp_0.9s_ease-out_0.1s_both] mx-auto text-3xl font-extrabold tracking-tight leading-[1.1] sm:text-4xl md:text-5xl lg:text-6xl">
-              <span className="bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-                Industry-Best{" "}
+          >
+            {/* Focused central contrast card so text pops out while image stays clear on sides */}
+            <div className="relative max-w-4xl w-full px-6 py-8 sm:px-10 sm:py-10 rounded-3xl bg-slate-950/75 backdrop-blur-md border border-slate-800/80 shadow-2xl shadow-black/60">
+              <span className="animate-[fadeUp_0.9s_ease-out_0.05s_both] mb-4 inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-slate-900/90 px-4 py-1.5 text-sm font-semibold text-blue-400 shadow-sm ring-1 ring-blue-500/30">
+                <Sparkles className="h-3.5 w-3.5 text-blue-400" />
+                Expertise
               </span>
-              <span className="bg-gradient-to-r from-blue-400 to-sky-400 bg-clip-text text-transparent">
-                Web App Development Services
-              </span>
-            </h1>
 
-            <p className="animate-[fadeUp_0.9s_ease-out_0.3s_both] mt-4 mx-auto max-w-3xl text-sm leading-relaxed text-slate-300 sm:text-base">
-              As a trusted website app development company, we offer a comprehensive range of web development services. Our skilled developers delve deep into your unique business challenges to deliver perfectly tailored solutions that not only meet but exceed your expectations.
-            </p>
+              <h1 className="service-display animate-[fadeUp_0.9s_ease-out_0.1s_both] mx-auto text-3xl font-extrabold tracking-tight leading-[1.1] sm:text-4xl md:text-5xl lg:text-6xl">
+                <span className="bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
+                  Industry-Best{" "}
+                </span>
+                <span className="bg-gradient-to-r from-blue-400 to-sky-400 bg-clip-text text-transparent">
+                  Web App Development Services
+                </span>
+              </h1>
 
-            <div className="flex justify-center mt-6">
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/30 transition-all duration-200 hover:bg-blue-500 hover:shadow-blue-500/40"
-              >
-                Talk to our experts
-              </a>
+              <p className="animate-[fadeUp_0.9s_ease-out_0.3s_both] mt-4 mx-auto max-w-3xl text-sm leading-relaxed text-slate-300 sm:text-base">
+                As a trusted website app development company, we offer a
+                comprehensive range of web development services. Our skilled
+                developers delve deep into your unique business challenges to
+                deliver perfectly tailored solutions that not only meet but
+                exceed your expectations.
+              </p>
+
+              <div className="flex justify-center mt-6">
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/30 transition-all duration-200 hover:bg-blue-500 hover:shadow-blue-500/40"
+                >
+                  Talk to our experts
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Secondary content row (smoothly cross-fades in as intro banner scrolls away) */}
-        <div
-          className="relative z-[25] flex flex-1 flex-col justify-center items-center w-full px-6 sm:px-12 lg:px-20 xl:px-28 pt-2 pb-6 will-change-[opacity,transform]"
-          style={{
-            opacity: secondaryOpacity,
-            pointerEvents: secondaryPointerEvents,
-            transform: `translateY(${-progress * 10}px)`,
-          }}
-        >
-          {/* Main heading for the cards section */}
-          <div className="w-full max-w-7xl mb-4 text-center">
-            <span className="mb-3 inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-slate-900/90 px-4 py-1.5 text-sm font-semibold text-blue-400 shadow-sm ring-1 ring-blue-500/30">
-              <Sparkles className="h-3.5 w-3.5 text-blue-400" />
-              Capabilities
-            </span>
-            <h2 className="service-display text-2xl font-extrabold tracking-tight leading-[1.1] sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl">
-              <span className="bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-                Custom Web Development Services to Broaden{" "}
+          {/* Secondary content row (smoothly cross-fades in as intro banner scrolls away) */}
+          <div
+            className="relative z-[25] flex flex-1 flex-col justify-center items-center w-full px-6 sm:px-12 lg:px-20 xl:px-28 pt-2 pb-6 will-change-[opacity,transform]"
+            style={{
+              opacity: secondaryOpacity,
+              pointerEvents: secondaryPointerEvents,
+              transform: `translateY(${-progress * 10}px)`,
+            }}
+          >
+            {/* Main heading for the cards section */}
+            <div className="w-full max-w-7xl mb-4 text-center">
+              <span className="mb-3 inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-slate-900/90 px-4 py-1.5 text-sm font-semibold text-blue-400 shadow-sm ring-1 ring-blue-500/30">
+                <Sparkles className="h-3.5 w-3.5 text-blue-400" />
+                Capabilities
               </span>
-              <span className="bg-gradient-to-r from-blue-400 to-sky-400 bg-clip-text text-transparent">
-                Business Prospects
-              </span>
-            </h2>
+              <h2 className="service-display text-2xl font-extrabold tracking-tight leading-[1.1] sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl">
+                <span className="bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
+                  Custom Web Development Services to Broaden{" "}
+                </span>
+                <span className="bg-gradient-to-r from-blue-400 to-sky-400 bg-clip-text text-transparent">
+                  Business Prospects
+                </span>
+              </h2>
+            </div>
+
+            <div className="relative mx-auto w-full max-w-7xl h-[clamp(450px,62vh,720px)] overflow-hidden rounded-2xl sm:rounded-[2.5rem] shadow-2xl shadow-black/40">
+              {secondaryCards.map((card, index) => {
+                const cardProgress = index === 0 ? 1 : getCardProgress(index);
+                const translateY = index === 0 ? 0 : (1 - cardProgress) * 100;
+                const currentNumber = String(index + 1).padStart(2, "0");
+                const totalNumber = String(secondaryCards.length).padStart(
+                  2,
+                  "0",
+                );
+
+                return (
+                  <div
+                    key={card.title}
+                    className="absolute inset-0 flex w-full flex-col items-center gap-6 sm:gap-10 lg:gap-16 overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50 p-6 sm:p-10 lg:p-16 xl:p-20 lg:flex-row lg:items-center will-change-transform"
+                    style={{
+                      transform: `translateY(${translateY}%)`,
+                      zIndex: index + 1,
+                    }}
+                  >
+                    {/* Background Glows & Dot Pattern inside the card container */}
+                    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+                      <div className="absolute -left-20 top-1/4 h-[500px] w-[500px] rounded-full bg-blue-500/15 blur-[140px]" />
+                      <div className="absolute -right-20 bottom-1/4 h-[600px] w-[600px] rounded-full bg-sky-500/15 blur-[160px]" />
+                      <div
+                        className="absolute inset-0 opacity-30"
+                        style={{
+                          backgroundImage: `radial-gradient(#94a3b8 1.2px, transparent 1.2px)`,
+                          backgroundSize: `24px 24px`,
+                        }}
+                      />
+                    </div>
+
+                    {/* Modern Counter Figure positioned at the top right of the card */}
+                    <div className="absolute top-5 right-5 sm:top-8 sm:right-10 z-20 flex items-center gap-2 select-none pointer-events-none rounded-full bg-white/70 backdrop-blur-sm px-4 py-1.5 shadow-sm">
+                      <span className="service-display text-xl sm:text-2xl lg:text-3xl font-black tracking-tighter bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">
+                        {currentNumber}
+                      </span>
+                      <span className="text-xs sm:text-sm font-bold text-slate-400">
+                        / {totalNumber}
+                      </span>
+                    </div>
+
+                    {/* Top accent line, tinted per-card */}
+                    <div className="absolute inset-x-0 top-0 z-20 h-1.5 bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600" />
+
+                    <div className="relative z-10 w-[min(54vh,52vw,660px)] aspect-square shrink-0 mx-auto lg:mx-0">
+                      <Image
+                        src={card.image}
+                        alt={card.title}
+                        fill
+                        className="object-contain"
+                        sizes="(min-width: 1024px) 660px, 52vw"
+                        quality={90}
+                        priority={index === 0}
+                      />
+                    </div>
+
+                    <div className="relative z-10 w-full lg:flex-1 text-left">
+                      <h3 className="service-display text-xl font-bold tracking-tight sm:text-2xl lg:text-3xl text-slate-950">
+                        {card.title}
+                      </h3>
+                      <p className="mt-4 sm:mt-6 text-base leading-relaxed text-slate-700 sm:text-lg lg:text-xl">
+                        {card.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-7xl h-[clamp(450px,62vh,720px)] overflow-hidden rounded-2xl sm:rounded-[2.5rem] shadow-2xl shadow-black/40">
-            {secondaryCards.map((card, index) => {
-              const cardProgress = index === 0 ? 1 : getCardProgress(index);
-              const translateY = index === 0 ? 0 : (1 - cardProgress) * 100;
-              const currentNumber = String(index + 1).padStart(2, "0");
-              const totalNumber = String(secondaryCards.length).padStart(2, "0");
-
-              return (
-                <div
-                  key={card.title}
-                  className="absolute inset-0 flex w-full flex-col items-center gap-6 sm:gap-10 lg:gap-16 overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50 p-6 sm:p-10 lg:p-16 xl:p-20 lg:flex-row lg:items-center will-change-transform"
-                  style={{
-                    transform: `translateY(${translateY}%)`,
-                    zIndex: index + 1,
-                  }}
-                >
-                  {/* Background Glows & Dot Pattern inside the card container */}
-                  <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-                    <div className="absolute -left-20 top-1/4 h-[500px] w-[500px] rounded-full bg-blue-500/15 blur-[140px]" />
-                    <div className="absolute -right-20 bottom-1/4 h-[600px] w-[600px] rounded-full bg-sky-500/15 blur-[160px]" />
-                    <div
-                      className="absolute inset-0 opacity-30"
-                      style={{
-                        backgroundImage: `radial-gradient(#94a3b8 1.2px, transparent 1.2px)`,
-                        backgroundSize: `24px 24px`,
-                      }}
-                    />
-                  </div>
-
-                  {/* Modern Counter Figure positioned at the top right of the card */}
-                  <div className="absolute top-5 right-5 sm:top-8 sm:right-10 z-20 flex items-center gap-2 select-none pointer-events-none rounded-full bg-white/70 backdrop-blur-sm px-4 py-1.5 shadow-sm">
-                    <span className="service-display text-xl sm:text-2xl lg:text-3xl font-black tracking-tighter bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">
-                      {currentNumber}
-                    </span>
-                    <span className="text-xs sm:text-sm font-bold text-slate-400">
-                      / {totalNumber}
-                    </span>
-                  </div>
-
-                  {/* Top accent line, tinted per-card */}
-                  <div className="absolute inset-x-0 top-0 z-20 h-1.5 bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600" />
-
-                  <div className="relative z-10 w-[min(54vh,52vw,660px)] aspect-square shrink-0 mx-auto lg:mx-0">
-                    <Image
-                      src={card.image}
-                      alt={card.title}
-                      fill
-                      className="object-contain"
-                      sizes="(min-width: 1024px) 660px, 52vw"
-                      quality={90}
-                      priority={index === 0}
-                    />
-                  </div>
-
-                  <div className="relative z-10 w-full lg:flex-1 text-left">
-                    <h3 className="service-display text-xl font-bold tracking-tight sm:text-2xl lg:text-3xl text-slate-950">
-                      {card.title}
-                    </h3>
-                    <p className="mt-4 sm:mt-6 text-base leading-relaxed text-slate-700 sm:text-lg lg:text-xl">
-                      {card.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          {/* Soft edge darkening layers so the heading/description stay legible while image remains bright outward */}
+          <div
+            className="pointer-events-none absolute inset-0 z-[15] bg-black"
+            style={{ opacity: scrimOpacity * 0.35 }}
+          />
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 z-20 h-80 bg-gradient-to-b from-slate-950 via-slate-950/40 to-transparent"
+            style={{ opacity: scrimOpacity }}
+          />
         </div>
+      </section>
 
-        {/* Soft edge darkening layers so the heading/description stay legible while image remains bright outward */}
-        <div
-          className="pointer-events-none absolute inset-0 z-[15] bg-black"
-          style={{ opacity: scrimOpacity * 0.35 }}
-        />
-        <div
-          className="pointer-events-none absolute inset-x-0 top-0 z-20 h-80 bg-gradient-to-b from-slate-950 via-slate-950/40 to-transparent"
-          style={{ opacity: scrimOpacity }}
-        />
-      </div>
-    </section>
+      <WhyChooseUs />
+    </>
   );
 }
