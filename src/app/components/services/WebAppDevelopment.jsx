@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Sparkles } from "lucide-react";
 import WhyChooseUs from "@/app/components/services/WhyChooseUs";
+import WebDevelopmentTypes from "@/app/components/services/webdevelopmenttypes";
 
 // Smooth acceleration/deceleration curve so the reveal doesn't feel linear/mechanical.
 function easeInOutCubic(t) {
@@ -146,16 +147,17 @@ export default function WebAppDevelopment() {
   // Fallback layout for mobile/tablet screens
   if (isMobile) {
     return (
-      <section className="service-font relative w-full bg-slate-950 border-t border-slate-800 py-16 px-4 sm:px-8 text-white">
+      <section className="relative w-full bg-slate-950 border-t border-slate-800 py-16 px-4 sm:px-8 text-white font-sans">
         <style jsx global>{`
-          @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
-          .service-font {
-            font-family:
-              "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-          }
-          .service-display {
-            font-family: "Sora", "Plus Jakarta Sans", ui-sans-serif, sans-serif;
-            letter-spacing: -0.02em;
+          @keyframes fadeUp {
+            from {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
           }
         `}</style>
 
@@ -178,7 +180,7 @@ export default function WebAppDevelopment() {
             <Sparkles className="h-3.5 w-3.5 text-blue-400" />
             Expertise
           </span>
-          <h1 className="service-display text-3xl font-extrabold tracking-tight leading-[1.1] sm:text-4xl md:text-5xl">
+          <h1 className="text-3xl font-extrabold tracking-tight leading-[1.1] sm:text-4xl md:text-5xl">
             <span className="bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
               Industry-Best{" "}
             </span>
@@ -211,7 +213,7 @@ export default function WebAppDevelopment() {
             <Sparkles className="h-3.5 w-3.5 text-blue-400" />
             Capabilities
           </span>
-          <h2 className="service-display text-3xl font-extrabold tracking-tight leading-[1.1] sm:text-4xl md:text-5xl">
+          <h2 className="text-3xl font-extrabold tracking-tight leading-[1.1] sm:text-4xl md:text-5xl">
             <span className="bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
               Custom Web Development Services to Broaden{" "}
             </span>
@@ -244,7 +246,7 @@ export default function WebAppDevelopment() {
                 </div>
 
                 <div className="absolute top-6 right-6 z-20 flex items-baseline gap-1 select-none pointer-events-none">
-                  <span className="service-display text-2xl font-black tracking-tighter bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">
+                  <span className="text-2xl font-black tracking-tighter bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">
                     {currentNumber}
                   </span>
                   <span className="text-xs font-bold text-slate-400">
@@ -265,7 +267,7 @@ export default function WebAppDevelopment() {
                 </div>
 
                 <div className="relative z-10 w-full text-left">
-                  <h3 className="service-display text-xl font-bold tracking-tight text-slate-950 sm:text-2xl">
+                  <h3 className="text-xl font-bold tracking-tight text-slate-950 sm:text-2xl">
                     {card.title}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-slate-700 sm:text-base">
@@ -295,18 +297,9 @@ export default function WebAppDevelopment() {
     <>
       <section
         ref={containerRef}
-        className="service-font relative w-full h-[720vh] bg-slate-950 border-t border-slate-800 text-white"
+        className="relative w-full h-[720vh] bg-slate-950 border-t border-slate-800 text-white font-sans"
       >
         <style jsx global>{`
-          @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
-          .service-font {
-            font-family:
-              "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-          }
-          .service-display {
-            font-family: "Sora", "Plus Jakarta Sans", ui-sans-serif, sans-serif;
-            letter-spacing: -0.02em;
-          }
           @keyframes fadeUp {
             from {
               opacity: 0;
@@ -364,7 +357,7 @@ export default function WebAppDevelopment() {
                 Expertise
               </span>
 
-              <h1 className="service-display animate-[fadeUp_0.9s_ease-out_0.1s_both] mx-auto text-3xl font-extrabold tracking-tight leading-[1.1] sm:text-4xl md:text-5xl lg:text-6xl">
+              <h1 className="animate-[fadeUp_0.9s_ease-out_0.1s_both] mx-auto text-3xl font-extrabold tracking-tight leading-[1.1] sm:text-4xl md:text-5xl lg:text-6xl">
                 <span className="bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
                   Industry-Best{" "}
                 </span>
@@ -377,8 +370,8 @@ export default function WebAppDevelopment() {
                 As a trusted website app development company, we offer a
                 comprehensive range of web development services. Our skilled
                 developers delve deep into your unique business challenges to
-                deliver perfectly tailored solutions that not only meet but
-                exceed your expectations.
+                deliver perfectly tailored solutions that not only meet but exceed
+                your expectations.
               </p>
 
               <div className="flex justify-center mt-6">
@@ -407,7 +400,7 @@ export default function WebAppDevelopment() {
                 <Sparkles className="h-3.5 w-3.5 text-blue-400" />
                 Capabilities
               </span>
-              <h2 className="service-display text-2xl font-extrabold tracking-tight leading-[1.1] sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl">
+              <h2 className="text-2xl font-extrabold tracking-tight leading-[1.1] sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl">
                 <span className="bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
                   Custom Web Development Services to Broaden{" "}
                 </span>
@@ -451,7 +444,7 @@ export default function WebAppDevelopment() {
 
                     {/* Modern Counter Figure positioned at the top right of the card */}
                     <div className="absolute top-5 right-5 sm:top-8 sm:right-10 z-20 flex items-center gap-2 select-none pointer-events-none rounded-full bg-white/70 backdrop-blur-sm px-4 py-1.5 shadow-sm">
-                      <span className="service-display text-xl sm:text-2xl lg:text-3xl font-black tracking-tighter bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">
+                      <span className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tighter bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">
                         {currentNumber}
                       </span>
                       <span className="text-xs sm:text-sm font-bold text-slate-400">
@@ -475,7 +468,7 @@ export default function WebAppDevelopment() {
                     </div>
 
                     <div className="relative z-10 w-full lg:flex-1 text-left">
-                      <h3 className="service-display text-xl font-bold tracking-tight sm:text-2xl lg:text-3xl text-slate-950">
+                      <h3 className="text-xl font-bold tracking-tight sm:text-2xl lg:text-3xl text-slate-950">
                         {card.title}
                       </h3>
                       <p className="mt-4 sm:mt-6 text-base leading-relaxed text-slate-700 sm:text-lg lg:text-xl">
@@ -501,6 +494,7 @@ export default function WebAppDevelopment() {
       </section>
 
       <WhyChooseUs />
+      <WebDevelopmentTypes />
     </>
   );
 }
