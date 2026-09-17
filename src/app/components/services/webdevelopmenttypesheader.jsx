@@ -39,7 +39,7 @@ export default function WebDevelopmentTypesHeader() {
           {/* Right Side: Description (Reduced to col-span-5 and added pt-2 to align nicely with the top of the heading text) */}
           <div className="flex flex-col items-start text-left lg:col-span-5 pt-1">
             <p className="w-full text-base font-normal leading-relaxed text-slate-300 sm:text-lg">
-              As a custom web application development company, we specialize in building diverse web applications tailored to the unique needs of businesses across industries. Our expertise covers different business models, workflows, and functional requirements, allowing us to create scalable digital solutions that improve operational efficiency, enhance user engagement, and support long-term business growth. From customer-facing platforms and e-commerce solutions to enterprise systems, SaaS products, portals, and data-driven applications, we develop web applications designed around specific business objectives and user needs.
+              We build custom web applications tailored to different business models, operational needs, and user requirements. From enterprise systems and e-commerce platforms to SaaS products, portals, marketplaces, and data-driven applications, our solutions are designed around specific business objectives and workflows.
             </p>
           </div>
         </div>

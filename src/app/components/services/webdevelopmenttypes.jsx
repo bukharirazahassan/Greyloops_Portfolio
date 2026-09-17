@@ -21,6 +21,7 @@ import {
   LayoutGrid,
 } from "lucide-react";
 
+
 import WebDevelopmentTypesHeader from "@/app/components/services/webdevelopmenttypesheader";
 
 /* ------------------------------------------------------------------ */
@@ -32,169 +33,91 @@ const webAppTypes = [
     icon: MonitorSmartphone,
     title: "Enterprise Web Applications",
     description:
-      "We develop scalable enterprise web applications that help organizations manage complex operations, streamline workflows, improve collaboration, and centralize business processes. Our solutions are designed around specific organizational requirements, providing secure, reliable, and flexible platforms that can adapt to evolving business needs and support long-term growth.",
+      "We develop custom enterprise web applications that bring complex business processes, operational workflows, and organizational data into centralized digital platforms. These applications can support employee management, CRM, supply chain operations, inventory, finance, administration, reporting, and other business-critical functions, helping organizations improve visibility, coordination, and operational efficiency.",
     highlights: [
-      "Business Process Management",
-      "Workflow Automation",
-      "Enterprise Data Management",
+      "Business & Workflow Management",
+      "Employee, CRM & Operations Systems",
+      "Supply Chain, Inventory & Asset Management",
     ],
-    image: "/images/services/web-app-types/enterprise_web_v1.png",
+    image: "/images/services/web-app-types/enterprise_web_applications.png",
   },
+
   {
     icon: ShoppingBag,
     title: "E-Commerce Web Applications",
     description:
-      "We build scalable e-commerce web applications that deliver seamless shopping experiences while supporting efficient online business operations. Our solutions are designed to help businesses manage products, customers, orders, and digital transactions through secure and user-friendly platforms.",
+      "We build custom e-commerce web applications that manage the complete digital commerce journey, from product discovery and customer accounts to shopping carts, payments, orders, and fulfillment. Our solutions can be tailored for B2C, B2B, and specialized commerce models, providing flexible platforms for managing products, customers, transactions, and online sales operations.",
     highlights: [
-      "Online Store & Product Management",
-      "Secure Payments & Order Processing",
-      "Customer Experience & Checkout Optimization",
+      "Product Catalog & Store Management",
+      "Shopping Cart, Checkout & Payments",
+      "Orders, Customers & Fulfillment",
     ],
-    image: "/images/services/web-app-types/eCommerce_web_v1.png",
+    image: "/images/services/web-app-types/eCommerce_web_applications.png",
   },
+
   {
     icon: Globe,
     title: "Web Portals",
     description:
-      "We build custom web portals that provide centralized access to essential information, services, and resources, creating a seamless experience for different user groups. Our secure and user-friendly portals are designed around specific business requirements, helping organizations improve communication, simplify processes, and deliver better digital experiences.",
+      "We develop purpose-built web portals that give customers, employees, partners, vendors, and other users centralized access to information, services, and business processes. Each portal is designed around its specific audience and workflows, with features such as user accounts, role-based access, self-service functionality, document management, dashboards, and secure information sharing.",
     highlights: [
-      "Self-Service & Customer Portals",
-      "Employee & Partner Portals",
-      "Secure Information & Service Management",
+      "Customer & Self-Service Portals",
+      "Employee, Partner & Vendor Portals",
+      "Role-Based Access & Information Management",
     ],
-    image: "/images/services/web-app-types/web_portals_v1.png",
+    image: "/images/services/web-app-types/web_portals.png",
   },
+
   {
     icon: BarChart3,
     title: "Data & Analytics Applications",
     description:
-      "We develop custom data and analytics applications that transform complex business data into clear, actionable insights. Our solutions collect, process, analyze, and visualize data from multiple sources through interactive dashboards, reports, maps, and real-time monitoring interfaces. From business performance and operational analytics to GPS and location-based tracking, our applications help organizations understand trends, monitor activities, and make informed decisions.",
+      "We develop data and analytics applications that collect, process, organize, and visualize information from multiple business sources. These applications turn operational data into useful dashboards, reports, maps, and real-time insights, supporting areas such as performance monitoring, business intelligence, operational analysis, GPS tracking, and location-based decision-making.",
     highlights: [
       "Interactive Dashboards & Business Reporting",
       "Data Visualization & Real-Time Analytics",
-      "GPS, Location Tracking & Geospatial Insights",
+      "GPS Tracking & Geospatial Insights",
     ],
     image: "/images/services/web-app-types/data_analytics_applications_v1.jpg",
   },
+
   {
     icon: Cloud,
     title: "SaaS Web Applications",
     description:
-      "We develop scalable SaaS web applications that deliver software services through the cloud, giving users convenient access to applications and features from any device with an internet connection. Our solutions are built to support multiple users, teams, and organizations while providing flexible architecture, secure access, and the ability to scale as your customer base and business requirements grow.",
+      "We build SaaS web applications that deliver software products through the cloud and provide users with continuous access through web browsers. These platforms can support multiple customers, teams, and user roles while managing subscriptions, permissions, application data, and account-specific functionality. The architecture is designed to support product growth, evolving features, and increasing user demand.",
     highlights: [
-      "Multi-Tenant SaaS Architecture",
+      "Multi-Tenant Application Architecture",
       "User, Subscription & Access Management",
-      "Scalable Cloud-Based Platforms",
+      "Cloud-Based Product & Platform Management",
     ],
-    image: "/images/services/web-app-types/saas_web_applications_v1.jpg",
+    image: "/images/services/web-app-types/saas_web_applications.png",
   },
-  {
-    icon: HeartPulse,
-    title: "Healthcare",
-    description:
-      "Patient management, telemedicine, and claims systems designed around clinical workflows and data privacy.",
-    highlights: [
-      "Patient and provider portals",
-      "Claims management and processing platforms",
-      "Policy and coverage administration tools",
-    ],
-    image: "/images/services/web-app-types/enterprise_web_v1.png",
-  },
-  {
-    icon: CreditCard,
-    title: "FinTech",
-    description:
-      "Banking dashboards, payment gateways, and trading tools built with compliance and security as first-class requirements.",
-    highlights: [
-      "Account management with transaction history",
-      "KYC, compliance, and audit-log workflows",
-      "Payment processing and reconciliation",
-    ],
-    image: "/images/services/web-app-types/enterprise_web_v1.png",
-  },
-  {
-    icon: GraduationCap,
-    title: "EdTech",
-    description:
-      "Course portals, cohort tracking, and assessments for e-learning platforms and corporate training programs.",
-    highlights: [
-      "Course authoring and content delivery",
-      "Enrollment, progress tracking, and certification",
-      "Live session and video integration",
-    ],
-    image: "/images/services/web-app-types/enterprise_web_v1.png",
-  },
-  {
-    icon: Users,
-    title: "CRM",
-    description:
-      "Tools for tracking leads, managing pipelines, and keeping every customer conversation in one place.",
-    highlights: [
-      "Contact and pipeline management with custom stages",
-      "Role-based access and team activity tracking",
-      "Integrations with email, calendar, and support tools",
-    ],
-    image: "/images/services/web-app-types/enterprise_web_v1.png",
-  },
-  {
-    icon: Landmark,
-    title: "ERP",
-    description:
-      "Integrated platforms that bring finance, HR, inventory, and operations together under a single source of truth.",
-    highlights: [
-      "Finance, procurement, and inventory modules",
-      "Cross-department reporting and dashboards",
-      "Workflow automation and approval chains",
-    ],
-    image: "/images/services/web-app-types/enterprise_web_v1.png",
-  },
-  {
-    icon: Zap,
-    title: "SPA",
-    description:
-      "Applications that load once and update instantly as users navigate, without a full page reload.",
-    highlights: [
-      "Fluid, app-like navigation",
-      "Real-time UI updates without reloads",
-      "Best fit for dashboards and internal tools",
-    ],
-    image: "/images/services/web-app-types/enterprise_web_v1.png",
-  },
-  {
-    icon: Layers,
-    title: "MPA",
-    description:
-      "Traditional, SEO-friendly structures with full page reloads, well suited to large content-driven sites.",
-    highlights: [
-      "Strong out-of-the-box SEO performance",
-      "Simple, predictable page-by-page structure",
-      "Good fit for content and marketing sites",
-    ],
-    image: "/images/services/web-app-types/enterprise_web_v1.png",
-  },
-  {
-    icon: FileStack,
-    title: "Static",
-    description:
-      "Fixed, pre-rendered content with no server-side processing, ideal for marketing sites and landing pages.",
-    highlights: [
-      "Fast load times served from a CDN",
-      "Low hosting cost and minimal maintenance",
-      "Easy to version and deploy",
-    ],
-    image: "/images/services/web-app-types/enterprise_web_v1.png",
-  },
+
   {
     icon: LayoutGrid,
-    title: "Dynamic",
+    title: "Marketplace Web Applications",
     description:
-      "Content that changes based on user interaction and live database state, the backbone of most business applications.",
+      "We build marketplace web applications that connect multiple groups of users, such as buyers and sellers or customers and service providers, through a centralized digital platform. These applications can manage listings, profiles, search, communication, transactions, orders, reviews, and platform-specific workflows for different marketplace models.",
     highlights: [
-      "Personalized, user-specific content",
-      "Real-time data from a connected backend",
-      "Scales with business logic and workflows",
+      "Vendor & Listing Management",
+      "Search, Profiles & Customer Interaction",
+      "Orders, Transactions & Reviews",
     ],
-    image: "/images/services/web-app-types/enterprise_web_v1.png",
+    image: "/images/services/web-app-types/marketplace_web_applications.png",
+  },
+
+  {
+    icon: Layers,
+    title: "Industry-Specific Web Applications",
+    description:
+      "We create specialized web applications for industries with unique operational, regulatory, and user requirements. These solutions can be tailored for healthcare, financial services, education, logistics, real estate, and other sectors where standard software may not fully address specific business workflows.",
+    highlights: [
+      "Healthcare & Patient Management",
+      "FinTech & Financial Services",
+      "Education, Logistics & Industry Platforms",
+    ],
+    image: "/images/services/web-app-types/industry_specific_web_applications.png",
   },
 ];
 
@@ -317,7 +240,7 @@ export default function WebDevelopmentTypes() {
   return (
     <>
       <WebDevelopmentTypesHeader />
-      <section className="relative w-full bg-slate-50 border-t border-slate-200 py-16 lg:py-24 px-6 sm:px-12 lg:px-16 xl:px-24 text-slate-900 font-sans">
+      <section className="relative w-full overflow-hidden bg-gradient-to-b from-white via-blue-50/40 to-slate-50 py-16 lg:py-24 px-6 sm:px-12 lg:px-16 xl:px-24 text-slate-900 font-sans">
         <style jsx global>{`
           @keyframes slideFromRight {
             from {
@@ -347,17 +270,22 @@ export default function WebDevelopmentTypes() {
           }
         `}</style>
 
-        {/* Ambient background decorative elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div className="absolute left-1/4 top-1/3 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[140px]" />
-          <div
-            className="absolute inset-0 opacity-40"
-            style={{
-              backgroundImage: `radial-gradient(#cbd5e1 1.2px, transparent 1.2px)`,
-              backgroundSize: `24px 24px`,
-            }}
-          />
-        </div>
+        {/* Dot-grid texture matching standard */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.3]"
+          style={{
+            backgroundImage: "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+            maskImage:
+              "radial-gradient(ellipse 90% 85% at 20% 50%, black 25%, transparent 100%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 90% 85% at 20% 50%, black 25%, transparent 100%)",
+          }}
+        />
+
+        {/* Ambient background glows matching standard */}
+        <div className="pointer-events-none absolute -left-24 top-0 h-[420px] w-[420px] rounded-full bg-blue-300/35 blur-[130px]" />
+        <div className="pointer-events-none absolute -right-24 bottom-0 h-[420px] w-[420px] rounded-full bg-indigo-300/30 blur-[130px]" />
 
         <div className="relative z-10 w-full mx-auto">
           {/* Two-panel view: open panel + next closed preview (or open alone at the end) */}

@@ -15,56 +15,82 @@ function easeInOutCubic(t) {
 const secondaryCards = [
   {
     title: "Custom Web Application Development",
+
     description:
-      "Full-cycle development of web applications with well-defined architecture, API design, business logic, and user-facing interfaces. Each project starts with a requirements review and a technical proposal before development begins. Scope, timeline, and delivery milestones are agreed upon before the first sprint.",
+      "We develop custom web applications around specific business processes, user requirements, and operational goals. Our full-cycle approach covers requirements analysis, application architecture, database planning, business logic, API development, user interfaces, testing, and deployment. Before development begins, we establish the technical approach, project scope, priorities, and delivery milestones to create a clear foundation for the product.",
+
     image: "/images/services/custom_web_application_development_bg.png",
   },
+
   {
     title: "Frontend Development",
+
     description:
-      "Component-based frontend engineering with React, Next.js, Vue, or Angular, chosen based on product requirements, not framework trends. We cover interface architecture, performance optimization, state management, accessibility, and the visual layer.",
+      "We build responsive and interactive frontend experiences using React, Next.js, Vue, and Angular based on application requirements. Our frontend development covers component architecture, reusable UI systems, state management, responsive layouts, accessibility, performance optimization, and integration with backend services. This creates consistent digital experiences that remain maintainable as applications evolve.",
+
     image: "/images/services/frontend_development_v1.png",
   },
+
   {
     title: "E-Commerce & Online Stores",
+
     description:
-      "Build a powerful online store designed to turn visitors into customers and support long-term business growth. We develop tailored e-commerce solutions that deliver seamless shopping experiences, secure payments, efficient product and inventory management, intelligent search, and streamlined checkout journeys. From Shopify and WooCommerce to fully custom e-commerce platforms, our experienced development approach creates scalable storefronts that help businesses manage operations, understand customer behavior, increase conversions, and expand their digital presence.",
+      "We develop e-commerce solutions that support the complete online shopping journey, from product discovery and catalog management to checkout, payment processing, order handling, and customer accounts. We work with platforms such as Shopify and WooCommerce or develop fully customized storefronts based on business requirements. Solutions can include inventory management, search and filtering, promotions, shipping workflows, payment integration, and customer-focused purchasing experiences.",
+
     image: "/images/services/eCommerce_online_stores_v1.png",
   },
+
   {
     title: "WordPress Development",
+
     description:
-      "Create a professional WordPress website tailored to your business, brand, and long-term digital goals. We develop custom WordPress solutions with clean, maintainable code, intuitive content management, responsive experiences, and performance-focused architecture. From custom themes and flexible page-building experiences to WooCommerce integration and speed optimization, our experienced WordPress development approach helps businesses maintain their websites easily while delivering a fast, scalable, and SEO-friendly online presence.",
+      "We create custom WordPress websites tailored to a business's content, branding, functionality, and management requirements. Our services include custom theme development, structured content, responsive layouts, WordPress configuration, WooCommerce implementation, performance optimization, and maintainable administrative experiences. We focus on creating websites that are easy to manage while providing a reliable foundation for future updates and growth.",
+
     image: "/images/services/wordpress_development_v1.png",
   },
+
   {
     title: "Backend Development and API Engineering",
+
     description:
-      "Scalable backend systems built on Node.js, Python, Java, or PHP, depending on the workload. REST and GraphQL APIs are designed for developer usability and documented for long-term maintainability. Database architecture suited to the query patterns the product will actually run.",
+      "We engineer the server-side systems that power web applications, including business logic, authentication, data processing, database operations, and API services. Depending on project requirements, our backend development can use Node.js, Python, Java, or PHP, with REST or GraphQL APIs where appropriate. We design backend architecture around expected workloads, data relationships, security requirements, and long-term maintainability.",
+
     image: "/images/services/backend_devel_and_api_engineering_v1.png.png",
   },
+
   {
     title: "Web Portal and Internal Tool Development",
+
     description:
-      "Internal platforms for operations, reporting, administration, and data management, replacing disconnected spreadsheets and manual processes with a web-based system built around how the team already works. These products rarely require complex UX, they require reliable data handling and role-based access control.",
+      "We build web portals and internal applications that bring business information, workflows, and operational activities into a centralized environment. These solutions can support employee management, attendance, reporting, approvals, administration, inventory, customer self-service, partner access, and other organization-specific processes. Role-based permissions, structured data management, dashboards, and workflow controls help teams reduce manual work and operate through a more organized digital system.",
+
     image: "/images/services/web_portal_and_internal_tool_development_v1.png",
   },
+
   {
     title: "System Integration and API Development",
+
     description:
-      "Connecting the web application to payment gateways, CRMs, ERPs, identity providers, analytics platforms, and third-party APIs in ways that remain stable as external services evolve. Integration documentation, error handling, and monitoring are included in scope, not added later.",
+      "We connect web applications with the external systems businesses rely on, including payment services, CRM and ERP platforms, authentication providers, communication services, analytics systems, and third-party APIs. Our integration work covers API design and consumption, authentication, data synchronization, validation, error handling, and integration workflows. We structure integrations to handle service changes and failures while keeping communication between systems reliable.",
+
     image: "/images/services/system_integration_API_development.png",
   },
+
   {
     title: "Cloud Deployment and DevOps Setup",
+
     description:
-      "Web applications that launch without a proper cloud setup, CI/CD pipeline, or monitoring configuration create operational risk from day one. We configure infrastructure on AWS, manage environments, and set up logging and alerting before the production release. DevOps services and AWS expertise are available as standalone engagements.",
+      "We prepare web applications for reliable deployment by establishing cloud infrastructure, application environments, deployment workflows, and operational monitoring. Our DevOps services can include AWS infrastructure configuration, CI/CD pipelines, environment management, application logging, monitoring, alerting, and deployment automation. This creates a controlled path from development to production while making applications easier to deploy, monitor, maintain, and scale.",
+
     image: "/images/services/cloud_deployment_and_devops_setup.png",
   },
+
   {
     title: "QA and Testing",
+
     description:
-      "Our experienced QA specialists bring dedicated expertise to every stage of web application development, helping identify and resolve issues before they impact production. We perform comprehensive functional, performance, compatibility, usability, and security testing across different scenarios and environments. Our QA approach combines automated testing where it adds value with thorough manual testing and expert human validation for complex workflows and business-critical use cases. This helps ensure applications are stable, secure, reliable, and fully prepared for production.",
+      "Our experienced QA specialists bring dedicated testing expertise throughout the web application development lifecycle, helping identify functional and technical issues before production release. We cover functional, regression, compatibility, usability, performance, and security-focused testing according to application requirements. Our approach combines automated testing where it provides meaningful coverage with thorough manual testing and human validation for complex workflows, business rules, and real-world use cases.",
+
     image: "/images/services/qa_and_testing.png",
   },
 ];
@@ -370,8 +396,8 @@ export default function WebAppDevelopment() {
                 As a trusted website app development company, we offer a
                 comprehensive range of web development services. Our skilled
                 developers delve deep into your unique business challenges to
-                deliver perfectly tailored solutions that not only meet but exceed
-                your expectations.
+                deliver perfectly tailored solutions that not only meet but
+                exceed your expectations.
               </p>
 
               <div className="flex justify-center mt-6">
