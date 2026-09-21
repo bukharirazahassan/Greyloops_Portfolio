@@ -51,7 +51,7 @@ export default function CollaborateMobileDevelopment() {
 
             {/* Description */}
             <p className="mb-8 text-sm font-normal leading-relaxed text-slate-600 antialiased sm:text-base lg:text-lg lg:leading-relaxed">
-              Ready to turn your mobile app idea into a scalable digital product? Let’s discuss your goals, requirements, and the right technology approach for your business.
+              Ready to turn your business goals and ideas into a practical digital solution? Let’s discuss your requirements, challenges, and objectives to determine the right technology approach and development strategy for your project.
             </p>
 
             {/* CTA Button */}

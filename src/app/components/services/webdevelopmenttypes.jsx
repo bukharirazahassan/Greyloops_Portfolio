@@ -9,18 +9,10 @@ import {
   ShoppingBag,
   Globe,
   BarChart3,
-  HeartPulse,
-  CreditCard,
-  GraduationCap,
   Cloud,
-  Users,
-  Landmark,
-  Zap,
   Layers,
-  FileStack,
   LayoutGrid,
 } from "lucide-react";
-
 
 import WebDevelopmentTypesHeader from "@/app/components/services/webdevelopmenttypesheader";
 
@@ -122,10 +114,10 @@ const webAppTypes = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* Open panel: text left, large image right                            */
+/* Open panel: light background text left, large image right           */
 /* ------------------------------------------------------------------ */
 
-function OpenPanel({ type, animKey, direction, isAlone }) {
+function OpenPanel({ type, animKey, direction }) {
   const IconComponent = type.icon;
   const slideClass =
     direction === -1 ? "panel-slide-from-left" : "panel-slide-from-right";
@@ -133,19 +125,19 @@ function OpenPanel({ type, animKey, direction, isAlone }) {
   return (
     <div
       key={animKey}
-      className={`flex min-h-[520px] lg:min-h-[580px] flex-1 flex-col overflow-hidden rounded-3xl bg-slate-900 ring-1 ring-slate-900 sm:flex-row ${slideClass}`}
+      className={`flex min-h-[520px] lg:min-h-[580px] flex-1 flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-slate-200 sm:flex-row ${slideClass}`}
     >
       {/* text side */}
       <div className="flex flex-1 flex-col justify-center p-8 sm:p-10 lg:p-14">
-        <span className="mb-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg shadow-blue-500/25">
+        <span className="mb-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
           {IconComponent && <IconComponent className="h-6 w-6" />}
         </span>
 
-        <h3 className="text-2xl font-bold leading-snug text-white sm:text-3xl">
+        <h3 className="text-2xl font-bold leading-snug text-slate-900 sm:text-3xl">
           {type.title}
         </h3>
 
-        <p className="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
+        <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
           {type.description}
         </p>
 
@@ -153,9 +145,9 @@ function OpenPanel({ type, animKey, direction, isAlone }) {
           {type.highlights.map((point) => (
             <li
               key={point}
-              className="flex items-start gap-3 text-sm sm:text-base text-slate-300"
+              className="flex items-start gap-3 text-sm sm:text-base text-slate-700 font-medium"
             >
-              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-blue-400" />
+              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-blue-600" />
               {point}
             </li>
           ))}
@@ -171,7 +163,7 @@ function OpenPanel({ type, animKey, direction, isAlone }) {
           className="object-cover"
           sizes="(min-width: 1024px) 45vw, 100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent sm:bg-gradient-to-l" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 via-transparent to-transparent sm:bg-gradient-to-l" />
       </div>
     </div>
   );
@@ -192,12 +184,12 @@ function ClosedPanel({ type, animKey, direction, onOpen }) {
       type="button"
       onClick={onOpen}
       aria-label={`Show ${type.title}`}
-      className={`hidden w-[180px] shrink-0 flex-col items-center justify-center gap-6 rounded-3xl bg-white p-8 text-center ring-1 ring-slate-200 transition-colors duration-200 hover:ring-blue-300 sm:flex lg:w-[220px] ${slideClass}`}
+      className={`hidden w-[180px] shrink-0 flex-col items-center justify-center gap-6 rounded-3xl bg-white p-8 text-center ring-1 ring-slate-200 transition-all duration-200 hover:ring-blue-300 hover:shadow-sm sm:flex lg:w-[220px] ${slideClass}`}
     >
       <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
         {IconComponent && <IconComponent className="h-6 w-6" />}
       </span>
-      <span className="text-base font-bold text-slate-700 sm:text-lg">
+      <span className="text-base font-bold text-slate-800 sm:text-lg">
         {type.title}
       </span>
       <span className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-500">
@@ -238,9 +230,9 @@ export default function WebDevelopmentTypes() {
   }
 
   return (
-    <>
+    <div className="relative w-full bg-slate-50 text-slate-900">
       <WebDevelopmentTypesHeader />
-      <section className="relative w-full overflow-hidden bg-gradient-to-b from-white via-blue-50/40 to-slate-50 py-16 lg:py-24 px-6 sm:px-12 lg:px-16 xl:px-24 text-slate-900 font-sans">
+      <section className="relative w-full overflow-hidden bg-slate-50 pt-2 pb-16 lg:pb-24 px-6 sm:px-12 lg:px-16 xl:px-24 text-slate-900 font-sans">
         <style jsx global>{`
           @keyframes slideFromRight {
             from {
@@ -270,22 +262,18 @@ export default function WebDevelopmentTypes() {
           }
         `}</style>
 
-        {/* Dot-grid texture matching standard */}
+        {/* Background Glows matching standard */}
+        <div className="pointer-events-none absolute -left-20 top-1/4 z-0 h-[300px] w-[300px] rounded-full bg-blue-400/15 blur-[120px]" />
+        <div className="pointer-events-none absolute -right-20 bottom-1/4 z-0 h-[350px] w-[350px] rounded-full bg-sky-400/15 blur-[140px]" />
+
+        {/* Dot Matrix Pattern matching standard */}
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.3]"
+          className="pointer-events-none absolute inset-0 z-0 opacity-40"
           style={{
-            backgroundImage: "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-            maskImage:
-              "radial-gradient(ellipse 90% 85% at 20% 50%, black 25%, transparent 100%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 90% 85% at 20% 50%, black 25%, transparent 100%)",
+            backgroundImage: `radial-gradient(#94a3b8 1.2px, transparent 1.2px)`,
+            backgroundSize: `24px 24px`,
           }}
         />
-
-        {/* Ambient background glows matching standard */}
-        <div className="pointer-events-none absolute -left-24 top-0 h-[420px] w-[420px] rounded-full bg-blue-300/35 blur-[130px]" />
-        <div className="pointer-events-none absolute -right-24 bottom-0 h-[420px] w-[420px] rounded-full bg-indigo-300/30 blur-[130px]" />
 
         <div className="relative z-10 w-full mx-auto">
           {/* Two-panel view: open panel + next closed preview (or open alone at the end) */}
@@ -294,7 +282,6 @@ export default function WebDevelopmentTypes() {
               type={items[openIndex]}
               animKey={`open-${openIndex}`}
               direction={direction}
-              isAlone={isLast}
             />
             {nextIndex !== null && (
               <ClosedPanel
@@ -344,6 +331,6 @@ export default function WebDevelopmentTypes() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
