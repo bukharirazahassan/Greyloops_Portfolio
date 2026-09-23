@@ -13,6 +13,7 @@ import MobileDevelopment from "../../components/services/MobileService/mobiledev
 import AndroidAppDevelopment from "../../components/services/MobileService/AndroidAppDevelopment";
 import IOSAppDevelopment from "../../components/services/MobileService/IOSAPPDevelopment";
 import WebAppDevelopment from "../../components/services/WebAppDevelopment";
+import DevOpsServices from "../../components/services/DevOps/DevOpsServices";
 import FAQSection from "../../components/FAQSection";
 
 import Header from "../../components/Header";
@@ -60,6 +61,12 @@ export default async function ServiceDetailPage({ params }) {
         <>
           <Header />
           <WebAppDevelopment />
+          <Footer />
+        </>
+      ) : slug === "devops-services" ? (
+        <>
+          <Header />
+          <DevOpsServices />
           <Footer />
         </>
       ) : slug === "enterprise-software-development" ? (
