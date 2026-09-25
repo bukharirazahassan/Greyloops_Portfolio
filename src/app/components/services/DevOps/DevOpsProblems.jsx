@@ -192,7 +192,7 @@ export default function DevOpsChallenges() {
           </div>
 
           <div className="flex flex-col items-start text-left lg:col-span-5">
-            <p className="w-full text-base font-normal leading-relaxed text-slate-600 sm:text-lg">
+            <p className="w-full text-lg font-normal leading-relaxed text-slate-600 sm:text-xl">
               As software applications grow, development teams can face
               slower releases, increasing cloud costs, security concerns,
               and disconnected workflows. Our DevOps services help simplify
@@ -213,7 +213,25 @@ export default function DevOpsChallenges() {
             height: `calc(100vh - ${NAVBAR_HEIGHT_PX}px)`,
           }}
         >
-          <div className="mx-auto flex h-full w-full flex-col justify-center px-6 py-10 sm:px-12 lg:px-16 xl:px-24">
+          {/* Ambient background — matches the static header above */}
+          <div className="pointer-events-none absolute inset-0 z-0">
+            <div className="absolute right-0 top-0 h-[600px] w-[750px] -translate-y-1/3 rounded-full bg-blue-100/50 blur-[160px]" />
+            <div className="absolute right-[8%] top-0 h-[500px] w-[500px] -translate-y-1/4 rounded-full bg-sky-100/50 blur-[120px]" />
+            <div className="absolute -left-20 bottom-0 h-[500px] w-[500px] translate-y-1/4 rounded-full bg-blue-100/40 blur-[140px]" />
+            <div
+              className="absolute inset-0 opacity-[0.20]"
+              style={{
+                backgroundImage: `radial-gradient(#94a3b8 1.2px, transparent 1.2px)`,
+                backgroundSize: `24px 24px`,
+                maskImage:
+                  "radial-gradient(ellipse 90% 75% at 50% 50%, black 25%, transparent 100%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse 90% 75% at 50% 50%, black 25%, transparent 100%)",
+              }}
+            />
+          </div>
+
+          <div className="relative z-10 mx-auto flex h-full w-full flex-col justify-center px-6 py-10 sm:px-12 lg:px-16 xl:px-24">
             <div className="grid w-full items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
               {/* LEFT: categories (top-aligned) + DevOps Focus checklist */}
               <div className="flex flex-col justify-start">
@@ -236,13 +254,13 @@ export default function DevOpsChallenges() {
                           style={{ width: isActive ? "42px" : "20px" }}
                         />
                         <span
-                          className="text-sm font-semibold transition-colors duration-300"
+                          className="text-base font-semibold transition-colors duration-300"
                           style={{ color: isActive ? "#2563eb" : "#94a3b8" }}
                         >
                           {challenge.number}
                         </span>
                         <span
-                          className="text-sm font-medium transition-colors duration-300 sm:text-base"
+                          className="text-base font-medium transition-colors duration-300 sm:text-lg"
                           style={{ color: isActive ? "#0f172a" : "#94a3b8" }}
                         >
                           {challenge.title}
@@ -257,11 +275,11 @@ export default function DevOpsChallenges() {
                   <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-slate-400">
                     DevOps Focus
                   </p>
-                  <ul className="space-y-3">
+                  <ul className="space-y-4">
                     {challenges[activeIndex].focus.split(" • ").map((item) => (
                       <li key={item} className="flex items-start gap-3">
-                        <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-600" />
-                        <span className="text-sm font-medium leading-6 text-slate-700 sm:text-base">
+                        <CheckCircle2 className="mt-0.5 h-6 w-6 flex-shrink-0 text-blue-600" />
+                        <span className="text-base font-medium leading-7 text-slate-700 sm:text-lg">
                           {item}
                         </span>
                       </li>
@@ -303,15 +321,15 @@ export default function DevOpsChallenges() {
                               </div>
                             </div>
 
-                            <h3 className="max-w-3xl text-lg font-bold leading-tight tracking-tight text-slate-900 sm:whitespace-nowrap sm:text-xl lg:text-2xl">
+                            <h3 className="max-w-3xl text-xl font-bold leading-tight tracking-tight text-slate-900 sm:whitespace-nowrap sm:text-2xl xl:text-3xl">
                               {challenge.title}
                             </h3>
 
-                            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base sm:leading-7">
+                            <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg sm:leading-8">
                               {challenge.description}
                             </p>
 
-                            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base sm:leading-7">
+                            <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg sm:leading-8">
                               {challenge.solution}
                             </p>
                           </div>

@@ -5,7 +5,13 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import DevOpsChallenges from "@/app/components/services/DevOps/DevOpsChallenges";
-import DevOpsProblems from "@/app/components/services/DevOps/DevOpsProblems"
+import DevOpsProblems from "@/app/components/services/DevOps/DevOpsProblems";
+import DevOpsBenefits from "@/app/components/services/DevOps/DevOpsBenefits"
+import DevOpsSolutionsDeliver from "@/app/components/services/DevOps/DevOpsSolutionsDeliver"
+import DevOpsTechnology from "@/app/components/services/DevOps/DevOpsTechnology"
+
+
+
 const NAVBAR_HEIGHT_PX = 80; // match your real header height
 
 const QUESTIONS = [
@@ -200,6 +206,9 @@ export default function DevOpsServices() {
     </section>
     <DevOpsChallenges />
     <DevOpsProblems />
+    <DevOpsBenefits />
+    <DevOpsSolutionsDeliver />
+    <DevOpsTechnology/>
     </>
   );
 }
