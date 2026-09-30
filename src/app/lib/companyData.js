@@ -112,31 +112,31 @@ export const socialLinks = [
   {
     name: "LinkedIn",
     icon: LinkedinIcon,
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/company/greyloop/?originalSubdomain=pk",
     gradient: "from-blue-600 to-blue-700 hover:shadow-blue-500/40",
   },
-  {
-    name: "X",
-    icon: XIcon,
-    href: "https://x.com",
-    gradient: "from-slate-800 to-black hover:shadow-slate-700/40",
-  },
+  // {
+  //   name: "X",
+  //   icon: XIcon,
+  //   href: "https://x.com",
+  //   gradient: "from-slate-800 to-black hover:shadow-slate-700/40",
+  // },
   {
     name: "Facebook",
     icon: FacebookIcon,
-    href: "https://facebook.com",
+    href: "https://www.facebook.com/greyloopsltd/",
     gradient: "from-blue-500 to-indigo-600 hover:shadow-indigo-500/40",
   },
   {
     name: "Instagram",
     icon: InstagramIcon,
-    href: "https://instagram.com",
+    href: "https://www.instagram.com/greyloops_ltd/?hl=en",
     gradient: "from-amber-500 via-rose-500 to-purple-600 hover:shadow-rose-500/40",
   },
-  {
+  /* {
     name: "YouTube",
     icon: YoutubeIcon,
     href: "https://youtube.com",
     gradient: "from-red-600 to-rose-700 hover:shadow-red-500/40",
-  },
+  }, */
 ];

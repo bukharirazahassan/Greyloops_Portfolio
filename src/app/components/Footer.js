@@ -5,30 +5,37 @@ import Link from "next/link";
 
 export default function Footer() {
   const popularServices = [
-    { name: "Development & QA", slug: "development-and-qa" },
-    { name: "Mobility & Apps", slug: "mobility-and-apps" },
-    { name: "IT Operations", slug: "it-operations" },
-    { name: "Data Solutions", slug: "data-solutions" },
-    { name: "Artificial Intelligence", slug: "artificial-intelligence" },
-    { name: "E-Commerce", slug: "e-commerce" },
+    { name: "UX/UI Design", slug: "ux-ui-design", category: "Design" },
+    { name: "Frontend Development", slug: "frontend-development", category: "Development" },
+    { name: "Backend Development", slug: "backend-development", category: "Development" },
+    { name: "Web App Development", slug: "web-app-development", category: "Development" },
+    { name: "SaaS Development", slug: "saas-development", category: "Development" },
+    { name: "Enterprise Software", slug: "enterprise-software-development", category: "Development" },
+    { name: "Mobile App Development", slug: "mobile-app-development", category: "Mobile" },
+    { name: "Android App Development", slug: "android-app-development", category: "Mobile" },
+    { name: "iOS App Development", slug: "ios-app-development", category: "Mobile" },
+    { name: "DevOps Services", slug: "devops-services", category: "Operations & Cloud" },
+    { name: "Infrastructure Design", slug: "infrastructure-design", category: "Operations & Cloud" },
+    { name: "Cybersecurity", slug: "cybersecurity", category: "Operations & Cloud" },
+    { name: "Software Consulting", slug: "software-consulting", category: "Consulting" },
   ];
 
   const usefulLinks = [
-    { name: "About Us", href: "/about" },
+    { name: "About Us", href: "/company/about-us" },
     { name: "Contact Us", href: "/contact" },
-    { name: "Case Studies", href: "/case-studies" },
-    { name: "Careers", href: "/careers" },
-    { name: "Privacy Policy", href: "/privacy-policy" },
-    { name: "Terms of Service", href: "/terms" },
+    { name: "Case Studies", href: "#" },
+    { name: "Careers", href: "#" },
+    { name: "Privacy Policy", href: "#" },
+    { name: "Terms of Service", href: "#" },
   ];
 
   const socialLinks = [
-    { name: "Email", icon: "/Email.svg", href: "mailto:query@greyloops.com" },
-    { name: "LinkedIn", icon: "/footer-linkedin.svg", href: "https://linkedin.com" },
-    { name: "X", icon: "/footer-x.svg", href: "https://x.com" },
-    { name: "Facebook", icon: "/footer-facebook.svg", href: "https://facebook.com" },
-    { name: "Instagram", icon: "/footer-instagram.svg", href: "https://instagram.com" },
-    { name: "YouTube", icon: "/footer-youtube.svg", href: "https://youtube.com" },
+    { name: "Email", icon: "/Email.svg", href: "mailto:Info@greyloops.com" },
+    { name: "LinkedIn", icon: "/footer-linkedin.svg", href: "https://www.linkedin.com/company/greyloop/?originalSubdomain=pk" },
+    // { name: "X", icon: "/footer-x.svg", href: "https://x.com" },
+    { name: "Facebook", icon: "/footer-facebook.svg", href: "https://www.facebook.com/greyloopsltd/" },
+    { name: "Instagram", icon: "/footer-instagram.svg", href: "https://www.instagram.com/greyloops_ltd/?hl=en" },
+    // { name: "YouTube", icon: "/footer-youtube.svg", href: "https://youtube.com" },
   ];
 
   const offices = [
@@ -141,27 +148,108 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Services */}
-          <div className="p-6 sm:p-8 lg:col-span-3">
+          {/* Services expanded across 6 columns with 3 sub-columns layout matching font styles */}
+          <div className="p-6 sm:p-8 lg:col-span-6">
             <h4 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-400">
               <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
               Services
             </h4>
-            <ul className="mt-5 space-y-3 text-sm sm:text-base">
-              {popularServices.map((item) => (
-                <li key={item.slug}>
-                  <Link
-                    href={`/services/${item.slug}`}
-                    className="group inline-flex items-center gap-2 text-slate-300 transition-colors hover:text-white antialiased"
-                  >
-                    <span className="text-slate-500 transition-colors group-hover:text-blue-400">
-                      ›
-                    </span>
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm sm:text-base">
+              <div className="space-y-3">
+                <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-400 border-b border-slate-800 pb-1">
+                  <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                  Design & Frontend
+                </span>
+                <ul className="space-y-3">
+                  {popularServices
+                    .filter((s) => s.category === "Design" || s.category === "Development" && (s.slug === "frontend-development" || s.slug === "ux-ui-design"))
+                    .map((item) => (
+                      <li key={item.slug}>
+                        <Link
+                          href={`/services/${item.slug}`}
+                          className="group inline-flex items-center gap-2 text-slate-300 transition-colors hover:text-white antialiased text-sm sm:text-base"
+                        >
+                          <span className="text-slate-500 transition-colors group-hover:text-blue-400">
+                            ›
+                          </span>
+                          {item.name}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+                <div className="pt-2">
+                  <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-400 border-b border-slate-800 pb-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                    Core Development
+                  </span>
+                  <ul className="mt-3 space-y-3">
+                    {popularServices
+                      .filter((s) => s.category === "Development" && s.slug !== "frontend-development")
+                      .map((item) => (
+                        <li key={item.slug}>
+                          <Link
+                            href={`/services/${item.slug}`}
+                            className="group inline-flex items-center gap-2 text-slate-300 transition-colors hover:text-white antialiased text-sm sm:text-base"
+                          >
+                            <span className="text-slate-500 transition-colors group-hover:text-blue-400">
+                              ›
+                            </span>
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-400 border-b border-slate-800 pb-1">
+                  <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                  Mobile Apps
+                </span>
+                <ul className="space-y-3">
+                  {popularServices
+                    .filter((s) => s.category === "Mobile")
+                    .map((item) => (
+                      <li key={item.slug}>
+                        <Link
+                          href={`/services/${item.slug}`}
+                          className="group inline-flex items-center gap-2 text-slate-300 transition-colors hover:text-white antialiased text-sm sm:text-base"
+                        >
+                          <span className="text-slate-500 transition-colors group-hover:text-blue-400">
+                            ›
+                          </span>
+                          {item.name}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+
+              <div className="space-y-3">
+                <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-400 border-b border-slate-800 pb-1">
+                  <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                  Cloud & Consulting
+                </span>
+                <ul className="space-y-3">
+                  {popularServices
+                    .filter((s) => s.category === "Operations & Cloud" || s.category === "Consulting")
+                    .map((item) => (
+                      <li key={item.slug}>
+                        <Link
+                          href={`/services/${item.slug}`}
+                          className="group inline-flex items-center gap-2 text-slate-300 transition-colors hover:text-white antialiased text-sm sm:text-base"
+                        >
+                          <span className="text-slate-500 transition-colors group-hover:text-blue-400">
+                            ›
+                          </span>
+                          {item.name}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            </div>
           </div>
 
           {/* Useful links */}
@@ -186,53 +274,6 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-
-          {/* Direct contact */}
-          <div className="p-6 sm:p-8 lg:col-span-3">
-            <h4 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
-              Contact
-            </h4>
-
-            <div className="mt-5 space-y-5">
-              <div>
-                <span className="block text-xs uppercase tracking-wider text-slate-400 font-medium">
-                  Have any questions?
-                </span>
-                <a
-                  href="tel:+180045647823"
-                  className="text-base font-semibold text-white transition-colors hover:text-blue-300 sm:text-lg"
-                >
-                  +1-800-456-478-23
-                </a>
-              </div>
-
-              <div className="space-y-3 border-t border-slate-800 pt-4 text-sm sm:text-base">
-                <div className="flex flex-col">
-                  <span className="text-xs uppercase tracking-wider text-slate-400 font-medium">
-                    Business
-                  </span>
-                  <a
-                    href="mailto:query@greyloops.com"
-                    className="font-medium text-slate-200 transition-colors hover:text-blue-300"
-                  >
-                    Info@greyloops.com
-                  </a>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xs uppercase tracking-wider text-slate-400 font-medium">
-                    Careers
-                  </span>
-                  <a
-                    href="mailto:careers@greyloops.com"
-                    className="font-medium text-slate-200 transition-colors hover:text-blue-300"
-                  >
-                    careers@greyloops.com
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Global presence section */}
@@ -252,26 +293,28 @@ export default function Footer() {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 divide-y divide-slate-800 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          <div className="grid grid-cols-1 divide-y divide-slate-800 sm:grid-cols-4 sm:divide-x sm:divide-y-0">
             {offices.map((office) => (
-              <div key={office.code} className="p-6 sm:p-8">
-                <div className="flex items-center justify-between">
-                  <span className="flex items-center gap-2.5">
-                    <span className="flex h-8 w-8 items-center justify-center border border-slate-800 bg-slate-950 text-base leading-none">
-                      {office.flag}
+              <div key={office.code} className="p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="flex items-center gap-2.5">
+                      <span className="flex h-8 w-8 items-center justify-center border border-slate-800 bg-slate-950 text-base leading-none">
+                        {office.flag}
+                      </span>
+                      <span className="text-lg font-extrabold tracking-tight text-white">
+                        {office.code}
+                      </span>
                     </span>
-                    <span className="text-lg font-extrabold tracking-tight text-white">
-                      {office.code}
+                    <span className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-slate-400">
+                      <span className={`h-1.5 w-1.5 rounded-full ${office.dot}`} />
+                      {office.role}
                     </span>
-                  </span>
-                  <span className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-slate-400">
-                    <span className={`h-1.5 w-1.5 rounded-full ${office.dot}`} />
-                    {office.role}
-                  </span>
+                  </div>
+                  <p className="mt-3 text-xs leading-relaxed text-slate-300 antialiased sm:text-sm">
+                    {office.address}
+                  </p>
                 </div>
-                <p className="mt-3 text-xs leading-relaxed text-slate-300 antialiased sm:text-sm">
-                  {office.address}
-                </p>
                 <div className="mt-4 border-t border-slate-800/80 pt-3 text-xs font-medium sm:text-sm">
                   {office.metaHref ? (
                     <a
@@ -286,6 +329,61 @@ export default function Footer() {
                 </div>
               </div>
             ))}
+
+            {/* 4th Column matching the exact style of Global Presence items with empty space on the right side */}
+            <div className="p-6 sm:p-8 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center gap-2.5">
+                    <span className="flex h-8 w-8 items-center justify-center border border-slate-800 bg-slate-950 text-base leading-none">
+                      📞
+                    </span>
+                    <span className="text-lg font-extrabold tracking-tight text-white">
+                      HQ
+                    </span>
+                  </span>
+                  <span className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-slate-400">
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+                    Contact
+                  </span>
+                </div>
+                <p className="mt-3 text-xs leading-relaxed text-slate-300 antialiased sm:text-sm font-medium">
+                  <span className="block text-[10px] uppercase tracking-wider text-slate-400 mb-0.5">
+                    Have any questions?
+                  </span>
+                  <a
+                    href="tel:+180045647823"
+                    className="text-white hover:text-blue-300 transition-colors font-semibold"
+                  >
+                    +1-800-456-478-23
+                  </a>
+                </p>
+              </div>
+              <div className="mt-4 border-t border-slate-800/80 pt-3 text-xs font-medium sm:text-sm grid grid-cols-2 gap-2">
+                <div>
+                  <span className="block text-[10px] uppercase tracking-wider text-slate-400">
+                    Business
+                  </span>
+                  <a
+                    href="mailto:Info@greyloops.com"
+                    className="text-slate-200 hover:text-blue-300 transition-colors truncate block"
+                  >
+                    Info@greyloops.com
+                  </a>
+                </div>
+                <div>
+                  <span className="block text-[10px] uppercase tracking-wider text-slate-400">
+                    Careers
+                  </span>
+                  <a
+                    href="mailto:careers@greyloops.com"
+                    className="text-slate-200 hover:text-blue-300 transition-colors truncate block"
+                  >
+                    careers@greyloops.com
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 

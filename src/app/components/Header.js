@@ -40,20 +40,20 @@ const menuItems = [
       rating: "5",
     },
   },
-  {
-    label: "Solutions",
-    href: "/solutions",
-    hasMega: true,
-    columns: solutionsColumns,
-    basePath: "/solutions",
-    statCard: {
-      bgImage: "/Solutions-bg.jpg",
-      label: "",
-      stat: "99.4%",
-      text: "Empowering businesses with enterprise-grade data architecture, intelligent automation, and scalable AI solutions.",
-      rating: "5",
-    },
-  },
+  // {
+  //   label: "Solutions",
+  //   href: "/solutions",
+  //   hasMega: true,
+  //   columns: solutionsColumns,
+  //   basePath: "/solutions",
+  //   statCard: {
+  //     bgImage: "/Solutions-bg.jpg",
+  //     label: "",
+  //     stat: "99.4%",
+  //     text: "Empowering businesses with enterprise-grade data architecture, intelligent automation, and scalable AI solutions.",
+  //     rating: "5",
+  //   },
+  // },
   // {
   //   label: "Case Studies",
   //   href: "/casestudies",
@@ -403,7 +403,7 @@ export default function Header() {
                                       href="mailto:query@greyloops.com"
                                       className="text-sm font-semibold text-white transition-colors hover:text-blue-300"
                                     >
-                                      query@greyloops.com
+                                     Info@greyloops.com
                                     </a>
                                   </div>
                                 </div>
@@ -420,7 +420,7 @@ export default function Header() {
                                       href="mailto:hr@greyloops.com"
                                       className="text-sm font-semibold text-white transition-colors hover:text-cyan-300"
                                     >
-                                      hr@greyloops.com
+                                      careers@greyloops.com
                                     </a>
                                   </div>
                                 </div>
@@ -704,13 +704,13 @@ export default function Header() {
                                   <span className="text-slate-400">
                                     Business:
                                   </span>{" "}
-                                  query@greyloops.com
+                                  Info@greyloops.com
                                 </p>
                                 <p>
                                   <span className="text-slate-400">
                                     Careers:
                                   </span>{" "}
-                                  hr@greyloops.com
+                                  careers@greyloops.com
                                 </p>
                               </div>
                             </div>
