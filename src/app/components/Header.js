@@ -105,7 +105,7 @@ export default function Header() {
       <div className="pointer-events-none absolute bottom-0 left-0 h-[1.5px] w-full bg-gradient-to-r from-transparent via-blue-400/40 to-transparent" />
       <div className="pointer-events-none absolute top-0 left-1/4 h-px w-1/2 bg-gradient-to-r from-transparent via-white/80 to-transparent" />
 
-      <div className="relative flex h-20 w-full items-center justify-between px-4 sm:px-8 lg:px-12">
+      <div className="relative flex h-20 w-full items-center justify-between px-4 sm:px-8 lg:px-12 font-sans text-slate-900">
         {/* Left-Aligned Group: Logo + Navigation Links strictly pinned left */}
         <div className="flex items-center gap-6 md:gap-10 shrink-0">
           {/* Logo Container with Boosted Visual Scaling */}
@@ -139,7 +139,7 @@ export default function Header() {
                     className={`flex items-center gap-1.5 rounded-full px-4 py-2 text-base font-semibold transition-all duration-200 ${
                       activeMenu === item.label
                         ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-md shadow-blue-500/25"
-                        : "text-zinc-800 hover:bg-white/70 hover:text-zinc-900 hover:shadow-sm"
+                        : "text-slate-900 hover:bg-white/70 hover:text-blue-600 hover:shadow-sm"
                     }`}
                   >
                     {item.label}
@@ -162,71 +162,43 @@ export default function Header() {
                 ) : (
                   <Link
                     href={item.href || "#"}
-                    className="flex items-center gap-1.5 rounded-full px-4 py-2 text-base font-semibold text-zinc-800 transition-all duration-200 hover:bg-white/70 hover:text-zinc-900 hover:shadow-sm"
+                    className="flex items-center gap-1.5 rounded-full px-4 py-2 text-base font-semibold text-slate-900 transition-all duration-200 hover:bg-white/70 hover:text-blue-600 hover:shadow-sm"
                   >
                     {item.label}
                   </Link>
                 )}
 
                 {item.hasMega && activeMenu === item.label && (
-                  <div className="fixed left-0 top-20 w-full border-t border-blue-100 bg-white/95 backdrop-blur-md shadow-2xl shadow-blue-900/10 overflow-hidden">
+                  <div className="fixed left-0 top-20 w-full border-t border-blue-100 bg-white/95 backdrop-blur-md shadow-2xl shadow-blue-900/10 overflow-hidden font-sans text-slate-900">
                     {item.type === "company" ? (
-                      <div className="company-menu-font relative mx-auto flex max-w-7xl justify-between items-stretch">
-                        {/* Shared display font */}
-                        <style jsx global>{`
-                          @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
-                          .company-menu-font {
-                            font-family:
-                              "Plus Jakarta Sans", ui-sans-serif, system-ui,
-                              sans-serif;
-                          }
-                          .company-menu-display {
-                            font-family:
-                              "Sora", "Plus Jakarta Sans", ui-sans-serif,
-                              sans-serif;
-                            letter-spacing: -0.02em;
-                          }
-                          @keyframes companyMenuShimmer {
-                            0% {
-                              transform: translateX(-120%) skewX(-12deg);
-                            }
-                            100% {
-                              transform: translateX(220%) skewX(-12deg);
-                            }
-                          }
-                          .company-menu-shimmer {
-                            animation: companyMenuShimmer 3.5s ease-in-out
-                              infinite;
-                          }
-                        `}</style>
-
+                      <div className="relative mx-auto flex max-w-7xl justify-between items-stretch">
                         {/* Left Side Navigation & Blog Links */}
-                        <div className="grid flex-1 grid-cols-8 gap-10 py-10 pl-8 pr-8">
+                        <div className="grid flex-1 grid-cols-12 gap-8 py-12 pl-12 pr-10 items-start">
                           {/* Column 1: Company Links */}
-                          <div className="col-span-2 space-y-4">
+                          <div className="col-span-3 flex flex-col">
                             {companyColumns[0] && (
                               <div>
                                 <div className="mb-4 flex items-center gap-2.5">
-                                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-600/10 text-blue-600 shadow-sm">
                                     <Building2
-                                      className="h-4.5 w-4.5"
+                                      className="h-5 w-5"
                                       strokeWidth={2}
                                     />
                                   </span>
-                                  <h3 className="company-menu-display text-base font-bold tracking-tight text-slate-800">
+                                  <h3 className="text-xl font-bold tracking-tight text-slate-900">
                                     {companyColumns[0].title}
                                   </h3>
                                 </div>
-                                <div className="mb-4 h-px w-full bg-gradient-to-r from-blue-200 via-blue-100 to-transparent" />
-                                <ul className="space-y-3">
+                                <div className="mb-5 h-px w-full bg-gradient-to-r from-blue-200 via-blue-100 to-transparent" />
+                                <ul className="space-y-4">
                                   {companyColumns[0].links.map((link) => (
                                     <li key={link.slug}>
                                       <Link
                                         href={`/company/${link.slug}`}
                                         onClick={() => setActiveMenu(null)}
-                                        className="group flex items-center gap-1.5 text-sm font-semibold text-slate-600 transition-all duration-200 hover:translate-x-1 hover:text-blue-600"
+                                        className="text-base font-medium text-slate-700 hover:text-blue-600 transition-colors flex items-center gap-2.5 group"
                                       >
-                                        <span className="h-1 w-1 shrink-0 rounded-full bg-slate-300 transition-colors group-hover:bg-blue-500" />
+                                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300 transition-colors group-hover:bg-blue-600 group-hover:scale-125" />
                                         {link.name}
                                       </Link>
                                     </li>
@@ -236,31 +208,31 @@ export default function Header() {
                             )}
                           </div>
 
-                          {/* Column 2: Careers Links */}
-                          <div className="col-span-2 space-y-4">
+                          {/* Column 2: Careers Links & Positioned "Find us on" */}
+                          <div className="col-span-3 flex flex-col justify-between h-full">
                             {companyColumns[1] && (
                               <div>
                                 <div className="mb-4 flex items-center gap-2.5">
-                                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-600/10 text-blue-600 shadow-sm">
                                     <Briefcase
-                                      className="h-4.5 w-4.5"
+                                      className="h-5 w-5"
                                       strokeWidth={2}
                                     />
                                   </span>
-                                  <h3 className="company-menu-display text-base font-bold tracking-tight text-slate-800">
+                                  <h3 className="text-xl font-bold tracking-tight text-slate-900">
                                     {companyColumns[1].title}
                                   </h3>
                                 </div>
-                                <div className="mb-4 h-px w-full bg-gradient-to-r from-blue-200 via-blue-100 to-transparent" />
-                                <ul className="space-y-3">
+                                <div className="mb-5 h-px w-full bg-gradient-to-r from-blue-200 via-blue-100 to-transparent" />
+                                <ul className="space-y-4">
                                   {companyColumns[1].links.map((link) => (
                                     <li key={link.slug}>
                                       <Link
                                         href={`/company/${link.slug}`}
                                         onClick={() => setActiveMenu(null)}
-                                        className="group flex items-center gap-1.5 text-sm font-semibold text-slate-600 transition-all duration-200 hover:translate-x-1 hover:text-blue-600"
+                                        className="text-base font-medium text-slate-700 hover:text-blue-600 transition-colors flex items-center gap-2.5 group"
                                       >
-                                        <span className="h-1 w-1 shrink-0 rounded-full bg-slate-300 transition-colors group-hover:bg-blue-500" />
+                                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300 transition-colors group-hover:bg-blue-600 group-hover:scale-125" />
                                         {link.name}
                                       </Link>
                                     </li>
@@ -268,69 +240,16 @@ export default function Header() {
                                 </ul>
                               </div>
                             )}
-                          </div>
 
-                          {/* Column 3: Trending Blogs & Social Links */}
-                          <div className="col-span-4 space-y-6">
-                            {/* Trending Blogs */}
-                            <div>
-                              <div className="mb-4 flex items-center gap-2.5">
-                                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                                  <TrendingUp
-                                    className="h-4.5 w-4.5"
-                                    strokeWidth={2}
-                                  />
+                            {/* Perfectly Aligned "Find us on" in Spaced-out Section */}
+                            <div className="mt-10 pt-6 border-t border-slate-100">
+                              <div className="mb-3 flex items-center gap-2">
+                                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-blue-500/20 bg-blue-600/10 text-blue-600">
+                                  <Share2 className="h-3.5 w-3.5" strokeWidth={2} />
                                 </span>
-                                <h3 className="company-menu-display text-base font-bold tracking-tight text-slate-800">
-                                  Trending Blogs
-                                </h3>
-                              </div>
-                              <div className="mb-4 h-px w-full bg-gradient-to-r from-blue-200 via-blue-100 to-transparent" />
-                              <div className="space-y-3">
-                                {trendingBlogs.map((blog, idx) => (
-                                  <Link
-                                    key={idx}
-                                    href={blog.href}
-                                    onClick={() => setActiveMenu(null)}
-                                    className="group flex items-center gap-3 rounded-xl p-1.5 transition-colors duration-200 hover:bg-blue-50/60"
-                                  >
-                                    {/* Blog Image Thumbnail */}
-                                    <div className="relative h-12 w-16 shrink-0 overflow-hidden rounded-lg border border-slate-200/80 bg-slate-900 shadow-sm">
-                                      {blog.image ? (
-                                        <Image
-                                          src={blog.image}
-                                          alt={blog.title}
-                                          fill
-                                          sizes="64px"
-                                          className="object-cover transition-transform duration-300 group-hover:scale-110"
-                                        />
-                                      ) : (
-                                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 text-center">
-                                          <span className="text-[9px] font-black uppercase tracking-wider text-blue-400">
-                                            Greyloops
-                                          </span>
-                                        </div>
-                                      )}
-                                    </div>
-
-                                    {/* Blog Title */}
-                                    <h4 className="line-clamp-2 text-sm font-semibold leading-snug text-slate-700 transition-colors group-hover:text-blue-600">
-                                      {blog.title}
-                                    </h4>
-                                  </Link>
-                                ))}
-                              </div>
-                            </div>
-
-                            {/* Find us on */}
-                            <div>
-                              <div className="mb-3 flex items-center gap-2.5">
-                                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                                  <Share2 className="h-4 w-4" strokeWidth={2} />
-                                </span>
-                                <h3 className="company-menu-display text-sm font-bold tracking-tight text-slate-800">
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">
                                   Find us on
-                                </h3>
+                                </h4>
                               </div>
                               <div className="flex items-center gap-2.5">
                                 {socialLinks.map((social) => {
@@ -342,95 +261,153 @@ export default function Header() {
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       aria-label={social.name}
-                                      className={`group flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr ${social.gradient} text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
+                                      className={`group flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr ${social.gradient} text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
                                     >
-                                      <IconComponent className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+                                      <IconComponent className="h-4.5 w-4.5 transition-transform duration-300 group-hover:scale-110" />
                                     </a>
                                   );
                                 })}
                               </div>
                             </div>
                           </div>
+
+                          {/* Column 3: Modern Large Trending Blogs Section */}
+                          <div className="col-span-6 flex flex-col">
+                            <div className="mb-4 flex items-center gap-2.5">
+                              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-600/10 text-blue-600 shadow-sm">
+                                <TrendingUp
+                                  className="h-5 w-5"
+                                  strokeWidth={2}
+                                />
+                              </span>
+                              <h3 className="text-xl font-bold tracking-tight text-slate-900">
+                                Trending Blogs
+                              </h3>
+                            </div>
+                            <div className="mb-5 h-px w-full bg-gradient-to-r from-blue-200 via-blue-100 to-transparent" />
+                            <div className="grid grid-cols-1 gap-4">
+                              {trendingBlogs.map((blog, idx) => (
+                                <Link
+                                  key={idx}
+                                  href={blog.href}
+                                  onClick={() => setActiveMenu(null)}
+                                  className="group relative flex items-center gap-5 rounded-2xl p-3.5 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-indigo-50/40 border border-transparent hover:border-blue-100/80 hover:shadow-lg hover:shadow-blue-500/5"
+                                >
+                                  {/* Substantially Larger & Modernized Blog Image Thumbnail */}
+                                  <div className="relative h-20 w-32 shrink-0 overflow-hidden rounded-xl border border-slate-200/80 bg-slate-900 shadow-md">
+                                    {blog.image ? (
+                                      <Image
+                                        src={blog.image}
+                                        alt={blog.title}
+                                        fill
+                                        sizes="128px"
+                                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                      />
+                                    ) : (
+                                      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 text-center">
+                                        <span className="text-[10px] font-black uppercase tracking-wider text-blue-400">
+                                          Greyloops
+                                        </span>
+                                      </div>
+                                    )}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                                  </div>
+
+                                  {/* Fixed with truncate & min-w-0 to guarantee single line without overlapping */}
+                                  <div className="flex flex-col justify-center flex-1 min-w-0 pr-2">
+                                    <div className="mb-1.5 flex items-center gap-2">
+                                      <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-0.5 text-[11px] font-bold text-blue-600 uppercase tracking-wide">
+                                        Featured Article
+                                      </span>
+                                    </div>
+                                    <h4 className="truncate text-base font-bold text-slate-900 transition-colors group-hover:text-blue-600">
+                                      {blog.title}
+                                    </h4>
+                                  </div>
+
+                                  <div className="ml-auto pr-2 text-slate-300 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-blue-600 shrink-0">
+                                    <ArrowUpRight className="h-5 w-5" />
+                                  </div>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
                         </div>
 
                         {/* Right Side: Direct Contact Card */}
-                        <div className="relative w-96 shrink-0 overflow-hidden border-l border-slate-800 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-7 text-white shadow-2xl">
+                        <div className="relative w-96 shrink-0 overflow-hidden border-l border-slate-200 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-8 text-white shadow-2xl flex flex-col justify-between">
                           <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-blue-500/20 blur-2xl" />
                           <div className="pointer-events-none absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-indigo-500/15 blur-2xl" />
                           <HelpCircle className="pointer-events-none absolute -right-4 top-10 h-32 w-32 text-white/5" />
 
-                          <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                            <div className="company-menu-shimmer absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent" />
-                          </div>
-
-                          <div className="relative z-10 flex h-full flex-col justify-between">
-                            <div>
-                              <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                                <div>
-                                  <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-blue-400">
-                                    Direct Contact
-                                  </span>
-                                  <h4 className="company-menu-display text-xl font-bold tracking-tight text-white">
-                                    Have Any Questions?
-                                  </h4>
-                                </div>
-                                <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-blue-400/20 bg-blue-600/20 text-blue-300 shadow-inner backdrop-blur-md">
-                                  <PhoneCall className="h-5 w-5" />
+                          <div className="relative z-10">
+                            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                              <div>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-blue-400">
+                                  Direct Contact
                                 </span>
+                                <h4 className="text-xl font-bold tracking-tight text-white">
+                                  Have Any Questions?
+                                </h4>
+                              </div>
+                              <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-blue-400/20 bg-blue-600/20 text-blue-300 shadow-inner backdrop-blur-md">
+                                <PhoneCall className="h-5 w-5" />
+                              </span>
+                            </div>
+
+                            {/* Contact Info List */}
+                            <div className="mt-6 space-y-4">
+                              <a
+                                href="tel:+180045647823"
+                                className="group flex items-center gap-3 text-base font-bold text-blue-300 transition-colors hover:text-white"
+                              >
+                                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white transition-transform group-hover:scale-105">
+                                  <PhoneCall className="h-4 w-4" />
+                                </span>
+                                +1-800-456-478-23
+                              </a>
+
+                              <div className="flex items-start gap-3">
+                                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-blue-300">
+                                  <Mail className="h-4 w-4" />
+                                </span>
+                                <div>
+                                  <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                                    Business:
+                                  </span>
+                                  <a
+                                    href="mailto:query@greyloops.com"
+                                    className="text-sm font-semibold text-white transition-colors hover:text-blue-300"
+                                  >
+                                    Info@greyloops.com
+                                  </a>
+                                </div>
                               </div>
 
-                              {/* Contact Info List */}
-                              <div className="mt-6 space-y-4">
-                                <a
-                                  href="tel:+180045647823"
-                                  className="group flex items-center gap-3 text-base font-bold text-blue-300 transition-colors hover:text-white"
-                                >
-                                  <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white transition-transform group-hover:scale-105">
-                                    <PhoneCall className="h-4 w-4" />
+                              <div className="flex items-start gap-3">
+                                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-cyan-300">
+                                  <Briefcase className="h-4 w-4" />
+                                </span>
+                                <div>
+                                  <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                                    Careers:
                                   </span>
-                                  +1-800-456-478-23
-                                </a>
-
-                                <div className="flex items-start gap-3">
-                                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-blue-300">
-                                    <Mail className="h-4 w-4" />
-                                  </span>
-                                  <div>
-                                    <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                                      Business:
-                                    </span>
-                                    <a
-                                      href="mailto:query@greyloops.com"
-                                      className="text-sm font-semibold text-white transition-colors hover:text-blue-300"
-                                    >
-                                     Info@greyloops.com
-                                    </a>
-                                  </div>
-                                </div>
-
-                                <div className="flex items-start gap-3">
-                                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-cyan-300">
-                                    <Briefcase className="h-4 w-4" />
-                                  </span>
-                                  <div>
-                                    <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                                      Careers:
-                                    </span>
-                                    <a
-                                      href="mailto:hr@greyloops.com"
-                                      className="text-sm font-semibold text-white transition-colors hover:text-cyan-300"
-                                    >
-                                      careers@greyloops.com
-                                    </a>
-                                  </div>
+                                  <a
+                                    href="mailto:hr@greyloops.com"
+                                    className="text-sm font-semibold text-white transition-colors hover:text-cyan-300"
+                                  >
+                                    careers@greyloops.com
+                                  </a>
                                 </div>
                               </div>
                             </div>
+                          </div>
 
+                          <div className="relative z-10 pt-6">
                             <Link
                               href="/contact"
                               onClick={() => setActiveMenu(null)}
-                              className="relative mt-6 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition-all hover:from-blue-700 hover:to-blue-600 hover:shadow-blue-500/35"
+                              className="relative flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition-all hover:from-blue-700 hover:to-blue-600 hover:shadow-blue-500/35"
                             >
                               Get in Touch
                               <ArrowUpRight className="h-4 w-4" />
@@ -441,7 +418,7 @@ export default function Header() {
                     ) : item.type === "portfolio" ? (
                       /* Portfolio mega menu */
                       <div className="relative mx-auto max-w-7xl px-8 py-10">
-                        <div className="grid grid-cols-4 gap-5">
+                        <div className="grid grid-cols-4 gap-5 items-stretch">
                           {item.projects.map((project) => {
                             const ProjectIcon = project.icon;
                             return (
@@ -465,14 +442,16 @@ export default function Header() {
                                   </span>
                                 </div>
 
-                                <div className="flex flex-1 flex-col p-4">
-                                  <h4 className="mb-1.5 text-sm font-bold leading-snug text-zinc-900">
-                                    {project.tagline}
-                                  </h4>
-                                  <p className="mb-3 line-clamp-2 text-xs leading-relaxed text-zinc-500">
-                                    {project.description}
-                                  </p>
-                                  <span className="mt-auto inline-flex items-center gap-1 text-xs font-bold text-blue-600">
+                                <div className="flex flex-1 flex-col p-4 justify-between">
+                                  <div>
+                                    <h4 className="mb-1.5 text-sm font-bold leading-snug text-slate-900">
+                                      {project.tagline}
+                                    </h4>
+                                    <p className="mb-3 line-clamp-2 text-xs leading-relaxed text-slate-600">
+                                      {project.description}
+                                    </p>
+                                  </div>
+                                  <span className="inline-flex items-center gap-1 text-xs font-bold text-blue-600">
                                     Discover More
                                     <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                                   </span>
@@ -501,39 +480,41 @@ export default function Header() {
                       </div>
                     ) : (
                       /* Existing Services / Solutions mega menu */
-                      <div className="relative mx-auto flex max-w-7xl">
+                      <div className="relative mx-auto flex max-w-7xl items-stretch">
                         {/* Text columns */}
-                        <div className="grid flex-1 grid-cols-3 gap-10 px-8 py-10">
+                        <div className="grid flex-1 grid-cols-3 gap-10 px-8 py-10 items-stretch">
                           {(item.columns || []).map((col) => {
                             const Icon = col.icon;
                             return (
-                              <div key={col.slug}>
-                                <div className="mb-4 flex items-center gap-2.5 border-b-2 border-orange-400 pb-2.5">
-                                  {Icon && (
-                                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                                      <Icon
-                                        className="h-4.5 w-4.5"
-                                        strokeWidth={2}
-                                      />
-                                    </span>
-                                  )}
-                                  <h3 className="text-lg font-bold text-zinc-900">
-                                    {col.title}
-                                  </h3>
+                              <div key={col.slug} className="flex flex-col justify-between">
+                                <div>
+                                  <div className="mb-4 flex items-center gap-2.5 border-b-2 border-orange-400 pb-2.5">
+                                    {Icon && (
+                                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-blue-500/20 bg-blue-600/10 text-blue-600">
+                                        <Icon
+                                          className="h-4.5 w-4.5"
+                                          strokeWidth={2}
+                                        />
+                                      </span>
+                                    )}
+                                    <h3 className="text-lg font-bold text-slate-900">
+                                      {col.title}
+                                    </h3>
+                                  </div>
+                                  <ul className="space-y-3.5">
+                                    {col.links.map((link) => (
+                                      <li key={link.slug}>
+                                        <Link
+                                          href={`${item.basePath}/${link.slug}`}
+                                          onClick={() => setActiveMenu(null)}
+                                          className="text-base font-medium text-slate-700 hover:text-blue-600 transition-colors"
+                                        >
+                                          {link.name}
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
                                 </div>
-                                <ul className="space-y-3.5">
-                                  {col.links.map((link) => (
-                                    <li key={link.slug}>
-                                      <Link
-                                        href={`${item.basePath}/${link.slug}`}
-                                        onClick={() => setActiveMenu(null)}
-                                        className="text-base font-medium text-zinc-700 hover:text-blue-600 transition-colors"
-                                      >
-                                        {link.name}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
                               </div>
                             );
                           })}
@@ -541,7 +522,7 @@ export default function Header() {
 
                         {/* Stat Card */}
                         {item.statCard && (
-                          <div className="relative w-100 shrink-0 overflow-hidden text-white">
+                          <div className="relative w-100 shrink-0 overflow-hidden text-white flex flex-col">
                             <div
                               className="absolute inset-0 bg-cover bg-center"
                               style={{
@@ -592,7 +573,7 @@ export default function Header() {
 
         {/* Mobile Hamburger */}
         <button
-          className="md:hidden relative z-10 flex h-10 w-10 items-center justify-center rounded-lg text-zinc-700 hover:bg-white/70"
+          className="md:hidden relative z-10 flex h-10 w-10 items-center justify-center rounded-lg text-slate-900 hover:bg-white/70"
           onClick={() => setMobileOpen((prev) => !prev)}
           aria-label="Toggle menu"
         >
