@@ -14,6 +14,7 @@ import AndroidAppDevelopment from "../../components/services/MobileService/Andro
 import IOSAppDevelopment from "../../components/services/MobileService/IOSAPPDevelopment";
 import WebAppDevelopment from "../../components/services/WebAppDevelopment";
 import DevOpsServices from "../../components/services/DevOps/DevOpsServices";
+import Cybersecurity from "../../components/services/Cybersecurity/Cybersecurity";
 import FAQSection from "../../components/FAQSection";
 
 import Header from "../../components/Header";
@@ -67,6 +68,12 @@ export default async function ServiceDetailPage({ params }) {
         <>
           <Header />
           <DevOpsServices />
+          <Footer />
+        </>
+      ) : slug === "cybersecurity" ? (
+        <>
+          <Header />
+          <Cybersecurity />
           <Footer />
         </>
       ) : slug === "enterprise-software-development" ? (
