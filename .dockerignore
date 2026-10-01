@@ -1,0 +1,22 @@
+# dependencies
+node_modules
+.next
+
+# build files
+*.log
+*.local
+.env
+.env.*
+Dockerfile
+.dockerignore
+
+# version control / editors
+.git
+.github
+.gitignore
+.vscode
+.idea
+
+# misc
+*.DS_Store
+*.swp
