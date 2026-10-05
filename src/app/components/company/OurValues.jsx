@@ -50,6 +50,7 @@ export default function OurValues() {
                 fill
                 priority
                 quality={100}
+                unoptimized
                 className="object-cover object-center"
               />
             </div>
@@ -98,6 +99,7 @@ export default function OurValues() {
                 alt="We Own Responsibilities"
                 fill
                 quality={100}
+                unoptimized
                 className="object-cover object-center"
               />
             </div>
@@ -147,6 +149,7 @@ export default function OurValues() {
                 alt="Results-Driven"
                 fill
                 quality={100}
+                unoptimized
                 className="object-cover object-center"
               />
             </div>
@@ -195,6 +198,7 @@ export default function OurValues() {
                 alt="Continuous Growth"
                 fill
                 quality={100}
+                unoptimized
                 className="object-cover object-center"
               />
             </div>

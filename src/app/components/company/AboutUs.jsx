@@ -24,6 +24,8 @@ import {
 } from "lucide-react";
 import WhatWeDo from "./OurValues";
 import OurExpertise from "./OurExpertise";
+import AboutUsFAQs from "./AboutUsFAQs";
+import CollaborateMobileDevelopment from "@/app/components/services/MobileService/CollaborateMobileDevelopment";
 import LeadershipTeam from "../../components/LeadershipTeam";
 import TalentOnDemand from "../../components/TalentOnDemand";
 
@@ -357,7 +359,9 @@ export default function AboutUs() {
 
       {/* ================= WHAT WE ACTUALLY DO SECTION ================= */}
       <WhatWeDo />
-      <OurExpertise />      
+      <OurExpertise />
+      <AboutUsFAQs />      
+      <CollaborateMobileDevelopment />
 
 
       {/* ================= LEADERSHIP TEAM SECTION ================= */}
