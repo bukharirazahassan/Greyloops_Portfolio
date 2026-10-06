@@ -13,27 +13,27 @@ const SCROLL_LENGTH = "520vh"; // extended scroll track length to accommodate al
 
 const lifecycleImages = [
   {
-    src: "/Strategy_Improvement.png",
+    src: "/Strategy_Improvement_v1.png",
     alt: "From Strategy to Continuous Improvement Overview",
   },
   {
-    src: "/Architecture_Design.png",
+    src: "/Architecture_Design_v1.png",
     alt: "Architecture and Design Phase",
   },
   {
-    src: "/Engineering_Development.png",
+    src: "/Engineering_Development_v1.png",
     alt: "Engineering and Development Phase",
   },
   {
-    src: "/Quality_Security.png",
+    src: "/Quality_Security_v1.png",
     alt: "Quality and Security Assurance",
   },
   {
-    src: "/Deployment_Integration.png",
+    src: "/Deployment_Integration_v1.png",
     alt: "Deployment and Integration Phase",
   },
   {
-    src: "/Monitoring_Improvement.png",
+    src: "/Monitoring_Improvement_v1.png",
     alt: "Monitoring and Continuous Improvement",
   },
 ];

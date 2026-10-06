@@ -353,58 +353,6 @@ export default function FAQSection() {
             </motion.div>
           )}
         </div>
-
-        {/* ================= STILL HAVE QUESTIONS CTA ================= */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="group relative mx-auto mt-16 max-w-4xl overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-8 shadow-xl shadow-slate-200/60 sm:p-10"
-        >
-          <div
-            className="pointer-events-none absolute inset-0 opacity-[0.2]"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle, #93c5fd 1px, transparent 1px)",
-              backgroundSize: "24px 24px",
-            }}
-          />
-          <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-blue-100/70 blur-3xl transition-all duration-500 group-hover:bg-blue-200/70" />
-          <div className="pointer-events-none absolute -left-16 -bottom-16 h-64 w-64 rounded-full bg-indigo-100/60 blur-3xl" />
-
-          <div className="relative z-10 flex flex-col items-center justify-between gap-6 text-center lg:flex-row lg:text-left">
-            <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/80 px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-blue-600 shadow-sm">
-                <Sparkles className="h-3.5 w-3.5 text-blue-600" />
-                Still Have Questions?
-              </span>
-
-              <h3 className="faq-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
-                <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-blue-700 bg-clip-text text-transparent">
-                  Can&rsquo;t find the answer you&rsquo;re looking for?
-                </span>
-              </h3>
-
-              <p className="mt-2 text-sm font-medium leading-relaxed text-slate-500 sm:text-base">
-                Contact our team directly. We&rsquo;re here to help with your
-                specific queries and project needs.
-              </p>
-            </div>
-
-            <div className="flex-shrink-0">
-              <Link
-                href="/contact"
-                className="group/btn relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:-translate-y-1 hover:from-blue-700 hover:to-blue-600 hover:shadow-xl hover:shadow-blue-500/35 sm:text-sm"
-              >
-                <span className="faq-shimmer pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-                <MessageSquare className="relative z-10 h-4 w-4" />
-                <span className="relative z-10">Get In Touch</span>
-                <ArrowUpRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-              </Link>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
