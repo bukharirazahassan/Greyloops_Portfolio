@@ -12,6 +12,7 @@ import BlogSection from "./components/BlogSection";
 import Industries from "./components/Industries";
 import Delivertansformation from "./components/Delivertansformation";
 import Industrieschallenges from "./components/Industrieschallenges";
+import ProvenExpertise from "./components/ProvenExpertise";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <Header />
       <Slider />
       <Delivertansformation />
+      <ProvenExpertise />
       <Offerings /> 
       <TechStackShowcase />
       <EngagementModels />
