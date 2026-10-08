@@ -92,18 +92,18 @@ export function findCompanyLinkBySlug(slug) {
 // places together if the featured posts change.
 export const trendingBlogs = [
   {
-    title: "How AI is reshaping enterprise software delivery.",
-    href: "/about",
-    image: "/1.jpg",
+    title: "How to Choose the Best Mobile App Development Company",
+    href: "/MainBlogs/BestMobileDevelopmentCompany",
+    image: "/Blogs_Mobile_App_Development_Company_v1.png",
   },
   {
     title: "Scaling a SaaS platform to 100K users, our playbook.",
-    href: "/about",
+    href: "/MainBlogs",
     image: "/2.jpg",
   },
   {
     title: "Cloud infrastructure trends every CTO should watch.",
-    href: "/about",
+    href: "/MainBlogs",
     image: "/3.jpg",
   },
 ];

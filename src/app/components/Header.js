@@ -13,6 +13,9 @@ import {
   Building2,
   TrendingUp,
   Share2,
+  Users,
+  Sparkles,
+  BookOpen,
 } from "lucide-react";
 import { servicesColumns, solutionsColumns } from "../lib/navigationData";
 import { casestudiesProjects } from "../lib/casestudiesData";
@@ -33,7 +36,7 @@ const menuItems = [
     columns: servicesColumns,
     basePath: "/services",
     statCard: {
-      bgImage: "/services-bg.jpg",
+      bgImage: "/NPS_v1.png",
       label: "NPS",
       stat: "81.8%",
       text: "78% of our clients believe that greyloops is better than most other providers they have worked with.",
@@ -63,6 +66,129 @@ const menuItems = [
   // },
   // { label: "Industries", href: "/industries" },
 ];
+
+/* ─────────────────────────────────────────────────────────────
+   Shared mega menu sizing — Company & Services use the same
+   minimum height so both panels open at an identical size.
+   Change this one value to make both taller / shorter.
+   ───────────────────────────────────────────────────────────── */
+const MEGA_MIN_H = "min-h-[730px] min-[1700px]:min-h-[820px]";
+
+/* ─────────────────────────────────────────────────────────────
+   Apple system colours (light mode) as soft tinted icon tiles.
+   Full class strings are written out so Tailwind can detect them.
+   ───────────────────────────────────────────────────────────── */
+const APPLE = {
+  blue: {
+    soft: "bg-[#007AFF]/10 text-[#007AFF]",
+    hover: "group-hover:bg-[#007AFF] group-hover:text-white",
+    dot: "bg-[#007AFF]",
+  },
+  green: {
+    soft: "bg-[#34C759]/12 text-[#28A745]",
+    hover: "group-hover:bg-[#34C759] group-hover:text-white",
+    dot: "bg-[#34C759]",
+  },
+  orange: {
+    soft: "bg-[#FF9500]/12 text-[#F08000]",
+    hover: "group-hover:bg-[#FF9500] group-hover:text-white",
+    dot: "bg-[#FF9500]",
+  },
+  purple: {
+    soft: "bg-[#AF52DE]/10 text-[#AF52DE]",
+    hover: "group-hover:bg-[#AF52DE] group-hover:text-white",
+    dot: "bg-[#AF52DE]",
+  },
+  pink: {
+    soft: "bg-[#FF2D55]/10 text-[#FF2D55]",
+    hover: "group-hover:bg-[#FF2D55] group-hover:text-white",
+    dot: "bg-[#FF2D55]",
+  },
+  teal: {
+    soft: "bg-[#5AC8FA]/15 text-[#1BA6DC]",
+    hover: "group-hover:bg-[#5AC8FA] group-hover:text-white",
+    dot: "bg-[#5AC8FA]",
+  },
+  indigo: {
+    soft: "bg-[#5856D6]/10 text-[#5856D6]",
+    hover: "group-hover:bg-[#5856D6] group-hover:text-white",
+    dot: "bg-[#5856D6]",
+  },
+  red: {
+    soft: "bg-[#FF3B30]/10 text-[#FF3B30]",
+    hover: "group-hover:bg-[#FF3B30] group-hover:text-white",
+    dot: "bg-[#FF3B30]",
+  },
+};
+
+const APPLE_CYCLE = [
+  "blue",
+  "purple",
+  "green",
+  "orange",
+  "pink",
+  "teal",
+  "indigo",
+  "red",
+];
+
+const TILE_SIZES = {
+  md: { box: "h-10 w-10 rounded-xl", icon: "h-5 w-5" },
+  lg: { box: "h-14 w-14 rounded-2xl", icon: "h-7 w-7" },
+  xl: { box: "h-16 w-16 rounded-[1.25rem]", icon: "h-8 w-8" },
+};
+
+/* Soft Apple-style icon tile. Put it inside a `group` parent and pass
+   interactive to get the solid-colour fill on hover. */
+function IconTile({ Icon, color = "blue", size = "md", interactive = false }) {
+  const c = APPLE[color] || APPLE.blue;
+  const s = TILE_SIZES[size];
+  return (
+    <span
+      className={`flex shrink-0 items-center justify-center ring-1 ring-black/[0.04] transition-all duration-200 ${s.box} ${c.soft} ${
+        interactive ? c.hover : ""
+      }`}
+    >
+      <Icon className={s.icon} strokeWidth={2} />
+    </span>
+  );
+}
+
+/* Picks an icon + Apple colour for each company link based on its name */
+function getCompanyLinkMeta(name = "") {
+  const n = name.toLowerCase();
+  if (n.includes("about")) return { Icon: Users, color: "blue" };
+  if (n.includes("why")) return { Icon: Sparkles, color: "purple" };
+  if (n.includes("faq")) return { Icon: HelpCircle, color: "orange" };
+  if (n.includes("blog")) return { Icon: BookOpen, color: "pink" };
+  if (n.includes("position") || n.includes("job") || n.includes("career"))
+    return { Icon: Briefcase, color: "green" };
+  return { Icon: Building2, color: "teal" };
+}
+
+/* Reusable blog image with branded light fallback (used by Trending Blogs) */
+function BlogImage({ blog, sizes, priority = false }) {
+  return (
+    <>
+      {blog.image ? (
+        <Image
+          src={blog.image}
+          alt={blog.title}
+          fill
+          sizes={sizes}
+          priority={priority}
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+      ) : (
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-100 via-sky-50 to-indigo-100">
+          <span className="text-sm font-black uppercase tracking-widest text-blue-600">
+            Greyloops
+          </span>
+        </div>
+      )}
+    </>
+  );
+}
 
 export default function Header() {
   const [activeMenu, setActiveMenu] = useState(null);
@@ -169,89 +295,68 @@ export default function Header() {
                 )}
 
                 {item.hasMega && activeMenu === item.label && (
-                  <div className="fixed left-0 top-20 w-full border-t border-blue-100 bg-white/95 backdrop-blur-md shadow-2xl shadow-blue-900/10 overflow-hidden font-sans text-slate-900">
+                  <div className="fixed left-0 top-20 w-full max-h-[calc(100vh-5rem)] overflow-y-auto border-t border-blue-100 bg-white/95 backdrop-blur-md shadow-2xl shadow-blue-900/10 overflow-x-hidden font-sans text-slate-900">
                     {item.type === "company" ? (
-                      <div className="relative mx-auto flex max-w-7xl justify-between items-stretch">
-                        {/* Left Side Navigation & Blog Links */}
-                        <div className="grid flex-1 grid-cols-12 gap-8 py-12 pl-12 pr-10 items-start">
-                          {/* Column 1: Company Links */}
-                          <div className="col-span-3 flex flex-col">
-                            {companyColumns[0] && (
-                              <div>
-                                <div className="mb-4 flex items-center gap-2.5">
-                                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-600/10 text-blue-600 shadow-sm">
-                                    <Building2
-                                      className="h-5 w-5"
-                                      strokeWidth={2}
-                                    />
-                                  </span>
-                                  <h3 className="text-xl font-bold tracking-tight text-slate-900">
-                                    {companyColumns[0].title}
+                      /* ───────────── COMPANY MEGA MENU ───────────── */
+                      <div className="w-full bg-gradient-to-br from-slate-50 via-white to-blue-50/70">
+                        <div
+                          className={`relative mx-auto grid max-w-[1600px] grid-cols-[300px_minmax(0,1fr)_370px] items-stretch gap-8 px-10 py-10 ${MEGA_MIN_H}`}
+                        >
+                          {/* ── Column 1: Company + Careers links + socials ── */}
+                          <div className="flex flex-col rounded-3xl border border-slate-200/70 bg-white p-7 shadow-sm shadow-blue-900/5">
+                            {companyColumns.slice(0, 2).map((col, colIdx) => (
+                              <div
+                                key={col.title}
+                                className={colIdx > 0 ? "mt-7" : ""}
+                              >
+                                <div className="mb-4 flex items-center gap-3.5">
+                                  <IconTile
+                                    Icon={colIdx === 0 ? Building2 : Briefcase}
+                                    color={colIdx === 0 ? "blue" : "orange"}
+                                    size="lg"
+                                  />
+                                  <h3 className="text-2xl font-extrabold tracking-tight text-slate-900">
+                                    {col.title}
                                   </h3>
                                 </div>
-                                <div className="mb-5 h-px w-full bg-gradient-to-r from-blue-200 via-blue-100 to-transparent" />
-                                <ul className="space-y-4">
-                                  {companyColumns[0].links.map((link) => (
-                                    <li key={link.slug}>
-                                      <Link
-                                        href={`/company/${link.slug}`}
-                                        onClick={() => setActiveMenu(null)}
-                                        className="text-base font-medium text-slate-700 hover:text-blue-600 transition-colors flex items-center gap-2.5 group"
-                                      >
-                                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300 transition-colors group-hover:bg-blue-600 group-hover:scale-125" />
-                                        {link.name}
-                                      </Link>
-                                    </li>
-                                  ))}
+                                <ul className="space-y-1.5">
+                                  {col.links.map((link) => {
+                                    const { Icon: LinkIcon, color } =
+                                      getCompanyLinkMeta(link.name);
+                                    return (
+                                      <li key={link.slug}>
+                                        <Link
+                                          href={`/company/${link.slug}`}
+                                          onClick={() => setActiveMenu(null)}
+                                          className="group flex items-center gap-3 rounded-xl p-2 text-base font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-50 hover:text-slate-900"
+                                        >
+                                          <IconTile
+                                            Icon={LinkIcon}
+                                            color={color}
+                                            size="md"
+                                            interactive
+                                          />
+                                          <span className="flex-1">
+                                            {link.name}
+                                          </span>
+                                          <ArrowUpRight className="h-4 w-4 -translate-x-1 text-slate-400 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100" />
+                                        </Link>
+                                      </li>
+                                    );
+                                  })}
                                 </ul>
                               </div>
-                            )}
-                          </div>
+                            ))}
 
-                          {/* Column 2: Careers Links & Positioned "Find us on" */}
-                          <div className="col-span-3 flex flex-col justify-between h-full">
-                            {companyColumns[1] && (
-                              <div>
-                                <div className="mb-4 flex items-center gap-2.5">
-                                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-600/10 text-blue-600 shadow-sm">
-                                    <Briefcase
-                                      className="h-5 w-5"
-                                      strokeWidth={2}
-                                    />
-                                  </span>
-                                  <h3 className="text-xl font-bold tracking-tight text-slate-900">
-                                    {companyColumns[1].title}
-                                  </h3>
-                                </div>
-                                <div className="mb-5 h-px w-full bg-gradient-to-r from-blue-200 via-blue-100 to-transparent" />
-                                <ul className="space-y-4">
-                                  {companyColumns[1].links.map((link) => (
-                                    <li key={link.slug}>
-                                      <Link
-                                        href={`/company/${link.slug}`}
-                                        onClick={() => setActiveMenu(null)}
-                                        className="text-base font-medium text-slate-700 hover:text-blue-600 transition-colors flex items-center gap-2.5 group"
-                                      >
-                                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300 transition-colors group-hover:bg-blue-600 group-hover:scale-125" />
-                                        {link.name}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-
-                            {/* Perfectly Aligned "Find us on" in Spaced-out Section */}
-                            <div className="mt-10 pt-6 border-t border-slate-100">
-                              <div className="mb-3 flex items-center gap-2">
-                                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-blue-500/20 bg-blue-600/10 text-blue-600">
-                                  <Share2 className="h-3.5 w-3.5" strokeWidth={2} />
-                                </span>
-                                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                            {/* Find us on — pinned to the bottom of the card */}
+                            <div className="mt-auto border-t border-slate-100 pt-6">
+                              <div className="mb-3 flex items-center gap-2.5">
+                                <IconTile Icon={Share2} color="indigo" size="md" />
+                                <h4 className="text-sm font-bold uppercase tracking-wider text-slate-500">
                                   Find us on
                                 </h4>
                               </div>
-                              <div className="flex items-center gap-2.5">
+                              <div className="flex flex-wrap items-center gap-3">
                                 {socialLinks.map((social) => {
                                   const IconComponent = social.icon;
                                   return (
@@ -261,9 +366,9 @@ export default function Header() {
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       aria-label={social.name}
-                                      className={`group flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr ${social.gradient} text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
+                                      className={`group flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr ${social.gradient} text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
                                     >
-                                      <IconComponent className="h-4.5 w-4.5 transition-transform duration-300 group-hover:scale-110" />
+                                      <IconComponent className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                                     </a>
                                   );
                                 })}
@@ -271,147 +376,187 @@ export default function Header() {
                             </div>
                           </div>
 
-                          {/* Column 3: Modern Large Trending Blogs Section */}
-                          <div className="col-span-6 flex flex-col">
-                            <div className="mb-4 flex items-center gap-2.5">
-                              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-600/10 text-blue-600 shadow-sm">
-                                <TrendingUp
-                                  className="h-5 w-5"
-                                  strokeWidth={2}
-                                />
-                              </span>
-                              <h3 className="text-xl font-bold tracking-tight text-slate-900">
-                                Trending Blogs
-                              </h3>
+                          {/* ── Column 2: Trending Blogs (large images) ── */}
+                          <div className="flex min-w-0 flex-col">
+                            <div className="mb-5 flex items-center gap-3.5">
+                              <IconTile Icon={TrendingUp} color="pink" size="lg" />
+                              <div>
+                                <h3 className="text-2xl font-extrabold tracking-tight text-slate-900">
+                                  Trending Blogs
+                                </h3>
+                                <p className="text-sm font-medium text-slate-500">
+                                  Fresh insights from the Greyloops team
+                                </p>
+                              </div>
                             </div>
-                            <div className="mb-5 h-px w-full bg-gradient-to-r from-blue-200 via-blue-100 to-transparent" />
-                            <div className="grid grid-cols-1 gap-4">
-                              {trendingBlogs.map((blog, idx) => (
-                                <Link
-                                  key={idx}
-                                  href={blog.href}
-                                  onClick={() => setActiveMenu(null)}
-                                  className="group relative flex items-center gap-5 rounded-2xl p-3.5 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-indigo-50/40 border border-transparent hover:border-blue-100/80 hover:shadow-lg hover:shadow-blue-500/5"
-                                >
-                                  {/* Substantially Larger & Modernized Blog Image Thumbnail */}
-                                  <div className="relative h-20 w-32 shrink-0 overflow-hidden rounded-xl border border-slate-200/80 bg-slate-900 shadow-md">
-                                    {blog.image ? (
-                                      <Image
-                                        src={blog.image}
-                                        alt={blog.title}
-                                        fill
-                                        sizes="128px"
-                                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                      />
-                                    ) : (
-                                      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 text-center">
-                                        <span className="text-[10px] font-black uppercase tracking-wider text-blue-400">
-                                          Greyloops
-                                        </span>
-                                      </div>
-                                    )}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                                  </div>
 
-                                  {/* Fixed with truncate & min-w-0 to guarantee single line without overlapping */}
-                                  <div className="flex flex-col justify-center flex-1 min-w-0 pr-2">
-                                    <div className="mb-1.5 flex items-center gap-2">
-                                      <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-0.5 text-[11px] font-bold text-blue-600 uppercase tracking-wide">
-                                        Featured Article
-                                      </span>
-                                    </div>
-                                    <h4 className="truncate text-base font-bold text-slate-900 transition-colors group-hover:text-blue-600">
-                                      {blog.title}
+                            {trendingBlogs.length > 0 && (
+                              <div className="flex flex-1 flex-col gap-5">
+                                {/* Featured blog — large hero image */}
+                                <Link
+                                  href={trendingBlogs[0].href}
+                                  onClick={() => setActiveMenu(null)}
+                                  className="group relative block aspect-[2.2/1] w-full shrink-0 overflow-hidden rounded-3xl border border-slate-200/80 bg-slate-100 shadow-lg shadow-blue-900/10 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-900/20"
+                                >
+                                  <BlogImage
+                                    blog={trendingBlogs[0]}
+                                    sizes="(min-width: 1280px) 820px, 60vw"
+                                    priority
+                                  />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/15 to-transparent" />
+
+                                  <span className="absolute left-5 top-5 inline-flex items-center rounded-full bg-white/95 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-[#007AFF] shadow-md backdrop-blur">
+                                    Featured Article
+                                  </span>
+
+                                  <span className="absolute right-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-white text-slate-900 shadow-lg transition-all duration-300 group-hover:bg-[#007AFF] group-hover:text-white">
+                                    <ArrowUpRight className="h-6 w-6 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                                  </span>
+
+                                  <div className="absolute inset-x-0 bottom-0 p-6">
+                                    <h4 className="line-clamp-2 max-w-2xl text-2xl font-extrabold leading-snug text-white drop-shadow">
+                                      {trendingBlogs[0].title}
                                     </h4>
                                   </div>
-
-                                  <div className="ml-auto pr-2 text-slate-300 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-blue-600 shrink-0">
-                                    <ArrowUpRight className="h-5 w-5" />
-                                  </div>
                                 </Link>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
 
-                        {/* Right Side: Direct Contact Card */}
-                        <div className="relative w-96 shrink-0 overflow-hidden border-l border-slate-200 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-8 text-white shadow-2xl flex flex-col justify-between">
-                          <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-blue-500/20 blur-2xl" />
-                          <div className="pointer-events-none absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-indigo-500/15 blur-2xl" />
-                          <HelpCircle className="pointer-events-none absolute -right-4 top-10 h-32 w-32 text-white/5" />
-
-                          <div className="relative z-10">
-                            <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                              <div>
-                                <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-blue-400">
-                                  Direct Contact
-                                </span>
-                                <h4 className="text-xl font-bold tracking-tight text-white">
-                                  Have Any Questions?
-                                </h4>
+                                {/* Remaining blogs — large image cards (fill the row and remaining height) */}
+                                {trendingBlogs.length > 1 && (
+                                  <div
+                                    className="grid flex-1 gap-5"
+                                    style={{
+                                      gridTemplateColumns: `repeat(${Math.min(
+                                        trendingBlogs.length - 1,
+                                        3,
+                                      )}, minmax(0, 1fr))`,
+                                    }}
+                                  >
+                                    {trendingBlogs
+                                      .slice(1, 4)
+                                      .map((blog, idx) => (
+                                        <Link
+                                          key={idx}
+                                          href={blog.href}
+                                          onClick={() => setActiveMenu(null)}
+                                          className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-blue-900/10"
+                                        >
+                                          <div className="relative min-h-[11rem] w-full flex-1 overflow-hidden bg-slate-100">
+                                            <BlogImage
+                                              blog={blog}
+                                              sizes="(min-width: 1280px) 400px, 33vw"
+                                            />
+                                          </div>
+                                          <div className="flex shrink-0 items-start justify-between gap-3 p-4">
+                                            <h4 className="line-clamp-2 text-base font-bold leading-snug text-slate-900">
+                                              {blog.title}
+                                            </h4>
+                                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#007AFF]/10 text-[#007AFF] transition-all duration-300 group-hover:bg-[#007AFF] group-hover:text-white">
+                                              <ArrowUpRight className="h-5 w-5" />
+                                            </span>
+                                          </div>
+                                        </Link>
+                                      ))}
+                                  </div>
+                                )}
                               </div>
-                              <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-blue-400/20 bg-blue-600/20 text-blue-300 shadow-inner backdrop-blur-md">
-                                <PhoneCall className="h-5 w-5" />
-                              </span>
+                            )}
+                          </div>
+
+                          {/* ── Column 3: Direct Contact Card ── */}
+                          <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-8 shadow-sm shadow-blue-900/5">
+                            <div className="pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full bg-blue-200/40 blur-3xl" />
+                            <div className="pointer-events-none absolute -bottom-12 -left-12 h-44 w-44 rounded-full bg-sky-200/40 blur-3xl" />
+                            <HelpCircle className="pointer-events-none absolute -right-6 bottom-24 h-40 w-40 text-[#007AFF]/5" />
+
+                            <div className="relative z-10">
+                              <div className="flex items-center gap-4">
+                                <IconTile Icon={PhoneCall} color="green" size="xl" />
+                                <div>
+                                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#007AFF]">
+                                    Direct Contact
+                                  </span>
+                                  <h4 className="text-2xl font-extrabold leading-tight tracking-tight text-slate-900">
+                                    Have Any Questions?
+                                  </h4>
+                                </div>
+                              </div>
+
+                              <div className="my-6 h-px w-full bg-gradient-to-r from-blue-200 via-blue-100 to-transparent" />
+
+                              {/* Contact Info List */}
+                              <div className="space-y-4">
+                                <a
+                                  href="tel:+180045647823"
+                                  className="group flex items-center gap-4 rounded-2xl border border-slate-200/70 bg-white p-3.5 shadow-sm transition-all duration-200 hover:border-slate-300 hover:shadow-md"
+                                >
+                                  <IconTile
+                                    Icon={PhoneCall}
+                                    color="green"
+                                    size="lg"
+                                    interactive
+                                  />
+                                  <div>
+                                    <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                                      Call us:
+                                    </span>
+                                    <span className="text-lg font-extrabold text-slate-900">
+                                      +1-800-456-478-23
+                                    </span>
+                                  </div>
+                                </a>
+
+                                <a
+                                  href="mailto:query@greyloops.com"
+                                  className="group flex items-center gap-4 rounded-2xl border border-slate-200/70 bg-white p-3.5 shadow-sm transition-all duration-200 hover:border-slate-300 hover:shadow-md"
+                                >
+                                  <IconTile
+                                    Icon={Mail}
+                                    color="blue"
+                                    size="lg"
+                                    interactive
+                                  />
+                                  <div className="min-w-0">
+                                    <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                                      Business:
+                                    </span>
+                                    <span className="block truncate text-base font-bold text-slate-900">
+                                      Info@greyloops.com
+                                    </span>
+                                  </div>
+                                </a>
+
+                                <a
+                                  href="mailto:hr@greyloops.com"
+                                  className="group flex items-center gap-4 rounded-2xl border border-slate-200/70 bg-white p-3.5 shadow-sm transition-all duration-200 hover:border-slate-300 hover:shadow-md"
+                                >
+                                  <IconTile
+                                    Icon={Briefcase}
+                                    color="orange"
+                                    size="lg"
+                                    interactive
+                                  />
+                                  <div className="min-w-0">
+                                    <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                                      Careers:
+                                    </span>
+                                    <span className="block truncate text-base font-bold text-slate-900">
+                                      careers@greyloops.com
+                                    </span>
+                                  </div>
+                                </a>
+                              </div>
                             </div>
 
-                            {/* Contact Info List */}
-                            <div className="mt-6 space-y-4">
-                              <a
-                                href="tel:+180045647823"
-                                className="group flex items-center gap-3 text-base font-bold text-blue-300 transition-colors hover:text-white"
+                            <div className="relative z-10 pt-8">
+                              <Link
+                                href="/contact"
+                                onClick={() => setActiveMenu(null)}
+                                className="relative flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition-all hover:from-blue-700 hover:to-blue-600 hover:shadow-blue-500/35"
                               >
-                                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white transition-transform group-hover:scale-105">
-                                  <PhoneCall className="h-4 w-4" />
-                                </span>
-                                +1-800-456-478-23
-                              </a>
-
-                              <div className="flex items-start gap-3">
-                                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-blue-300">
-                                  <Mail className="h-4 w-4" />
-                                </span>
-                                <div>
-                                  <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                                    Business:
-                                  </span>
-                                  <a
-                                    href="mailto:query@greyloops.com"
-                                    className="text-sm font-semibold text-white transition-colors hover:text-blue-300"
-                                  >
-                                    Info@greyloops.com
-                                  </a>
-                                </div>
-                              </div>
-
-                              <div className="flex items-start gap-3">
-                                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-cyan-300">
-                                  <Briefcase className="h-4 w-4" />
-                                </span>
-                                <div>
-                                  <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                                    Careers:
-                                  </span>
-                                  <a
-                                    href="mailto:hr@greyloops.com"
-                                    className="text-sm font-semibold text-white transition-colors hover:text-cyan-300"
-                                  >
-                                    careers@greyloops.com
-                                  </a>
-                                </div>
-                              </div>
+                                Get in Touch
+                                <ArrowUpRight className="h-5 w-5" />
+                              </Link>
                             </div>
-                          </div>
-
-                          <div className="relative z-10 pt-6">
-                            <Link
-                              href="/contact"
-                              onClick={() => setActiveMenu(null)}
-                              className="relative flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition-all hover:from-blue-700 hover:to-blue-600 hover:shadow-blue-500/35"
-                            >
-                              Get in Touch
-                              <ArrowUpRight className="h-4 w-4" />
-                            </Link>
                           </div>
                         </div>
                       </div>
@@ -479,79 +624,134 @@ export default function Header() {
                         </div>
                       </div>
                     ) : (
-                      /* Existing Services / Solutions mega menu */
-                      <div className="relative mx-auto flex max-w-7xl items-stretch">
-                        {/* Text columns */}
-                        <div className="grid flex-1 grid-cols-3 gap-10 px-8 py-10 items-stretch">
-                          {(item.columns || []).map((col) => {
-                            const Icon = col.icon;
-                            return (
-                              <div key={col.slug} className="flex flex-col justify-between">
+                      /* ───────────── SERVICES / SOLUTIONS MEGA MENU (matches Company) ───────────── */
+                      <div className="w-full bg-gradient-to-br from-slate-50 via-white to-blue-50/70">
+                        <div
+                          className={`relative mx-auto grid max-w-[1600px] items-stretch gap-8 px-10 py-10 ${MEGA_MIN_H} ${
+                            item.statCard
+                              ? "grid-cols-[minmax(0,1fr)_370px]"
+                              : "grid-cols-1"
+                          }`}
+                        >
+                          {/* Left: heading + column cards */}
+                          <div className="flex min-w-0 flex-col">
+                            <div className="mb-5 flex items-center justify-between gap-4">
+                              <div className="flex items-center gap-3.5">
+                                <IconTile
+                                  Icon={LayoutGrid}
+                                  color="blue"
+                                  size="lg"
+                                />
                                 <div>
-                                  <div className="mb-4 flex items-center gap-2.5 border-b-2 border-orange-400 pb-2.5">
-                                    {Icon && (
-                                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-blue-500/20 bg-blue-600/10 text-blue-600">
-                                        <Icon
-                                          className="h-4.5 w-4.5"
-                                          strokeWidth={2}
-                                        />
-                                      </span>
-                                    )}
-                                    <h3 className="text-lg font-bold text-slate-900">
-                                      {col.title}
-                                    </h3>
-                                  </div>
-                                  <ul className="space-y-3.5">
-                                    {col.links.map((link) => (
-                                      <li key={link.slug}>
-                                        <Link
-                                          href={`${item.basePath}/${link.slug}`}
-                                          onClick={() => setActiveMenu(null)}
-                                          className="text-base font-medium text-slate-700 hover:text-blue-600 transition-colors"
-                                        >
-                                          {link.name}
-                                        </Link>
-                                      </li>
-                                    ))}
-                                  </ul>
+                                  <h3 className="text-2xl font-extrabold tracking-tight text-slate-900">
+                                    Our {item.label}
+                                  </h3>
+                                  <p className="text-sm font-medium text-slate-500">
+                                    Everything we build, run and scale for you
+                                  </p>
                                 </div>
                               </div>
-                            );
-                          })}
-                        </div>
+                              <Link
+                                href={item.href}
+                                onClick={() => setActiveMenu(null)}
+                                className="group inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-900 shadow-sm transition-all duration-200 hover:border-[#007AFF] hover:text-[#007AFF] hover:shadow-md"
+                              >
+                                View all {item.label.toLowerCase()}
+                                <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                              </Link>
+                            </div>
 
-                        {/* Stat Card */}
-                        {item.statCard && (
-                          <div className="relative w-100 shrink-0 overflow-hidden text-white flex flex-col">
-                            <div
-                              className="absolute inset-0 bg-cover bg-center"
-                              style={{
-                                backgroundImage: `url(${item.statCard.bgImage})`,
-                              }}
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/20 to-transparent" />
-
-                            <div className="relative flex h-full min-h-[380px] flex-col justify-between p-7">
-                              <div className="flex items-start justify-between">
-                                <span className="text-3xl font-extrabold tracking-tight text-blue-300">
-                                  {item.statCard.label}
-                                </span>
-                              </div>
-
-                              <div>
-                                <p className="mb-3 text-5xl font-extrabold">
-                                  {item.statCard.stat}
-                                </p>
-                                <p className="mb-4 text-base leading-relaxed text-zinc-100">
-                                  {item.statCard.text}
-                                </p>
-                                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500 px-4 py-1.5 text-sm font-bold text-white">
-                                  {"★".repeat(Number(item.statCard.rating))}
-                                </span>
-                              </div>
+                            <div className="grid flex-1 auto-rows-fr grid-cols-3 gap-5">
+                              {(item.columns || []).map((col, colIdx) => {
+                                const ColIcon = col.icon || Building2;
+                                const color =
+                                  APPLE_CYCLE[colIdx % APPLE_CYCLE.length];
+                                return (
+                                  <div
+                                    key={col.slug}
+                                    className="flex flex-col rounded-3xl border border-slate-200/70 bg-white p-6 shadow-sm shadow-blue-900/5"
+                                  >
+                                    <div className="mb-4 flex items-center gap-3.5">
+                                      <IconTile
+                                        Icon={ColIcon}
+                                        color={color}
+                                        size="lg"
+                                      />
+                                      <h3 className="text-xl font-extrabold leading-tight tracking-tight text-slate-900">
+                                        {col.title}
+                                      </h3>
+                                    </div>
+                                    <div className="mb-3 h-px w-full bg-gradient-to-r from-slate-200 via-slate-100 to-transparent" />
+                                    <ul className="space-y-1">
+                                      {col.links.map((link) => (
+                                        <li key={link.slug}>
+                                          <Link
+                                            href={`${item.basePath}/${link.slug}`}
+                                            onClick={() => setActiveMenu(null)}
+                                            className="group flex items-center gap-3 rounded-xl px-2.5 py-2.5 text-base font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-50 hover:text-slate-900"
+                                          >
+                                            <span
+                                              className={`h-2 w-2 shrink-0 rounded-full ${APPLE[color].dot} opacity-60 transition-all duration-200 group-hover:scale-125 group-hover:opacity-100`}
+                                            />
+                                            <span className="flex-1">
+                                              {link.name}
+                                            </span>
+                                            <ArrowUpRight className="h-4 w-4 -translate-x-1 text-slate-400 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100" />
+                                          </Link>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                );
+                              })}
                             </div>
                           </div>
-                        )}
+
+                          {/* Right: Stat Card — image shown in full (896x1200 ratio), content below */}
+                          {item.statCard && (
+                            <div className="relative flex flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-lg shadow-blue-900/10">
+                              {/* Image frame uses the image's own ratio so it fills edge-to-edge with no crop */}
+                              <div className="relative aspect-[896/1200] w-full shrink-0 overflow-hidden bg-slate-100">
+                                <Image
+                                  src={item.statCard.bgImage}
+                                  alt={item.statCard.label || "Greyloops"}
+                                  fill
+                                  sizes="370px"
+                                  className="object-cover"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/15 to-transparent" />
+
+                                <span className="absolute left-5 top-5 rounded-full bg-white/90 px-4 py-1.5 text-sm font-extrabold tracking-tight text-[#007AFF] shadow-md backdrop-blur">
+                                  {item.statCard.label || "Greyloops"}
+                                </span>
+
+                                <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                                  <p className="mb-2 text-6xl font-extrabold tracking-tight drop-shadow">
+                                    {item.statCard.stat}
+                                  </p>
+                                  <p className="text-sm leading-relaxed text-zinc-100">
+                                    {item.statCard.text}
+                                  </p>
+                                </div>
+                              </div>
+
+                              {/* Footer fills whatever height is left */}
+                              <div className="flex flex-1 flex-col items-center justify-center gap-4 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-6">
+                                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#34C759] px-4 py-1.5 text-sm font-bold text-white shadow-md">
+                                  {"★".repeat(Number(item.statCard.rating))}
+                                </span>
+                                <Link
+                                  href="/contact"
+                                  onClick={() => setActiveMenu(null)}
+                                  className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition-all hover:from-blue-700 hover:to-blue-600"
+                                >
+                                  Start a Project
+                                  <ArrowUpRight className="h-5 w-5" />
+                                </Link>
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -672,23 +872,23 @@ export default function Header() {
                               </div>
                             ))}
 
-                            {/* Mobile Direct Contact Section */}
-                            <div className="mt-4 rounded-xl bg-slate-900 p-4 text-white">
-                              <h5 className="text-xs font-bold text-blue-400 uppercase tracking-wider mb-2">
+                            {/* Mobile Direct Contact Section (light theme) */}
+                            <div className="mt-4 rounded-xl border border-blue-100 bg-blue-50 p-4 text-slate-900">
+                              <h5 className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-2">
                                 Direct Contact
                               </h5>
                               <p className="text-sm font-bold">
                                 +1-800-456-478-23
                               </p>
-                              <div className="mt-2 text-xs text-slate-300 space-y-1">
+                              <div className="mt-2 text-xs text-slate-600 space-y-1">
                                 <p>
-                                  <span className="text-slate-400">
+                                  <span className="text-slate-500">
                                     Business:
                                   </span>{" "}
                                   Info@greyloops.com
                                 </p>
                                 <p>
-                                  <span className="text-slate-400">
+                                  <span className="text-slate-500">
                                     Careers:
                                   </span>{" "}
                                   careers@greyloops.com

@@ -70,12 +70,13 @@ function StatCard({ stat }) {
   return (
     <article className="group flex w-[20rem] shrink-0 flex-col justify-between gap-6 rounded-[2rem] bg-white/80 p-6 shadow-[0_20px_50px_rgba(15,23,42,0.08)] ring-1 ring-white/70 transition-all duration-500 hover:-translate-y-1.5 hover:bg-white hover:shadow-[0_30px_70px_rgba(37,99,235,0.18)] sm:w-[24rem] sm:p-7 xl:w-[27rem] xl:p-8">
       <div className="flex flex-col gap-4">
-        <div className="flex items-center gap-4">
-          <span className="text-6xl font-extrabold leading-none tracking-tight text-slate-900 sm:text-7xl xl:text-[5.5rem]">
+        <div className="flex items-center gap-3">
+          {/* Number: reduced from text-6xl / sm:text-7xl / xl:text-[5.5rem] */}
+          <span className="text-4xl font-extrabold leading-none tracking-tight text-slate-900 sm:text-5xl xl:text-6xl">
             {stat.value}
             <span className="text-blue-600">{stat.suffix}</span>
           </span>
-          <p className="text-sm font-bold uppercase leading-snug tracking-wide text-slate-700 xl:text-base">
+          <p className="text-xs font-bold uppercase leading-snug tracking-wide text-slate-700 sm:text-sm">
             {stat.label[0]}
             <br />
             {stat.label[1]}
