@@ -97,9 +97,9 @@ export const trendingBlogs = [
     image: "/Blogs_Mobile_App_Development_Company_v1.png",
   },
   {
-    title: "Scaling a SaaS platform to 100K users, our playbook.",
-    href: "/MainBlogs",
-    image: "/2.jpg",
+    title: "Latest ERP Trends: How AI and Cloud Technology Are Transforming Businesses",
+    href: "/MainBlogs/latest-erp-trends",
+    image: "/mega_menu_erp_trend_v1.png",
   },
   {
     title: "Cloud infrastructure trends every CTO should watch.",
