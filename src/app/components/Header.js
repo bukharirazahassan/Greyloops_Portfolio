@@ -302,14 +302,14 @@ export default function Header() {
                         <div
                           className={`relative mx-auto grid max-w-[1600px] grid-cols-[300px_minmax(0,1fr)_370px] items-stretch gap-8 px-10 py-10 ${MEGA_MIN_H}`}
                         >
-                          {/* ── Column 1: Company + Careers links + socials ── */}
-                          <div className="flex flex-col rounded-3xl border border-slate-200/70 bg-white p-7 shadow-sm shadow-blue-900/5">
+                          {/* ── Column 1: three separate cards — Company, Careers, Find us on ── */}
+                          <div className="flex flex-col gap-4">
                             {companyColumns.slice(0, 2).map((col, colIdx) => (
                               <div
                                 key={col.title}
-                                className={colIdx > 0 ? "mt-7" : ""}
+                                className="rounded-3xl border border-slate-200/70 bg-white p-5 shadow-sm shadow-blue-900/5"
                               >
-                                <div className="mb-4 flex items-center gap-3.5">
+                                <div className="mb-3 flex items-center gap-3.5">
                                   <IconTile
                                     Icon={colIdx === 0 ? Building2 : Briefcase}
                                     color={colIdx === 0 ? "blue" : "orange"}
@@ -319,7 +319,7 @@ export default function Header() {
                                     {col.title}
                                   </h3>
                                 </div>
-                                <ul className="space-y-1.5">
+                                <ul className="space-y-1">
                                   {col.links.map((link) => {
                                     const { Icon: LinkIcon, color } =
                                       getCompanyLinkMeta(link.name);
@@ -328,7 +328,7 @@ export default function Header() {
                                         <Link
                                           href={`/company/${link.slug}`}
                                           onClick={() => setActiveMenu(null)}
-                                          className="group flex items-center gap-3 rounded-xl p-2 text-base font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-50 hover:text-slate-900"
+                                          className="group flex items-center gap-3 rounded-xl p-1.5 text-base font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-50 hover:text-slate-900"
                                         >
                                           <IconTile
                                             Icon={LinkIcon}
@@ -348,9 +348,9 @@ export default function Header() {
                               </div>
                             ))}
 
-                            {/* Find us on — pinned to the bottom of the card */}
-                            <div className="mt-auto border-t border-slate-100 pt-6">
-                              <div className="mb-3 flex items-center gap-2.5">
+                            {/* Find us on — its own card, fills any leftover height */}
+                            <div className="flex flex-1 flex-col justify-center gap-4 rounded-3xl border border-slate-200/70 bg-white p-5 shadow-sm shadow-blue-900/5">
+                              <div className="flex items-center gap-3">
                                 <IconTile Icon={Share2} color="indigo" size="md" />
                                 <h4 className="text-sm font-bold uppercase tracking-wider text-slate-500">
                                   Find us on
