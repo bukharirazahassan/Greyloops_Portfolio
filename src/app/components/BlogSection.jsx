@@ -1,3 +1,4 @@
+// src/components/BlogSection.jsx
 "use client";
 
 import Link from "next/link";
@@ -8,32 +9,32 @@ import { User, ArrowUpRight, Sparkles } from "lucide-react";
 const posts = [
   {
     id: 1,
-    image: "/blog_hero_page_1.png",
+    title: "How to Choose the Best Mobile App Development Company",
+    href: "/MainBlogs/BestMobileDevelopmentCompany",
+    image: "/Blogs_Mobile_App_Development_Company_v1.png",
     category: "Technology",
     author: "Greyloops Team",
     date: "12 August, 2024",
-    title: "How AI is reshaping enterprise software delivery.",
-    href: "/about",
     size: "large",
   },
   {
     id: 2,
-    image: "/2.jpg",
-    category: "Case Study",
+    title: "Latest ERP Trends: How AI and Cloud Technology Are Transforming Businesses",
+    href: "/MainBlogs/latest-erp-trends",
+    image: "/mega_menu_erp_trend_v1.png",
+    category: "ERP & AI",
     author: "Greyloops Team",
     date: "13 August, 2024",
-    title: "Scaling a SaaS platform to 100K users, our playbook.",
-    href: "/about",
     size: "small",
   },
   {
     id: 3,
+    title: "Cloud infrastructure trends every CTO should watch.",
+    href: "/MainBlogs",
     image: "/3.jpg",
     category: "Insights",
     author: "Greyloops Team",
     date: "14 August, 2024",
-    title: "Cloud infrastructure trends every CTO should watch.",
-    href: "/about",
     size: "small",
   },
 ];
@@ -52,7 +53,7 @@ function BlogCard({ post, className = "" }) {
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
       />
 
-      {/* Dark gradient for text legibility */}
+      {/* Dark gradient overlay for text legibility */}
       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
 
       {/* Category badge */}
@@ -60,7 +61,7 @@ function BlogCard({ post, className = "" }) {
         {post.category}
       </span>
 
-      {/* Read more arrow, appears on hover */}
+      {/* Read more arrow on hover */}
       <span className="absolute right-5 z-10 flex h-9 w-9 translate-y-2 items-center justify-center rounded-full bg-white text-blue-600 opacity-0 shadow-lg transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100" style={{ bottom: "1.25rem" }}>
         <ArrowUpRight className="h-4 w-4" />
       </span>
@@ -75,7 +76,7 @@ function BlogCard({ post, className = "" }) {
           <span className="h-px w-5 bg-slate-500" />
           <span>{post.date}</span>
         </div>
-        <h3 className="blog-display text-lg font-bold leading-snug text-white transition-colors duration-300 group-hover:text-blue-200 sm:text-xl lg:text-2xl">
+        <h3 className="text-lg font-bold leading-snug text-white transition-colors duration-300 group-hover:text-blue-200 sm:text-xl lg:text-2xl">
           {post.title}
         </h3>
       </div>
@@ -87,20 +88,8 @@ export default function BlogSection() {
   const [featured, ...rest] = posts;
 
   return (
-    <section className="blog-font relative w-full overflow-hidden bg-gradient-to-b from-white via-blue-50/40 to-slate-50 py-20 sm:py-28">
-      {/* Shared display font, same pairing as the rest of the site */}
-      <style jsx global>{`
-        @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
-        .blog-font {
-          font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-        }
-        .blog-display {
-          font-family: "Sora", "Plus Jakarta Sans", ui-sans-serif, sans-serif;
-          letter-spacing: -0.02em;
-        }
-      `}</style>
-
-      {/* Dot-grid texture — matched to the rest of the site */}
+    <section className="relative w-full overflow-hidden bg-gradient-to-b from-white via-blue-50/40 to-slate-50 py-20 sm:py-28">
+      {/* Dot-grid texture */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.32]"
         style={{
@@ -134,7 +123,7 @@ export default function BlogSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="blog-display mb-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
+            className="mb-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
           >
             <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
               News &amp;{" "}

@@ -102,8 +102,8 @@ export const trendingBlogs = [
     image: "/mega_menu_erp_trend_v1.png",
   },
   {
-    title: "Cloud infrastructure trends every CTO should watch.",
-    href: "/MainBlogs",
+    title: "Staff Augmentation vs. Managed Services vs. Dedicated Teams.",
+    href: "/MainBlogs/EngagementModel",
     image: "/3.jpg",
   },
 ];
