@@ -1,3 +1,4 @@
+// src/app/company/[slug]/page.jsx
 import { notFound } from "next/navigation";
 import { companyColumns, findCompanyLinkBySlug } from "../../lib/companyData";
 import AboutUs from "../../components/company/AboutUs";
@@ -5,6 +6,7 @@ import WhyChooseUs from "../../components/company/WhyChooseUs";
 import OurTeam from "../../components/company/OurTeam";
 import FaqsPage from "../../components/company/FaqsPage";
 import CareersPage from "../../components/company/CareersPage";
+import Technology_Insights from "../../components/company/Technology_Insights";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -66,6 +68,16 @@ export default async function CompanyDetailPage({ params }) {
       <div className="flex min-h-screen flex-col bg-white">
         <Header />
         <CareersPage />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (slug === "blog") {
+    return (
+      <div className="flex min-h-screen flex-col bg-white">
+        <Header />
+        <Technology_Insights />
         <Footer />
       </div>
     );
