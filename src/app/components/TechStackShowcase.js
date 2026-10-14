@@ -1,3 +1,4 @@
+// src/app/components/TechStackShowcase.jsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -11,6 +12,10 @@ import {
   SiDotnet,
   SiAndroidstudio,
   SiPython,
+  SiGraphql,
+  SiGrafana,
+  SiVuedotjs,
+  SiNestjs,
 } from "react-icons/si";
 
 const stack = [
@@ -19,17 +24,21 @@ const stack = [
   { id: "U3", name: "Node.js", role: "Runtime", Icon: SiNodedotjs, color: "#16A34A" },
   { id: "U4", name: "Python", role: "Language", Icon: SiPython, color: "#2563EB" },
   { id: "U5", name: "Angular", role: "SPA Framework", Icon: SiAngular, color: "#DC2626" },
+  { id: "U6", name: "Vue.js", role: "Frontend Framework", Icon: SiVuedotjs, color: "#41B883" },
+  { id: "U7", name: "NestJS", role: "Backend Framework", Icon: SiNestjs, color: "#E0234E" },
+  { id: "U8", name: "GraphQL", role: "API Query Language", Icon: SiGraphql, color: "#E535AB" },
   { id: "D1", name: "MongoDB", role: "NoSQL Database", Icon: SiMongodb, color: "#059669" },
   { id: "D2", name: "MySQL", role: "SQL Database", Icon: SiMysql, color: "#0284C7" },
-  { id: "U6", name: ".NET Core", role: "Framework", Icon: SiDotnet, color: "#7C3AED" },
+  { id: "U9", name: ".NET Core", role: "Framework", Icon: SiDotnet, color: "#7C3AED" },
   { id: "M1", name: "Android Studio", role: "Native IDE", Icon: SiAndroidstudio, color: "#16A34A" },
   { id: "M2", name: "React Native", role: "Mobile Framework", Icon: SiReact, color: "#0088CC" },
+  { id: "O1", name: "Grafana", role: "Monitoring & Observability", Icon: SiGrafana, color: "#F46800" },
 ];
 
 const gridVariants = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.06, delayChildren: 0.15 },
+    transition: { staggerChildren: 0.05, delayChildren: 0.1 },
   },
 };
 
@@ -46,14 +55,14 @@ function ComponentCell({ id, name, role, Icon, color }) {
   return (
     <motion.div
       variants={cellVariants}
-      className="group relative flex flex-col justify-between overflow-hidden bg-white/80 px-5 py-6 backdrop-blur-xl transition-all duration-300 hover:bg-white hover:shadow-xl sm:px-6 sm:py-7"
+      className="group relative flex flex-col justify-between overflow-hidden bg-white/70 px-5 py-6 backdrop-blur-xl transition-all duration-300 hover:bg-white hover:shadow-xl sm:px-6 sm:py-7"
     >
       {/* Top light edge highlight */}
       <span className="pointer-events-none absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent opacity-100" />
 
       {/* Ambient dot matrix inside card */}
       <span
-        className="pointer-events-none absolute inset-0 z-0 opacity-[0.10] transition-opacity duration-300 group-hover:opacity-[0.22]"
+        className="pointer-events-none absolute inset-0 z-0 opacity-[0.08] transition-opacity duration-300 group-hover:opacity-[0.18]"
         style={{
           backgroundImage: "radial-gradient(#3b82f6 1.2px, transparent 1.2px)",
           backgroundSize: "18px 18px",
@@ -76,7 +85,7 @@ function ComponentCell({ id, name, role, Icon, color }) {
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center gap-3 py-4">
         {/* Card Icon Container */}
         <div
-          className="flex h-16 w-16 items-center justify-center rounded-2xl border border-blue-100 bg-white shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-md"
+          className="flex h-16 w-16 items-center justify-center rounded-2xl border border-blue-100/80 bg-white shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-md"
           style={{
             boxShadow: `0 8px 24px -8px ${color}25`,
           }}
@@ -106,83 +115,76 @@ function ComponentCell({ id, name, role, Icon, color }) {
 
 export default function TechStackShowcase() {
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-b from-white via-blue-50/20 to-slate-50 py-20 sm:py-28">
-      {/* Background ambient lighting */}
-      <div className="pointer-events-none absolute right-0 top-0 z-0 h-[600px] w-[750px] -translate-y-1/3 rounded-full bg-blue-100/50 blur-[160px]" />
-      <div className="pointer-events-none absolute right-[8%] top-0 z-0 h-[500px] w-[500px] -translate-y-1/4 rounded-full bg-sky-100/50 blur-[120px]" />
+    <section className="relative w-full overflow-hidden bg-slate-50 py-6 lg:pb-16 lg:pt-4">
+      {/* Background dots pattern */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(#cbd5e1_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-60" />
 
-      {/* Background dot grid pattern */}
-      <div
-        className="pointer-events-none absolute inset-0 z-0 opacity-[0.20]"
-        style={{
-          backgroundImage: "radial-gradient(#94a3b8 1.2px, transparent 1.2px)",
-          backgroundSize: "24px 24px",
-          maskImage:
-            "radial-gradient(ellipse 90% 75% at 50% 20%, black 25%, transparent 100%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 90% 75% at 50% 20%, black 25%, transparent 100%)",
-        }}
-      />
+      {/* Glowing background circles */}
+      <div className="pointer-events-none absolute left-0 top-1/4 h-96 w-96 rounded-full bg-blue-400/20 blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-1/4 right-0 h-80 w-80 rounded-full bg-indigo-400/15 blur-[120px]" />
 
-      <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
-        <motion.span
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-white px-4 py-1.5 font-mono text-xs font-semibold tracking-wide text-blue-700 shadow-xs"
+      <div className="relative z-10 mx-auto flex w-full max-w-[120rem] flex-col px-4 sm:px-6 lg:px-8">
+        
+        {/* Header aligned to the left with compact top spacing */}
+        <div className="flex flex-col items-start px-2 text-left sm:px-4">
+          <motion.span
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3.5 py-1 text-xs font-semibold text-blue-700 shadow-sm ring-1 ring-blue-100 backdrop-blur-md sm:text-sm"
+          >
+            <span className="h-2 w-2 animate-pulse rounded-full bg-blue-600" />
+            stack.config
+          </motion.span>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mt-3 max-w-6xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
+          >
+            <span className="text-slate-900">Modern Technologies.</span>{" "}
+            <span className="text-blue-600">Smarter Solutions.</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="mt-3 max-w-3xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg"
+          >
+            Hire from our pool of specialized experts in web, mobile, and
+            software engineering — fluent in the frameworks and languages
+            that ship production systems.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="mt-3 font-mono text-xs font-semibold tracking-widest text-slate-500"
+          >
+            350+ SPECIALISTS&nbsp;&nbsp;·&nbsp;&nbsp;14 CORE TECHNOLOGIES&nbsp;&nbsp;·&nbsp;&nbsp;24/7 SUPPORT
+          </motion.p>
+        </div>
+
+        {/* Full-width responsive Grid container */}
+        <motion.div
+          variants={gridVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.1 }}
+          className="relative z-10 mx-auto mt-8 grid w-full grid-cols-2 gap-px overflow-hidden rounded-[2.5rem] border border-blue-100 bg-blue-100/60 p-px shadow-[0_20px_50px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7"
         >
-          <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-          stack.config
-        </motion.span>
+          {stack.map((item) => (
+            <ComponentCell key={item.id} {...item} />
+          ))}
+        </motion.div>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="mb-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"
-        >
-          Technologies We{" "}
-          <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-            Use
-          </span>
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="mb-8 text-base leading-relaxed text-slate-600 sm:text-lg"
-        >
-          Hire from our pool of specialized experts in web, mobile, and
-          software engineering — fluent in the frameworks and languages
-          that ship production systems.
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="mb-14 font-mono text-xs font-semibold tracking-widest text-slate-500"
-        >
-          350+ SPECIALISTS&nbsp;&nbsp;·&nbsp;&nbsp;10 CORE TECHNOLOGIES&nbsp;&nbsp;·&nbsp;&nbsp;24/7 SUPPORT
-        </motion.p>
       </div>
-
-      {/* Grid container with clean white border divider instead of slate-200 */}
-      <motion.div
-        variants={gridVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        className="relative z-10 mx-auto grid max-w-5xl grid-cols-2 gap-px overflow-hidden rounded-3xl border border-blue-100 bg-blue-100/60 p-px shadow-xl sm:grid-cols-3 lg:grid-cols-5"
-      >
-        {stack.map((item) => (
-          <ComponentCell key={item.id} {...item} />
-        ))}
-      </motion.div>
     </section>
   );
 }

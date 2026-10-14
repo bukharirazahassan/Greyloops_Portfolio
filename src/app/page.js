@@ -1,6 +1,5 @@
 import Header from "./components/Header";
 import Slider from "./components/Slider";
-import Offerings from "./components/Offerings";
 import TechStackShowcase from "./components/TechStackShowcase";
 import EngagementModels from "./components/EngagementModels";
 import CaseStudiesShowcase from "./components/CaseStudiesShowcase";
@@ -10,9 +9,11 @@ import Wavedivider from "./components/Wavedivider"
 import PricingPlans from "./components/PricingPlans";
 import BlogSection from "./components/BlogSection";
 import Industries from "./components/Industries";
+import IndustryExpertise from "./components/IndustryExpertise";
 import Delivertansformation from "./components/Delivertansformation";
 import Industrieschallenges from "./components/Industrieschallenges";
 import ProvenExpertise from "./components/ProvenExpertise";
+import OurServices from "@/app/components/services/OurServices";
 
 export default function Home() {
   return (
@@ -21,13 +22,14 @@ export default function Home() {
       <Slider />
       <Delivertansformation />
       <ProvenExpertise />
-      <Offerings /> 
+      <OurServices />
       <TechStackShowcase />
       <EngagementModels />
       {/* <CaseStudiesShowcase /> */}
       {/* <PricingPlans /> */}
-      <Industrieschallenges />
+      {/* <Industrieschallenges /> */}
       {/* <Industries/> */}
+      <IndustryExpertise/>
       <ContactUs />
       <BlogSection/>
       <Footer />

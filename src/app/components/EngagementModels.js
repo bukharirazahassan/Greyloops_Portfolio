@@ -1,3 +1,4 @@
+// src/app/components/EngagementModels.jsx
 "use client";
 
 import { useRef, useState, useEffect } from "react";
@@ -95,35 +96,21 @@ export default function EngagementModels() {
   };
 
   return (
-    <section ref={containerRef} className="relative w-full bg-white h-[350vh]">
-      {/* Sticky viewport frame centered between top and bottom edges */}
+    <section ref={containerRef} className="relative w-full bg-slate-50 h-[350vh]">
+      {/* Sticky viewport frame matching our theme */}
       <div className="sticky top-20 h-[calc(100vh-5rem)] w-full overflow-hidden flex items-center justify-center">
-        {/* Background Dot Texture */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.32]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-            maskImage:
-              "radial-gradient(ellipse 90% 75% at 50% 30%, black 30%, transparent 100%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 90% 75% at 50% 30%, black 30%, transparent 100%)",
-          }}
-        />
+        {/* Background dots pattern matching other sections */}
+        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(#cbd5e1_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-60" />
 
-        {/* Ambient background glows */}
-        <div className="pointer-events-none absolute -left-20 top-12 h-96 w-96 rounded-full bg-blue-300/20 blur-3xl animate-float" />
-        <div
-          className="pointer-events-none absolute -right-20 bottom-10 h-80 w-80 rounded-full bg-orange-200/25 blur-3xl animate-float"
-          style={{ animationDelay: "1.5s" }}
-        />
+        {/* Glowing background circles matching our theme */}
+        <div className="pointer-events-none absolute left-0 top-1/4 h-96 w-96 rounded-full bg-blue-400/20 blur-[120px]" />
+        <div className="pointer-events-none absolute bottom-1/4 right-0 h-80 w-80 rounded-full bg-indigo-400/15 blur-[120px]" />
 
-        <div className="relative z-10 mx-auto flex h-full w-full max-w-[1700px] items-center px-6 lg:px-12 py-6">
+        <div className="relative z-10 mx-auto flex h-full w-full max-w-[120rem] items-center px-4 sm:px-6 lg:px-8 py-6">
           <div className="grid h-full max-h-[82vh] w-full items-center gap-8 lg:grid-cols-12 lg:gap-12">
             
             {/* Left Column: Layered Covering Image Frame with Fixed Bottom Content */}
-            <div className="relative h-full w-full overflow-hidden rounded-3xl border border-slate-100 bg-slate-900 shadow-2xl shadow-blue-900/10 lg:col-span-7">
+            <div className="relative h-full w-full overflow-hidden rounded-[2.5rem] border border-white/80 bg-slate-900 shadow-[0_20px_50px_rgba(15,23,42,0.08)] backdrop-blur-xl lg:col-span-7">
               {models.map((model, index) => {
                 const topOffset = getTopOffsetPercent(index);
 
@@ -193,14 +180,14 @@ export default function EngagementModels() {
                   <h4 className="mb-3 text-3xl font-extrabold text-slate-900 lg:text-4xl">
                     {current.title}
                   </h4>
-                  <p className="text-base font-normal leading-relaxed text-slate-700 antialiased sm:text-lg lg:text-[17px]">
+                  <p className="text-base font-normal leading-relaxed text-slate-600 antialiased sm:text-lg lg:text-[17px]">
                     {current.description}
                   </p>
                 </motion.div>
               </div>
 
-              {/* Connected Dots Timeline Navigation (Positioned directly under text) */}
-              <div className="relative flex flex-col pl-2 space-y-2 pt-6 border-t border-slate-100">
+              {/* Connected Dots Timeline Navigation */}
+              <div className="relative flex flex-col pl-2 space-y-2 pt-6 border-t border-slate-200/80">
                 <div className="absolute left-[23px] top-10 bottom-4 w-0.5 bg-slate-200 z-0" />
 
                 {models.map((model, index) => {
@@ -211,7 +198,7 @@ export default function EngagementModels() {
                     <button
                       key={model.title}
                       onClick={() => handleSelectModel(index)}
-                      className="group relative z-10 flex items-center gap-4 rounded-xl px-2 py-2 text-left transition-all duration-300 hover:bg-slate-50"
+                      className="group relative z-10 flex items-center gap-4 rounded-xl px-2 py-2 text-left transition-all duration-300 hover:bg-white/80"
                     >
                       <div className="relative flex h-8 w-8 shrink-0 items-center justify-center">
                         <div
@@ -227,7 +214,7 @@ export default function EngagementModels() {
                         <span
                           className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors duration-300 ${
                             isActive
-                              ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white"
+                              ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-md shadow-blue-500/20"
                               : "bg-blue-50 text-blue-500 group-hover:text-blue-600"
                           }`}
                         >

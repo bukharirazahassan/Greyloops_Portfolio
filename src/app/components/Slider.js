@@ -24,7 +24,7 @@ const COVER_OUT_CLEANUP_MS = 1200;
 const slides = [
   {
     id: "digital-systems",
-    video: "/Artificial_Intelligence_Video_v1.mp4",
+    video: "/Engineering_the_Next_Generation_of_Digital_Systems.mp4",
     eyebrow: "AI & emerging technology partner",
     headingDark: "Engineering the Next Generation of",
     headingBlue: "Digital Systems",
@@ -39,7 +39,7 @@ const slides = [
   },
   {
     id: "enterprise",
-    video: "/Artificial_Intelligence_Video.mp4",
+    video: "/Empowering_Enterprises_With_Modern_Technology.mp4",
     eyebrow: "Enterprise digital transformation",
     headingDark: "Empowering Enterprises With",
     headingBlue: "Modern Technology",

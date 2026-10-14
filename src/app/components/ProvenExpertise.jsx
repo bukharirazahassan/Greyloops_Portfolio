@@ -109,7 +109,7 @@ function StatCard({ stat }) {
 
 export default function ProvenExpertise() {
   return (
-    <section className="relative flex w-full flex-col justify-center overflow-hidden bg-slate-50 py-10 lg:min-h-[calc(100vh-80px)] lg:pt-8 lg:pb-12">
+    <section className="relative flex w-full flex-col overflow-hidden bg-slate-50 pt-2 pb-6 lg:pt-3 lg:pb-10">
       <style jsx global>{`
         @keyframes proven-marquee {
           from {
@@ -124,7 +124,7 @@ export default function ProvenExpertise() {
           animation: proven-marquee 55s linear infinite;
         }
         .proven-marquee:hover .proven-track,
-        .proven-marquee:focus-within .proven-track {
+        .proven-proven-marquee:focus-within .proven-track {
           animation-play-state: paused;
         }
 
@@ -156,7 +156,7 @@ export default function ProvenExpertise() {
             By the Numbers
           </span>
 
-          <h2 className="mx-0 mt-3 max-w-6xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+          <h2 className="mx-0 mt-2 max-w-6xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
             <span className="text-slate-900">Proven Expertise.</span>{" "}
             <span className="text-blue-600">Measurable Impact.</span>
           </h2>
@@ -165,7 +165,7 @@ export default function ProvenExpertise() {
 
       {/* ───── Continuous marquee (full width, fades out at both edges) ───── */}
       <div
-        className="proven-marquee relative z-10 mt-6 w-full overflow-hidden py-4 [-webkit-mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] lg:mt-6"
+        className="proven-marquee relative z-10 mt-4 w-full overflow-hidden py-4 [-webkit-mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] lg:mt-4"
         role="region"
         aria-label="Our numbers"
       >
