@@ -1,24 +1,148 @@
+// src/app/components/FAQContact.jsx
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
-  Zap,
-  ShieldCheck,
   ArrowRight,
-  Sparkles,
+  Check,
   CheckCircle2,
-  MessageCircle,
-  Mail,
-  Phone,
-  Rocket,
+  ChevronDown,
+  HelpCircle,
+  ShieldCheck,
+  Zap,
 } from "lucide-react";
 
-const ORBIT_NODES = [
-  { icon: Mail, angle: 0, color: "#38bdf8" },
-  { icon: Phone, angle: 90, color: "#a78bfa" },
-  { icon: Rocket, angle: 180, color: "#fb923c" },
-  { icon: ShieldCheck, angle: 270, color: "#34d399" },
+const FAQS = [
+  {
+    question: "What Digital Product Engineering Services Does Greyloops Offer?",
+    intro: [
+      "Greyloops delivers end-to-end digital product engineering services that help businesses transform ideas into secure, scalable, and high-performing digital solutions. From technology consulting and product strategy to development, integration, and continuous improvement, we align engineering expertise with business objectives.",
+    ],
+    listTitle: "Our core services include:",
+    items: [
+      {
+        label: "AI & Intelligent Automation",
+        text: "We integrate AI, machine learning, and intelligent automation to streamline operations, enhance decision-making, and unlock new business opportunities.",
+      },
+      {
+        label: "Digital Product Development",
+        text: "We design, develop, and optimize custom digital products through user-focused design, modern engineering, and continuous quality assurance.",
+      },
+      {
+        label: "Digital Transformation",
+        text: "We modernize legacy systems and connect business operations through scalable applications, cloud technologies, and integrated digital platforms.",
+      },
+      {
+        label: "Technology Consulting",
+        text: "We help businesses define technology strategies, select the right solutions, and align engineering investments with their long-term goals.",
+      },
+      {
+        label: "Data Engineering & Analytics",
+        text: "We build reliable data pipelines and analytics solutions that turn business data into actionable insights and support informed decisions.",
+      },
+    ],
+  },
+  {
+    question: "How Does Greyloops Help Businesses Scale Digital Products?",
+    intro: [
+      "Greyloops helps businesses scale existing digital products by optimizing performance, modernizing architecture, and improving system reliability. We combine cloud technologies, data-driven optimization, and automation to ensure applications adapt to growing users, workloads, and business demands.",
+    ],
+    listTitle: "We improve scalability through:",
+    items: [
+      "Cloud Migration & Microservices Architecture",
+      "Performance Engineering & Optimization",
+      "AI-Powered Monitoring & Predictive Analytics",
+      "Modular UI/UX & API Integration",
+      "Automated Testing & CI/CD Pipelines",
+    ],
+    outro: [
+      "Our approach helps businesses build on existing investments, improve application performance, and support sustainable growth without compromising security or stability.",
+    ],
+  },
+  {
+    question:
+      "How Does Greyloops Modernize Legacy Systems with AI-Driven Engineering?",
+    intro: [
+      "Greyloops helps businesses modernize legacy systems by combining AI, modern software architecture, and automation to improve performance, streamline operations, and support long-term growth. We assess existing systems, identify inefficiencies, and develop a phased modernization strategy that preserves valuable business logic while upgrading outdated components and connecting disconnected platforms.",
+      "Our approach integrates AI, machine learning, predictive analytics, and intelligent automation where they deliver measurable business value. We prioritize secure system design, reliable data integration, and continuous testing to ensure every solution remains scalable, maintainable, and aligned with business objectives.",
+      "The result is a modern, AI-ready technology foundation that reduces operational complexity, improves decision-making, and prepares businesses for future innovation.",
+    ],
+  },
+  {
+    question:
+      "How Much Does It Cost to Build an Enterprise-Grade Digital Product, and How Long Does It Take?",
+    intro: [
+      "The cost and timeline of digital product engineering depend on your business objectives, project scope, technical complexity, and required features. Greyloops takes a requirement-driven approach to project planning, evaluating factors such as system architecture, integrations, security, scalability, and performance to determine the most suitable development strategy.",
+      "Before development begins, we work with you to define project requirements, establish clear milestones, and provide a tailored cost and timeline estimate. This approach ensures transparency, aligns expectations, and helps deliver a solution that meets your business needs and long-term goals.",
+      "Contact Greyloops to discuss your requirements and receive a project estimate tailored to your needs.",
+    ],
+  },
+  {
+    question: "How Long Does a Typical Software Development Project Take?",
+    intro: [
+      "The timeline for a software development project depends on its scope, technical complexity, required features, integrations, and business objectives. At Greyloops, we follow a structured development approach that begins with understanding your requirements and defining clear project milestones.",
+      "Depending on your goals, we can develop a Minimum Viable Product (MVP) to validate core functionality and gather early user feedback, or a Proof of Concept (PoC) to evaluate technical feasibility before moving toward full-scale development.",
+      "We establish a realistic delivery timeline based on project requirements, development priorities, and testing needs, helping you plan effectively while maintaining a focus on quality, scalability, and long-term business value.",
+    ],
+  },
+  {
+    question:
+      "Can Greyloops Provide Dedicated Developers or Team Augmentation for Projects?",
+    intro: [
+      "Yes. Greyloops offers flexible engagement models to help businesses extend their development capabilities, access specialized technical expertise, and manage changing project requirements. Whether you need additional developers for an existing team or a dedicated team to build a digital product, we align our approach with your goals, project scope, and delivery needs.",
+    ],
+    listTitle: "Our engagement options include:",
+    items: [
+      {
+        label: "Dedicated Development Teams",
+        text: "A team focused on your project's objectives and development requirements.",
+      },
+      {
+        label: "Staff Augmentation",
+        text: "Skilled professionals who integrate with your existing team to fill technical or resource gaps.",
+      },
+      {
+        label: "Project-Based Engagement",
+        text: "Development services organized around defined deliverables, scope, and milestones.",
+      },
+      {
+        label: "Hybrid Engagement Models",
+        text: "A combination of internal resources and external expertise based on your project needs.",
+      },
+    ],
+    outro: [
+      "Our goal is to provide the right technical capabilities, maintain effective collaboration, and support efficient project delivery.",
+    ],
+  },
+  {
+    question: "Does Greyloops Provide SLAs and Post-Launch Support?",
+    intro: [
+      "Greyloops provides ongoing support and maintenance options to help businesses maintain the reliability, security, and performance of their digital products after deployment. Support arrangements are tailored to the system's complexity, operational requirements, and agreed service levels.",
+    ],
+    listTitle: "Our post-launch support services may include:",
+    items: [
+      {
+        label: "Technical Support and Troubleshooting",
+        text: "Assistance with technical issues and system-related challenges.",
+      },
+      {
+        label: "Bug Fixes and Security Updates",
+        text: "Addressing software defects and applying relevant updates.",
+      },
+      {
+        label: "System Monitoring and Optimization",
+        text: "Evaluating system performance and identifying opportunities for improvement.",
+      },
+      {
+        label: "Enhancements and Feature Updates",
+        text: "Improving existing functionality based on evolving business needs and user feedback.",
+      },
+    ],
+    outro: [
+      "Where applicable, Service-Level Agreements (SLAs) can define support availability, response times, responsibilities, and performance expectations. Our focus is to help keep your digital solutions reliable, secure, and aligned with your long-term business goals.",
+    ],
+  },
 ];
 
 const COUNTRY_CODES = [
@@ -50,36 +174,31 @@ const COUNTRY_CODES = [
   { name: "South Africa", code: "+27", flag: "🇿🇦" },
 ];
 
-export default function ContactUs() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    service: "",
-    countryCode: "+1",
-    phone: "",
-    project: "",
-  });
+const EMPTY_FORM = {
+  name: "",
+  email: "",
+  service: "",
+  countryCode: "+1",
+  phone: "",
+  project: "",
+};
 
+export default function FAQContact() {
+  const [openIndex, setOpenIndex] = useState(0);
+  const [formData, setFormData] = useState(EMPTY_FORM);
   const [phoneError, setPhoneError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    if (name === "phone") {
-      setPhoneError("");
-    }
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === "phone") setPhoneError("");
   };
 
   const validatePhone = (phone) => {
     const cleanPhone = phone.replace(/[\s\-\(\)]/g, "");
-    const phoneRegex = /^[0-9]{7,14}$/;
-    return phoneRegex.test(cleanPhone);
+    return /^[0-9]{7,14}$/.test(cleanPhone);
   };
 
   const handleSubmit = async (e) => {
@@ -95,9 +214,7 @@ export default function ContactUs() {
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
@@ -116,361 +233,350 @@ export default function ContactUs() {
     }
   };
 
+  // Light-theme field style
   const inputClass =
-    "w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 placeholder-zinc-400 shadow-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-100";
+    "rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 shadow-xs transition-all focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-100";
+  const labelClass = "mb-1 block text-xs font-semibold text-slate-700";
 
   return (
-    <section className="relative w-full overflow-hidden bg-white py-16 lg:py-24 text-slate-900">
-      {/* Background Dot Texture */}
-      <motion.div
-        animate={{ opacity: [0.3, 0.45, 0.3] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-          maskImage:
-            "radial-gradient(ellipse 90% 80% at 50% 30%, black 25%, transparent 100%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 90% 80% at 50% 30%, black 25%, transparent 100%)",
-        }}
-      />
+    <section className="relative w-full overflow-hidden bg-slate-50 pb-16 pt-6 lg:pb-24 lg:pt-10">
+      {/* Background dots pattern */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(#cbd5e1_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-60" />
 
-      {/* Ambient background glows */}
-      <div className="pointer-events-none absolute -left-20 top-1/3 h-80 w-80 rounded-full bg-blue-300/20 blur-3xl animate-float" />
-      <div
-        className="pointer-events-none absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-orange-200/25 blur-3xl animate-float"
-        style={{ animationDelay: "1.5s" }}
-      />
+      {/* Glowing background circles */}
+      <div className="pointer-events-none absolute left-0 top-1/4 h-96 w-96 rounded-full bg-blue-400/20 blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-1/4 right-0 h-80 w-80 rounded-full bg-indigo-400/15 blur-[120px]" />
 
-      <div className="relative mx-auto max-w-7xl px-6">
-        <div className="mx-auto mb-14 max-w-3xl text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-5 inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100"
-          >
-            <Sparkles className="h-3.5 w-3.5 text-blue-500" />
-            Get in Touch
-          </motion.span>
+      <div className="relative z-10 mx-auto flex w-full max-w-[120rem] flex-col px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="flex flex-col items-start px-2 text-left sm:px-4">
+          <span className="relative mb-3 inline-flex items-center gap-2 overflow-hidden rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100">
+            <HelpCircle className="h-4 w-4 text-blue-600" />
+            <span className="relative z-10">Help &amp; Answers</span>
+          </span>
+
           <motion.h2
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="mb-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="max-w-6xl text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
           >
-            <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-              Let&rsquo;s Build{" "}
-            </span>
-            <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-              Something Great
-            </span>
+            <span className="text-slate-900">Frequently Asked</span>{" "}
+            <span className="text-blue-600">Questions</span>
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-base leading-relaxed text-zinc-600 sm:text-lg"
-          >
-            Have a vision for your platform? Connect with our technical experts
-            and we&rsquo;ll get back to you within 24 hours.
-          </motion.p>
         </div>
 
+        {/* Form + FAQ */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="grid overflow-hidden rounded-3xl border border-slate-100 bg-white/90 shadow-2xl shadow-blue-900/10 backdrop-blur-md lg:grid-cols-12"
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="mt-6 grid grid-cols-1 gap-5 px-2 sm:px-4 lg:h-[40rem] lg:grid-cols-12 lg:grid-rows-1 lg:gap-6"
         >
-          {/* Left: Branding Panel */}
-          <div className="relative flex flex-col justify-between overflow-hidden border-b border-slate-100 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 p-8 sm:p-12 lg:col-span-5 lg:border-b-0 lg:border-r lg:border-slate-100/10 lg:p-14">
-            <motion.div
-              animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="pointer-events-none absolute -left-10 -top-10 h-72 w-72 rounded-full bg-blue-600/40 blur-3xl"
-            />
-            <motion.div
-              animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.4, 0.2] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="pointer-events-none absolute -bottom-10 -right-10 h-72 w-72 rounded-full bg-indigo-500/30 blur-3xl"
-            />
+          {/* Left: contact form */}
+          <div className="relative order-2 flex flex-col overflow-hidden rounded-[2rem] bg-white/80 p-6 shadow-[0_20px_50px_rgba(15,23,42,0.08)] ring-1 ring-white/80 backdrop-blur-xl sm:p-7 lg:order-1 lg:col-span-5 lg:min-h-0 lg:p-8">
+            {/* Soft light-theme glows */}
+            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-400/10 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-indigo-400/10 blur-3xl" />
 
-            <div className="relative z-10">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-400 ring-1 ring-blue-500/20 backdrop-blur-md">
-                <Sparkles className="h-3.5 w-3.5" />
-                Book a Discovery Call
-              </span>
-              <h3 className="mt-5 text-2xl font-extrabold leading-tight text-white sm:text-3xl lg:text-4xl">
-                Tell us about your project.
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-slate-300 sm:text-base">
-                Our team reviews every request personally — no bots, no
-                boilerplate replies. Just a real conversation about what
-                you&rsquo;re building.
-              </p>
-            </div>
-
-            {/* Orbit Animation Visual */}
-            <div className="relative z-10 my-10 flex items-center justify-center">
-              <div className="relative flex h-52 w-52 items-center justify-center sm:h-60 sm:w-60">
-                {/* Rings */}
-                <div className="absolute inset-0 rounded-full border border-white/10" />
+            <div className="relative z-10 flex flex-1 flex-col">
+              {isSubmitted ? (
                 <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{
-                    duration: 22,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  className="absolute inset-6 rounded-full border border-dashed border-blue-400/25"
-                />
-                <motion.div
-                  animate={{ rotate: -360 }}
-                  transition={{
-                    duration: 30,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  className="absolute inset-14 rounded-full border border-cyan-400/25"
-                />
-
-                {/* Glowing core */}
-                <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="relative flex h-20 w-20 items-center justify-center rounded-2xl border border-white/20 bg-gradient-to-br from-blue-500 via-indigo-500 to-cyan-400 shadow-[0_0_50px_rgba(59,130,246,0.45)] backdrop-blur-md"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex flex-col items-center justify-center py-16 text-center"
                 >
-                  <MessageCircle className="h-9 w-9 text-white drop-shadow-md" />
-                </motion.div>
-
-                {/* Orbiting nodes */}
-                {ORBIT_NODES.map(({ icon: Icon, angle, color }, i) => (
-                  <motion.div
-                    key={angle}
-                    className="absolute inset-0"
-                    animate={{ rotate: [angle, angle + 360] }}
-                    transition={{
-                      duration: 20,
-                      repeat: Infinity,
-                      ease: "linear",
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 ring-8 ring-emerald-50/50">
+                    <CheckCircle2 className="h-10 w-10" />
+                  </div>
+                  <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+                    Thank you for the message.
+                  </h3>
+                  <p className="mt-2 text-base font-semibold text-blue-600 sm:text-lg">
+                    We will get back to you.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsSubmitted(false);
+                      setFormData(EMPTY_FORM);
                     }}
+                    className="mt-8 rounded-xl bg-slate-100 px-6 py-2.5 text-xs font-bold text-slate-700 transition-colors hover:bg-slate-200"
                   >
-                    <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{
-                          opacity: 1,
-                          rotate: [-angle, -angle - 360],
-                        }}
-                        transition={{
-                          opacity: { duration: 0.5, delay: 0.3 + i * 0.1 },
-                          rotate: {
-                            duration: 20,
-                            repeat: Infinity,
-                            ease: "linear",
-                          },
-                        }}
-                        className="flex h-10 w-10 items-center justify-center rounded-xl border backdrop-blur-md"
-                        style={{
-                          borderColor: `${color}40`,
-                          backgroundColor: "rgba(15,23,42,0.85)",
-                          boxShadow: `0 0 20px ${color}55`,
-                        }}
-                      >
-                        <Icon className="h-4 w-4" style={{ color }} />
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+                    Send another message
+                  </button>
+                </motion.div>
+              ) : (
+                <>
+                  <h3 className="text-xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-2xl">
+                    Didn&rsquo;t Find What You Were{" "}
+                    <span className="text-blue-600">Looking For?</span>
+                  </h3>
 
-            <div className="relative z-10 flex flex-wrap items-center gap-6 border-t border-slate-700/50 pt-6 text-xs font-semibold text-slate-300 sm:text-sm">
-              <span className="flex items-center gap-2">
-                <Zap className="h-4 w-4 text-blue-400" strokeWidth={2} />
-                24-hour response time
-              </span>
-              <span className="flex items-center gap-2">
-                <ShieldCheck
-                  className="h-4 w-4 text-blue-400"
-                  strokeWidth={2}
-                />
-                100% Confidential
-              </span>
+                  <form onSubmit={handleSubmit} className="mt-5 space-y-4">
+                    <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+                      <div>
+                        <label htmlFor="faq-name" className={labelClass}>
+                          Name
+                        </label>
+                        <input
+                          id="faq-name"
+                          type="text"
+                          name="name"
+                          required
+                          value={formData.name}
+                          onChange={handleChange}
+                          placeholder="Full Name"
+                          className={`${inputClass} w-full`}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="faq-email" className={labelClass}>
+                          Email
+                        </label>
+                        <input
+                          id="faq-email"
+                          type="email"
+                          name="email"
+                          required
+                          value={formData.email}
+                          onChange={handleChange}
+                          placeholder="you@company.com"
+                          className={`${inputClass} w-full`}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="faq-service" className={labelClass}>
+                        Service you need
+                      </label>
+                      <select
+                        id="faq-service"
+                        name="service"
+                        required
+                        value={formData.service}
+                        onChange={handleChange}
+                        className={`${inputClass} w-full cursor-pointer`}
+                      >
+                        <option value="" disabled>
+                          Select a service
+                        </option>
+                        <option value="development">Development & QA</option>
+                        <option value="mobility">Mobility & Apps</option>
+                        <option value="it-operations">IT Operations</option>
+                        <option value="data-solutions">Data Solutions</option>
+                        <option value="ai">Artificial Intelligence</option>
+                        <option value="ecommerce">E-Commerce</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label htmlFor="faq-phone" className={labelClass}>
+                        Contact number
+                      </label>
+                      <div className="flex gap-2">
+                        <select
+                          name="countryCode"
+                          aria-label="Country code"
+                          value={formData.countryCode}
+                          onChange={handleChange}
+                          className={`${inputClass} w-[6.25rem] shrink-0 cursor-pointer px-2.5`}
+                        >
+                          {COUNTRY_CODES.map((c, index) => (
+                            <option key={`${c.code}-${index}`} value={c.code}>
+                              {c.flag} {c.code}
+                            </option>
+                          ))}
+                        </select>
+                        <input
+                          id="faq-phone"
+                          type="tel"
+                          name="phone"
+                          required
+                          value={formData.phone}
+                          onChange={handleChange}
+                          placeholder="(300) 123-4567"
+                          className={`${inputClass} min-w-0 flex-1 ${
+                            phoneError
+                              ? "border-red-500 focus:border-red-500 focus:ring-red-100"
+                              : ""
+                          }`}
+                        />
+                      </div>
+                      {phoneError && (
+                        <p className="mt-1.5 text-xs font-medium text-red-500">
+                          {phoneError}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label htmlFor="faq-project" className={labelClass}>
+                        Tell us about your project
+                      </label>
+                      <textarea
+                        id="faq-project"
+                        name="project"
+                        rows={4}
+                        required
+                        value={formData.project}
+                        onChange={handleChange}
+                        placeholder="What are you looking to build?"
+                        className={`${inputClass} w-full resize-none`}
+                      />
+                    </div>
+
+                    <div className="flex justify-end pt-1">
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="group inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-blue-600 pl-5 pr-2.5 text-sm font-semibold text-white shadow-md shadow-blue-600/25 ring-1 ring-white/10 transition-all duration-300 hover:bg-blue-500 hover:shadow-blue-500/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
+                      >
+                        <span>
+                          {isSubmitting ? "Scheduling..." : "Schedule Free Consultation"}
+                        </span>
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15 transition-all duration-300 group-hover:translate-x-0.5 group-hover:bg-white/25">
+                          <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} />
+                        </span>
+                      </button>
+                    </div>
+                  </form>
+
+                  <div className="mt-6 lg:mt-auto flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-slate-200 pt-5 text-xs font-semibold text-slate-600 sm:text-sm">
+                    <span className="flex items-center gap-2">
+                      <Zap className="h-4 w-4 text-blue-600" strokeWidth={2} />
+                      24-hour response time
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <ShieldCheck
+                        className="h-4 w-4 text-blue-600"
+                        strokeWidth={2}
+                      />
+                      100% Confidential
+                    </span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
-          {/* Right: Form Panel */}
-          <div className="flex flex-col justify-center bg-white p-8 sm:p-12 lg:col-span-7 lg:p-14">
-            {isSubmitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center justify-center py-10 text-center"
-              >
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 shadow-inner ring-8 ring-emerald-50/50">
-                  <CheckCircle2 className="h-10 w-10" />
-                </div>
-                <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-                  Thank you for the message.
-                </h3>
-                <p className="mt-2 text-base font-semibold text-blue-600 sm:text-lg">
-                  We Will get back to you.
-                </p>
-                <button
-                  onClick={() => {
-                    setIsSubmitted(false);
-                    setFormData({
-                      name: "",
-                      email: "",
-                      service: "",
-                      countryCode: "+1",
-                      phone: "",
-                      project: "",
-                    });
-                  }}
-                  className="mt-8 rounded-xl bg-slate-100 px-6 py-2.5 text-xs font-bold text-slate-700 transition-colors hover:bg-slate-200"
-                >
-                  Send another message
-                </button>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                  <div>
-                    <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-700">
-                      Your name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="John Doe"
-                      className={inputClass}
-                    />
-                  </div>
+          {/* Right: FAQ accordion */}
+          <div data-lenis-prevent className="relative order-1 overflow-x-hidden rounded-[2rem] bg-white/80 shadow-[0_20px_50px_rgba(15,23,42,0.08)] ring-1 ring-white/80 backdrop-blur-xl lg:order-2 lg:col-span-7 lg:min-h-0 lg:overflow-y-auto lg:overscroll-contain [scrollbar-color:#cbd5e1_transparent] [scrollbar-width:thin]">
+            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-400/10 blur-3xl" />
 
-                  <div>
-                    <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-700">
-                      Your email
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="you@company.com"
-                      className={inputClass}
-                    />
-                    <span className="mt-1 block text-[11px] text-zinc-600">
-                      We recommend using your work email.
-                    </span>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-700">
-                    Service you need
-                  </label>
-                  <select
-                    name="service"
-                    required
-                    value={formData.service}
-                    onChange={handleChange}
-                    className={`${inputClass} cursor-pointer`}
-                  >
-                    <option value="" disabled>
-                      Select a service
-                    </option>
-                    <option value="development">Development & QA</option>
-                    <option value="mobility">Mobility & Apps</option>
-                    <option value="it-operations">IT Operations</option>
-                    <option value="data-solutions">Data Solutions</option>
-                    <option value="ai">Artificial Intelligence</option>
-                    <option value="ecommerce">E-Commerce</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-700">
-                    Phone number
-                  </label>
-                  <div className="flex gap-2.5">
-                    <select
-                      name="countryCode"
-                      value={formData.countryCode}
-                      onChange={handleChange}
-                      className="w-36 shrink-0 cursor-pointer rounded-xl border border-slate-200 bg-white px-3 py-3.5 text-sm text-slate-700 shadow-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-100"
+            <ul className="relative divide-y divide-slate-200/70">
+              {FAQS.map((faq, i) => {
+                const isOpen = openIndex === i;
+                return (
+                  <li key={faq.question}>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        const li = e.currentTarget.parentElement;
+                        setOpenIndex(isOpen ? -1 : i);
+                        if (!isOpen && window.matchMedia("(min-width: 1024px)").matches) {
+                          setTimeout(
+                            () => li?.scrollIntoView({ block: "nearest", behavior: "smooth" }),
+                            320
+                          );
+                        }
+                      }}
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-panel-${i}`}
+                      id={`faq-trigger-${i}`}
+                      className="group flex w-full items-start gap-4 px-5 py-4 text-left transition-colors duration-300 hover:bg-blue-50/50 focus:outline-none focus-visible:bg-blue-50/70 sm:gap-6 sm:px-8 sm:py-[1.15rem]"
                     >
-                      {COUNTRY_CODES.map((c, index) => (
-                        <option key={`${c.code}-${index}`} value={c.code}>
-                          {c.flag} {c.code} ({c.name})
-                        </option>
-                      ))}
-                    </select>
-                    <input
-                      type="tel"
-                      name="phone"
-                      required
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="(300) 123-4567"
-                      className={`${inputClass} ${
-                        phoneError ? "border-red-500 focus:ring-red-100" : ""
-                      }`}
-                    />
-                  </div>
-                  {phoneError && (
-                    <p className="mt-1.5 text-xs font-medium text-red-500">
-                      {phoneError}
-                    </p>
-                  )}
-                </div>
+                      <span
+                        className={`mt-1 w-9 shrink-0 font-mono text-sm font-semibold tabular-nums transition-colors duration-300 ${
+                          isOpen ? "text-blue-600" : "text-slate-400"
+                        }`}
+                      >
+                        [{i + 1}]
+                      </span>
+                      <span className="flex-1 text-base font-bold leading-snug text-slate-900 sm:text-lg">
+                        {faq.question}
+                      </span>
+                      <span
+                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
+                          isOpen
+                            ? "rotate-180 bg-blue-600 text-white shadow-md shadow-blue-600/30"
+                            : "bg-slate-100 text-slate-600 group-hover:bg-blue-100 group-hover:text-blue-600"
+                        }`}
+                      >
+                        <ChevronDown className="h-4 w-4" strokeWidth={2.5} />
+                      </span>
+                    </button>
 
-                <div>
-                  <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-700">
-                    Tell us about your project
-                  </label>
-                  <textarea
-                    name="project"
-                    rows={7}
-                    required
-                    value={formData.project}
-                    onChange={handleChange}
-                    placeholder="What are you looking to build?"
-                    className={`${inputClass} resize-none`}
-                  />
-                </div>
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          id={`faq-panel-${i}`}
+                          role="region"
+                          aria-labelledby={`faq-trigger-${i}`}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="space-y-4 px-5 pb-6 pl-[3.5rem] pr-6 text-sm font-medium leading-relaxed text-slate-600 sm:pl-[5.25rem] sm:pr-12 sm:text-base">
+                            {faq.intro?.map((para) => (
+                              <p key={para}>{para}</p>
+                            ))}
 
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-8 py-4 text-base font-bold text-white shadow-md shadow-blue-500/25 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/35 active:scale-[0.99] disabled:opacity-70 sm:w-auto"
-                  >
-                    <span>
-                      {isSubmitting
-                        ? "Scheduling..."
-                        : "Schedule Free Consultation"}
-                    </span>
-                    <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                  </button>
-                </div>
-              </form>
-            )}
+                            {faq.items && (
+                              <div>
+                                {faq.listTitle && (
+                                  <p className="mb-3 font-bold text-slate-900">
+                                    {faq.listTitle}
+                                  </p>
+                                )}
+                                <ul className="space-y-2.5">
+                                  {faq.items.map((item) => {
+                                    const isObj = typeof item === "object";
+                                    return (
+                                      <li
+                                        key={isObj ? item.label : item}
+                                        className="flex items-start gap-3"
+                                      >
+                                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white">
+                                          <Check className="h-3 w-3" strokeWidth={3} />
+                                        </span>
+                                        <span>
+                                          {isObj ? (
+                                            <>
+                                              <strong className="font-bold text-slate-900">
+                                                {item.label}:
+                                              </strong>{" "}
+                                              {item.text}
+                                            </>
+                                          ) : (
+                                            <span className="font-semibold text-slate-800">
+                                              {item}
+                                            </span>
+                                          )}
+                                        </span>
+                                      </li>
+                                    );
+                                  })}
+                                </ul>
+                              </div>
+                            )}
+
+                            {faq.outro?.map((para) => (
+                              <p key={para}>{para}</p>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </motion.div>
       </div>

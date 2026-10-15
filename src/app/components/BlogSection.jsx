@@ -4,7 +4,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { User, ArrowUpRight, Sparkles } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 
 const posts = [
   {
@@ -13,161 +13,119 @@ const posts = [
     href: "/MainBlogs/BestMobileDevelopmentCompany",
     image: "/Blogs_Mobile_App_Development_Company_v1.png",
     category: "Technology",
-    author: "Greyloops Team",
-    date: "12 August, 2024",
-    size: "large",
+    date: "06 December, 2026",
   },
   {
     id: 2,
     title: "Latest ERP Trends: How AI and Cloud Technology Are Transforming Businesses",
     href: "/MainBlogs/latest-erp-trends",
     image: "/mega_menu_erp_trend_v1.png",
-    category: "ERP & AI",
-    author: "Greyloops Team",
-    date: "13 August, 2024",
-    size: "small",
+    category: "Software",
+    date: "13 October, 2026",
   },
   {
     id: 3,
-    title: "Cloud infrastructure trends every CTO should watch.",
+    title: "Cloud infrastructure trends every CTO should watch out for",
     href: "/MainBlogs",
     image: "/3.jpg",
-    category: "Insights",
-    author: "Greyloops Team",
-    date: "14 August, 2024",
-    size: "small",
+    category: "Business",
+    date: "18 August, 2026",
   },
 ];
 
-function BlogCard({ post, className = "" }) {
+function BlogCard({ post }) {
   return (
-    <Link
-      href={post.href}
-      className={`group relative block overflow-hidden rounded-3xl bg-slate-900 shadow-xl shadow-blue-900/10 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/20 ${className}`}
-    >
-      <Image
-        src={post.image}
-        alt={post.title}
-        fill
-        sizes="(max-width: 1024px) 100vw, 50vw"
-        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-      />
+    <div className="group flex flex-col">
+      {/* Image container with notched bottom-left corner */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-slate-900 shadow-sm">
+        <Image
+          src={post.image}
+          alt={post.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+        />
 
-      {/* Dark gradient overlay for text legibility */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
-
-      {/* Category badge */}
-      <span className="absolute right-5 top-5 z-10 inline-flex items-center rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-500/25">
-        {post.category}
-      </span>
-
-      {/* Read more arrow on hover */}
-      <span className="absolute right-5 z-10 flex h-9 w-9 translate-y-2 items-center justify-center rounded-full bg-white text-blue-600 opacity-0 shadow-lg transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100" style={{ bottom: "1.25rem" }}>
-        <ArrowUpRight className="h-4 w-4" />
-      </span>
-
-      {/* Content */}
-      <div className="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6">
-        <div className="mb-2 flex items-center gap-2 text-xs font-semibold text-slate-300">
-          <span className="flex items-center gap-1.5">
-            <User className="h-3.5 w-3.5 text-blue-400" />
-            {post.author}
+        {/* Notched bottom-left badge strip overlay */}
+        <div className="absolute bottom-0 left-0 flex items-center gap-3 rounded-tr-2xl bg-slate-50 pb-1.5 pr-4 pt-2">
+          {/* Category Tag */}
+          <span className="rounded-lg border border-slate-200/80 bg-slate-100/80 px-3 py-1 text-xs font-semibold text-slate-800 shadow-xs backdrop-blur-xs">
+            {post.category}
           </span>
-          <span className="h-px w-5 bg-slate-500" />
-          <span>{post.date}</span>
+          {/* Date */}
+          <span className="text-xs font-medium text-slate-500">
+            {post.date}
+          </span>
         </div>
-        <h3 className="text-lg font-bold leading-snug text-white transition-colors duration-300 group-hover:text-blue-200 sm:text-xl lg:text-2xl">
+      </div>
+
+      {/* Content below the card */}
+      <div className="mt-4 flex flex-1 flex-col justify-between text-left">
+        <h3 className="text-xl font-bold leading-snug tracking-tight text-slate-900 transition-colors duration-300 group-hover:text-blue-600 sm:text-2xl">
           {post.title}
         </h3>
+
+        <Link
+          href={post.href}
+          className="mt-3 inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-slate-600 transition-colors group-hover:text-blue-600"
+        >
+          <span>Read More</span>
+          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+        </Link>
       </div>
-    </Link>
+    </div>
   );
 }
 
 export default function BlogSection() {
-  const [featured, ...rest] = posts;
-
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-b from-white via-blue-50/40 to-slate-50 py-20 sm:py-28">
-      {/* Dot-grid texture */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.32]"
-        style={{
-          backgroundImage: "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-          maskImage:
-            "radial-gradient(ellipse 90% 75% at 50% 20%, black 25%, transparent 100%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 90% 75% at 50% 20%, black 25%, transparent 100%)",
-        }}
-      />
+    <section className="relative w-full overflow-hidden bg-slate-50 pb-16 pt-4 text-slate-900 lg:pb-24 lg:pt-8">
+      {/* Background dots pattern */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(#cbd5e1_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-60" />
 
-      {/* Ambient glows */}
-      <div className="pointer-events-none absolute -left-24 top-0 h-[400px] w-[400px] rounded-full bg-blue-300/35 blur-[120px]" />
-      <div className="pointer-events-none absolute -right-24 bottom-0 h-[400px] w-[400px] rounded-full bg-indigo-300/30 blur-[120px]" />
+      {/* Ambient glowing background circles */}
+      <div className="pointer-events-none absolute left-0 top-1/4 h-96 w-96 rounded-full bg-blue-400/20 blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-1/4 right-0 h-80 w-80 rounded-full bg-indigo-400/15 blur-[120px]" />
 
-      <div className="relative mx-auto max-w-7xl px-6">
+      {/* Full-width container */}
+      <div className="relative z-10 mx-auto flex w-full max-w-[120rem] flex-col px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto mb-14 max-w-3xl text-center">
+        <div className="mb-8 flex flex-col items-start px-2 text-left sm:px-4">
           <motion.span
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-5 inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100"
+            className="mb-3 inline-flex items-center gap-2 overflow-hidden rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100"
           >
-            <Sparkles className="h-3.5 w-3.5 text-blue-500" />
-            Latest Blog
+            <Sparkles className="h-4 w-4 text-blue-600" />
+            <span>Latest blog posts</span>
           </motion.span>
+
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mb-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
+            className="max-w-6xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
           >
-            <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-              News &amp;{" "}
-            </span>
-            <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-              Updates
-            </span>
+            <span className="text-slate-900">News &amp; </span>
+            <span className="text-blue-600">Events</span>
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-base leading-relaxed text-zinc-600 sm:text-lg"
-          >
-            Explore our latest thoughts, technical deep-dives, and engineering playbooks.
-          </motion.p>
         </div>
 
-        {/* Grid: one large featured post + two stacked smaller posts */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-7"
-          >
-            <BlogCard post={featured} className="aspect-[4/5] w-full sm:aspect-[4/4.2] lg:h-full lg:aspect-auto" />
-          </motion.div>
-
-          <div className="flex flex-col gap-6 lg:col-span-5">
-            {rest.map((post, i) => (
-              <motion.div
-                key={post.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
-              >
-                <BlogCard post={post} className="aspect-[16/10] w-full sm:aspect-[16/9]" />
-              </motion.div>
-            ))}
-          </div>
+        {/* 3-Column Grid */}
+        <div className="grid grid-cols-1 gap-8 px-2 sm:px-4 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post, i) => (
+            <motion.div
+              key={post.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
+              <BlogCard post={post} />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

@@ -41,10 +41,11 @@ const expertise = [
 
 const GAP = 20;
 
+// How many cards fit in the slider (the fraction leaves a peek of the next card)
 function getVisibleCards(windowWidth) {
-  if (windowWidth < 640) return 1.2;
-  if (windowWidth < 1536) return 2.15;
-  return 3.15;
+  if (windowWidth < 640) return 1.25;
+  if (windowWidth < 1536) return 2.6;
+  return 3.6;
 }
 
 export default function IndustryExpertise() {
@@ -56,7 +57,7 @@ export default function IndustryExpertise() {
 
   const x = useMotionValue(0);
   const [index, setIndex] = useState(0);
-  const [dims, setDims] = useState({ card: 360, step: 380, max: 0, maxIndex: 0 });
+  const [dims, setDims] = useState({ card: 320, step: 340, max: 0, maxIndex: 0 });
 
   const targetFor = useCallback(
     (i, d = dims) => -Math.min(i * d.step, d.max),
@@ -68,7 +69,7 @@ export default function IndustryExpertise() {
       const clamped = Math.max(0, Math.min(dims.maxIndex, next));
       indexRef.current = clamped;
       setIndex(clamped);
-      
+
       const transition = reduceMotion
         ? { duration: 0 }
         : { type: "spring", stiffness: 220, damping: 30, mass: 0.9 };
@@ -91,11 +92,10 @@ export default function IndustryExpertise() {
       const total = industries.length * card + (industries.length - 1) * GAP;
       const max = Math.max(0, total - vw);
       const maxIndex = max > 0 ? Math.ceil(max / step) : 0;
-      const next = { card, step, max, maxIndex };
       const safeIndex = Math.min(indexRef.current, maxIndex);
       indexRef.current = safeIndex;
       setIndex(safeIndex);
-      setDims(next);
+      setDims({ card, step, max, maxIndex });
       animRef.current?.stop();
       x.set(-Math.min(safeIndex * step, max));
     };
@@ -150,7 +150,7 @@ export default function IndustryExpertise() {
 
       <div className="relative z-10 mx-auto flex w-full max-w-[120rem] flex-col px-4 sm:px-6 lg:px-8">
         {/* Header row: text on the left, slider arrows on the top right */}
-        <div className="flex flex-col gap-6 px-2 sm:px-4 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col gap-5 px-2 sm:px-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="flex flex-col items-start text-left">
             <motion.span
               initial={{ opacity: 0, y: 15 }}
@@ -188,7 +188,7 @@ export default function IndustryExpertise() {
               disabled={!canPrev}
               aria-label="Previous industries"
               whileTap={{ scale: 0.92 }}
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-white/80 text-slate-700 shadow-md ring-1 ring-white/80 backdrop-blur-md transition-colors duration-300 hover:bg-blue-600 hover:text-white hover:shadow-lg hover:shadow-blue-600/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-40"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/80 text-slate-700 shadow-md ring-1 ring-white/80 backdrop-blur-md transition-colors duration-300 hover:bg-blue-600 hover:text-white hover:shadow-lg hover:shadow-blue-600/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-40"
             >
               <ArrowLeft className="h-5 w-5" strokeWidth={2.25} />
             </motion.button>
@@ -198,7 +198,7 @@ export default function IndustryExpertise() {
               disabled={!canNext}
               aria-label="Next industries"
               whileTap={{ scale: 0.92 }}
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white shadow-md shadow-blue-600/30 transition-colors duration-300 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:bg-white/80 disabled:text-slate-700 disabled:opacity-40 disabled:shadow-md disabled:shadow-slate-900/10"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-600 text-white shadow-md shadow-blue-600/30 transition-colors duration-300 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:bg-white/80 disabled:text-slate-700 disabled:opacity-40 disabled:shadow-md disabled:shadow-slate-900/10"
             >
               <ArrowRight className="h-5 w-5" strokeWidth={2.25} />
             </motion.button>
@@ -211,30 +211,30 @@ export default function IndustryExpertise() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-8 flex flex-col gap-5 px-2 sm:px-4 lg:flex-row lg:items-stretch"
+          className="mt-6 flex flex-col gap-5 px-2 sm:px-4 lg:flex-row lg:items-stretch"
         >
           {/* Fixed card – light glass theme, stays in place while the slider moves */}
-          <div className="relative flex w-full shrink-0 flex-col overflow-hidden rounded-[2.5rem] bg-white/60 p-6 shadow-[0_20px_50px_rgba(15,23,42,0.08)] ring-1 ring-white/80 backdrop-blur-xl sm:p-7 lg:mb-[30px] lg:mt-3 lg:w-[26%] 2xl:w-[22%]">
+          <div className="relative flex w-full shrink-0 flex-col overflow-hidden rounded-[2rem] bg-white/60 p-5 shadow-[0_20px_50px_rgba(15,23,42,0.08)] ring-1 ring-white/80 backdrop-blur-xl sm:p-6 lg:mb-[30px] lg:mt-3 lg:w-[25%] 2xl:w-[20%]">
             {/* Glass sheen + soft blue glow */}
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/80 via-white/20 to-transparent" />
-            <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-blue-400/20 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-indigo-400/15 blur-3xl" />
+            <div className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-blue-400/20 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-20 -left-10 h-52 w-52 rounded-full bg-indigo-400/15 blur-3xl" />
 
-            <h3 className="relative text-2xl font-extrabold tracking-tight text-slate-900 sm:text-[1.75rem]">
+            <h3 className="relative text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
               What We <span className="text-blue-600">Deliver</span>
             </h3>
-            <span className="relative mt-3 block h-1 w-10 rounded-full bg-blue-600" />
+            <span className="relative mt-2.5 block h-1 w-9 rounded-full bg-blue-600" />
 
-            <ul className="relative mt-6 flex flex-1 flex-col gap-3">
+            <ul className="relative mt-5 flex flex-1 flex-col gap-2.5">
               {expertise.map((item) => (
                 <li
                   key={item}
-                  className="group flex flex-1 items-center gap-3.5 rounded-2xl bg-white/80 px-4 py-3.5 shadow-xs transition-all duration-300 hover:translate-x-1 hover:bg-blue-50 hover:shadow-md"
+                  className="group flex flex-1 items-center gap-3 rounded-2xl bg-white/80 px-3.5 py-2.5 shadow-xs transition-all duration-300 hover:translate-x-1 hover:bg-blue-50 hover:shadow-md"
                 >
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white shadow-sm shadow-blue-600/30 transition-transform duration-300 group-hover:scale-110">
-                    <Check className="h-4 w-4" strokeWidth={3} />
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white shadow-sm shadow-blue-600/30 transition-transform duration-300 group-hover:scale-110">
+                    <Check className="h-3.5 w-3.5" strokeWidth={3} />
                   </span>
-                  <span className="text-sm font-bold leading-snug text-slate-900 sm:text-base">
+                  <span className="text-sm font-bold leading-snug text-slate-900">
                     {item}
                   </span>
                 </li>
@@ -280,26 +280,28 @@ export default function IndustryExpertise() {
                     }}
                     className="shrink-0 list-none"
                   >
-                    <article className="group relative aspect-[3/5] w-full overflow-hidden rounded-[2.5rem] bg-slate-200 shadow-[0_20px_50px_rgba(15,23,42,0.12)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_28px_70px_rgba(37,99,235,0.22)]">
+                    <article className="group relative aspect-[2/3] w-full overflow-hidden rounded-[2rem] bg-slate-200 shadow-[0_20px_50px_rgba(15,23,42,0.12)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_28px_70px_rgba(37,99,235,0.22)]">
                       <Image
                         src={industry.image}
                         alt={`${industry.title} industry`}
                         fill
                         draggable={false}
                         priority={i < 3}
-                        sizes="(min-width: 1536px) 22vw, (min-width: 1024px) 33vw, (min-width: 640px) 46vw, 82vw"
+                        sizes="(min-width: 1536px) 20vw, (min-width: 1024px) 28vw, (min-width: 640px) 38vw, 80vw"
                         className="pointer-events-none object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                       />
 
-                      {/* Bottom gradient for heading legibility */}
-                      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-slate-950/75 via-slate-950/30 to-transparent" />
+                      {/* Soft bottom fade */}
+                      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-slate-950/50 to-transparent" />
 
-                      {/* Heading */}
-                      <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
-                        <span className="mb-3 block h-1 w-8 rounded-full bg-blue-500 transition-all duration-500 group-hover:w-14" />
-                        <h3 className="text-2xl font-bold tracking-tight text-white sm:text-[1.75rem]">
+                      {/* Glass label */}
+                      <div className="absolute inset-x-3 bottom-3 flex items-center justify-between gap-3 rounded-2xl bg-white/15 px-4 py-3 ring-1 ring-white/25 backdrop-blur-md transition-colors duration-300 group-hover:bg-blue-600/80">
+                        <h3 className="text-lg font-bold tracking-tight text-white sm:text-xl">
                           {industry.title}
                         </h3>
+                        <span className="text-xs font-semibold tabular-nums text-white/80">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
                       </div>
                     </article>
                   </motion.li>
