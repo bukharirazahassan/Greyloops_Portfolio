@@ -98,12 +98,6 @@ function StackCard({ item, index, total, progress }) {
       >
         {/* Content */}
         <div className="flex flex-col justify-center p-7 sm:p-10 lg:p-12">
-          <div className="mb-5 flex items-center gap-3">
-            <span className="inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600">
-              {item.number} / {String(total).padStart(2, "0")}
-            </span>
-          </div>
-
           <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
             {item.title}
           </h3>
@@ -123,7 +117,7 @@ function StackCard({ item, index, total, progress }) {
           <div className="pointer-events-none absolute -bottom-16 -right-16 h-[260px] w-[260px] rounded-full bg-sky-400/15 blur-[90px]" />
 
           <div
-            className="pointer-events-none absolute inset-0 opacity-40"
+            className="pointer-events-none absolute inset-0 opacity-40 z-10"
             style={{
               backgroundImage:
                 "radial-gradient(#94a3b8 1.2px, transparent 1.2px)",
@@ -131,11 +125,15 @@ function StackCard({ item, index, total, progress }) {
             }}
           />
 
-          <span className="relative select-none bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-5xl font-extrabold leading-none tracking-tighter text-transparent sm:text-6xl lg:text-8xl">
-            {item.number}
-          </span>
+          <Image
+            src="/Why_Build_Your_Career.png"
+            alt={item.title}
+            fill
+            quality={100}
+            className="object-cover object-center"
+          />
 
-          <div className="absolute bottom-4 right-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/60 bg-white/70 text-blue-600 shadow-sm backdrop-blur-md lg:bottom-6 lg:right-6 lg:h-14 lg:w-14">
+          <div className="absolute bottom-4 right-4 z-20 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/60 bg-white/70 text-blue-600 shadow-sm backdrop-blur-md lg:bottom-6 lg:right-6 lg:h-14 lg:w-14">
             <Icon className="h-6 w-6 lg:h-7 lg:w-7" strokeWidth={1.8} />
           </div>
         </div>
@@ -209,7 +207,7 @@ export default function WhyChooseUsPage() {
           >
             <div className="relative w-full overflow-hidden rounded-3xl shadow-2xl border border-slate-200/80 bg-slate-900 aspect-[16/9] lg:aspect-[21/9]">
               <Image
-                src="/why_choose_us_hero_v1.png"
+                src="/why_choose_us_hero_v2.png"
                 alt="Why Greyloops Showcase"
                 fill
                 priority

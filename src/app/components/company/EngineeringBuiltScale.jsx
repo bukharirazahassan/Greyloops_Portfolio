@@ -176,7 +176,7 @@ export default function EngineeringBuiltScale() {
               </div>
             </div>
 
-            {/* Numbered Cards */}
+            {/* Cards without count numbers */}
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 pb-8">
               {engineeringSteps.map((item, index) => {
                 const Icon = item.icon;
@@ -189,21 +189,25 @@ export default function EngineeringBuiltScale() {
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     className="flex flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-[0_20px_60px_-15px_rgba(30,64,175,0.15)] lg:flex-row"
                   >
-                    {/* Number panel */}
+                    {/* Image panel replacing the number */}
                     <div className="relative flex h-20 shrink-0 items-center justify-center overflow-hidden border-b border-slate-200/80 bg-slate-50 lg:h-auto lg:w-[28%] lg:border-b-0 lg:border-r">
                       <div className="pointer-events-none absolute -left-12 -top-12 h-[180px] w-[180px] rounded-full bg-blue-400/15 blur-[70px]" />
                       <div className="pointer-events-none absolute -bottom-12 -right-12 h-[200px] w-[200px] rounded-full bg-sky-400/15 blur-[80px]" />
                       <div
-                        className="pointer-events-none absolute inset-0 opacity-40"
+                        className="pointer-events-none absolute inset-0 opacity-40 z-10"
                         style={{
                           backgroundImage:
                             "radial-gradient(#94a3b8 1.2px, transparent 1.2px)",
                           backgroundSize: "24px 24px",
                         }}
                       />
-                      <span className="relative select-none bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-5xl font-extrabold leading-none tracking-tighter text-transparent lg:text-7xl">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
+                      <Image
+                        src="/Why_Build_Your_Career.png"
+                        alt={item.title}
+                        fill
+                        quality={100}
+                        className="object-cover object-center"
+                      />
                     </div>
 
                     {/* Content */}
@@ -211,10 +215,6 @@ export default function EngineeringBuiltScale() {
                       <div className="mb-3 flex items-center gap-3">
                         <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 text-blue-600">
                           <Icon className="h-5 w-5" strokeWidth={1.8} />
-                        </span>
-                        <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                          {String(index + 1).padStart(2, "0")} /{" "}
-                          {String(engineeringSteps.length).padStart(2, "0")}
                         </span>
                       </div>
 

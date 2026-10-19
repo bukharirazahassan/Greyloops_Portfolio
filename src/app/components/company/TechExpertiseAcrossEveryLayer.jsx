@@ -101,21 +101,25 @@ function LayerCard({ item, index, total, progress }) {
         style={{ scale, y, transformOrigin: "50% 100%" }}
         className="flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-[0_20px_60px_-15px_rgba(30,64,175,0.25)] will-change-transform lg:flex-row"
       >
-        {/* Number panel (light theme) */}
+        {/* Image panel replacing the number */}
         <div className="relative flex h-20 shrink-0 items-center justify-center overflow-hidden border-b border-slate-200/80 bg-slate-50 lg:h-auto lg:w-[28%] lg:border-b-0 lg:border-r">
           <div className="pointer-events-none absolute -left-12 -top-12 h-[180px] w-[180px] rounded-full bg-blue-400/15 blur-[70px]" />
           <div className="pointer-events-none absolute -bottom-12 -right-12 h-[200px] w-[200px] rounded-full bg-sky-400/15 blur-[80px]" />
           <div
-            className="pointer-events-none absolute inset-0 opacity-40"
+            className="pointer-events-none absolute inset-0 opacity-40 z-10"
             style={{
               backgroundImage:
                 "radial-gradient(#94a3b8 1.2px, transparent 1.2px)",
               backgroundSize: "24px 24px",
             }}
           />
-          <span className="relative select-none bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-5xl font-extrabold leading-none tracking-tighter text-transparent lg:text-7xl">
-            {String(index + 1).padStart(2, "0")}
-          </span>
+          <Image
+            src="/Why_Build_Your_Career.png"
+            alt={item.title}
+            fill
+            quality={100}
+            className="object-cover object-center"
+          />
         </div>
 
         {/* Content */}
@@ -123,10 +127,6 @@ function LayerCard({ item, index, total, progress }) {
           <div className="mb-3 flex items-center gap-3">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 text-blue-600">
               <Icon className="h-5 w-5" strokeWidth={1.8} />
-            </span>
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-              {String(index + 1).padStart(2, "0")} /{" "}
-              {String(total).padStart(2, "0")}
             </span>
           </div>
 
@@ -205,7 +205,7 @@ export default function TechExpertiseAcrossEveryLayer() {
             >
               <div className="relative aspect-[16/9] max-h-[42vh] w-full overflow-hidden rounded-3xl border border-slate-200/80 bg-slate-900 shadow-2xl lg:aspect-[21/9]">
                 <Image
-                  src="/Technology_Expertise_Across_Every_Layer.png"
+                  src="/Technology_Expertise_Across_Every_Layer_v1..png"
                   alt="Technology Expertise Across Every Layer Showcase"
                   fill
                   quality={100}

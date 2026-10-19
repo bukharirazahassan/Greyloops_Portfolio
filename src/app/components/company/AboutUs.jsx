@@ -196,7 +196,7 @@ export default function AboutUs() {
           <div className="mt-12 sm:mt-16">
             <div className="relative w-full overflow-hidden rounded-3xl shadow-2xl border border-slate-200/80 bg-slate-900 aspect-[1440/720]">
               <Image
-                src="/about_us_v1.png"
+                src="/about_us_top_v1.png"
                 alt="Greyloops Team Workplace Showcase"
                 fill
                 priority

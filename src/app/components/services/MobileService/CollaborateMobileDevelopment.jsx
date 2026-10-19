@@ -69,7 +69,7 @@ export default function CollaborateMobileDevelopment() {
           {/* Right Column: Featured Image Context */}
           <div className="relative h-72 w-full lg:col-span-5 lg:h-full lg:min-h-[440px]">
             <Image
-              src="/images/services/FAQs-mobile-development.png"
+              src="/images/services/FAQs-mobile-development_v1.png"
               alt="Let's Collaborate Mobile Development"
               fill
               sizes="(max-width: 1024px) 100vw, 42vw"

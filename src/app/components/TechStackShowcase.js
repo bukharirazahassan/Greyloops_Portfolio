@@ -1,119 +1,91 @@
 // src/app/components/TechStackShowcase.jsx
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import {
-  SiReact,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiAngular,
-  SiMongodb,
-  SiMysql,
-  SiDotnet,
+  AnimatePresence,
+  animate,
+  motion,
+  useInView,
+  useMotionValue,
+  useReducedMotion,
+  useTransform,
+} from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import {
   SiAndroidstudio,
-  SiPython,
+  SiAngular,
+  SiDotnet,
   SiGraphql,
   SiGrafana,
-  SiVuedotjs,
+  SiMongodb,
+  SiMysql,
   SiNestjs,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPython,
+  SiReact,
+  SiVuedotjs,
 } from "react-icons/si";
 
-const stack = [
-  { id: "U1", name: "React", role: "UI Library", Icon: SiReact, color: "#0088CC" },
-  { id: "U2", name: "Next.js", role: "Web Framework", Icon: SiNextdotjs, color: "#0F172A" },
-  { id: "U3", name: "Node.js", role: "Runtime", Icon: SiNodedotjs, color: "#16A34A" },
-  { id: "U4", name: "Python", role: "Language", Icon: SiPython, color: "#2563EB" },
-  { id: "U5", name: "Angular", role: "SPA Framework", Icon: SiAngular, color: "#DC2626" },
-  { id: "U6", name: "Vue.js", role: "Frontend Framework", Icon: SiVuedotjs, color: "#41B883" },
-  { id: "U7", name: "NestJS", role: "Backend Framework", Icon: SiNestjs, color: "#E0234E" },
-  { id: "U8", name: "GraphQL", role: "API Query Language", Icon: SiGraphql, color: "#E535AB" },
-  { id: "D1", name: "MongoDB", role: "NoSQL Database", Icon: SiMongodb, color: "#059669" },
-  { id: "D2", name: "MySQL", role: "SQL Database", Icon: SiMysql, color: "#0284C7" },
-  { id: "U9", name: ".NET Core", role: "Framework", Icon: SiDotnet, color: "#7C3AED" },
-  { id: "M1", name: "Android Studio", role: "Native IDE", Icon: SiAndroidstudio, color: "#16A34A" },
-  { id: "M2", name: "React Native", role: "Mobile Framework", Icon: SiReact, color: "#0088CC" },
-  { id: "O1", name: "Grafana", role: "Monitoring & Observability", Icon: SiGrafana, color: "#F46800" },
+const CATEGORIES = ["All", "Frontend", "Backend", "Mobile", "Database", "Observability"];
+
+const TECHS = [
+  { name: "React", label: "UI Library", category: "Frontend", icon: SiReact, color: "#149ECA" },
+  { name: "Next.js", label: "Web Framework", category: "Frontend", icon: SiNextdotjs, color: "#0F172A" },
+  { name: "Angular", label: "SPA Framework", category: "Frontend", icon: SiAngular, color: "#DD0031" },
+  { name: "Vue.js", label: "Frontend Framework", category: "Frontend", icon: SiVuedotjs, color: "#35A978" },
+  { name: "Node.js", label: "Runtime", category: "Backend", icon: SiNodedotjs, color: "#539E43" },
+  { name: "Python", label: "Language", category: "Backend", icon: SiPython, color: "#3776AB" },
+  { name: "NestJS", label: "Backend Framework", category: "Backend", icon: SiNestjs, color: "#E0234E" },
+  { name: ".NET Core", label: "Framework", category: "Backend", icon: SiDotnet, color: "#512BD4" },
+  { name: "GraphQL", label: "API Query Language", category: "Backend", icon: SiGraphql, color: "#E10098" },
+  { name: "Android Studio", label: "Native IDE", category: "Mobile", icon: SiAndroidstudio, color: "#2F9E5B" },
+  { name: "React Native", label: "Mobile Framework", category: "Mobile", icon: SiReact, color: "#149ECA" },
+  { name: "MongoDB", label: "NoSQL Database", category: "Database", icon: SiMongodb, color: "#47A248" },
+  { name: "MySQL", label: "SQL Database", category: "Database", icon: SiMysql, color: "#4479A1" },
+  { name: "Grafana", label: "Monitoring & Observability", category: "Observability", icon: SiGrafana, color: "#F46800" },
 ];
 
-const gridVariants = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.05, delayChildren: 0.1 },
-  },
-};
+const STATS = [
+  { value: 350, suffix: "+", label: "Specialists" },
+  { value: 14, suffix: "", label: "Core technologies" },
+  { value: null, text: "24/7", label: "Support" },
+];
 
-const cellVariants = {
-  hidden: { opacity: 0, y: 14 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
-  },
-};
+function CountUp({ to, suffix = "" }) {
+  const ref = useRef(null);
+  const reduceMotion = useReducedMotion();
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const value = useMotionValue(0);
+  const rounded = useTransform(value, (v) => Math.round(v));
 
-function ComponentCell({ id, name, role, Icon, color }) {
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(value, to, {
+      duration: reduceMotion ? 0 : 1.6,
+      ease: "easeOut",
+    });
+    return () => controls.stop();
+  }, [inView, to, value, reduceMotion]);
+
   return (
-    <motion.div
-      variants={cellVariants}
-      className="group relative flex flex-col justify-between overflow-hidden bg-white/70 px-5 py-6 backdrop-blur-xl transition-all duration-300 hover:bg-white hover:shadow-xl sm:px-6 sm:py-7"
-    >
-      {/* Top light edge highlight */}
-      <span className="pointer-events-none absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent opacity-100" />
-
-      {/* Ambient dot matrix inside card */}
-      <span
-        className="pointer-events-none absolute inset-0 z-0 opacity-[0.08] transition-opacity duration-300 group-hover:opacity-[0.18]"
-        style={{
-          backgroundImage: "radial-gradient(#3b82f6 1.2px, transparent 1.2px)",
-          backgroundSize: "18px 18px",
-        }}
-      />
-
-      {/* PCB designator ID */}
-      <span className="relative z-10 font-mono text-[11px] font-bold tracking-wider text-blue-500/70 transition-colors duration-300 group-hover:text-blue-600">
-        {id}
-      </span>
-
-      {/* Subtle brand color glow on hover */}
-      <span
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-0"
-        style={{
-          background: `radial-gradient(150px circle at 50% 35%, ${color}15, transparent 80%)`,
-        }}
-      />
-
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center gap-3 py-4">
-        {/* Card Icon Container */}
-        <div
-          className="flex h-16 w-16 items-center justify-center rounded-2xl border border-blue-100/80 bg-white shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-md"
-          style={{
-            boxShadow: `0 8px 24px -8px ${color}25`,
-          }}
-        >
-          <Icon className="h-8 w-8 transition-transform duration-300" style={{ color }} />
-        </div>
-
-        <div className="text-center">
-          <p className="text-sm font-bold text-slate-900 sm:text-[15px]">{name}</p>
-          <p className="mt-0.5 font-mono text-[10.5px] uppercase tracking-wider text-slate-400 font-semibold">
-            {role}
-          </p>
-        </div>
-      </div>
-
-      {/* Bottom accent indicator */}
-      <div className="relative z-10">
-        <span className="block h-[2px] w-6 rounded-full bg-blue-100 transition-all duration-300 group-hover:w-10" />
-        <span
-          className="pointer-events-none absolute bottom-0 left-0 h-[2px] w-0 rounded-full transition-all duration-300 group-hover:w-10"
-          style={{ backgroundColor: color }}
-        />
-      </div>
-    </motion.div>
+    <span ref={ref}>
+      <motion.span>{rounded}</motion.span>
+      {suffix}
+    </span>
   );
 }
 
 export default function TechStackShowcase() {
+  const [active, setActive] = useState("All");
+  const visible = TECHS.filter((t) => active === "All" || t.category === active);
+
+  const countFor = (cat) =>
+    cat === "All" ? TECHS.length : TECHS.filter((t) => t.category === cat).length;
+
   return (
     <section className="relative w-full overflow-hidden bg-slate-50 py-6 lg:pb-16 lg:pt-4">
       {/* Background dots pattern */}
@@ -123,67 +95,212 @@ export default function TechStackShowcase() {
       <div className="pointer-events-none absolute left-0 top-1/4 h-96 w-96 rounded-full bg-blue-400/20 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-1/4 right-0 h-80 w-80 rounded-full bg-indigo-400/15 blur-[120px]" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[120rem] flex-col px-4 sm:px-6 lg:px-8">
-        
-        {/* Header aligned to the left with compact top spacing */}
-        <div className="flex flex-col items-start px-2 text-left sm:px-4">
-          <motion.span
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3.5 py-1 text-xs font-semibold text-blue-700 shadow-sm ring-1 ring-blue-100 backdrop-blur-md sm:text-sm"
-          >
-            <span className="h-2 w-2 animate-pulse rounded-full bg-blue-600" />
-            stack.config
-          </motion.span>
+      <div className="relative z-10 mx-auto w-full max-w-[120rem] px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 px-2 sm:px-4 lg:grid-cols-12 lg:gap-12">
+          {/* ───────── Left: intro, stats, CTA ───────── */}
+          <div className="flex flex-col items-start text-left lg:col-span-4">
+            <motion.span
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3.5 py-1 text-xs font-semibold text-blue-700 shadow-sm ring-1 ring-blue-100 backdrop-blur-md sm:text-sm"
+            >
+              <span className="h-2 w-2 animate-pulse rounded-full bg-blue-600" />
+              stack.config
+            </motion.span>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="mt-3 max-w-6xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
-          >
-            <span className="text-slate-900">Modern Technologies.</span>{" "}
-            <span className="text-blue-600">Smarter Solutions.</span>
-          </motion.h2>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
+            >
+              <span className="block text-slate-900">Modern Technologies.</span>
+              <span className="block text-blue-600">Smarter Solutions.</span>
+            </motion.h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mt-3 max-w-3xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg"
-          >
-            Hire from our pool of specialized experts in web, mobile, and
-            software engineering — fluent in the frameworks and languages
-            that ship production systems.
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="mt-4 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg"
+            >
+              Hire from our pool of specialized experts in web, mobile, and software engineering — fluent in the frameworks and languages that ship production systems.
+            </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="mt-3 font-mono text-xs font-semibold tracking-widest text-slate-500"
-          >
-            350+ SPECIALISTS&nbsp;&nbsp;·&nbsp;&nbsp;14 CORE TECHNOLOGIES&nbsp;&nbsp;·&nbsp;&nbsp;24/7 SUPPORT
-          </motion.p>
+            {/* Added technology image right under description */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.25 }}
+              className="mt-5 w-full max-w-xl overflow-hidden rounded-2xl bg-white/60 p-2 shadow-sm ring-1 ring-slate-200/60 backdrop-blur-md"
+            >
+              <Image
+                src="/technology_v1.png"
+                alt="Technology Stack Overview"
+                width={600}
+                height={350}
+                className="h-auto w-full rounded-xl object-cover"
+                priority
+              />
+            </motion.div>
+
+            {/* Stat tiles */}
+            <motion.ul
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="mt-7 grid w-full max-w-xl grid-cols-3 gap-3"
+            >
+              {STATS.map((stat) => (
+                <li
+                  key={stat.label}
+                  className="rounded-2xl bg-white/80 px-4 py-4 shadow-[0_12px_30px_rgba(15,23,42,0.06)] ring-1 ring-white/80 backdrop-blur-xl"
+                >
+                  <p className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+                    {stat.value !== null ? (
+                      <CountUp to={stat.value} suffix={stat.suffix} />
+                    ) : (
+                      stat.text
+                    )}
+                  </p>
+                  <p className="mt-1 text-xs font-semibold leading-snug text-slate-500">
+                    {stat.label}
+                  </p>
+                </li>
+              ))}
+            </motion.ul>
+
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="mt-7"
+            >
+              <Link
+                href="/contact"
+                className="group inline-flex h-11 items-center gap-2.5 rounded-xl bg-blue-600 pl-5 pr-3 text-sm font-semibold text-white shadow-md shadow-blue-600/25 transition-all duration-300 hover:bg-blue-500 hover:shadow-blue-500/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300"
+              >
+                Hire Our Experts
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15 transition-all duration-300 group-hover:translate-x-0.5 group-hover:bg-white/25">
+                  <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} />
+                </span>
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* ───────── Right: filter + tech grid ───────── */}
+          <div className="lg:col-span-8">
+            {/* Filter pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="-mx-2 flex gap-2 overflow-x-auto px-2 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              role="group"
+              aria-label="Filter technologies by category"
+            >
+              {CATEGORIES.map((cat) => {
+                const isActive = active === cat;
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => setActive(cat)}
+                    aria-pressed={isActive}
+                    className={`relative shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+                      isActive
+                        ? "text-white"
+                        : "bg-white/80 text-slate-700 shadow-xs ring-1 ring-white/80 backdrop-blur-md hover:bg-white hover:text-blue-600"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="tech-filter-pill"
+                        className="absolute inset-0 rounded-full bg-blue-600 shadow-md shadow-blue-600/30"
+                        transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                      />
+                    )}
+                    <span className="relative flex items-center gap-2">
+                      {cat}
+                      <span
+                        className={`rounded-full px-1.5 text-[11px] font-bold tabular-nums ${
+                          isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500"
+                        }`}
+                      >
+                        {countFor(cat)}
+                      </span>
+                    </span>
+                  </button>
+                );
+              })}
+            </motion.div>
+
+            {/* Tech cards */}
+            <motion.ul
+              layout
+              className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 xl:grid-cols-4"
+            >
+              <AnimatePresence mode="popLayout">
+                {visible.map((tech, i) => {
+                  const Icon = tech.icon;
+                  return (
+                    <motion.li
+                      key={tech.name}
+                      layout
+                      initial={{ opacity: 0, scale: 0.92, y: 12 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.92 }}
+                      transition={{
+                        duration: 0.35,
+                        delay: Math.min(i, 8) * 0.03,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                      className="group relative flex flex-col overflow-hidden rounded-3xl bg-white/80 p-4 shadow-[0_14px_36px_rgba(15,23,42,0.06)] ring-1 ring-white/80 backdrop-blur-xl transition-[transform,box-shadow,background-color] duration-300 hover:-translate-y-1.5 hover:bg-white hover:shadow-[0_24px_50px_rgba(37,99,235,0.14)] sm:p-5"
+                    >
+                      {/* Brand-colour glow on hover */}
+                      <div
+                        className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-30"
+                        style={{ backgroundColor: tech.color }}
+                      />
+
+                      <div className="relative flex items-start justify-between">
+                        <span
+                          className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-slate-100 transition-transform duration-300 group-hover:scale-110"
+                          style={{ color: tech.color }}
+                        >
+                          <Icon className="h-6 w-6" aria-hidden="true" />
+                        </span>
+                        <span className="font-mono text-[11px] font-semibold tabular-nums text-slate-300">
+                          {String(TECHS.indexOf(tech) + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+
+                      <h3 className="relative mt-4 text-base font-bold tracking-tight text-slate-900 sm:text-lg">
+                        {tech.name}
+                      </h3>
+                      <p className="relative mt-0.5 text-xs font-medium leading-snug text-slate-500 sm:text-[13px]">
+                        {tech.label}
+                      </p>
+
+                      {/* Accent line that grows on hover */}
+                      <span
+                        className="relative mt-4 block h-1 w-6 rounded-full transition-all duration-500 group-hover:w-full"
+                        style={{ backgroundColor: tech.color, opacity: 0.85 }}
+                      />
+                    </motion.li>
+                  );
+                })}
+              </AnimatePresence>
+            </motion.ul>
+          </div>
         </div>
-
-        {/* Full-width responsive Grid container */}
-        <motion.div
-          variants={gridVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-          className="relative z-10 mx-auto mt-8 grid w-full grid-cols-2 gap-px overflow-hidden rounded-[2.5rem] border border-blue-100 bg-blue-100/60 p-px shadow-[0_20px_50px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7"
-        >
-          {stack.map((item) => (
-            <ComponentCell key={item.id} {...item} />
-          ))}
-        </motion.div>
-
       </div>
     </section>
   );
