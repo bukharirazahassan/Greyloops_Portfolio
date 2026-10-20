@@ -85,7 +85,9 @@ const PERKS = [
   },
 ];
 
-const PAGE_SIZE = 6;
+// Changed from 6 to 8 so 2 rows of 4 grid cards are fully filled
+const INITIAL_PAGE_SIZE = 8;
+const STEP_SIZE = 4;
 
 function FlipCard({ perk, index }) {
   const [flipped, setFlipped] = useState(false);
@@ -95,7 +97,7 @@ function FlipCard({ perk, index }) {
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, delay: (index % PAGE_SIZE) * 0.06 }}
+      transition={{ duration: 0.5, delay: (index % STEP_SIZE) * 0.06 }}
       className="list-none"
     >
       <article
@@ -167,7 +169,7 @@ function FlipCard({ perk, index }) {
 }
 
 export default function PerksBenefits() {
-  const [visible, setVisible] = useState(PAGE_SIZE);
+  const [visible, setVisible] = useState(INITIAL_PAGE_SIZE);
   const hasMore = visible < PERKS.length;
 
   return (
@@ -218,22 +220,22 @@ export default function PerksBenefits() {
           </motion.div>
         </div>
 
-        {/* Flip cards */}
-        <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 2xl:grid-cols-4">
+        {/* Flip cards grid (4 columns) */}
+        <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4">
           {PERKS.slice(0, visible).map((perk, i) => (
             <FlipCard key={perk.title} perk={perk} index={i} />
           ))}
         </ul>
 
-        {/* Load more / show less */}
-        {PERKS.length > PAGE_SIZE && (
-          <div className="mt-10 flex justify-center">
+        {/* Load More / Show Less button at bottom */}
+        {PERKS.length > INITIAL_PAGE_SIZE && (
+          <div className="mt-12 flex justify-center">
             <button
               type="button"
               onClick={() =>
                 hasMore
-                  ? setVisible((v) => Math.min(v + PAGE_SIZE, PERKS.length))
-                  : setVisible(PAGE_SIZE)
+                  ? setVisible((v) => Math.min(v + STEP_SIZE, PERKS.length))
+                  : setVisible(INITIAL_PAGE_SIZE)
               }
               className="group inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-blue-600 shadow-md shadow-slate-900/5 ring-1 ring-blue-100 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:shadow-lg hover:shadow-blue-600/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             >

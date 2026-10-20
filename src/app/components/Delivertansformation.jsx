@@ -18,7 +18,7 @@ const services = [
     slug: "consulting",
     title: "Strategic Technology\nConsulting",
     ctaText: "View Consulting Services",
-    ctaLink: "http://localhost:3000/services",
+    ctaLink: "/services",
     description:
       "We help businesses turn technology into a strategic advantage through modern architecture, digital transformation, and scalable technology roadmaps. We evaluate existing systems, identify opportunities, and define practical strategies that improve agility, efficiency, and long-term growth.",
     capabilities: [
@@ -34,7 +34,7 @@ const services = [
     slug: "product-engineering",
     title: "Digital Product\nEngineering",
     ctaText: "View Product Engineering Services",
-    ctaLink: "http://localhost:3000/services",
+    ctaLink: "/services",
     description:
       "We design and engineer modern digital products that combine strong technology, intuitive user experiences, and scalable architecture. From web and mobile applications to enterprise platforms, we build reliable solutions that accelerate delivery, improve performance, and evolve with changing business needs.",
     capabilities: [
@@ -50,7 +50,7 @@ const services = [
     slug: "ai-data-analytics",
     title: "AI, Data &\nAnalytics Solutions",
     ctaText: "View Artificial Intelligence Services",
-    ctaLink: "http://localhost:3000/services",
+    ctaLink: "/services",
     description:
       "We turn data into actionable intelligence using AI, machine learning, advanced analytics, and modern data engineering. Our solutions automate processes, uncover valuable insights, improve forecasting, and enable faster, smarter decisions across the organization.",
     capabilities: [
@@ -66,7 +66,7 @@ const services = [
     slug: "cybersecurity",
     title: "Cloud Operations\n& Cybersecurity",
     ctaText: "View Cybersecurity Services",
-    ctaLink: "http://localhost:3000/services",
+    ctaLink: "/services",
     description:
       "We build secure and resilient cloud environments that support high performance, continuous availability, and business growth. By combining cloud engineering, DevOps automation, monitoring, infrastructure optimization, and proactive security, we help organizations reduce risk and operate with confidence.",
     capabilities: [

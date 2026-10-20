@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Sparkles, ArrowRight } from "lucide-react";
 
 export default function CollaborateMobileDevelopment() {
@@ -54,15 +55,15 @@ export default function CollaborateMobileDevelopment() {
               Ready to turn your business goals and ideas into a practical digital solution? Let’s discuss your requirements, challenges, and objectives to determine the right technology approach and development strategy for your project.
             </p>
 
-            {/* CTA Button */}
+            {/* CTA Button linked to /contact */}
             <div>
-              <a
-                href="#contact"
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-7 py-4 text-base font-semibold text-white shadow-md shadow-blue-600/20 transition-all duration-300 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/30 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
               >
                 <span>Let&apos;s Discuss Your Project</span>
                 <ArrowRight className="h-5 w-5 stroke-[2.5]" />
-              </a>
+              </Link>
             </div>
           </div>
 
