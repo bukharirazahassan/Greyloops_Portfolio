@@ -21,9 +21,8 @@ import {
 import TechExpertiseAcrossEveryLayer from "./TechExpertiseAcrossEveryLayer";
 import EngineeringBuiltScale from "./EngineeringBuiltScale";
 import BusinessValue from "./BusinessValue";
-import StrategyImprovement from "./StrategyImprovement"
+import StrategyImprovement from "./StrategyImprovement";
 import CollaborateMobileDevelopment from "@/app/components/services/MobileService/CollaborateMobileDevelopment";
-
 
 const differentiators = [
   {
@@ -94,7 +93,7 @@ function StackCard({ item, index, total, progress }) {
     >
       <motion.article
         style={{ scale, transformOrigin: "top center" }}
-        className="grid overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-[0_20px_60px_-15px_rgba(30,64,175,0.25)] will-change-transform lg:grid-cols-[1.25fr_0.75fr]"
+        className="grid overflow-hidden rounded-3xl border border-white/80 bg-white/80 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl will-change-transform lg:grid-cols-[1.25fr_0.75fr]"
       >
         {/* Content */}
         <div className="flex flex-col justify-center p-7 sm:p-10 lg:p-12">
@@ -102,11 +101,11 @@ function StackCard({ item, index, total, progress }) {
             {item.title}
           </h3>
 
-          <p className="mt-3 bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-base font-semibold text-transparent sm:text-lg">
+          <p className="mt-3 text-base font-semibold text-blue-600 sm:text-lg">
             {item.tagline}
           </p>
 
-          <p className="mt-4 text-base font-normal leading-relaxed text-slate-600 lg:text-lg">
+          <p className="mt-4 text-base font-medium leading-relaxed text-slate-600 lg:text-lg">
             {item.description}
           </p>
         </div>
@@ -133,7 +132,7 @@ function StackCard({ item, index, total, progress }) {
             className="object-cover object-center"
           />
 
-          <div className="absolute bottom-4 right-4 z-20 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/60 bg-white/70 text-blue-600 shadow-sm backdrop-blur-md lg:bottom-6 lg:right-6 lg:h-14 lg:w-14">
+          <div className="absolute bottom-4 right-4 z-20 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 ring-1 ring-blue-100 backdrop-blur-md lg:bottom-6 lg:right-6 lg:h-14 lg:w-14">
             <Icon className="h-6 w-6 lg:h-7 lg:w-7" strokeWidth={1.8} />
           </div>
         </div>
@@ -158,7 +157,7 @@ export default function WhyChooseUsPage() {
 
   return (
     <div className="relative w-full bg-slate-50 text-slate-900">
-      {/* ONE continuous shared background for the entire page */}
+      {/* Background Dot Grid Overlay */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute -left-24 top-[4%] h-[450px] w-[450px] rounded-full bg-blue-400/15 blur-[140px]" />
         <div className="absolute -right-24 top-[22%] h-[500px] w-[500px] rounded-full bg-sky-400/15 blur-[150px]" />
@@ -191,11 +190,9 @@ export default function WhyChooseUsPage() {
               </span>
             </div>
 
+            {/* Standard Two-Tone Heading */}
             <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-              Why{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                Greyloops?
-              </span>
+              Why <span className="text-blue-600">Greyloops?</span>
             </h2>
           </motion.div>
 
@@ -207,7 +204,7 @@ export default function WhyChooseUsPage() {
           >
             <div className="relative w-full overflow-hidden rounded-3xl shadow-2xl border border-slate-200/80 bg-slate-900 aspect-[16/9] lg:aspect-[21/9]">
               <Image
-                src="/why_choose_us_hero_v2.png"
+                src="/why_choose_us_hero_v3.png"
                 alt="Why Greyloops Showcase"
                 fill
                 priority
@@ -224,7 +221,7 @@ export default function WhyChooseUsPage() {
             transition={{ duration: 0.4, delay: 0.2 }}
             className="mt-6 sm:mt-8 text-left"
           >
-            <p className="text-base sm:text-lg font-normal leading-relaxed text-slate-600">
+            <p className="text-base sm:text-lg font-medium leading-relaxed text-slate-600">
               Greyloops brings together expertise across custom software, web and mobile development, enterprise applications, AI and data, cloud and infrastructure, cybersecurity, DevOps, and quality engineering. We combine these capabilities to design, build, modernize, and secure scalable digital and enterprise solutions that align technology with business objectives and support long-term growth.
             </p>
           </motion.div>
@@ -241,14 +238,12 @@ export default function WhyChooseUsPage() {
             transition={{ duration: 0.5 }}
             className="mx-auto mb-12 max-w-4xl text-center sm:mb-16"
           >
+            {/* Standard Two-Tone Heading */}
             <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-              What Sets{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                Greyloops Apart
-              </span>
+              What Sets <span className="text-blue-600">Greyloops Apart</span>
             </h2>
 
-            <p className="mx-auto mt-4 max-w-3xl text-base font-normal leading-relaxed text-slate-600 sm:text-lg">
+            <p className="mx-auto mt-4 max-w-3xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
               We combine business understanding, engineering expertise, and
               modern technology capabilities to deliver solutions that are
               scalable, secure, and built for long-term growth.
@@ -276,7 +271,7 @@ export default function WhyChooseUsPage() {
         </div>
       </section>
 
-      {/* ================= TECH EXPERTISE ACROSS EVERY LAYER SECTION (MOVED TO BOTTOM) ================= */}
+      {/* Additional Sub-components */}
       <TechExpertiseAcrossEveryLayer />
       <EngineeringBuiltScale />
       <BusinessValue />

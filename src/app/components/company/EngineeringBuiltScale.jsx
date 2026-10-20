@@ -95,7 +95,7 @@ export default function EngineeringBuiltScale() {
     offset: [`start ${NAV_HEIGHT}px`, "end end"],
   });
 
-  // Light spring: smooth but still responsive (no laggy "catch-up" feeling)
+  // Light spring: smooth but still responsive
   const progress = useSpring(scrollYProgress, {
     stiffness: 140,
     damping: 30,
@@ -128,7 +128,7 @@ export default function EngineeringBuiltScale() {
         <div className="absolute left-0 top-0 z-20 h-[3px] w-full bg-slate-200/60">
           <motion.div
             style={{ scaleX: barScale }}
-            className="h-full origin-left bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600"
+            className="h-full origin-left bg-blue-600"
           />
         </div>
 
@@ -147,14 +147,12 @@ export default function EngineeringBuiltScale() {
                 </span>
               </div>
 
+              {/* Standard Two-Tone Heading */}
               <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-                Engineering Built for{" "}
-                <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                  Scale
-                </span>
+                Engineering Built for <span className="text-blue-600">Scale</span>
               </h2>
 
-              <p className="mx-auto max-w-4xl text-base font-normal leading-relaxed text-slate-600 sm:text-lg">
+              <p className="mx-auto max-w-4xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
                 Greyloops engineers digital and enterprise solutions with the technical foundation required to support evolving business demands. We focus on architecture, security, integration, performance, and maintainability from the beginning, ensuring systems are not only built for current requirements but prepared for future growth and change.
               </p>
             </div>
@@ -176,9 +174,9 @@ export default function EngineeringBuiltScale() {
               </div>
             </div>
 
-            {/* Cards without count numbers */}
+            {/* Apple Glassmorphic Cards */}
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 pb-8">
-              {engineeringSteps.map((item, index) => {
+              {engineeringSteps.map((item) => {
                 const Icon = item.icon;
                 return (
                   <motion.article
@@ -187,9 +185,9 @@ export default function EngineeringBuiltScale() {
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true, amount: 0.25 }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-[0_20px_60px_-15px_rgba(30,64,175,0.15)] lg:flex-row"
+                    className="flex flex-col overflow-hidden rounded-3xl border border-white/80 bg-white/80 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl lg:flex-row transition-all duration-300 hover:border-blue-200 hover:bg-white hover:shadow-[0_20px_50px_rgba(37,99,235,0.08)]"
                   >
-                    {/* Image panel replacing the number */}
+                    {/* Visual Panel */}
                     <div className="relative flex h-20 shrink-0 items-center justify-center overflow-hidden border-b border-slate-200/80 bg-slate-50 lg:h-auto lg:w-[28%] lg:border-b-0 lg:border-r">
                       <div className="pointer-events-none absolute -left-12 -top-12 h-[180px] w-[180px] rounded-full bg-blue-400/15 blur-[70px]" />
                       <div className="pointer-events-none absolute -bottom-12 -right-12 h-[200px] w-[200px] rounded-full bg-sky-400/15 blur-[80px]" />
@@ -213,7 +211,7 @@ export default function EngineeringBuiltScale() {
                     {/* Content */}
                     <div className="flex flex-1 flex-col justify-center p-5 sm:p-7 lg:p-9">
                       <div className="mb-3 flex items-center gap-3">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 text-blue-600">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
                           <Icon className="h-5 w-5" strokeWidth={1.8} />
                         </span>
                       </div>
@@ -222,7 +220,7 @@ export default function EngineeringBuiltScale() {
                         {item.title}
                       </h3>
 
-                      <p className="mt-3 text-sm font-medium leading-relaxed text-slate-700 sm:text-base lg:text-[17px]">
+                      <p className="mt-3 text-sm font-medium leading-relaxed text-slate-600 sm:text-base lg:text-[17px]">
                         {item.description}
                       </p>
                     </div>

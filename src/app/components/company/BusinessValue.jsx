@@ -68,7 +68,6 @@ const agilityPoints = [
   "Supporting continuous business evolution with maintainable and adaptable technology that helps organizations respond to customer, market, and competitive changes over time.",
 ];
 
-// Add more objects here (Security, Data, ...) and they stack automatically
 const valueCards = [
   {
     title: "Operational Efficiency",
@@ -126,10 +125,8 @@ const valueCards = [
   },
 ];
 
-
 export default function BusinessValue() {
   return (
-    // overflow-clip (not overflow-hidden) so position: sticky keeps working
     <section className="relative z-10 w-full overflow-clip bg-slate-50 py-10 sm:py-14">
       {/* Background glow and dot pattern */}
       <div className="pointer-events-none absolute -left-20 top-1/2 -translate-y-1/2 h-[350px] w-[350px] rounded-full bg-blue-400/15 blur-[90px]" />
@@ -145,7 +142,7 @@ export default function BusinessValue() {
 
       <div className="relative z-10 mx-auto max-w-[96rem] px-6 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 lg:items-start">
-          {/* Left Column: pinned, centered in the visible area under the navbar */}
+          {/* Left Column: Pinned Sticky */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -161,21 +158,19 @@ export default function BusinessValue() {
               </span>
             </div>
 
-            {/* Heading */}
+            {/* Standard Two-Tone Heading */}
             <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl mb-6">
               Technology That Drives{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                Business Value
-              </span>
+              <span className="text-blue-600">Business Value</span>
             </h2>
 
             {/* Description */}
-            <p className="text-base sm:text-lg font-normal leading-relaxed text-slate-600">
+            <p className="text-base sm:text-lg font-medium leading-relaxed text-slate-600">
               Greyloops focuses on building technology that delivers meaningful value beyond implementation. We align engineering decisions with business objectives to improve operational efficiency, enable innovation, strengthen security, unlock actionable insights from data, and establish scalable digital foundations. By combining business understanding with software engineering, AI, cloud, infrastructure, cybersecurity, and enterprise technology expertise, we help organizations improve performance, respond to changing requirements, and build sustainable capabilities for long-term growth.
             </p>
           </motion.div>
 
-          {/* Right Column: every card pair is a sticky layer. The next pair rises from the bottom and covers the previous one. */}
+          {/* Right Column: Sticky Stacking Layers */}
           <div className="lg:col-span-3 flex flex-col gap-6 lg:gap-0">
             {valueCards.map((item, index) => {
               const Icon = item.icon;
@@ -185,15 +180,14 @@ export default function BusinessValue() {
                   style={{ zIndex: index + 1 }}
                   className="lg:sticky lg:top-[80px] lg:flex lg:min-h-[calc(100vh-80px)] lg:items-center"
                 >
-                  {/* === Your original card + image grid, unchanged === */}
                   <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-                    {/* Card */}
-                    <article className="flex flex-col justify-center h-full min-h-[520px] sm:min-h-[580px] overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-8 sm:p-10 shadow-[0_20px_60px_-15px_rgba(30,64,175,0.15)] relative">
+                    {/* Glassmorphic Card */}
+                    <article className="flex flex-col justify-center h-full min-h-[520px] sm:min-h-[580px] overflow-hidden rounded-3xl border border-white/80 bg-white/80 backdrop-blur-xl p-8 sm:p-10 shadow-[0_10px_30px_rgba(15,23,42,0.08)] relative transition-all duration-300 hover:border-blue-200 hover:bg-white hover:shadow-[0_20px_50px_rgba(37,99,235,0.08)]">
                       <div className="pointer-events-none absolute -right-12 -top-12 h-[150px] w-[150px] rounded-full bg-blue-400/10 blur-[50px]" />
 
                       <div>
                         <div className="mb-5 flex items-center gap-3">
-                          <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 text-blue-600">
+                          <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
                             <Icon className="h-6 w-6" strokeWidth={1.8} />
                           </span>
                           <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
@@ -213,9 +207,11 @@ export default function BusinessValue() {
                         {/* Bullet Points */}
                         <ul className="space-y-2.5">
                           {item.points.map((point, idx) => (
-                            <li key={idx} className="flex items-start gap-2">
-                              <CheckCircle2 className="h-4 w-4 shrink-0 text-blue-600 mt-0.5" />
-                              <span className="text-[11px] sm:text-xs font-medium text-slate-700 leading-snug">
+                            <li key={idx} className="flex items-start gap-2.5">
+                              <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600 ring-1 ring-blue-100">
+                                <CheckCircle2 className="h-3 w-3" strokeWidth={2.5} />
+                              </span>
+                              <span className="text-[11px] sm:text-xs font-medium text-slate-600 leading-snug">
                                 {point}
                               </span>
                             </li>
@@ -224,7 +220,7 @@ export default function BusinessValue() {
                       </div>
                     </article>
 
-                    {/* Image */}
+                    {/* Visual Image Container */}
                     <div className="relative w-full h-full min-h-[520px] sm:min-h-[580px] overflow-hidden rounded-3xl border border-slate-200/80 bg-slate-900 shadow-xl flex items-center justify-center">
                       <div className="relative w-full h-full flex items-center justify-center">
                         <Image

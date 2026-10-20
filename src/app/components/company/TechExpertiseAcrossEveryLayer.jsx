@@ -71,8 +71,6 @@ const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
 function LayerCard({ item, index, total, progress }) {
   const Icon = item.icon;
 
-  // Scroll progress 0 -> 0.9 is split evenly between the (total - 1) card entrances.
-  // The last 10% holds the final card on screen.
   const seg = 0.9 / (total - 1);
   const enterStart = (index - 1) * seg;
   const enterEnd = index * seg;
@@ -85,7 +83,6 @@ function LayerCard({ item, index, total, progress }) {
     return `${(1 - eased) * 105}%`;
   });
 
-  // How many cards have already covered this one (continuous, 0 .. cards-after-this).
   const depth = useTransform(progress, (v) =>
     clamp((v - enterEnd) / seg, 0, total - 1 - index)
   );
@@ -99,9 +96,9 @@ function LayerCard({ item, index, total, progress }) {
     >
       <motion.article
         style={{ scale, y, transformOrigin: "50% 100%" }}
-        className="flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-[0_20px_60px_-15px_rgba(30,64,175,0.25)] will-change-transform lg:flex-row"
+        className="flex h-full flex-col overflow-hidden rounded-3xl border border-white/80 bg-white/80 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl will-change-transform lg:flex-row"
       >
-        {/* Image panel replacing the number */}
+        {/* Visual Panel */}
         <div className="relative flex h-20 shrink-0 items-center justify-center overflow-hidden border-b border-slate-200/80 bg-slate-50 lg:h-auto lg:w-[28%] lg:border-b-0 lg:border-r">
           <div className="pointer-events-none absolute -left-12 -top-12 h-[180px] w-[180px] rounded-full bg-blue-400/15 blur-[70px]" />
           <div className="pointer-events-none absolute -bottom-12 -right-12 h-[200px] w-[200px] rounded-full bg-sky-400/15 blur-[80px]" />
@@ -125,7 +122,7 @@ function LayerCard({ item, index, total, progress }) {
         {/* Content */}
         <div className="flex flex-1 flex-col justify-center p-5 sm:p-7 lg:p-9">
           <div className="mb-3 flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 text-blue-600">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
               <Icon className="h-5 w-5" strokeWidth={1.8} />
             </span>
           </div>
@@ -134,7 +131,7 @@ function LayerCard({ item, index, total, progress }) {
             {item.title}
           </h3>
 
-          <p className="mt-3 text-sm font-medium leading-relaxed text-slate-700 sm:text-base lg:text-[17px]">
+          <p className="mt-3 text-sm font-medium leading-relaxed text-slate-600 sm:text-base lg:text-[17px]">
             {item.description}
           </p>
         </div>
@@ -146,7 +143,6 @@ function LayerCard({ item, index, total, progress }) {
 export default function TechExpertiseAcrossEveryLayer() {
   const trackRef = useRef(null);
 
-  // Progress through the pinned scroll track (starts when the stage pins under the navbar).
   const { scrollYProgress } = useScroll({
     target: trackRef,
     offset: ["start 96px", "end end"],
@@ -159,7 +155,6 @@ export default function TechExpertiseAcrossEveryLayer() {
   });
 
   return (
-    // NOTE: no overflow-hidden on this section or any parent, it would break position: sticky.
     <section className="relative z-10 w-full py-16 sm:py-24">
       <div className="relative z-10 mx-auto max-w-[96rem] px-6">
         <motion.div
@@ -176,27 +171,26 @@ export default function TechExpertiseAcrossEveryLayer() {
             </span>
           </div>
 
-          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl mb-6 whitespace-nowrap">
+          {/* Standard Two-Tone Heading */}
+          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl mb-6">
             Technology Expertise{" "}
-            <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-              Across Every Layer
-            </span>
+            <span className="text-blue-600">Across Every Layer</span>
           </h2>
 
-          <p className="mx-auto max-w-4xl text-base sm:text-lg font-normal leading-relaxed text-slate-600 mb-10 sm:mb-12">
+          <p className="mx-auto max-w-4xl text-base sm:text-lg font-medium leading-relaxed text-slate-600 mb-10 sm:mb-12">
             Greyloops brings together specialized capabilities across software engineering, web and mobile development, enterprise applications, AI and data, cloud and infrastructure, cybersecurity, and quality engineering. By connecting these disciplines, we help organizations build, modernize, integrate, and continuously evolve technology across their entire digital environment.
           </p>
         </motion.div>
 
-        {/* Scroll track: its height decides how long the image stays pinned */}
+        {/* Scroll Track */}
         <div
           ref={trackRef}
           className="relative mx-auto max-w-6xl"
           style={{ height: `${layers.length * 60 + 60}vh` }}
         >
-          {/* Pinned stage: image + card stack (same width) */}
+          {/* Pinned Stage */}
           <div className="sticky top-24 flex flex-col gap-6">
-            {/* Image Showcase (stays pinned) */}
+            {/* Image Showcase */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -214,7 +208,7 @@ export default function TechExpertiseAcrossEveryLayer() {
               </div>
             </motion.div>
 
-            {/* Horizontal sticky card stack, same width as the image */}
+            {/* Sticky Card Stack */}
             <div className="relative mb-12 h-[340px] overflow-x-clip sm:h-[300px] lg:h-[250px]">
               {layers.map((item, index) => (
                 <LayerCard

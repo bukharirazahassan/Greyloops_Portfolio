@@ -63,7 +63,6 @@ export default function StrategyImprovement() {
   const slideTransforms = [null, y1, y2, y3, y4, y5];
 
   return (
-    // overflow-clip so position: sticky keeps working seamlessly
     <section className="relative z-10 w-full overflow-clip bg-slate-50 pt-24 pb-16 sm:pt-32 sm:pb-24">
       {/* Background ambient blue glow circles */}
       <div className="pointer-events-none absolute -left-20 top-1/2 h-[350px] w-[350px] -translate-y-1/2 rounded-full bg-blue-400/15 blur-[90px]" />
@@ -95,14 +94,13 @@ export default function StrategyImprovement() {
               </span>
             </div>
 
+            {/* Standard Two-Tone Heading */}
             <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
               From Strategy to Continuous{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                Improvement
-              </span>
+              <span className="text-blue-600">Improvement</span>
             </h2>
 
-            <p className="text-base font-normal leading-relaxed text-slate-600 sm:text-lg">
+            <p className="text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
               Greyloops follows a structured delivery lifecycle that connects business strategy, design, engineering, deployment, and continuous improvement. We work collaboratively throughout the journey to ensure technology remains aligned with business objectives, performs reliably in production, and evolves as your organization grows.
             </p>
           </motion.div>
@@ -113,7 +111,7 @@ export default function StrategyImprovement() {
             className="w-full"
             style={{ height: SCROLL_LENGTH }}
           >
-            {/* Pinned frame */}
+            {/* Pinned Glassmorphic Frame */}
             <div
               className="sticky mx-auto w-full"
               style={{
@@ -121,7 +119,7 @@ export default function StrategyImprovement() {
                 maxWidth: `min(${FRAME_MAX_WIDTH}, calc((100vh - ${PIN_TOP + 16}px) * 1376 / 768 * 0.92))`,
               }}
             >
-              <div className="relative w-full overflow-hidden rounded-3xl border border-slate-200/80 bg-slate-900 shadow-2xl">
+              <div className="relative w-full overflow-hidden rounded-3xl border border-white/80 bg-white/80 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl">
                 {lifecycleImages.map((img, index) => {
                   if (index === 0) {
                     return (
@@ -146,7 +144,7 @@ export default function StrategyImprovement() {
                     <motion.div
                       key={img.src}
                       style={{ y: slideTransforms[index] }}
-                      className="absolute inset-0 will-change-transform shadow-[0_-24px_60px_-20px_rgba(15,23,42,0.5)]"
+                      className="absolute inset-0 will-change-transform"
                     >
                       <Image
                         src={img.src}
