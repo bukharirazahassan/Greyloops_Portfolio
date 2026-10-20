@@ -26,8 +26,6 @@ import WhatWeDo from "./OurValues";
 import OurExpertise from "./OurExpertise";
 import AboutUsFAQs from "./AboutUsFAQs";
 import CollaborateMobileDevelopment from "@/app/components/services/MobileService/CollaborateMobileDevelopment";
-import LeadershipTeam from "../../components/LeadershipTeam";
-import TalentOnDemand from "../../components/TalentOnDemand";
 
 const featureCards = [
   {
@@ -153,11 +151,11 @@ export default function AboutUs() {
     <div className="w-full">
       {/* ================= UNIFIED HERO SECTION ================= */}
       <section className="relative w-full overflow-hidden bg-slate-50 pt-20 pb-16 text-slate-900 sm:pt-28 sm:pb-20">
-        {/* Ambient blue glow shades spanning deep behind */}
+        {/* Ambient blue glow shades */}
         <div className="pointer-events-none absolute -left-32 top-20 z-0 h-[550px] w-[550px] rounded-full bg-blue-400/15 blur-[150px]" />
         <div className="pointer-events-none absolute -right-32 top-40 z-0 h-[600px] w-[600px] rounded-full bg-sky-400/15 blur-[170px]" />
 
-        {/* Continuous dot-grid texture overlay across the whole section */}
+        {/* Dot-grid texture overlay */}
         <div
           className="pointer-events-none absolute inset-0 z-0 opacity-40"
           style={{
@@ -175,11 +173,10 @@ export default function AboutUs() {
               Who We Are
             </span>
 
+            {/* Standard Two-Color Heading */}
             <h1 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
               Building the Future with{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                Passion & Precision
-              </span>
+              <span className="text-blue-600">Passion & Precision</span>
             </h1>
 
             <p className="text-lg leading-relaxed text-slate-600 sm:text-xl font-medium">
@@ -192,7 +189,7 @@ export default function AboutUs() {
             </p>
           </div>
 
-          {/* Hero Image Showcase nested inside the same expanded background section */}
+          {/* Hero Image Showcase */}
           <div className="mt-12 sm:mt-16">
             <div className="relative w-full overflow-hidden rounded-3xl shadow-2xl border border-slate-200/80 bg-slate-900 aspect-[1440/720]">
               <Image
@@ -206,7 +203,7 @@ export default function AboutUs() {
             </div>
           </div>
 
-          {/* ================= STATS & METRICS GLASS CARD SECTION (Equal Height Grid) ================= */}
+          {/* ================= STATS & METRICS GLASS CARD SECTION ================= */}
           <div className="relative mt-16">
             <div className="pointer-events-none absolute left-1/4 top-1/2 -translate-y-1/2 -translate-x-1/2 z-0 h-[400px] w-[400px] rounded-full bg-blue-500/20 blur-[140px]" />
             <div className="pointer-events-none absolute right-1/4 top-1/2 -translate-y-1/2 translate-x-1/2 z-0 h-[400px] w-[400px] rounded-full bg-sky-400/20 blur-[140px]" />
@@ -217,13 +214,11 @@ export default function AboutUs() {
                 return (
                   <div
                     key={idx}
-                    className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/60 bg-white/70 p-8 shadow-xl shadow-blue-900/5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-white/90 hover:shadow-2xl hover:shadow-blue-500/10 h-full"
+                    className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-8 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-[0_20px_50px_rgba(37,99,235,0.08)] h-full"
                   >
-                    <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-                    <div className="flex items-start justify-between gap-4">
+                    <div className="flex items-start justify-between gap-4 h-full">
                       {item.type === "metric" ? (
-                        <div>
+                        <div className="flex flex-col justify-between h-full">
                           <div className="text-4xl font-extrabold tracking-tight text-blue-600 sm:text-5xl">
                             {item.value}
                           </div>
@@ -232,17 +227,19 @@ export default function AboutUs() {
                           </p>
                         </div>
                       ) : (
-                        <p className="text-lg font-bold leading-snug text-slate-800">
-                          {item.value}
+                        <div className="flex flex-col justify-between h-full">
+                          <p className="text-lg font-bold leading-snug text-slate-800">
+                            {item.value}
+                          </p>
                           {item.label && (
                             <span className="block text-sm font-normal text-slate-500 mt-1">
                               {item.label}
                             </span>
                           )}
-                        </p>
+                        </div>
                       )}
 
-                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-blue-100 bg-blue-50/80 text-blue-600 shadow-sm backdrop-blur-md transition-all duration-300 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600">
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 ring-1 ring-blue-100 transition-all duration-300 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white">
                         <IconComponent className="h-7 w-7" strokeWidth={1.8} />
                       </div>
                     </div>
@@ -275,21 +272,19 @@ export default function AboutUs() {
               Our Core Values
             </span>
 
+            {/* Standard Two-Color Heading */}
             <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-              What stands by{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                our Team
-              </span>
+              What stands by <span className="text-blue-600">our Team</span>
             </h2>
           </div>
 
           {/* 4 Image Cards in a Single Row */}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
             {featureCards.map((item) => (
               <Link
                 key={item.title}
                 href={item.href}
-                className="group relative block aspect-[4/4.5] overflow-hidden rounded-3xl bg-slate-900 shadow-xl shadow-slate-900/10 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-900/20"
+                className="group relative flex flex-col justify-between aspect-[4/4.5] overflow-hidden rounded-3xl border border-white/80 bg-slate-900 shadow-[0_10px_30px_rgba(15,23,42,0.05)] transition-all duration-500 hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_20px_50px_rgba(37,99,235,0.12)]"
               >
                 <Image
                   src={item.image}
@@ -300,7 +295,6 @@ export default function AboutUs() {
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent" />
-                <div className="pointer-events-none absolute inset-0 rounded-[inherit] animate-glow-blue opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                 <div className="absolute left-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 text-white backdrop-blur-md transition-colors duration-300 group-hover:bg-blue-600">
                   <Sparkles className="h-4 w-4" strokeWidth={2} />
@@ -315,20 +309,18 @@ export default function AboutUs() {
             ))}
           </div>
 
-          {/* ================= ULTRA-MODERN BENTO / FLOATING CARD GRID (Equal Height Grid) ================= */}
+          {/* ================= BENTO / FLOATING CARD GRID ================= */}
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 items-stretch">
             {coreValuesInfo.map((card, idx) => {
               const CardIcon = card.icon;
               return (
                 <div
                   key={idx}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-200/80 bg-white/60 p-8 shadow-xl shadow-slate-900/5 backdrop-blur-2xl transition-all duration-500 hover:-translate-y-1.5 hover:border-blue-500/50 hover:bg-white hover:shadow-2xl hover:shadow-blue-500/10 h-full"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-8 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-[0_20px_50px_rgba(37,99,235,0.12)] h-full"
                 >
-                  <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-blue-600 via-sky-400 to-indigo-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
                   <div>
                     <div className="flex items-start justify-between gap-4 mb-6">
-                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-500/25 transition-transform duration-300 group-hover:scale-110">
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 ring-1 ring-blue-100 transition-transform duration-300 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white">
                         <CardIcon className="h-7 w-7" strokeWidth={1.8} />
                       </div>
                       <span className="text-3xl font-black tracking-tight text-slate-200 transition-colors duration-300 group-hover:text-blue-500/30">
@@ -362,11 +354,6 @@ export default function AboutUs() {
       <OurExpertise />
       <AboutUsFAQs />      
       <CollaborateMobileDevelopment />
-
-
-      {/* ================= LEADERSHIP TEAM SECTION ================= */}
-      {/* <LeadershipTeam />
-      <TalentOnDemand /> */}
     </div>
   );
 }

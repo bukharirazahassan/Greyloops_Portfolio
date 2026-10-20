@@ -14,12 +14,12 @@ const faqs = [
   {
     question: "Does Greyloops Specialize in AI, IoT, Blockchain, and Other Emerging Technologies?",
     answer:
-      "Yes. Greyloops helps businesses adopt emerging technologies to modernize operations, improve decision-making, and build scalable digital capabilities. Our teams work across AI, IoT, Blockchain, AR/VR, Cloud, DevOps, Data Analytics, and Cybersecurity, applying these technologies to practical business requirements rather than treating them as standalone technology initiatives.\n\nOur capabilities include:\n\n• Artificial Intelligence (AI) — We develop intelligent systems that use data to automate processes, identify patterns, generate insights, and support faster, data-driven decision-making. AI agents and machine learning solutions can be integrated into business workflows to improve operational efficiency and user experiences.\n• Internet of Things (IoT) — We build connected solutions that integrate devices, sensors, machines, and software platforms, enabling real-time monitoring, data collection, and operational control across environments such as manufacturing, logistics, healthcare, and enterprise operations.\n• Blockchain — We develop secure and transparent blockchain-based solutions for applications such as digital transactions, supply chain visibility, decentralized workflows, and smart contracts, with a focus on traceability, data integrity, and controlled access.\n• Augmented & Virtual Reality (AR/VR) — We create immersive digital experiences for applications including training, education, healthcare, retail, product visualization, and interactive environments.\n• Cloud & DevOps — We modernize applications and infrastructure through cloud-native architectures, automated CI/CD pipelines, infrastructure automation, deployment optimization, and scalable cloud environments that support reliable and efficient software delivery.\n• Data Analytics — We transform business data into actionable insights through data engineering, analytics, visualization, and intelligent reporting, helping organizations identify trends, measure performance, and support informed decision-making.\n• Cybersecurity — We integrate security across applications, infrastructure, cloud environments, and enterprise systems through security assessments, identity and access controls, vulnerability management, continuous monitoring, threat detection, and structured security practices.",
+      "Yes. Greyloops helps businesses adopt emerging technologies to modernize operations, improve decision-making, and build scalable digital capabilities. Our teams work across AI, IoT, Blockchain, AR/VR, Cloud, DevOps, Data Analytics, and Cybersecurity, applying these technologies to practical business requirements rather than treating them as standalone technology initiatives.\n\nOur capabilities include:\n\nArtificial Intelligence (AI) — We develop intelligent systems that use data to automate processes, identify patterns, generate insights, and support faster, data-driven decision-making. AI agents and machine learning solutions can be integrated into business workflows to improve operational efficiency and user experiences.\n\nInternet of Things (IoT) — We build connected solutions that integrate devices, sensors, machines, and software platforms, enabling real-time monitoring, data collection, and operational control across environments such as manufacturing, logistics, healthcare, and enterprise operations.\n\nBlockchain — We develop secure and transparent blockchain-based solutions for applications such as digital transactions, supply chain visibility, decentralized workflows, and smart contracts, with a focus on traceability, data integrity, and controlled access.\n\nAugmented & Virtual Reality (AR/VR) — We create immersive digital experiences for applications including training, education, healthcare, retail, product visualization, and interactive environments.\n\nCloud & DevOps — We modernize applications and infrastructure through cloud-native architectures, automated CI/CD pipelines, infrastructure automation, deployment optimization, and scalable cloud environments that support reliable and efficient software delivery.\n\nData Analytics — We transform business data into actionable insights through data engineering, analytics, visualization, and intelligent reporting, helping organizations identify trends, measure performance, and support informed decision-making.\n\nCybersecurity — We integrate security across applications, infrastructure, cloud environments, and enterprise systems through security assessments, identity and access controls, vulnerability management, continuous monitoring, threat detection, and structured security practices.",
   },
   {
     question: "Does Greyloops Provide Consulting for Digital Transformation and Strategy?",
     answer:
-      "Yes. Greyloops provides digital transformation and technology consulting to help businesses align technology investments with their operational objectives, customer needs, and long-term growth strategy. We work closely with business and technology stakeholders to understand existing challenges, identify opportunities, and establish practical technology strategies that deliver measurable business value.\n\nOur consulting approach typically covers:\n\n• Discovery & Assessment — We assess existing applications, infrastructure, workflows, technology environments, and business objectives to identify gaps, risks, inefficiencies, and opportunities for improvement.\n• Strategic Roadmapping — We translate business objectives into a structured technology roadmap, defining priorities, initiatives, dependencies, and implementation phases aligned with available resources and business goals.\n• Technology Modernization — We help organizations modernize legacy applications and infrastructure through cloud adoption, application modernization, automation, system integration, and the introduction of technologies that improve scalability and operational efficiency.\n• Change Enablement — We support technology transformation by aligning processes, teams, and workflows with new systems, helping organizations transition effectively and adopt modern technology across their operations.\n• Performance & Continuous Improvement — We establish measurable objectives and technology performance indicators to evaluate outcomes, identify improvement opportunities, and continuously refine digital capabilities after implementation.\n\nOur approach extends beyond technology implementation. Greyloops remains focused on ensuring that transformation initiatives are aligned with business requirements, operational realities, and measurable outcomes throughout the engagement.",
+      "Yes. Greyloops provides digital transformation and technology consulting to help businesses align technology investments with their operational objectives, customer needs, and long-term growth strategy. We work closely with business and technology stakeholders to understand existing challenges, identify opportunities, and establish practical technology strategies that deliver measurable business value.\n\nOur consulting approach typically covers:\n\nDiscovery & Assessment — We assess existing applications, infrastructure, workflows, technology environments, and business objectives to identify gaps, risks, inefficiencies, and opportunities for improvement.\n\nStrategic Roadmapping — We translate business objectives into a structured technology roadmap, defining priorities, initiatives, dependencies, and implementation phases aligned with available resources and business goals.\n\nTechnology Modernization — We help organizations modernize legacy applications and infrastructure through cloud adoption, application modernization, automation, system integration, and the introduction of technologies that improve scalability and operational efficiency.\n\nChange Enablement — We support technology transformation by aligning processes, teams, and workflows with new systems, helping organizations transition effectively and adopt modern technology across their operations.\n\nPerformance & Continuous Improvement — We establish measurable objectives and technology performance indicators to evaluate outcomes, identify improvement opportunities, and continuously refine digital capabilities after implementation.\n\nOur approach extends beyond technology implementation. Greyloops remains focused on ensuring that transformation initiatives are aligned with business requirements, operational realities, and measurable outcomes throughout the engagement.",
   },
   {
     question: "Can Greyloops Modernize Legacy Applications and Enterprise Systems?",
@@ -79,11 +79,11 @@ export default function AboutUsFAQs() {
     <div className="w-full text-slate-900">
       {/* ================= ABOUT US FAQS SECTION ================= */}
       <section className="relative w-full overflow-hidden bg-slate-50 py-16 sm:py-20">
-        {/* Consistent ambient glow shades spanning across pages */}
+        {/* Consistent ambient glow shades */}
         <div className="pointer-events-none absolute -left-24 top-20 z-0 h-[500px] w-[500px] rounded-full bg-blue-400/15 blur-[150px]" />
         <div className="pointer-events-none absolute -right-24 bottom-10 z-0 h-[550px] w-[550px] rounded-full bg-sky-400/15 blur-[170px]" />
 
-        {/* Continuous dot-grid texture overlay matching About Us */}
+        {/* Continuous dot-grid texture overlay */}
         <div
           className="pointer-events-none absolute inset-0 z-0 opacity-40"
           style={{
@@ -101,15 +101,13 @@ export default function AboutUsFAQs() {
               Got Questions?
             </span>
 
+            {/* Standard Two-Color Heading */}
             <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-              Frequently asked{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                questions
-              </span>
+              Frequently asked <span className="text-blue-600">questions</span>
             </h2>
           </div>
 
-          {/* Accordion List with full width and left alignment matching standard sections */}
+          {/* Accordion List with Apple Glassmorphism styling */}
           <div className="mx-auto w-full space-y-4">
             {faqs.map((faq, index) => {
               const isOpen = activeIndex === index;
@@ -120,18 +118,20 @@ export default function AboutUsFAQs() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="w-full overflow-hidden rounded-3xl border border-white/40 bg-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.12)] backdrop-blur-xl transition-all duration-300 hover:border-blue-300/60 hover:bg-white/80"
+                  className="w-full overflow-hidden rounded-3xl border border-white/80 bg-white/80 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-xl transition-all duration-300 hover:border-blue-200 hover:bg-white hover:shadow-[0_20px_50px_rgba(37,99,235,0.08)]"
                 >
                   <button
                     onClick={() => toggleAccordion(index)}
-                    className="flex w-full items-center justify-between p-6 text-left sm:p-7"
+                    className="flex w-full items-center justify-between p-6 text-left sm:p-7 focus:outline-none"
                   >
-                    <span className="text-lg font-bold tracking-tight text-slate-900 sm:text-xl">
+                    <span className="text-lg font-bold tracking-tight text-slate-900 sm:text-xl transition-colors duration-300">
                       {faq.question}
                     </span>
                     <span
-                      className={`ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-blue-600 transition-transform duration-300 ${
-                        isOpen ? "rotate-180 bg-blue-600 text-white" : ""
+                      className={`ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
+                        isOpen
+                          ? "rotate-180 bg-blue-600 text-white shadow-md shadow-blue-600/30"
+                          : "bg-blue-50 text-blue-600 ring-1 ring-blue-100"
                       }`}
                     >
                       <ChevronDown className="h-4 w-4" strokeWidth={2.5} />
@@ -146,8 +146,8 @@ export default function AboutUsFAQs() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                       >
-                        <div className="px-6 pb-6 pt-0 sm:px-7 sm:pb-7 text-left">
-                          <p className="whitespace-pre-line text-base font-medium leading-relaxed text-slate-700">
+                        <div className="px-6 pb-6 pt-0 sm:px-7 sm:pb-7 text-left border-t border-slate-100/80 pt-4">
+                          <p className="whitespace-pre-line text-base font-medium leading-relaxed text-slate-600">
                             {faq.answer}
                           </p>
                         </div>

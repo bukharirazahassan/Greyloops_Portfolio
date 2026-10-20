@@ -69,11 +69,11 @@ export default function OurExpertise() {
     <div className="w-full text-slate-900">
       {/* ================= OUR EXPERTISE SECTION ================= */}
       <section className="relative w-full overflow-hidden bg-slate-50 py-16 sm:py-20">
-        {/* Consistent ambient glow shades spanning across pages */}
+        {/* Consistent ambient glow shades */}
         <div className="pointer-events-none absolute -left-24 top-20 z-0 h-[500px] w-[500px] rounded-full bg-blue-400/15 blur-[150px]" />
         <div className="pointer-events-none absolute -right-24 bottom-10 z-0 h-[550px] w-[550px] rounded-full bg-sky-400/15 blur-[170px]" />
 
-        {/* Continuous dot-grid texture overlay matching About Us */}
+        {/* Continuous dot-grid texture overlay */}
         <div
           className="pointer-events-none absolute inset-0 z-0 opacity-40"
           style={{
@@ -91,16 +91,14 @@ export default function OurExpertise() {
               What We Do
             </span>
 
+            {/* Standard Two-Color Heading */}
             <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-              Our{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                Expertise
-              </span>
+              Our <span className="text-blue-600">Expertise</span>
             </h2>
           </div>
 
-          {/* Cards Grid (equal height) */}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          {/* Cards Grid (equal height & Apple Glassmorphism) */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4 items-stretch">
             {expertise.map((card, index) => (
               <motion.div
                 key={card.title}
@@ -108,10 +106,10 @@ export default function OurExpertise() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/40 bg-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.12)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-blue-300/60 hover:bg-white/80 hover:shadow-[0_16px_48px_0_rgba(37,99,235,0.22)]"
+                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/80 bg-white/80 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-[0_20px_50px_rgba(37,99,235,0.08)]"
               >
-                {/* Image filling the top edge completely with object-cover */}
-                <div className="relative aspect-[16/11] w-full overflow-hidden rounded-t-3xl bg-slate-100">
+                {/* Image filling top edge cleanly */}
+                <div className="relative aspect-[16/11] w-full overflow-hidden bg-slate-100">
                   <Image
                     src={card.image}
                     alt={card.title}
@@ -122,7 +120,7 @@ export default function OurExpertise() {
                   />
                 </div>
 
-                {/* Information at the bottom */}
+                {/* Content */}
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
                   <h3 className="mb-4 text-xl font-extrabold tracking-tight text-slate-900 transition-colors duration-300 group-hover:text-blue-600 sm:text-2xl">
                     {card.title}
@@ -132,10 +130,10 @@ export default function OurExpertise() {
                     {card.items.map((item) => (
                       <li
                         key={item}
-                        className="flex items-start gap-2.5 text-sm font-medium leading-snug text-slate-700 sm:text-[15px]"
+                        className="flex items-start gap-2.5 text-sm font-medium leading-snug text-slate-600 sm:text-[15px]"
                       >
-                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-blue-600">
-                          <Check className="h-3 w-3" strokeWidth={3} />
+                        <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600 ring-1 ring-blue-100">
+                          <Check className="h-2.5 w-2.5" strokeWidth={3} />
                         </span>
                         {item}
                       </li>

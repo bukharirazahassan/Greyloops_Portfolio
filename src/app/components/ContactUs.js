@@ -8,13 +8,14 @@ import {
   Check,
   CheckCircle2,
   ChevronDown,
-  HelpCircle,
   ShieldCheck,
   Zap,
+  Sparkles,
 } from "lucide-react";
 
 const FAQS = [
   {
+    id: 0,
     question: "What Digital Product Engineering Services Does Greyloops Offer?",
     intro: [
       "Greyloops delivers end-to-end digital product engineering services that help businesses transform ideas into secure, scalable, and high-performing digital solutions. From technology consulting and product strategy to development, integration, and continuous improvement, we align engineering expertise with business objectives.",
@@ -44,6 +45,7 @@ const FAQS = [
     ],
   },
   {
+    id: 1,
     question: "How Does Greyloops Help Businesses Scale Digital Products?",
     intro: [
       "Greyloops helps businesses scale existing digital products by optimizing performance, modernizing architecture, and improving system reliability. We combine cloud technologies, data-driven optimization, and automation to ensure applications adapt to growing users, workloads, and business demands.",
@@ -61,6 +63,7 @@ const FAQS = [
     ],
   },
   {
+    id: 2,
     question:
       "How Does Greyloops Modernize Legacy Systems with AI-Driven Engineering?",
     intro: [
@@ -70,6 +73,7 @@ const FAQS = [
     ],
   },
   {
+    id: 3,
     question:
       "How Much Does It Cost to Build an Enterprise-Grade Digital Product, and How Long Does It Take?",
     intro: [
@@ -79,6 +83,7 @@ const FAQS = [
     ],
   },
   {
+    id: 4,
     question: "How Long Does a Typical Software Development Project Take?",
     intro: [
       "The timeline for a software development project depends on its scope, technical complexity, required features, integrations, and business objectives. At Greyloops, we follow a structured development approach that begins with understanding your requirements and defining clear project milestones.",
@@ -87,6 +92,7 @@ const FAQS = [
     ],
   },
   {
+    id: 5,
     question:
       "Can Greyloops Provide Dedicated Developers or Team Augmentation for Projects?",
     intro: [
@@ -116,6 +122,7 @@ const FAQS = [
     ],
   },
   {
+    id: 6,
     question: "Does Greyloops Provide SLAs and Post-Launch Support?",
     intro: [
       "Greyloops provides ongoing support and maintenance options to help businesses maintain the reliability, security, and performance of their digital products after deployment. Support arrangements are tailored to the system's complexity, operational requirements, and agreed service levels.",
@@ -156,22 +163,6 @@ const COUNTRY_CODES = [
   { name: "France", code: "+33", flag: "🇫🇷" },
   { name: "Saudi Arabia", code: "+966", flag: "🇸🇦" },
   { name: "India", code: "+91", flag: "🇮🇳" },
-  { name: "Qatar", code: "+974", flag: "🇶🇦" },
-  { name: "Oman", code: "+968", flag: "🇴🇲" },
-  { name: "Kuwait", code: "+965", flag: "🇰🇼" },
-  { name: "Bahrain", code: "+973", flag: "🇧🇭" },
-  { name: "Singapore", code: "+65", flag: "🇸🇬" },
-  { name: "Malaysia", code: "+60", flag: "🇲🇾" },
-  { name: "Netherlands", code: "+31", flag: "🇳🇱" },
-  { name: "Spain", code: "+34", flag: "🇪🇸" },
-  { name: "Italy", code: "+39", flag: "🇮🇹" },
-  { name: "Switzerland", code: "+41", flag: "🇨🇭" },
-  { name: "Turkey", code: "+90", flag: "🇹🇷" },
-  { name: "China", code: "+86", flag: "🇨🇳" },
-  { name: "Japan", code: "+81", flag: "🇯🇵" },
-  { name: "South Korea", code: "+82", flag: "🇰🇷" },
-  { name: "Brazil", code: "+55", flag: "🇧🇷" },
-  { name: "South Africa", code: "+27", flag: "🇿🇦" },
 ];
 
 const EMPTY_FORM = {
@@ -184,11 +175,17 @@ const EMPTY_FORM = {
 };
 
 export default function FAQContact() {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openItems, setOpenItems] = useState(FAQS.map((faq) => faq.id));
   const [formData, setFormData] = useState(EMPTY_FORM);
   const [phoneError, setPhoneError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const toggleItem = (id) => {
+    setOpenItems((prev) =>
+      prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]
+    );
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -233,26 +230,26 @@ export default function FAQContact() {
     }
   };
 
-  // Light-theme field style
   const inputClass =
     "rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 shadow-xs transition-all focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-100";
   const labelClass = "mb-1 block text-xs font-semibold text-slate-700";
 
   return (
-    <section className="relative w-full overflow-hidden bg-slate-50 pb-16 pt-6 lg:pb-24 lg:pt-10">
-      {/* Background dots pattern */}
+    <section className="relative w-full bg-slate-50 pb-16 pt-6 lg:pb-24 lg:pt-10">
+      {/* Background Dot Pattern */}
       <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(#cbd5e1_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-60" />
 
-      {/* Glowing background circles */}
+      {/* Ambient Glows */}
       <div className="pointer-events-none absolute left-0 top-1/4 h-96 w-96 rounded-full bg-blue-400/20 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-1/4 right-0 h-80 w-80 rounded-full bg-indigo-400/15 blur-[120px]" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-[120rem] flex-col px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+        
+        {/* Section Header */}
         <div className="flex flex-col items-start px-2 text-left sm:px-4">
-          <span className="relative mb-3 inline-flex items-center gap-2 overflow-hidden rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100">
-            <HelpCircle className="h-4 w-4 text-blue-600" />
-            <span className="relative z-10">Help &amp; Answers</span>
+          <span className="mb-3 inline-flex items-center gap-2 rounded-full bg-blue-50 px-3.5 py-1.5 text-xs font-semibold text-blue-600 ring-1 ring-blue-100">
+            <Sparkles className="h-3.5 w-3.5 text-blue-600" />
+            <span>Help &amp; Answers</span>
           </span>
 
           <motion.h2
@@ -260,323 +257,308 @@ export default function FAQContact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="max-w-6xl text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
+            className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl lg:leading-[1.15]"
           >
-            <span className="text-slate-900">Frequently Asked</span>{" "}
-            <span className="text-blue-600">Questions</span>
+            <span className="text-blue-600">Frequently Asked </span>
+            <span className="text-slate-900">Questions</span>
           </motion.h2>
         </div>
 
-        {/* Form + FAQ */}
+        {/* Grid Container */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="mt-6 grid grid-cols-1 gap-5 px-2 sm:px-4 lg:h-[40rem] lg:grid-cols-12 lg:grid-rows-1 lg:gap-6"
+          className="mt-8 grid grid-cols-1 gap-8 px-2 sm:px-4 lg:grid-cols-12"
         >
-          {/* Left: contact form */}
-          <div className="relative order-2 flex flex-col overflow-hidden rounded-[2rem] bg-white/80 p-6 shadow-[0_20px_50px_rgba(15,23,42,0.08)] ring-1 ring-white/80 backdrop-blur-xl sm:p-7 lg:order-1 lg:col-span-5 lg:min-h-0 lg:p-8">
-            {/* Soft light-theme glows */}
-            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-400/10 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-indigo-400/10 blur-3xl" />
+          {/* Left Column Wrapper for Sticky Behavior */}
+          <div className="order-2 lg:order-1 lg:col-span-5">
+            <div className="sticky top-28 flex flex-col overflow-hidden rounded-[2rem] border border-white/80 bg-white/90 p-6 shadow-[0_20px_50px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:p-7 lg:p-8">
+              <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-400/10 blur-3xl" />
+              <div className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-indigo-400/10 blur-3xl" />
 
-            <div className="relative z-10 flex flex-1 flex-col">
-              {isSubmitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center py-16 text-center"
-                >
-                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 ring-8 ring-emerald-50/50">
-                    <CheckCircle2 className="h-10 w-10" />
-                  </div>
-                  <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-                    Thank you for the message.
-                  </h3>
-                  <p className="mt-2 text-base font-semibold text-blue-600 sm:text-lg">
-                    We will get back to you.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsSubmitted(false);
-                      setFormData(EMPTY_FORM);
-                    }}
-                    className="mt-8 rounded-xl bg-slate-100 px-6 py-2.5 text-xs font-bold text-slate-700 transition-colors hover:bg-slate-200"
+              <div className="relative z-10 flex flex-1 flex-col">
+                {isSubmitted ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center py-16 text-center"
                   >
-                    Send another message
-                  </button>
-                </motion.div>
-              ) : (
-                <>
-                  <h3 className="text-xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-2xl">
-                    Didn&rsquo;t Find What You Were{" "}
-                    <span className="text-blue-600">Looking For?</span>
-                  </h3>
-
-                  <form onSubmit={handleSubmit} className="mt-5 space-y-4">
-                    <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
-                      <div>
-                        <label htmlFor="faq-name" className={labelClass}>
-                          Name
-                        </label>
-                        <input
-                          id="faq-name"
-                          type="text"
-                          name="name"
-                          required
-                          value={formData.name}
-                          onChange={handleChange}
-                          placeholder="Full Name"
-                          className={`${inputClass} w-full`}
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="faq-email" className={labelClass}>
-                          Email
-                        </label>
-                        <input
-                          id="faq-email"
-                          type="email"
-                          name="email"
-                          required
-                          value={formData.email}
-                          onChange={handleChange}
-                          placeholder="you@company.com"
-                          className={`${inputClass} w-full`}
-                        />
-                      </div>
+                    <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 ring-8 ring-emerald-50/50">
+                      <CheckCircle2 className="h-10 w-10" />
                     </div>
+                    <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+                      Thank you for the message.
+                    </h3>
+                    <p className="mt-2 text-base font-semibold text-blue-600 sm:text-lg">
+                      We will get back to you.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsSubmitted(false);
+                        setFormData(EMPTY_FORM);
+                      }}
+                      className="mt-8 rounded-xl bg-slate-100 px-6 py-2.5 text-xs font-bold text-slate-700 transition-colors hover:bg-slate-200"
+                    >
+                      Send another message
+                    </button>
+                  </motion.div>
+                ) : (
+                  <>
+                    <h3 className="text-xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-2xl">
+                      Didn&rsquo;t Find What You Were{" "}
+                      <span className="text-blue-600">Looking For?</span>
+                    </h3>
 
-                    <div>
-                      <label htmlFor="faq-service" className={labelClass}>
-                        Service you need
-                      </label>
-                      <select
-                        id="faq-service"
-                        name="service"
-                        required
-                        value={formData.service}
-                        onChange={handleChange}
-                        className={`${inputClass} w-full cursor-pointer`}
-                      >
-                        <option value="" disabled>
-                          Select a service
-                        </option>
-                        <option value="development">Development & QA</option>
-                        <option value="mobility">Mobility & Apps</option>
-                        <option value="it-operations">IT Operations</option>
-                        <option value="data-solutions">Data Solutions</option>
-                        <option value="ai">Artificial Intelligence</option>
-                        <option value="ecommerce">E-Commerce</option>
-                      </select>
-                    </div>
+                    <form onSubmit={handleSubmit} className="mt-5 space-y-4">
+                      <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+                        <div>
+                          <label htmlFor="faq-name" className={labelClass}>
+                            Name
+                          </label>
+                          <input
+                            id="faq-name"
+                            type="text"
+                            name="name"
+                            required
+                            value={formData.name}
+                            onChange={handleChange}
+                            placeholder="Full Name"
+                            className={`${inputClass} w-full`}
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="faq-email" className={labelClass}>
+                            Email
+                          </label>
+                          <input
+                            id="faq-email"
+                            type="email"
+                            name="email"
+                            required
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="you@company.com"
+                            className={`${inputClass} w-full`}
+                          />
+                        </div>
+                      </div>
 
-                    <div>
-                      <label htmlFor="faq-phone" className={labelClass}>
-                        Contact number
-                      </label>
-                      <div className="flex gap-2">
+                      <div>
+                        <label htmlFor="faq-service" className={labelClass}>
+                          Service you need
+                        </label>
                         <select
-                          name="countryCode"
-                          aria-label="Country code"
-                          value={formData.countryCode}
-                          onChange={handleChange}
-                          className={`${inputClass} w-[6.25rem] shrink-0 cursor-pointer px-2.5`}
-                        >
-                          {COUNTRY_CODES.map((c, index) => (
-                            <option key={`${c.code}-${index}`} value={c.code}>
-                              {c.flag} {c.code}
-                            </option>
-                          ))}
-                        </select>
-                        <input
-                          id="faq-phone"
-                          type="tel"
-                          name="phone"
+                          id="faq-service"
+                          name="service"
                           required
-                          value={formData.phone}
+                          value={formData.service}
                           onChange={handleChange}
-                          placeholder="(300) 123-4567"
-                          className={`${inputClass} min-w-0 flex-1 ${
-                            phoneError
-                              ? "border-red-500 focus:border-red-500 focus:ring-red-100"
-                              : ""
-                          }`}
+                          className={`${inputClass} w-full cursor-pointer`}
+                        >
+                          <option value="" disabled>
+                            Select a service
+                          </option>
+                          <option value="development">Development & QA</option>
+                          <option value="mobility">Mobility & Apps</option>
+                          <option value="it-operations">IT Operations</option>
+                          <option value="data-solutions">Data Solutions</option>
+                          <option value="ai">Artificial Intelligence</option>
+                          <option value="ecommerce">E-Commerce</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label htmlFor="faq-phone" className={labelClass}>
+                          Contact number
+                        </label>
+                        <div className="flex gap-2">
+                          <select
+                            name="countryCode"
+                            aria-label="Country code"
+                            value={formData.countryCode}
+                            onChange={handleChange}
+                            className={`${inputClass} w-[6.25rem] shrink-0 cursor-pointer px-2.5`}
+                          >
+                            {COUNTRY_CODES.map((c, index) => (
+                              <option key={`${c.code}-${index}`} value={c.code}>
+                                {c.flag} {c.code}
+                              </option>
+                            ))}
+                          </select>
+                          <input
+                            id="faq-phone"
+                            type="tel"
+                            name="phone"
+                            required
+                            value={formData.phone}
+                            onChange={handleChange}
+                            placeholder="(300) 123-4567"
+                            className={`${inputClass} min-w-0 flex-1 ${
+                              phoneError
+                                ? "border-red-500 focus:border-red-500 focus:ring-red-100"
+                                : ""
+                            }`}
+                          />
+                        </div>
+                        {phoneError && (
+                          <p className="mt-1.5 text-xs font-medium text-red-500">
+                            {phoneError}
+                          </p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label htmlFor="faq-project" className={labelClass}>
+                          Tell us about your project
+                        </label>
+                        <textarea
+                          id="faq-project"
+                          name="project"
+                          rows={4}
+                          required
+                          value={formData.project}
+                          onChange={handleChange}
+                          placeholder="What are you looking to build?"
+                          className={`${inputClass} w-full resize-none`}
                         />
                       </div>
-                      {phoneError && (
-                        <p className="mt-1.5 text-xs font-medium text-red-500">
-                          {phoneError}
-                        </p>
-                      )}
-                    </div>
 
-                    <div>
-                      <label htmlFor="faq-project" className={labelClass}>
-                        Tell us about your project
-                      </label>
-                      <textarea
-                        id="faq-project"
-                        name="project"
-                        rows={4}
-                        required
-                        value={formData.project}
-                        onChange={handleChange}
-                        placeholder="What are you looking to build?"
-                        className={`${inputClass} w-full resize-none`}
-                      />
-                    </div>
+                      <div className="flex justify-end pt-1">
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="group inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-blue-600 pl-5 pr-2.5 text-sm font-semibold text-white shadow-md shadow-blue-600/25 ring-1 ring-white/10 transition-all duration-300 hover:bg-blue-500 hover:shadow-blue-500/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
+                        >
+                          <span>
+                            {isSubmitting ? "Scheduling..." : "Schedule Free Consultation"}
+                          </span>
+                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15 transition-all duration-300 group-hover:translate-x-0.5 group-hover:bg-white/25">
+                            <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} />
+                          </span>
+                        </button>
+                      </div>
+                    </form>
 
-                    <div className="flex justify-end pt-1">
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="group inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-blue-600 pl-5 pr-2.5 text-sm font-semibold text-white shadow-md shadow-blue-600/25 ring-1 ring-white/10 transition-all duration-300 hover:bg-blue-500 hover:shadow-blue-500/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
-                      >
-                        <span>
-                          {isSubmitting ? "Scheduling..." : "Schedule Free Consultation"}
-                        </span>
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15 transition-all duration-300 group-hover:translate-x-0.5 group-hover:bg-white/25">
-                          <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} />
-                        </span>
-                      </button>
+                    <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-slate-200 pt-5 text-xs font-semibold text-slate-600 sm:text-sm">
+                      <span className="flex items-center gap-2">
+                        <Zap className="h-4 w-4 text-blue-600" strokeWidth={2} />
+                        24-hour response time
+                      </span>
+                      <span className="flex items-center gap-2">
+                        <ShieldCheck
+                          className="h-4 w-4 text-blue-600"
+                          strokeWidth={2}
+                        />
+                        100% Confidential
+                      </span>
                     </div>
-                  </form>
-
-                  <div className="mt-6 lg:mt-auto flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-slate-200 pt-5 text-xs font-semibold text-slate-600 sm:text-sm">
-                    <span className="flex items-center gap-2">
-                      <Zap className="h-4 w-4 text-blue-600" strokeWidth={2} />
-                      24-hour response time
-                    </span>
-                    <span className="flex items-center gap-2">
-                      <ShieldCheck
-                        className="h-4 w-4 text-blue-600"
-                        strokeWidth={2}
-                      />
-                      100% Confidential
-                    </span>
-                  </div>
-                </>
-              )}
+                  </>
+                )}
+              </div>
             </div>
           </div>
 
-          {/* Right: FAQ accordion */}
-          <div data-lenis-prevent className="relative order-1 overflow-x-hidden rounded-[2rem] bg-white/80 shadow-[0_20px_50px_rgba(15,23,42,0.08)] ring-1 ring-white/80 backdrop-blur-xl lg:order-2 lg:col-span-7 lg:min-h-0 lg:overflow-y-auto lg:overscroll-contain [scrollbar-color:#cbd5e1_transparent] [scrollbar-width:thin]">
-            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-400/10 blur-3xl" />
+          {/* Right Column: FAQ Accordion Feed */}
+          <div className="order-1 flex flex-col gap-4 lg:order-2 lg:col-span-7">
+            {FAQS.map((faq, i) => {
+              const isOpen = openItems.includes(faq.id);
 
-            <ul className="relative divide-y divide-slate-200/70">
-              {FAQS.map((faq, i) => {
-                const isOpen = openIndex === i;
-                return (
-                  <li key={faq.question}>
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        const li = e.currentTarget.parentElement;
-                        setOpenIndex(isOpen ? -1 : i);
-                        if (!isOpen && window.matchMedia("(min-width: 1024px)").matches) {
-                          setTimeout(
-                            () => li?.scrollIntoView({ block: "nearest", behavior: "smooth" }),
-                            320
-                          );
-                        }
-                      }}
-                      aria-expanded={isOpen}
-                      aria-controls={`faq-panel-${i}`}
-                      id={`faq-trigger-${i}`}
-                      className="group flex w-full items-start gap-4 px-5 py-4 text-left transition-colors duration-300 hover:bg-blue-50/50 focus:outline-none focus-visible:bg-blue-50/70 sm:gap-6 sm:px-8 sm:py-[1.15rem]"
-                    >
-                      <span
-                        className={`mt-1 w-9 shrink-0 font-mono text-sm font-semibold tabular-nums transition-colors duration-300 ${
-                          isOpen ? "text-blue-600" : "text-slate-400"
-                        }`}
-                      >
-                        [{i + 1}]
+              return (
+                <div
+                  key={faq.id}
+                  className="group overflow-hidden rounded-3xl border border-white/80 bg-white/90 p-6 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-xl transition-all duration-300 hover:border-blue-200 hover:shadow-[0_20px_50px_rgba(37,99,235,0.08)] sm:p-7"
+                >
+                  <button
+                    type="button"
+                    onClick={() => toggleItem(faq.id)}
+                    className="flex w-full items-start justify-between gap-4 text-left focus:outline-none"
+                  >
+                    <div className="flex items-start gap-4">
+                      <span className="mt-0.5 font-mono text-sm font-bold text-blue-600">
+                        [{i + 1 < 10 ? `0${i + 1}` : i + 1}]
                       </span>
-                      <span className="flex-1 text-base font-bold leading-snug text-slate-900 sm:text-lg">
+                      <h3 className="text-lg font-bold leading-snug text-slate-900 transition-colors group-hover:text-blue-600 sm:text-xl">
                         {faq.question}
-                      </span>
-                      <span
-                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
-                          isOpen
-                            ? "rotate-180 bg-blue-600 text-white shadow-md shadow-blue-600/30"
-                            : "bg-slate-100 text-slate-600 group-hover:bg-blue-100 group-hover:text-blue-600"
-                        }`}
+                      </h3>
+                    </div>
+
+                    <div
+                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
+                        isOpen
+                          ? "rotate-180 bg-blue-600 text-white shadow-md shadow-blue-600/30"
+                          : "bg-slate-100 text-slate-600 group-hover:bg-blue-50 group-hover:text-blue-600"
+                      }`}
+                    >
+                      <ChevronDown className="h-4 w-4" strokeWidth={2.5} />
+                    </div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden"
                       >
-                        <ChevronDown className="h-4 w-4" strokeWidth={2.5} />
-                      </span>
-                    </button>
+                        <div className="mt-4 space-y-4 pt-2 text-sm font-medium leading-relaxed text-slate-600 sm:text-base">
+                          {faq.intro?.map((para) => (
+                            <p key={para}>{para}</p>
+                          ))}
 
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          id={`faq-panel-${i}`}
-                          role="region"
-                          aria-labelledby={`faq-trigger-${i}`}
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                          className="overflow-hidden"
-                        >
-                          <div className="space-y-4 px-5 pb-6 pl-[3.5rem] pr-6 text-sm font-medium leading-relaxed text-slate-600 sm:pl-[5.25rem] sm:pr-12 sm:text-base">
-                            {faq.intro?.map((para) => (
-                              <p key={para}>{para}</p>
-                            ))}
+                          {faq.items && (
+                            <div className="pt-2">
+                              {faq.listTitle && (
+                                <p className="mb-3 font-bold text-slate-900">
+                                  {faq.listTitle}
+                                </p>
+                              )}
+                              <ul className="space-y-2.5">
+                                {faq.items.map((item) => {
+                                  const isObj = typeof item === "object";
+                                  return (
+                                    <li
+                                      key={isObj ? item.label : item}
+                                      className="flex items-start gap-3"
+                                    >
+                                      <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600 ring-1 ring-blue-100">
+                                        <Check className="h-2.5 w-2.5" strokeWidth={3} />
+                                      </span>
+                                      <span>
+                                        {isObj ? (
+                                          <>
+                                            <strong className="font-bold text-slate-900">
+                                              {item.label}:
+                                            </strong>{" "}
+                                            {item.text}
+                                          </>
+                                        ) : (
+                                          <span className="font-semibold text-slate-800">
+                                            {item}
+                                          </span>
+                                        )}
+                                      </span>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </div>
+                          )}
 
-                            {faq.items && (
-                              <div>
-                                {faq.listTitle && (
-                                  <p className="mb-3 font-bold text-slate-900">
-                                    {faq.listTitle}
-                                  </p>
-                                )}
-                                <ul className="space-y-2.5">
-                                  {faq.items.map((item) => {
-                                    const isObj = typeof item === "object";
-                                    return (
-                                      <li
-                                        key={isObj ? item.label : item}
-                                        className="flex items-start gap-3"
-                                      >
-                                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white">
-                                          <Check className="h-3 w-3" strokeWidth={3} />
-                                        </span>
-                                        <span>
-                                          {isObj ? (
-                                            <>
-                                              <strong className="font-bold text-slate-900">
-                                                {item.label}:
-                                              </strong>{" "}
-                                              {item.text}
-                                            </>
-                                          ) : (
-                                            <span className="font-semibold text-slate-800">
-                                              {item}
-                                            </span>
-                                          )}
-                                        </span>
-                                      </li>
-                                    );
-                                  })}
-                                </ul>
-                              </div>
-                            )}
-
-                            {faq.outro?.map((para) => (
-                              <p key={para}>{para}</p>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </li>
-                );
-              })}
-            </ul>
+                          {faq.outro?.map((para) => (
+                            <p key={para}>{para}</p>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
         </motion.div>
       </div>

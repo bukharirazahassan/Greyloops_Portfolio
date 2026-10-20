@@ -10,11 +10,11 @@ export default function OurValues() {
     <div className="w-full text-slate-900">
       {/* ================= OUR VALUES SECTION ================= */}
       <section className="relative w-full overflow-hidden bg-slate-50 py-16 sm:py-20">
-        {/* Consistent ambient glow shades spanning across pages */}
+        {/* Consistent ambient glow shades */}
         <div className="pointer-events-none absolute -left-24 top-20 z-0 h-[500px] w-[500px] rounded-full bg-blue-400/15 blur-[150px]" />
         <div className="pointer-events-none absolute -right-24 bottom-10 z-0 h-[550px] w-[550px] rounded-full bg-sky-400/15 blur-[170px]" />
 
-        {/* Continuous dot-grid texture overlay matching About Us */}
+        {/* Continuous dot-grid texture overlay */}
         <div
           className="pointer-events-none absolute inset-0 z-0 opacity-40"
           style={{
@@ -32,20 +32,18 @@ export default function OurValues() {
               Guiding Principles
             </span>
 
+            {/* Standard Two-Color Heading */}
             <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-              We Own the{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                Outcomes
-              </span>
+              We Own the <span className="text-blue-600">Outcomes</span>
             </h2>
           </div>
 
           {/* ===== BLOCK 1: ROI (image right, card top-left) ===== */}
           <div className="relative mx-auto mt-12 max-w-7xl">
-            {/* Image pushed to the right on desktop so the card can sit in the left gap */}
-            <div className="relative aspect-[1376/768] w-full overflow-hidden rounded-3xl shadow-xl lg:ml-auto lg:w-[74%]">
+            {/* Image pushed to the right on desktop */}
+            <div className="relative aspect-[1376/768] w-full overflow-hidden rounded-3xl border border-white/80 shadow-xl lg:ml-auto lg:w-[74%]">
               <Image
-                src="/return_on_investment_v1.png"
+                src="/return_on_investment_v3.png"
                 alt="We Keep Our Eye on the ROI"
                 fill
                 priority
@@ -55,28 +53,25 @@ export default function OurValues() {
               />
             </div>
 
-            {/* Glass card: top-left corner, overlapping the image edge */}
+            {/* Glass Card: Top-Left Overlay */}
             <div className="relative z-20 mt-6 w-full lg:absolute lg:left-0 lg:top-0 lg:mt-0 lg:w-[46%] lg:max-w-xl">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="relative overflow-hidden rounded-3xl border border-white/40 bg-white/60 p-7 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] backdrop-blur-xl sm:p-10"
+                className="relative overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-7 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:p-10"
               >
                 <div className="relative z-10 space-y-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/50 bg-white/60 text-blue-600 shadow-sm backdrop-blur-md">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
                     <TrendingUp className="h-6 w-6" strokeWidth={1.8} />
                   </div>
 
                   <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-                    We Keep Our Eye on the{" "}
-                    <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                      ROI
-                    </span>
+                    We Keep Our Eye on the <span className="text-blue-600">ROI</span>
                   </h3>
 
-                  <p className="text-base font-medium leading-relaxed text-slate-700 lg:text-[17px]">
+                  <p className="text-base font-medium leading-relaxed text-slate-600 lg:text-[17px]">
                     We don’t build technology just for the sake of building it.
                     Every solution should have a clear purpose and bring real
                     value to your business. We look at how each feature,
@@ -92,10 +87,10 @@ export default function OurValues() {
 
           {/* ===== BLOCK 2: Responsibilities (image left, card top-right) ===== */}
           <div className="relative mx-auto mt-16 max-w-7xl lg:mt-24">
-            {/* Image on the left; the right gap is reserved for the card */}
-            <div className="relative aspect-[1376/768] w-full overflow-hidden rounded-3xl shadow-xl lg:mr-auto lg:w-[74%]">
+            {/* Image on the left */}
+            <div className="relative aspect-[1376/768] w-full overflow-hidden rounded-3xl border border-white/80 shadow-xl lg:mr-auto lg:w-[74%]">
               <Image
-                src="/own_responsibilities.png"
+                src="/own_responsibilities_v1.png"
                 alt="We Own Responsibilities"
                 fill
                 quality={100}
@@ -104,28 +99,25 @@ export default function OurValues() {
               />
             </div>
 
-            {/* Glass card: top-right corner, overlapping the image edge */}
+            {/* Glass Card: Top-Right Overlay */}
             <div className="relative z-20 mt-6 w-full lg:absolute lg:right-0 lg:top-0 lg:mt-0 lg:w-[46%] lg:max-w-xl">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="relative overflow-hidden rounded-3xl border border-white/40 bg-white/60 p-7 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] backdrop-blur-xl sm:p-10"
+                className="relative overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-7 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:p-10"
               >
                 <div className="relative z-10 space-y-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/50 bg-white/60 text-blue-600 shadow-sm backdrop-blur-md">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
                     <ShieldCheck className="h-6 w-6" strokeWidth={1.8} />
                   </div>
 
                   <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-                    We Own{" "}
-                    <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                      Responsibilities
-                    </span>
+                    We Own <span className="text-blue-600">Responsibilities</span>
                   </h3>
 
-                  <p className="text-base font-medium leading-relaxed text-slate-700 lg:text-[17px]">
+                  <p className="text-base font-medium leading-relaxed text-slate-600 lg:text-[17px]">
                     We take ownership of every project from planning to
                     delivery. Our team brings together experienced strategists,
                     designers, and developers who work with modern technologies,
@@ -142,10 +134,10 @@ export default function OurValues() {
 
           {/* ===== BLOCK 3: Results-Driven (image right, card top-left) ===== */}
           <div className="relative mx-auto mt-16 max-w-7xl lg:mt-24">
-            {/* Image pushed to the right so the card can sit in the left gap */}
-            <div className="relative aspect-[1376/768] w-full overflow-hidden rounded-3xl shadow-xl lg:ml-auto lg:w-[74%]">
+            {/* Image pushed to the right */}
+            <div className="relative aspect-[1376/768] w-full overflow-hidden rounded-3xl border border-white/80 shadow-xl lg:ml-auto lg:w-[74%]">
               <Image
-                src="/results_driven.png"
+                src="/results_driven_v1.png"
                 alt="Results-Driven"
                 fill
                 quality={100}
@@ -154,28 +146,25 @@ export default function OurValues() {
               />
             </div>
 
-            {/* Glass card: top-left corner, overlapping the image edge */}
+            {/* Glass Card: Top-Left Overlay */}
             <div className="relative z-20 mt-6 w-full lg:absolute lg:left-0 lg:top-0 lg:mt-0 lg:w-[46%] lg:max-w-xl">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="relative overflow-hidden rounded-3xl border border-white/40 bg-white/60 p-7 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] backdrop-blur-xl sm:p-10"
+                className="relative overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-7 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:p-10"
               >
                 <div className="relative z-10 space-y-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/50 bg-white/60 text-blue-600 shadow-sm backdrop-blur-md">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
                     <Target className="h-6 w-6" strokeWidth={1.8} />
                   </div>
 
                   <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-                    Results-
-                    <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                      Driven
-                    </span>
+                    Results-<span className="text-blue-600">Driven</span>
                   </h3>
 
-                  <p className="text-base font-medium leading-relaxed text-slate-700 lg:text-[17px]">
+                  <p className="text-base font-medium leading-relaxed text-slate-600 lg:text-[17px]">
                     We stay focused on what matters most: delivering results
                     that create real value for our clients. We combine data,
                     experience, and practical thinking to make better decisions,
@@ -191,10 +180,10 @@ export default function OurValues() {
 
           {/* ===== BLOCK 4: Continuous Growth (image left, card top-right) ===== */}
           <div className="relative mx-auto mt-16 max-w-7xl lg:mt-24">
-            {/* Image on the left; the right gap is reserved for the card */}
-            <div className="relative aspect-[1376/768] w-full overflow-hidden rounded-3xl shadow-xl lg:mr-auto lg:w-[74%]">
+            {/* Image on the left */}
+            <div className="relative aspect-[1376/768] w-full overflow-hidden rounded-3xl border border-white/80 shadow-xl lg:mr-auto lg:w-[74%]">
               <Image
-                src="/continuous_growth.png"
+                src="/continuous_growth_v1.png"
                 alt="Continuous Growth"
                 fill
                 quality={100}
@@ -203,28 +192,25 @@ export default function OurValues() {
               />
             </div>
 
-            {/* Glass card: top-right corner, overlapping the image edge */}
+            {/* Glass Card: Top-Right Overlay */}
             <div className="relative z-20 mt-6 w-full lg:absolute lg:right-0 lg:top-0 lg:mt-0 lg:w-[46%] lg:max-w-xl">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="relative overflow-hidden rounded-3xl border border-white/40 bg-white/60 p-7 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] backdrop-blur-xl sm:p-10"
+                className="relative overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-7 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:p-10"
               >
                 <div className="relative z-10 space-y-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/50 bg-white/60 text-blue-600 shadow-sm backdrop-blur-md">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
                     <Sprout className="h-6 w-6" strokeWidth={1.8} />
                   </div>
 
                   <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-                    Continuous{" "}
-                    <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                      Growth
-                    </span>
+                    Continuous <span className="text-blue-600">Growth</span>
                   </h3>
 
-                  <p className="text-base font-medium leading-relaxed text-slate-700 lg:text-[17px]">
+                  <p className="text-base font-medium leading-relaxed text-slate-600 lg:text-[17px]">
                     We believe there is always room to learn, improve, and do
                     things better. Our team continues to grow through hands-on
                     experience, new technologies, knowledge sharing, and ongoing
