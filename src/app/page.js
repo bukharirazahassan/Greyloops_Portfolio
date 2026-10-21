@@ -30,8 +30,8 @@ export default function Home() {
       {/* <Industrieschallenges /> */}
       {/* <Industries/> */}
       <IndustryExpertise/>
-      <ContactUs />
-      <BlogSection/>
+      {/* <ContactUs />
+      <BlogSection/> */}
       <Footer />
     </div>
   );

@@ -310,36 +310,35 @@ export default function Header() {
                                 className="rounded-3xl border border-slate-200/70 bg-white p-5 shadow-sm shadow-blue-900/5"
                               >
                                 <div className="mb-3 flex items-center gap-3.5">
-                                  <IconTile
-                                    Icon={colIdx === 0 ? Building2 : Briefcase}
-                                    color={colIdx === 0 ? "blue" : "orange"}
-                                    size="lg"
-                                  />
+                                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
+                                    {colIdx === 0 ? (
+                                      <Building2 className="h-5 w-5" />
+                                    ) : (
+                                      <Briefcase className="h-5 w-5" />
+                                    )}
+                                  </span>
                                   <h3 className="text-2xl font-extrabold tracking-tight text-slate-900">
                                     {col.title}
                                   </h3>
                                 </div>
                                 <ul className="space-y-1">
                                   {col.links.map((link) => {
-                                    const { Icon: LinkIcon, color } =
+                                    const { Icon: LinkIcon } =
                                       getCompanyLinkMeta(link.name);
                                     return (
                                       <li key={link.slug}>
                                         <Link
                                           href={`/company/${link.slug}`}
                                           onClick={() => setActiveMenu(null)}
-                                          className="group flex items-center gap-3 rounded-xl p-1.5 text-base font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-50 hover:text-slate-900"
+                                          className="group flex items-center gap-3 rounded-xl p-1.5 text-base font-semibold text-slate-700 transition-all duration-200 hover:bg-blue-50/60 hover:text-blue-600"
                                         >
-                                          <IconTile
-                                            Icon={LinkIcon}
-                                            color={color}
-                                            size="md"
-                                            interactive
-                                          />
+                                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600 ring-1 ring-blue-100/80 transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                                            <LinkIcon className="h-4 w-4" />
+                                          </span>
                                           <span className="flex-1">
                                             {link.name}
                                           </span>
-                                          <ArrowUpRight className="h-4 w-4 -translate-x-1 text-slate-400 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100" />
+                                          <ArrowUpRight className="h-4 w-4 -translate-x-1 text-slate-400 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:text-blue-600 group-hover:opacity-100" />
                                         </Link>
                                       </li>
                                     );
@@ -348,10 +347,12 @@ export default function Header() {
                               </div>
                             ))}
 
-                            {/* Find us on — its own card, fills any leftover height */}
+                            {/* Find us on — its own card */}
                             <div className="flex flex-1 flex-col justify-center gap-4 rounded-3xl border border-slate-200/70 bg-white p-5 shadow-sm shadow-blue-900/5">
                               <div className="flex items-center gap-3">
-                                <IconTile Icon={Share2} color="indigo" size="md" />
+                                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
+                                  <Share2 className="h-4 w-4" />
+                                </span>
                                 <h4 className="text-sm font-bold uppercase tracking-wider text-slate-500">
                                   Find us on
                                 </h4>
@@ -366,7 +367,7 @@ export default function Header() {
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       aria-label={social.name}
-                                      className={`group flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr ${social.gradient} text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
+                                      className="group flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 ring-1 ring-blue-100/80 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-blue-600 hover:text-white hover:shadow-md hover:shadow-blue-600/20"
                                     >
                                       <IconComponent className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                                     </a>
@@ -376,10 +377,12 @@ export default function Header() {
                             </div>
                           </div>
 
-                          {/* ── Column 2: Trending Blogs (large images) ── */}
+                          {/* ── Column 2: Trending Blogs ── */}
                           <div className="flex min-w-0 flex-col">
                             <div className="mb-5 flex items-center gap-3.5">
-                              <IconTile Icon={TrendingUp} color="pink" size="lg" />
+                              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
+                                <TrendingUp className="h-5 w-5" />
+                              </span>
                               <div>
                                 <h3 className="text-2xl font-extrabold tracking-tight text-slate-900">
                                   Trending Blogs
@@ -405,11 +408,11 @@ export default function Header() {
                                   />
                                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/15 to-transparent" />
 
-                                  <span className="absolute left-5 top-5 inline-flex items-center rounded-full bg-white/95 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-[#007AFF] shadow-md backdrop-blur">
+                                  <span className="absolute left-5 top-5 inline-flex items-center rounded-full bg-white/95 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-blue-600 shadow-md backdrop-blur">
                                     Featured Article
                                   </span>
 
-                                  <span className="absolute right-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-white text-slate-900 shadow-lg transition-all duration-300 group-hover:bg-[#007AFF] group-hover:text-white">
+                                  <span className="absolute right-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-white text-slate-900 shadow-lg transition-all duration-300 group-hover:bg-blue-600 group-hover:text-white">
                                     <ArrowUpRight className="h-6 w-6 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                                   </span>
 
@@ -420,7 +423,7 @@ export default function Header() {
                                   </div>
                                 </Link>
 
-                                {/* Remaining blogs — large image cards (fill the row and remaining height) */}
+                                {/* Remaining blogs */}
                                 {trendingBlogs.length > 1 && (
                                   <div
                                     className="grid flex-1 gap-5"
@@ -438,7 +441,7 @@ export default function Header() {
                                           key={idx}
                                           href={blog.href}
                                           onClick={() => setActiveMenu(null)}
-                                          className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl hover:shadow-blue-900/10"
+                                          className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-900/10"
                                         >
                                           <div className="relative min-h-[11rem] w-full flex-1 overflow-hidden bg-slate-100">
                                             <BlogImage
@@ -447,10 +450,10 @@ export default function Header() {
                                             />
                                           </div>
                                           <div className="flex shrink-0 items-start justify-between gap-3 p-4">
-                                            <h4 className="line-clamp-2 text-base font-bold leading-snug text-slate-900">
+                                            <h4 className="line-clamp-2 text-base font-bold leading-snug text-slate-900 transition-colors group-hover:text-blue-600">
                                               {blog.title}
                                             </h4>
-                                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#007AFF]/10 text-[#007AFF] transition-all duration-300 group-hover:bg-[#007AFF] group-hover:text-white">
+                                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600 ring-1 ring-blue-100 transition-all duration-300 group-hover:bg-blue-600 group-hover:text-white">
                                               <ArrowUpRight className="h-5 w-5" />
                                             </span>
                                           </div>
@@ -463,16 +466,18 @@ export default function Header() {
                           </div>
 
                           {/* ── Column 3: Direct Contact Card ── */}
-                          <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-8 shadow-sm shadow-blue-900/5">
+                          <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50/70 via-white to-sky-50/70 p-8 shadow-sm shadow-blue-900/5">
                             <div className="pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full bg-blue-200/40 blur-3xl" />
                             <div className="pointer-events-none absolute -bottom-12 -left-12 h-44 w-44 rounded-full bg-sky-200/40 blur-3xl" />
-                            <HelpCircle className="pointer-events-none absolute -right-6 bottom-24 h-40 w-40 text-[#007AFF]/5" />
+                            <HelpCircle className="pointer-events-none absolute -right-6 bottom-24 h-40 w-40 text-blue-600/5" />
 
                             <div className="relative z-10">
                               <div className="flex items-center gap-4">
-                                <IconTile Icon={PhoneCall} color="green" size="xl" />
+                                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-md shadow-blue-600/25">
+                                  <PhoneCall className="h-6 w-6" />
+                                </span>
                                 <div>
-                                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#007AFF]">
+                                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-blue-600">
                                     Direct Contact
                                   </span>
                                   <h4 className="text-2xl font-extrabold leading-tight tracking-tight text-slate-900">
@@ -487,19 +492,16 @@ export default function Header() {
                               <div className="space-y-4">
                                 <a
                                   href="tel:+180045647823"
-                                  className="group flex items-center gap-4 rounded-2xl border border-slate-200/70 bg-white p-3.5 shadow-sm transition-all duration-200 hover:border-slate-300 hover:shadow-md"
+                                  className="group flex items-center gap-4 rounded-2xl border border-slate-200/70 bg-white p-3.5 shadow-sm transition-all duration-200 hover:border-blue-200 hover:shadow-md"
                                 >
-                                  <IconTile
-                                    Icon={PhoneCall}
-                                    color="green"
-                                    size="lg"
-                                    interactive
-                                  />
+                                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100 transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                                    <PhoneCall className="h-5 w-5" />
+                                  </span>
                                   <div>
                                     <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
                                       Call us:
                                     </span>
-                                    <span className="text-lg font-extrabold text-slate-900">
+                                    <span className="text-lg font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors">
                                       +1-800-456-478-23
                                     </span>
                                   </div>
@@ -507,19 +509,16 @@ export default function Header() {
 
                                 <a
                                   href="mailto:query@greyloops.com"
-                                  className="group flex items-center gap-4 rounded-2xl border border-slate-200/70 bg-white p-3.5 shadow-sm transition-all duration-200 hover:border-slate-300 hover:shadow-md"
+                                  className="group flex items-center gap-4 rounded-2xl border border-slate-200/70 bg-white p-3.5 shadow-sm transition-all duration-200 hover:border-blue-200 hover:shadow-md"
                                 >
-                                  <IconTile
-                                    Icon={Mail}
-                                    color="blue"
-                                    size="lg"
-                                    interactive
-                                  />
+                                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100 transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                                    <Mail className="h-5 w-5" />
+                                  </span>
                                   <div className="min-w-0">
                                     <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
                                       Business:
                                     </span>
-                                    <span className="block truncate text-base font-bold text-slate-900">
+                                    <span className="block truncate text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
                                       Info@greyloops.com
                                     </span>
                                   </div>
@@ -527,19 +526,16 @@ export default function Header() {
 
                                 <a
                                   href="mailto:hr@greyloops.com"
-                                  className="group flex items-center gap-4 rounded-2xl border border-slate-200/70 bg-white p-3.5 shadow-sm transition-all duration-200 hover:border-slate-300 hover:shadow-md"
+                                  className="group flex items-center gap-4 rounded-2xl border border-slate-200/70 bg-white p-3.5 shadow-sm transition-all duration-200 hover:border-blue-200 hover:shadow-md"
                                 >
-                                  <IconTile
-                                    Icon={Briefcase}
-                                    color="orange"
-                                    size="lg"
-                                    interactive
-                                  />
+                                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100 transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                                    <Briefcase className="h-5 w-5" />
+                                  </span>
                                   <div className="min-w-0">
                                     <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
                                       Careers:
                                     </span>
-                                    <span className="block truncate text-base font-bold text-slate-900">
+                                    <span className="block truncate text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
                                       careers@greyloops.com
                                     </span>
                                   </div>
@@ -551,7 +547,7 @@ export default function Header() {
                               <Link
                                 href="/contact"
                                 onClick={() => setActiveMenu(null)}
-                                className="relative flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition-all hover:from-blue-700 hover:to-blue-600 hover:shadow-blue-500/35"
+                                className="relative flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-5 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-600/25 transition-all hover:bg-blue-700 hover:shadow-blue-600/35"
                               >
                                 Get in Touch
                                 <ArrowUpRight className="h-5 w-5" />
@@ -571,11 +567,9 @@ export default function Header() {
                                 key={project.slug}
                                 href={`/portfolio/${project.slug}`}
                                 onClick={() => setActiveMenu(null)}
-                                className="group flex flex-col overflow-hidden rounded-2xl border border-zinc-100 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-100 hover:shadow-xl hover:shadow-blue-900/10"
+                                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-900/10"
                               >
-                                <div
-                                  className={`relative flex h-28 items-center justify-center gap-2.5 bg-gradient-to-br ${project.from} ${project.to}`}
-                                >
+                                <div className="relative flex h-28 items-center justify-center gap-2.5 bg-gradient-to-br from-blue-600 to-indigo-600">
                                   <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-sm">
                                     <ProjectIcon
                                       className="h-5.5 w-5.5"
@@ -589,7 +583,7 @@ export default function Header() {
 
                                 <div className="flex flex-1 flex-col p-4 justify-between">
                                   <div>
-                                    <h4 className="mb-1.5 text-sm font-bold leading-snug text-slate-900">
+                                    <h4 className="mb-1.5 text-sm font-bold leading-snug text-slate-900 transition-colors group-hover:text-blue-600">
                                       {project.tagline}
                                     </h4>
                                     <p className="mb-3 line-clamp-2 text-xs leading-relaxed text-slate-600">
@@ -611,7 +605,7 @@ export default function Header() {
                             onClick={() => setActiveMenu(null)}
                             className="flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-blue-200 bg-blue-50/50 p-5 text-center transition-all duration-200 hover:border-blue-400 hover:bg-blue-50"
                           >
-                            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-white">
+                            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-white shadow-md shadow-blue-600/20">
                               <LayoutGrid
                                 className="h-5.5 w-5.5"
                                 strokeWidth={2}
@@ -624,7 +618,7 @@ export default function Header() {
                         </div>
                       </div>
                     ) : (
-                      /* ───────────── SERVICES / SOLUTIONS MEGA MENU (matches Company) ───────────── */
+                      /* ───────────── SERVICES / SOLUTIONS MEGA MENU ───────────── */
                       <div className="w-full bg-gradient-to-br from-slate-50 via-white to-blue-50/70">
                         <div
                           className={`relative mx-auto grid max-w-[1600px] items-stretch gap-8 px-10 py-10 ${MEGA_MIN_H} ${
@@ -637,11 +631,9 @@ export default function Header() {
                           <div className="flex min-w-0 flex-col">
                             <div className="mb-5 flex items-center justify-between gap-4">
                               <div className="flex items-center gap-3.5">
-                                <IconTile
-                                  Icon={LayoutGrid}
-                                  color="blue"
-                                  size="lg"
-                                />
+                                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
+                                  <LayoutGrid className="h-5 w-5" />
+                                </span>
                                 <div>
                                   <h3 className="text-2xl font-extrabold tracking-tight text-slate-900">
                                     Our {item.label}
@@ -654,7 +646,7 @@ export default function Header() {
                               <Link
                                 href={item.href}
                                 onClick={() => setActiveMenu(null)}
-                                className="group inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-900 shadow-sm transition-all duration-200 hover:border-[#007AFF] hover:text-[#007AFF] hover:shadow-md"
+                                className="group inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-900 shadow-sm transition-all duration-200 hover:border-blue-600 hover:text-blue-600 hover:shadow-md"
                               >
                                 View all {item.label.toLowerCase()}
                                 <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -662,21 +654,17 @@ export default function Header() {
                             </div>
 
                             <div className="grid flex-1 auto-rows-fr grid-cols-3 gap-5">
-                              {(item.columns || []).map((col, colIdx) => {
+                              {(item.columns || []).map((col) => {
                                 const ColIcon = col.icon || Building2;
-                                const color =
-                                  APPLE_CYCLE[colIdx % APPLE_CYCLE.length];
                                 return (
                                   <div
                                     key={col.slug}
                                     className="flex flex-col rounded-3xl border border-slate-200/70 bg-white p-6 shadow-sm shadow-blue-900/5"
                                   >
                                     <div className="mb-4 flex items-center gap-3.5">
-                                      <IconTile
-                                        Icon={ColIcon}
-                                        color={color}
-                                        size="lg"
-                                      />
+                                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
+                                        <ColIcon className="h-5 w-5" />
+                                      </span>
                                       <h3 className="text-xl font-extrabold leading-tight tracking-tight text-slate-900">
                                         {col.title}
                                       </h3>
@@ -688,15 +676,13 @@ export default function Header() {
                                           <Link
                                             href={`${item.basePath}/${link.slug}`}
                                             onClick={() => setActiveMenu(null)}
-                                            className="group flex items-center gap-3 rounded-xl px-2.5 py-2.5 text-base font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-50 hover:text-slate-900"
+                                            className="group flex items-center gap-3 rounded-xl px-2.5 py-2.5 text-base font-semibold text-slate-700 transition-all duration-200 hover:bg-blue-50/60 hover:text-blue-600"
                                           >
-                                            <span
-                                              className={`h-2 w-2 shrink-0 rounded-full ${APPLE[color].dot} opacity-60 transition-all duration-200 group-hover:scale-125 group-hover:opacity-100`}
-                                            />
+                                            <span className="h-2 w-2 shrink-0 rounded-full bg-blue-500 opacity-60 transition-all duration-200 group-hover:scale-125 group-hover:opacity-100" />
                                             <span className="flex-1">
                                               {link.name}
                                             </span>
-                                            <ArrowUpRight className="h-4 w-4 -translate-x-1 text-slate-400 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100" />
+                                            <ArrowUpRight className="h-4 w-4 -translate-x-1 text-slate-400 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:text-blue-600 group-hover:opacity-100" />
                                           </Link>
                                         </li>
                                       ))}
@@ -707,10 +693,9 @@ export default function Header() {
                             </div>
                           </div>
 
-                          {/* Right: Stat Card — image shown in full (896x1200 ratio), content below */}
+                          {/* Right: Stat Card */}
                           {item.statCard && (
                             <div className="relative flex flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-lg shadow-blue-900/10">
-                              {/* Image frame uses the image's own ratio so it fills edge-to-edge with no crop */}
                               <div className="relative aspect-[896/1200] w-full shrink-0 overflow-hidden bg-slate-100">
                                 <Image
                                   src={item.statCard.bgImage}
@@ -721,7 +706,7 @@ export default function Header() {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/15 to-transparent" />
 
-                                <span className="absolute left-5 top-5 rounded-full bg-white/90 px-4 py-1.5 text-sm font-extrabold tracking-tight text-[#007AFF] shadow-md backdrop-blur">
+                                <span className="absolute left-5 top-5 rounded-full bg-white/90 px-4 py-1.5 text-sm font-extrabold tracking-tight text-blue-600 shadow-md backdrop-blur">
                                   {item.statCard.label || "Greyloops"}
                                 </span>
 
@@ -735,15 +720,15 @@ export default function Header() {
                                 </div>
                               </div>
 
-                              {/* Footer fills whatever height is left */}
-                              <div className="flex flex-1 flex-col items-center justify-center gap-4 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-6">
-                                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#34C759] px-4 py-1.5 text-sm font-bold text-white shadow-md">
+                              {/* Footer */}
+                              <div className="flex flex-1 flex-col items-center justify-center gap-4 bg-gradient-to-br from-blue-50/70 via-white to-sky-50/70 p-6">
+                                <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 px-4 py-1.5 text-sm font-bold text-white shadow-md shadow-blue-600/20">
                                   {"★".repeat(Number(item.statCard.rating))}
                                 </span>
                                 <Link
                                   href="/contact"
                                   onClick={() => setActiveMenu(null)}
-                                  className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition-all hover:from-blue-700 hover:to-blue-600"
+                                  className="flex w-full items-center justify-center gap-2 rounded-2xl bg-blue-600 px-5 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-600/25 transition-all hover:bg-blue-700"
                                 >
                                   Start a Project
                                   <ArrowUpRight className="h-5 w-5" />

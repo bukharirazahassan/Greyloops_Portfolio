@@ -29,7 +29,7 @@ const slides = [
     headingDark: "Engineering the Next Generation of",
     headingBlue: "Digital Systems",
     description:
-      "Greyloops helps organizations adopt AI and emerging technologies to build intelligent, connected, and scalable digital systems. We combine AI, Machine Learning, data engineering, cloud computing, automation, modern software architecture, and enterprise engineering to transform complex business requirements into practical technology solutions that improve operations, accelerate innovation, and create lasting business value.",
+      "Greyloops combines AI, modern software engineering, and emerging technologies to build intelligent, scalable digital solutions that simplify operations and accelerate business growth.",
     pills: [
       { label: "Agentic AI", icon: Bot },
       { label: "AI Integration & Automation", icon: Cpu },
@@ -44,7 +44,7 @@ const slides = [
     headingDark: "Empowering Enterprises With",
     headingBlue: "Modern Technology",
     description:
-      "Greyloops helps enterprises unlock business potential through transformative digital solutions. We combine strategic thinking, engineering expertise, enterprise technology, AI, cloud, data, automation, cybersecurity, and system integration to modernize operations, connect digital ecosystems, enhance customer experiences, improve agility, and enable scalable growth with lasting business value.",
+      "Greyloops combines enterprise engineering, cloud, data, and cybersecurity to modernize operations, connect systems, and help businesses scale with confidence.",
     pills: [
       { label: "Cloud", icon: Cloud },
       { label: "Data", icon: Database },
@@ -239,10 +239,12 @@ export default function Hero() {
         }
 
         .hero-vid.is-in {
-          animation: hero-video-in 1100ms cubic-bezier(0.77, 0, 0.18, 1) backwards;
+          animation: hero-video-in 1100ms cubic-bezier(0.77, 0, 0.18, 1)
+            backwards;
         }
         .hero-vid.is-out {
-          animation: hero-video-out 1100ms cubic-bezier(0.77, 0, 0.18, 1) forwards;
+          animation: hero-video-out 1100ms cubic-bezier(0.77, 0, 0.18, 1)
+            forwards;
         }
         .hero-sheen {
           animation: hero-sheen 1100ms cubic-bezier(0.77, 0, 0.18, 1) forwards;
