@@ -1,3 +1,4 @@
+// src/app/components/services/BackendFAQ.jsx
 "use client";
 
 import { useState } from "react";
@@ -107,84 +108,63 @@ export default function BackendFAQ() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-white py-16 sm:py-20 lg:py-24 text-slate-900">
-      {/* Background Dot Pattern */}
+    <section className="relative w-full overflow-hidden bg-slate-50 py-12 sm:py-16 lg:py-20 text-slate-900 border-t border-slate-200/60">
+      {/* Background Dot Pattern matching site theme */}
       <div 
-        className="pointer-events-none absolute inset-0 z-0 opacity-[0.4]"
+        className="pointer-events-none absolute inset-0 z-0 opacity-40"
         style={{
-          backgroundImage: `radial-gradient(#cbd5e1 1.2px, transparent 1.2px)`,
+          backgroundImage: `radial-gradient(#94a3b8 1.2px, transparent 1.2px)`,
           backgroundSize: `24px 24px`,
         }}
       />
 
-      {/* Decorative Blur Circles matching site theme */}
-      <div className="pointer-events-none absolute left-10 top-12 z-0 h-72 w-72 rounded-full bg-blue-300/20 blur-3xl animate-float" />
-      <div
-        className="pointer-events-none absolute right-12 bottom-12 z-0 h-64 w-64 rounded-full bg-orange-200/25 blur-3xl animate-float"
-        style={{ animationDelay: "1.5s" }}
-      />
+      {/* Consistent ambient background glow effects */}
+      <div className="pointer-events-none absolute left-10 top-12 z-0 h-96 w-96 rounded-full bg-blue-400/15 blur-[120px]" />
+      <div className="pointer-events-none absolute right-12 bottom-12 z-0 h-96 w-96 rounded-full bg-indigo-400/15 blur-[120px]" />
 
-      <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-[88rem] px-6">
         {/* Section Header */}
-        <div className="mb-12 text-center sm:mb-16">
-          <span className="relative mb-4 inline-flex animate-fade-up items-center gap-2 overflow-hidden rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100">
-            <HelpCircle className="h-3.5 w-3.5 text-blue-600" />
-            <span className="relative z-10 font-bold uppercase tracking-wider text-[11px]">
-              Got Questions?
-            </span>
-            <span className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-blue-100/70 to-transparent animate-shimmer" />
+        <div className="mb-12 text-left max-w-3xl">
+          <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-600 backdrop-blur-md">
+            <HelpCircle className="h-3.5 w-3.5 text-blue-500" />
+            Got Questions?
           </span>
 
-          <h2 className="animate-fade-up text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-            <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-              Frequently Asked{" "}
-            </span>
-            <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-              Questions
-            </span>
+          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl mb-4">
+            Frequently asked <span className="text-blue-600">questions</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-zinc-600 sm:text-base">
+          <p className="max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
             Find clarity on back-end architecture, performance optimizations, timelines, and technical decisions.
           </p>
         </div>
 
         {/* FAQ Accordion List */}
-        <div className="space-y-4">
+        <div className="flex flex-col gap-4">
           {faqData.map((item) => {
             const isOpen = openId === item.id;
             return (
               <div
                 key={item.id}
-                className={`overflow-hidden rounded-xl transition-all duration-200 ${
-                  isOpen
-                    ? "bg-white/95 shadow-md shadow-blue-500/10 ring-1 ring-blue-200 backdrop-blur-sm"
-                    : "bg-zinc-50/80 hover:bg-white/90 hover:shadow-sm ring-1 ring-slate-100 backdrop-blur-sm"
-                }`}
+                className="overflow-hidden rounded-3xl border border-white/80 bg-white/80 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-xl transition-all duration-300 hover:border-blue-200 hover:bg-white hover:shadow-[0_20px_50px_rgba(37,99,235,0.08)]"
               >
                 <button
                   type="button"
                   onClick={() => toggleFAQ(item.id)}
-                  className="flex w-full items-center justify-between gap-4 p-5 text-left focus:outline-none sm:p-6"
+                  className="flex w-full items-center justify-between gap-4 p-6 text-left sm:p-7 focus:outline-none"
                   aria-expanded={isOpen}
                 >
-                  <span
-                    className={`text-base font-bold transition-colors sm:text-lg ${
-                      isOpen
-                        ? "bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent"
-                        : "text-slate-900"
-                    }`}
-                  >
+                  <span className="text-lg font-bold tracking-tight text-slate-900 sm:text-xl">
                     {item.question}
                   </span>
-                  <span
-                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-transform duration-300 ${
+                  <div
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
                       isOpen
-                        ? "rotate-180 bg-blue-50 text-blue-600"
-                        : "bg-slate-200/60 text-slate-600"
+                        ? "rotate-180 bg-blue-600 text-white shadow-md shadow-blue-600/30"
+                        : "bg-blue-50 text-blue-600 ring-1 ring-blue-100"
                     }`}
                   >
-                    <ChevronDown className="h-5 w-5" />
-                  </span>
+                    <ChevronDown className="h-4 w-4" strokeWidth={2.5} />
+                  </div>
                 </button>
 
                 <AnimatePresence initial={false}>
@@ -193,10 +173,12 @@ export default function BackendFAQ() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <div className="border-t border-slate-100 px-5 pb-6 pt-4 text-sm leading-relaxed text-zinc-600 sm:px-6 sm:text-base">
-                        {item.answer}
+                      <div className="border-t border-slate-100/80 px-6 pb-6 pt-4 sm:px-7 sm:pb-7">
+                        <div className="text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
+                          {item.answer}
+                        </div>
                       </div>
                     </motion.div>
                   )}

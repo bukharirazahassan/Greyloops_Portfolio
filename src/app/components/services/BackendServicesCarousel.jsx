@@ -1,10 +1,11 @@
+// src/app/components/services/BackendServicesCarousel.jsx
 "use client";
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-  CheckCircle2,
+  Check,
   Code2,
   Smartphone,
   Cloud,
@@ -119,7 +120,7 @@ const backendServices = [
     titleLine1: "Legacy Software ",
     titleLine2: "Back-End Refactoring",
     shortDesc:
-      "Failing to get optimum app performance? Devox Software can rehaul the entire solution infrastructure, leaving the front end intact. Rebuild existing systems to reduce development, infrastructural and supporting costs, enhancing the code base quality on the way.",
+      "Failing to get optimum app performance? Greyloops can rehaul the entire solution infrastructure, leaving the front end intact. Rebuild existing systems to reduce development, infrastructural and supporting costs, enhancing the code base quality on the way.",
     image: "/images/services/svc-refactoring.jpg",
     imageAlt: "Software engineer refactoring backend source code",
     bullets: [
@@ -194,201 +195,251 @@ const backendServices = [
   },
 ];
 
+const pad = (n) => String(n).padStart(2, "0");
+
 export default function BackendServicesCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const wheelAreaRef = useRef(null);
-  const isLocked = useRef(false);
+  const [active, setActive] = useState(0);
+  const itemRefs = useRef([]);
 
-  const activeService = backendServices[currentIndex];
-
+  // The service block in the middle of the screen becomes the active one
   useEffect(() => {
-    const el = wheelAreaRef.current;
-    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(Number(e.target.dataset.index));
+        }),
+      { rootMargin: "-40% 0px -45% 0px" }
+    );
+    itemRefs.current.forEach((el) => el && io.observe(el));
+    return () => io.disconnect();
+  }, []);
 
-    const handleWheel = (e) => {
-      const goingDown = e.deltaY > 0;
-      const canGoDown = currentIndex < backendServices.length - 1;
-      const canGoUp = currentIndex > 0;
+  const goTo = (i) => {
+    setActive(i);
+    itemRefs.current[i]?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
-      if ((goingDown && !canGoDown) || (!goingDown && !canGoUp)) return;
-
-      e.preventDefault();
-      if (isLocked.current) return;
-      isLocked.current = true;
-
-      setCurrentIndex((prev) =>
-        goingDown
-          ? Math.min(backendServices.length - 1, prev + 1)
-          : Math.max(0, prev - 1)
-      );
-
-      window.setTimeout(() => {
-        isLocked.current = false;
-      }, 500);
-    };
-
-    el.addEventListener("wheel", handleWheel, { passive: false });
-    return () => el.removeEventListener("wheel", handleWheel);
-  }, [currentIndex]);
+  const current = backendServices[active];
+  const CurrentIcon = serviceIcons[current.id] ?? Code2;
 
   return (
     <>
       {/* Top Header Hero Slider */}
       <BackendSlider />
 
-      {/* Interactive Services Carousel */}
-      <section className="relative flex min-h-[100dvh] w-full items-center overflow-hidden bg-white p-4 sm:p-6 lg:p-8 xl:p-12 text-slate-900">
-        {/* Soft floating decorative blur circles */}
-        <div className="pointer-events-none absolute left-10 top-16 z-0 h-72 w-72 rounded-full bg-blue-300/20 blur-3xl animate-float" />
-        <div
-          className="pointer-events-none absolute left-52 bottom-24 z-0 h-56 w-56 rounded-full bg-orange-200/25 blur-3xl animate-float"
-          style={{ animationDelay: "1.5s" }}
-        />
-
-        {/* Right Background Image Overlay */}
-        <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-0 h-full w-full lg:w-1/2">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeService.id}
-              initial={{ opacity: 0, scale: 1.02 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="relative h-full w-full"
-            >
-              <Image
-                src={activeService.image}
-                alt={activeService.imageAlt}
-                fill
-                unoptimized
-                priority
-                className="object-cover object-center opacity-90 lg:opacity-100"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 sm:via-white/60 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/40 sm:hidden" />
-            </motion.div>
-          </AnimatePresence>
+      {/* ───────── Scroll-synced services: pinned image left, services right ───────── */}
+      <section className="relative w-full overflow-x-clip bg-slate-50 py-12 lg:py-16">
+        {/* Standard light theme: dots + blue / indigo glow circles */}
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-60" />
+          <div className="absolute left-0 top-[6%] h-96 w-96 rounded-full bg-blue-400/20 blur-[120px]" />
+          <div className="absolute right-0 top-[28%] h-96 w-96 rounded-full bg-indigo-400/15 blur-[120px]" />
+          <div className="absolute left-0 top-[52%] h-96 w-96 rounded-full bg-blue-400/20 blur-[120px]" />
+          <div className="absolute right-0 top-[76%] h-96 w-96 rounded-full bg-indigo-400/15 blur-[120px]" />
         </div>
 
-        {/* Main Grid Content Area - Optimized Column Ratios */}
-        <div
-          ref={wheelAreaRef}
-          className="relative z-10 mx-auto grid w-full max-w-[1536px] grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-10 xl:gap-14"
-        >
-          {/* Left Navigation Panel Tabs - Compact Width */}
-          <div className="flex flex-col justify-center lg:col-span-4 xl:col-span-3.5">
-            <div className="mb-4 flex items-center gap-2">
-              <span className="relative inline-flex animate-fade-up items-center gap-2 overflow-hidden rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100">
-                <Code2 className="h-3.5 w-3.5 text-blue-600" />
-                <span className="relative z-10 font-bold uppercase tracking-wider text-[11px]">
-                  Backend Services
-                </span>
-                <span className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-blue-100/70 to-transparent animate-shimmer" />
-              </span>
-            </div>
+        <div className="relative z-10 mx-auto w-full max-w-[120rem] px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-10 flex flex-col items-start px-2 text-left sm:px-4 lg:mb-14"
+          >
+            <span className="mb-3 inline-flex items-center gap-2 rounded-full bg-blue-50 px-3.5 py-1.5 text-xs font-semibold text-blue-600 ring-1 ring-blue-100">
+              <Code2 className="h-3.5 w-3.5 text-blue-600" />
+              <span>Backend Services</span>
+            </span>
 
-            <div className="no-scrollbar flex flex-row gap-2 overflow-x-auto pb-2 sm:pb-0 lg:max-h-[75vh] lg:flex-col lg:gap-1.5 lg:overflow-y-auto lg:pr-2">
-              {backendServices.map((service, idx) => {
-                const isActive = idx === currentIndex;
-                const TabIcon = serviceIcons[service.id] ?? Code2;
-                return (
-                  <button
-                    key={service.id}
-                    type="button"
-                    onClick={() => setCurrentIndex(idx)}
-                    className={`group relative flex min-w-[220px] shrink-0 items-center gap-3 rounded-xl px-3.5 py-3 text-left transition-all duration-200 focus:outline-none lg:min-w-0 lg:w-full ${
-                      isActive
-                        ? "bg-white shadow-md shadow-blue-500/10 ring-1 ring-blue-100"
-                        : "hover:bg-white/60"
-                    }`}
-                  >
-                    <span
-                      className={`relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors ${
-                        isActive
-                          ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-sm"
-                          : "bg-blue-50 text-blue-600 group-hover:bg-blue-100"
-                      }`}
-                    >
-                      <TabIcon className="h-4.5 w-4.5" strokeWidth={2} />
-                    </span>
-                    <span
-                      className={`relative z-10 text-xs font-bold leading-tight tracking-tight transition-colors sm:text-sm ${
-                        isActive
-                          ? "bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent font-extrabold"
-                          : "text-zinc-600 group-hover:text-slate-900"
-                      }`}
-                    >
-                      {service.navTitle}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+            <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl lg:leading-[1.15]">
+              Our Core Back-End <span className="text-blue-600">Development Services</span>
+            </h2>
+          </motion.div>
 
-          {/* Right Detailed Content Panel - Expanded Width */}
-          <div className="flex flex-col justify-center lg:col-span-8 xl:col-span-8.5">
-            <AnimatePresence mode="wait">
-              <motion.h2
-                key={activeService.id}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.2 }}
-                className="mb-4 animate-fade-up text-2xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl xl:text-6xl"
-              >
-                <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                  {activeService.titleLine1}
-                </span>
-                <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-                  {activeService.titleLine2}
-                </span>
-              </motion.h2>
-            </AnimatePresence>
-
-            <div>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeService.id}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
+            {/* ───────── Left: pinned square image (desktop) ───────── */}
+            <div className="hidden lg:col-span-5 lg:block">
+              <div className="sticky top-24 flex h-[calc(100vh-7rem)] items-center justify-center">
+                <div
+                  className="relative"
+                  style={{ width: "min(100%, 720px, calc(100vh - 10.5rem))" }}
                 >
-                  <span className="mb-2 block text-xs font-bold uppercase tracking-wider text-blue-600 sm:text-sm">
-                    {activeService.category}
-                  </span>
+                  <div className="pointer-events-none absolute -inset-8 rounded-[3rem] bg-blue-400/15 blur-3xl" />
 
-                  <p className="mb-5 max-w-3xl text-sm leading-relaxed text-zinc-600 sm:text-base lg:text-lg">
-                    {activeService.shortDesc}
-                  </p>
+                  <div className="relative rounded-[2rem] bg-white/70 p-2 shadow-[0_30px_70px_rgba(15,23,42,0.12)] ring-1 ring-white/80 backdrop-blur-xl">
+                    <div className="relative aspect-square w-full overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-blue-50 via-white to-slate-50">
+                      {backendServices.map((service, i) => (
+                        <motion.div
+                          key={service.id}
+                          initial={false}
+                          animate={{
+                            opacity: active === i ? 1 : 0,
+                            scale: active === i ? 1 : 1.04,
+                          }}
+                          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                          className="absolute inset-0"
+                          aria-hidden={active !== i}
+                        >
+                          <Image
+                            src={service.image}
+                            alt={service.imageAlt}
+                            fill
+                            unoptimized
+                            priority={i === 0}
+                            sizes="(min-width: 1024px) 720px, 100vw"
+                            className="object-cover object-center"
+                          />
+                        </motion.div>
+                      ))}
 
-                  <div className="mb-6 max-w-3xl space-y-2.5">
-                    {activeService.bullets.map((bullet, idx) => (
-                      <div key={idx} className="flex items-start gap-3">
-                        <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-blue-600" />
-                        <p className="text-xs leading-relaxed text-zinc-600 sm:text-sm lg:text-base">
-                          <strong className="mr-1 font-bold text-slate-800">
-                            {bullet.label}
-                          </strong>
-                          {bullet.text}
-                        </p>
+                      {/* Counter chip */}
+                      <div className="absolute left-3 top-3 flex items-center gap-2 rounded-full bg-white/85 py-1.5 pl-1.5 pr-3.5 shadow-md shadow-slate-900/10 ring-1 ring-white/80 backdrop-blur-xl">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white">
+                          <CurrentIcon className="h-3.5 w-3.5" strokeWidth={2.25} />
+                        </span>
+                        <span className="font-mono text-xs font-semibold tabular-nums text-slate-700">
+                          {pad(active + 1)} / {pad(backendServices.length)}
+                        </span>
                       </div>
+                    </div>
+                  </div>
+
+                  {/* Segmented progress / quick navigation */}
+                  <div className="mt-4 flex gap-1.5 px-1" role="tablist" aria-label="Back-end services">
+                    {backendServices.map((service, i) => (
+                      <button
+                        key={service.id}
+                        type="button"
+                        role="tab"
+                        aria-selected={active === i}
+                        aria-label={service.navTitle}
+                        title={service.navTitle}
+                        onClick={() => goTo(i)}
+                        className="group h-5 flex-1 focus:outline-none"
+                      >
+                        <span
+                          className={`block h-1.5 rounded-full transition-all duration-500 group-focus-visible:ring-2 group-focus-visible:ring-blue-500 ${
+                            i < active
+                              ? "bg-blue-300"
+                              : i === active
+                              ? "bg-blue-600"
+                              : "bg-slate-200 group-hover:bg-slate-300"
+                          }`}
+                        />
+                      </button>
                     ))}
                   </div>
-
-                  <div className="max-w-3xl rounded-xl border border-blue-100 bg-white/90 p-4 shadow-sm backdrop-blur-md">
-                    <p className="text-xs leading-relaxed text-zinc-600 sm:text-sm lg:text-base">
-                      <strong className="mr-1 font-bold text-slate-900">
-                        Business Impact:
-                      </strong>
-                      {activeService.conclusion}
-                    </p>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+                </div>
+              </div>
             </div>
+
+            {/* ───────── Right: service list ───────── */}
+            <ol className="relative space-y-6 lg:col-span-7 lg:space-y-10 lg:pl-10">
+              {/* Timeline line (desktop) */}
+              <span className="pointer-events-none absolute bottom-6 left-[0.5625rem] top-6 hidden w-px bg-slate-200 lg:block" />
+
+              {backendServices.map((service, i) => {
+                const Icon = serviceIcons[service.id] ?? Code2;
+                const isActive = active === i;
+                return (
+                  <li
+                    key={service.id}
+                    ref={(el) => (itemRefs.current[i] = el)}
+                    data-index={i}
+                    className={`relative scroll-mt-28 transition-opacity duration-500 ${
+                      isActive ? "" : "lg:opacity-60"
+                    }`}
+                  >
+                    {/* Timeline dot (desktop) */}
+                    <span
+                      className={`absolute -left-10 top-9 z-10 hidden h-[1.125rem] w-[1.125rem] rounded-full border-4 transition-all duration-500 lg:block ${
+                        isActive
+                          ? "border-blue-100 bg-blue-600 shadow-md shadow-blue-600/40"
+                          : "border-slate-50 bg-slate-300"
+                      }`}
+                    />
+
+                    <motion.article
+                      initial={{ opacity: 0, y: 24 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.1 }}
+                      transition={{ duration: 0.5 }}
+                      className={`rounded-3xl p-6 backdrop-blur-xl transition-all duration-500 sm:p-8 lg:p-10 ${
+                        isActive
+                          ? "bg-white/90 shadow-[0_24px_60px_rgba(37,99,235,0.12)] ring-1 ring-blue-200"
+                          : "bg-white/70 shadow-[0_12px_32px_rgba(15,23,42,0.05)] ring-1 ring-white/80"
+                      }`}
+                    >
+                      {/* Mobile / tablet: image with its own card */}
+                      <div className="relative mb-6 aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 via-white to-slate-50 lg:hidden">
+                        <Image
+                          src={service.image}
+                          alt={service.imageAlt}
+                          fill
+                          unoptimized
+                          sizes="(max-width: 1024px) 100vw, 720px"
+                          className="object-cover object-center"
+                        />
+                      </div>
+
+                      {/* Icon, number and category */}
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-md shadow-blue-600/25">
+                          <Icon className="h-5 w-5" strokeWidth={1.75} />
+                        </span>
+                        <span className="font-mono text-sm font-semibold text-blue-600">
+                          {pad(i + 1)}
+                        </span>
+                        <span className="text-xs font-semibold text-slate-400">
+                          / {pad(backendServices.length)}
+                        </span>
+                        <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600 ring-1 ring-blue-100">
+                          {service.category}
+                        </span>
+                      </div>
+
+                      {/* Standard two-colour title */}
+                      <h3 className="mt-5 text-2xl font-extrabold leading-tight tracking-tight sm:text-3xl lg:text-4xl">
+                        <span className="text-slate-900">{service.titleLine1}</span>
+                        <span className="text-blue-600">{service.titleLine2}</span>
+                      </h3>
+
+                      <p className="mt-4 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
+                        {service.shortDesc}
+                      </p>
+
+                      {/* Capabilities */}
+                      <ul className="mt-6 space-y-3.5">
+                        {service.bullets.map((bullet) => (
+                          <li key={bullet.label} className="flex items-start gap-3">
+                            <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white">
+                              <Check className="h-3 w-3" strokeWidth={3} />
+                            </span>
+                            <p className="text-sm font-medium leading-relaxed text-slate-600 sm:text-base">
+                              <strong className="mr-1 font-bold text-slate-900">
+                                {bullet.label}
+                              </strong>
+                              {bullet.text}
+                            </p>
+                          </li>
+                        ))}
+                      </ul>
+
+                      {/* Business impact */}
+                      <div className="mt-7 rounded-2xl bg-blue-50/70 p-5 ring-1 ring-blue-100">
+                        <p className="text-sm font-medium leading-relaxed text-slate-600 sm:text-base">
+                          <strong className="mr-1 font-bold text-blue-600">
+                            Business Impact:
+                          </strong>
+                          {service.conclusion}
+                        </p>
+                      </div>
+                    </motion.article>
+                  </li>
+                );
+              })}
+            </ol>
           </div>
         </div>
       </section>

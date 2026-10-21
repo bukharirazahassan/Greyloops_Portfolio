@@ -1,12 +1,13 @@
+// src/app/components/services/Backendexpert.jsx
 "use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Sparkles, ArrowUpRight, Zap } from "lucide-react";
 
-export default function BackendExpert() {
+export default function Backendexpert() {
   return (
-    <section className="relative min-h-[550px] w-full overflow-hidden bg-white py-16 sm:py-20 lg:py-24 text-slate-900">
+    <section className="relative min-h-[550px] w-full overflow-hidden bg-slate-50 py-16 sm:py-20 lg:py-24 text-slate-900 border-t border-slate-200/60">
       {/* Background Image Container with Left-to-Right Fade */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <Image
@@ -18,28 +19,25 @@ export default function BackendExpert() {
           className="object-cover object-center"
         />
         {/* Soft white gradient overlay: opaque on the left to reveal text, fading out towards the right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 sm:via-white/75 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent sm:hidden" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-50 via-slate-50/85 sm:via-slate-50/75 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-transparent sm:hidden" />
       </div>
 
       {/* Background Dot Pattern */}
       <div
-        className="pointer-events-none absolute inset-0 z-[12] opacity-[0.4]"
+        className="pointer-events-none absolute inset-0 z-[12] opacity-40"
         style={{
-          backgroundImage: `radial-gradient(#cbd5e1 1.2px, transparent 1.2px)`,
+          backgroundImage: `radial-gradient(#94a3b8 1.2px, transparent 1.2px)`,
           backgroundSize: `24px 24px`,
         }}
       />
 
       {/* Ambient Blur Glows */}
-      <div className="pointer-events-none absolute left-10 top-16 z-[15] h-72 w-72 rounded-full bg-blue-300/20 blur-3xl animate-float" />
-      <div
-        className="pointer-events-none absolute left-52 bottom-24 z-[15] h-56 w-56 rounded-full bg-orange-200/25 blur-3xl animate-float"
-        style={{ animationDelay: "1.5s" }}
-      />
+      <div className="pointer-events-none absolute left-10 top-16 z-[15] h-96 w-96 rounded-full bg-blue-400/15 blur-[120px]" />
+      <div className="pointer-events-none absolute right-12 bottom-12 z-[15] h-96 w-96 rounded-full bg-indigo-400/15 blur-[120px]" />
 
       {/* Content Container */}
-      <div className="relative z-20 mx-auto max-w-7xl px-6 sm:px-10 md:px-16 lg:px-24">
+      <div className="relative z-20 mx-auto max-w-[88rem] px-6">
         <div className="max-w-2xl">
           {/* Badge */}
           <motion.div
@@ -49,12 +47,9 @@ export default function BackendExpert() {
             transition={{ duration: 0.5 }}
             className="mb-4 flex items-center gap-2"
           >
-            <span className="relative inline-flex animate-fade-up items-center gap-2 overflow-hidden rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-blue-600 shadow-sm ring-1 ring-blue-100">
-              <Sparkles className="h-3.5 w-3.5 text-blue-600" />
-              <span className="relative z-10 font-bold uppercase tracking-wider text-[11px]">
-                Meet Our Experts
-              </span>
-              <span className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-blue-100/70 to-transparent animate-shimmer" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-600 backdrop-blur-md">
+              <Sparkles className="h-3.5 w-3.5 text-blue-500" />
+              Meet Our Experts
             </span>
           </motion.div>
 
@@ -64,14 +59,10 @@ export default function BackendExpert() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="mb-5 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl xl:text-6xl"
+            className="mb-5 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
           >
-            <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-              We Fix, Transform, and{" "}
-            </span>
-            <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-              Skyrocket Your Software.
-            </span>
+            We Fix, Transform, and{" "}
+            <span className="text-blue-600">Skyrocket Your Software.</span>
           </motion.h2>
 
           {/* Subtitle */}
@@ -80,7 +71,7 @@ export default function BackendExpert() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mb-6 text-sm leading-relaxed text-zinc-600 sm:text-base lg:text-lg"
+            className="mb-6 text-base font-medium leading-relaxed text-slate-600 sm:text-lg"
           >
             Tell us where your system needs help — we&rsquo;ll show you how to
             move forward with clarity and speed. From architecture to
@@ -93,12 +84,12 @@ export default function BackendExpert() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mb-8 flex items-start gap-3 rounded-xl border border-blue-100 bg-white/90 p-4 shadow-sm backdrop-blur-md"
+            className="mb-8 flex items-start gap-3 rounded-2xl border border-white/80 bg-white/90 p-5 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-xl"
           >
-            <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+            <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
               <Zap className="h-4 w-4" />
             </span>
-            <p className="text-xs leading-relaxed text-zinc-600 sm:text-sm lg:text-base">
+            <p className="text-sm font-medium leading-relaxed text-slate-600 sm:text-base">
               <strong className="font-bold text-slate-900">
                 Book your free consultation.
               </strong>{" "}
@@ -115,7 +106,7 @@ export default function BackendExpert() {
           >
             <a
               href="/contact"
-              className="group inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-md shadow-blue-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:from-blue-700 hover:to-blue-600 hover:shadow-lg sm:text-sm"
+              className="group inline-flex items-center gap-2.5 rounded-xl bg-blue-600 px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-md shadow-blue-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg sm:text-sm"
             >
               Book a Free Consultation
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />

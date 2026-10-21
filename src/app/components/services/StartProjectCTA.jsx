@@ -1,6 +1,8 @@
+// src/app/components/services/StartProjectCTA.jsx
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Search,
@@ -9,7 +11,8 @@ import {
   Monitor,
   UserCheck,
   Layers,
-  ArrowUpRight,
+  ArrowRight,
+  Check,
   Sparkles,
 } from "lucide-react";
 
@@ -58,60 +61,68 @@ const uiUxServices = [
   },
 ];
 
-export default function StartProjectCTA() {
+const PERKS = ["Free consultation", "Response within 24 hours"];
+
+// embedded = true  -> transparent, no own spacing/background (the parent page provides the shared background)
+// embedded = false -> standalone section with its own light background
+export default function StartProjectCTA({ embedded = false }) {
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-b from-white via-blue-50/40 to-slate-50 py-24 sm:py-28">
-      {/* Dot-grid texture */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.3]"
-        style={{
-          backgroundImage: "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-          maskImage:
-            "radial-gradient(ellipse 90% 85% at 20% 50%, black 25%, transparent 100%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 90% 85% at 20% 50%, black 25%, transparent 100%)",
-        }}
-      />
+    <section
+      className={`relative w-full ${
+        embedded ? "" : "overflow-hidden bg-slate-50 py-16 lg:py-24"
+      }`}
+    >
+      {!embedded && (
+        <>
+      {/* Standard light theme: dot grid */}
+          <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(#cbd5e1_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-60" />
 
-      {/* Ambient glows */}
-      <div className="pointer-events-none absolute -left-24 top-0 h-[420px] w-[420px] rounded-full bg-blue-300/35 blur-[130px]" />
-      <div className="pointer-events-none absolute -right-24 bottom-0 h-[420px] w-[420px] rounded-full bg-indigo-300/30 blur-[130px]" />
+          {/* Standard light theme: glowing blue / indigo circles */}
+          <div className="pointer-events-none absolute left-0 top-1/4 h-96 w-96 rounded-full bg-blue-400/20 blur-[120px]" />
+          <div className="pointer-events-none absolute bottom-0 right-0 h-96 w-96 rounded-full bg-indigo-400/15 blur-[120px]" />
+          <div className="pointer-events-none absolute left-1/3 top-0 h-72 w-72 rounded-full bg-blue-400/15 blur-[120px]" />
+        </>
+      )}
 
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 lg:grid-cols-12 lg:gap-8">
+      <div className="relative z-10 mx-auto grid w-full max-w-[120rem] grid-cols-1 items-center gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
         {/* ============ LEFT: Copy ============ */}
-        <div className="lg:col-span-5">
+        <div className="px-2 sm:px-4 lg:col-span-5">
           <motion.span
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/90 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-600 shadow-sm backdrop-blur-md"
+            className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3.5 py-1 text-xs font-semibold text-blue-700 shadow-sm ring-1 ring-blue-100 backdrop-blur-md sm:text-sm"
           >
-            <Sparkles className="h-3.5 w-3.5" />
+            <Sparkles className="h-3.5 w-3.5 text-blue-600" />
             Let&rsquo;s Build Together
           </motion.span>
 
+          {/* Standard two-colour heading (no gradient) */}
           <motion.h2
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="mb-5 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mt-4 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl"
           >
-            <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-              Start Your{" "}
-            </span>
-            <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-              Interface Design Project
-            </span>
+            <span className="text-slate-900">Start Your </span>
+            <span className="text-blue-600">Interface Design Project</span>
           </motion.h2>
+
+          <motion.span
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-5 block h-1 w-14 origin-left rounded-full bg-blue-600"
+          />
 
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mb-9 max-w-md text-base leading-relaxed text-slate-600 sm:text-lg"
+            className="mt-5 max-w-lg text-base font-medium leading-relaxed text-slate-600 sm:text-lg lg:text-xl"
           >
             Collaborate with specialists who master the art of building
             products users actually enjoy using.
@@ -122,40 +133,52 @@ export default function StartProjectCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
+            className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4"
           >
-            <a
-              href="https://designindc.com/contact"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:from-blue-700 hover:to-blue-600 hover:shadow-xl hover:shadow-blue-500/35"
+            <Link
+              href="/contact"
+              className="group inline-flex h-12 items-center gap-2.5 rounded-xl bg-blue-600 pl-6 pr-3 text-sm font-semibold text-white shadow-md shadow-blue-600/25 transition-all duration-300 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300"
             >
               Book a Free Consultation
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </a>
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 transition-all duration-300 group-hover:translate-x-0.5 group-hover:bg-white/25">
+                <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+              </span>
+            </Link>
+
+            <ul className="flex flex-col gap-1.5">
+              {PERKS.map((perk) => (
+                <li
+                  key={perk}
+                  className="flex items-center gap-2 text-sm font-semibold text-slate-600"
+                >
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-white">
+                    <Check className="h-3 w-3" strokeWidth={3} />
+                  </span>
+                  {perk}
+                </li>
+              ))}
+            </ul>
           </motion.div>
         </div>
 
-        {/* ============ RIGHT: Diagonal staircase image cascade ============ */}
+        {/* ============ RIGHT: Diagonal staircase of service cards ============ */}
         <div className="lg:col-span-7">
-          {/* Desktop: true diagonal staircase */}
-          <div className="relative mx-auto hidden h-[700px] w-full max-w-3xl lg:block">
+          {/* Desktop: staircase – whole square image visible on every card */}
+          <div className="relative mx-auto hidden h-[790px] w-full max-w-[58rem] lg:block">
             {uiUxServices.map((service, i) => {
               const Icon = service.icon;
-              // Each step moves right and down from the previous one —
-              // baseTop centers the whole cascade within its box instead
-              // of hugging the top edge, so spacing feels even top/bottom.
-              const step = 66; // px offset per step, horizontally
-              const stepDown = 74; // px offset per step, vertically
-              const baseTop = 26; // shifts every card down evenly
-              const size = 400 - i * 6;
+              const stepX = 82; // each card moves right…
+              const stepY = 74; // …and down
+              const baseTop = 10;
+              const size = 410 - i * 8;
 
               return (
                 <motion.div
                   key={service.phase}
                   className="group absolute"
                   style={{
-                    left: i * step,
-                    top: baseTop + i * stepDown,
+                    left: i * stepX,
+                    top: baseTop + i * stepY,
                     width: size,
                     zIndex: uiUxServices.length - i,
                   }}
@@ -163,37 +186,34 @@ export default function StartProjectCTA() {
                   whileInView={{ opacity: 1, x: 0, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.5, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ scale: 1.05, zIndex: 20 }}
+                  whileHover={{ scale: 1.04, zIndex: 20 }}
                 >
-                  <div
-                    className="relative overflow-hidden rounded-2xl border-4 border-white bg-white shadow-xl shadow-blue-900/15 transition-shadow duration-300 group-hover:shadow-2xl group-hover:shadow-blue-900/25"
-                    style={{ aspectRatio: "4 / 3" }}
-                  >
-                    <Image
-                      src={service.image}
-                      alt={service.imageAlt}
-                      fill
-                      sizes="400px"
-                      className="object-cover"
-                      onError={(e) => {
-                        e.currentTarget.style.opacity = "0";
-                      }}
-                    />
-                    {/* No dark wash at all now — image shown at full
-                        clarity; labels live entirely on their own solid
-                        chips instead of relying on any overlay. */}
+                  {/* Glass frame */}
+                  <div className="rounded-[1.75rem] bg-white/75 p-2 shadow-[0_20px_50px_rgba(15,23,42,0.12)] ring-1 ring-white/80 backdrop-blur-xl transition-shadow duration-300 group-hover:shadow-[0_30px_70px_rgba(37,99,235,0.22)]">
+                    <div className="relative aspect-square w-full overflow-hidden rounded-[1.25rem] bg-gradient-to-br from-blue-50 via-white to-slate-50">
+                      <Image
+                        src={service.image}
+                        alt={service.imageAlt}
+                        fill
+                        sizes="410px"
+                        className="object-cover object-center"
+                        onError={(e) => {
+                          e.currentTarget.style.opacity = "0";
+                        }}
+                      />
 
-                    <span className="absolute left-3 top-3 flex h-7 w-11 items-center justify-center rounded-md bg-white/95 text-xs font-black text-blue-600 shadow-sm">
-                      {service.phase}
-                    </span>
+                      <span className="absolute left-3 top-3 flex h-7 min-w-[2.25rem] items-center justify-center rounded-full bg-white/90 px-2 font-mono text-xs font-bold text-blue-600 shadow-sm ring-1 ring-white/80 backdrop-blur-md">
+                        {service.phase}
+                      </span>
 
-                    <div className="absolute inset-x-3 bottom-3 flex items-center gap-2 rounded-lg bg-white/95 px-3 py-2 shadow-sm backdrop-blur-sm">
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-blue-50 text-blue-600">
-                        <Icon className="h-4 w-4" />
-                      </span>
-                      <span className="truncate text-xs font-bold leading-tight text-slate-800">
-                        {service.title}
-                      </span>
+                      <div className="absolute inset-x-3 bottom-3 flex items-center gap-2.5 rounded-xl bg-white/90 px-3 py-2 shadow-md shadow-slate-900/10 ring-1 ring-white/80 backdrop-blur-md">
+                        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 text-white">
+                          <Icon className="h-4 w-4" strokeWidth={2} />
+                        </span>
+                        <span className="truncate text-xs font-bold leading-tight text-slate-900 sm:text-[13px]">
+                          {service.title}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -201,8 +221,8 @@ export default function StartProjectCTA() {
             })}
           </div>
 
-          {/* Mobile / tablet: same staircase idea, condensed to a horizontal scroll row */}
-          <div className="flex gap-4 overflow-x-auto pb-2 lg:hidden">
+          {/* Mobile / tablet: swipeable row of the same cards */}
+          <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:hidden [&::-webkit-scrollbar]:hidden">
             {uiUxServices.map((service, i) => {
               const Icon = service.icon;
               return (
@@ -212,26 +232,27 @@ export default function StartProjectCTA() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.06 }}
-                  className="relative h-40 w-40 shrink-0 overflow-hidden rounded-2xl border-4 border-white bg-white shadow-lg shadow-blue-900/10"
+                  className="w-64 shrink-0 snap-start rounded-[1.5rem] bg-white/75 p-2 shadow-[0_16px_40px_rgba(15,23,42,0.1)] ring-1 ring-white/80 backdrop-blur-xl sm:w-72"
                 >
-                  <Image
-                    src={service.image}
-                    alt={service.imageAlt}
-                    fill
-                    sizes="160px"
-                    className="object-cover"
-                    onError={(e) => {
-                      e.currentTarget.style.opacity = "0";
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/10 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 flex items-center gap-1.5 p-2">
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-white/90 text-blue-600">
-                      <Icon className="h-3 w-3" />
-                    </span>
-                    <span className="truncate text-[10px] font-bold text-white">
-                      {service.title}
-                    </span>
+                  <div className="relative aspect-square w-full overflow-hidden rounded-[1.1rem] bg-gradient-to-br from-blue-50 via-white to-slate-50">
+                    <Image
+                      src={service.image}
+                      alt={service.imageAlt}
+                      fill
+                      sizes="288px"
+                      className="object-cover object-center"
+                      onError={(e) => {
+                        e.currentTarget.style.opacity = "0";
+                      }}
+                    />
+                    <div className="absolute inset-x-2.5 bottom-2.5 flex items-center gap-2 rounded-xl bg-white/90 px-2.5 py-1.5 shadow-md ring-1 ring-white/80 backdrop-blur-md">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-gradient-to-br from-blue-500 to-indigo-600 text-white">
+                        <Icon className="h-3.5 w-3.5" strokeWidth={2} />
+                      </span>
+                      <span className="truncate text-xs font-bold text-slate-900">
+                        {service.title}
+                      </span>
+                    </div>
                   </div>
                 </motion.div>
               );

@@ -1,6 +1,7 @@
+// src/app/components/services/UxUiDesign.jsx
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -17,7 +18,7 @@ import {
   ChevronDown,
   HelpCircle,
 } from "lucide-react";
-import StartProjectCTA from "../../components/services/StartProjectCTA" 
+import StartProjectCTA from "../../components/services/StartProjectCTA";
 
 const uiUxServices = [
   {
@@ -29,10 +30,6 @@ const uiUxServices = [
     icon: Search,
     image: "/images/services/ux-audit.jpg",
     imageAlt: "UI/UX audit dashboard with heatmap and usability scores",
-    color: "from-blue-500 to-cyan-500",
-    lightBg: "bg-blue-500/10",
-    borderColor: "border-blue-500/20",
-    textColor: "text-blue-500",
   },
   {
     phase: "02",
@@ -43,10 +40,6 @@ const uiUxServices = [
     icon: Layout,
     image: "/images/services/saas-design.jpg",
     imageAlt: "SaaS analytics dashboard interface with charts and tables",
-    color: "from-indigo-500 to-purple-500",
-    lightBg: "bg-indigo-500/10",
-    borderColor: "border-indigo-500/20",
-    textColor: "text-indigo-500",
   },
   {
     phase: "03",
@@ -57,10 +50,6 @@ const uiUxServices = [
     icon: Smartphone,
     image: "/images/services/mobile-design.jpg",
     imageAlt: "Mobile app screens showing tasks, stats and calendar UI",
-    color: "from-violet-500 to-fuchsia-500",
-    lightBg: "bg-violet-500/10",
-    borderColor: "border-violet-500/20",
-    textColor: "text-violet-500",
   },
   {
     phase: "04",
@@ -71,10 +60,6 @@ const uiUxServices = [
     icon: Monitor,
     image: "/images/services/web-design.jpg",
     imageAlt: "Web portal dashboard layout with component blocks",
-    color: "from-sky-500 to-blue-600",
-    lightBg: "bg-sky-500/10",
-    borderColor: "border-sky-500/20",
-    textColor: "text-sky-500",
   },
   {
     phase: "05",
@@ -85,10 +70,6 @@ const uiUxServices = [
     icon: UserCheck,
     image: "/images/services/hci-design.jpg",
     imageAlt: "User personas, journey map and interview flow research board",
-    color: "from-emerald-500 to-teal-500",
-    lightBg: "bg-emerald-500/10",
-    borderColor: "border-emerald-500/20",
-    textColor: "text-emerald-500",
   },
   {
     phase: "06",
@@ -99,10 +80,6 @@ const uiUxServices = [
     icon: Layers,
     image: "/images/services/design-systems.jpg",
     imageAlt: "Design system layers with buttons, color tokens and typography",
-    color: "from-amber-500 to-orange-500",
-    lightBg: "bg-amber-500/10",
-    borderColor: "border-amber-500/20",
-    textColor: "text-amber-500",
   },
 ];
 
@@ -145,88 +122,106 @@ const faqData = [
   },
 ];
 
+const pad = (n) => String(n).padStart(2, "0");
+
 export default function UxUiDesign() {
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
+  // Scroll-synced services (Section 3)
+  const [active, setActive] = useState(0);
+  const itemRefs = useRef([]);
+
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(Number(e.target.dataset.index));
+        }),
+      { rootMargin: "-40% 0px -45% 0px" }
+    );
+    itemRefs.current.forEach((el) => el && io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  const goTo = (i) => {
+    setActive(i);
+    itemRefs.current[i]?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
 
   const toggleFaq = (index) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
 
+  const current = uiUxServices[active];
+  const CurrentIcon = current.icon;
+
   return (
-    <div className="relative w-full bg-slate-50 font-sans">
-      {/* SECTION 1: Hero Section */}
-      <section className="relative flex min-h-[80vh] w-full flex-col justify-between overflow-hidden bg-gradient-to-b from-white via-blue-50/40 to-slate-50 pt-6 pb-24 sm:pt-8 sm:pb-28 lg:pt-10 lg:pb-32">
-        {/* Dot Mask for Hero Section */}
-        <div
-          className="pointer-events-none absolute inset-0 z-0 opacity-[0.28]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-            maskImage:
-              "radial-gradient(ellipse 90% 75% at 50% 20%, black 25%, transparent 100%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 90% 75% at 50% 20%, black 25%, transparent 100%)",
-          }}
-        />
+    <div className="relative w-full overflow-x-clip bg-slate-50 font-sans text-slate-900">
+      {/* ONE continuous background for the whole page: dots + blue/indigo glow circles */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-60" />
+        <div className="absolute left-0 top-[4%] h-96 w-96 rounded-full bg-blue-400/20 blur-[120px]" />
+        <div className="absolute right-0 top-[20%] h-96 w-96 rounded-full bg-indigo-400/15 blur-[120px]" />
+        <div className="absolute left-0 top-[38%] h-96 w-96 rounded-full bg-blue-400/20 blur-[120px]" />
+        <div className="absolute right-0 top-[56%] h-96 w-96 rounded-full bg-indigo-400/15 blur-[120px]" />
+        <div className="absolute left-0 top-[74%] h-96 w-96 rounded-full bg-blue-400/20 blur-[120px]" />
+        <div className="absolute right-0 top-[90%] h-96 w-96 rounded-full bg-indigo-400/15 blur-[120px]" />
+      </div>
 
-        {/* Hero Background Glows */}
-        <div className="pointer-events-none absolute -left-20 top-0 z-0 h-[320px] w-[320px] rounded-full bg-blue-300/35 blur-[100px] lg:h-[400px] lg:w-[400px]" />
-        <div className="pointer-events-none absolute -right-20 bottom-10 z-0 h-[320px] w-[320px] rounded-full bg-indigo-300/30 blur-[100px] lg:h-[400px] lg:w-[400px]" />
-
-        {/* Hero Content Grid */}
-        <div className="relative z-10 mx-auto my-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-10 px-6 sm:px-10 lg:grid-cols-12 lg:gap-12 lg:px-12">
-          {/* Left Column: Hero Text */}
+      {/* All sections sit in one column with the SAME gap between them */}
+      <div className="relative z-10 flex flex-col gap-12 pb-12 lg:gap-16 lg:pb-16">
+      {/* SECTION 1: Hero */}
+      <section className="relative w-full pt-8 sm:pt-10">
+        <div className="relative z-10 mx-auto max-w-[120rem] px-4 sm:px-6 lg:px-8">
+          {/* Top Header: Badge, Heading & Description */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="lg:col-span-5"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mx-auto mb-10 max-w-4xl text-center"
           >
-            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/90 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-600 shadow-sm backdrop-blur-md">
-              <Sparkles className="h-3.5 w-3.5" />
-              Design System &amp; Interfaces
-            </span>
-
-            {/* HEADER TITLE */}
-            <h1 className="mb-4 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
-              <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-                UX/UI Design Services{" "}
+            <div className="mb-4 flex justify-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-600 backdrop-blur-md sm:text-sm">
+                <Sparkles className="h-3.5 w-3.5 text-blue-500" />
+                Design System &amp; Interfaces
               </span>
+            </div>
+
+            {/* Standard Two-Tone Heading */}
+            <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+              UX/UI Design <span className="text-blue-600">Services</span>
             </h1>
 
-            {/* HEADER DESCRIPTION */}
-            <p className="w-full text-base leading-relaxed text-zinc-600 sm:text-lg">
+            {/* Header Description */}
+            <p className="mx-auto max-w-3xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg lg:text-xl">
               A great design puts the user first. By understanding real user
               needs, motivations, and pain points, we design products that solve
-              the right problems.
+              the right problems and accelerate digital transformation.
             </p>
           </motion.div>
 
-          {/* Right Column: Hero Graphic/Video */}
+          {/* Full-Display Large Showcase Video Frame */}
           <motion.div
-            initial={{ opacity: 0, y: 24, scale: 0.98 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-            className="mb-12 flex justify-center sm:mb-16 lg:col-span-7 lg:mb-20 lg:justify-end"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mx-auto mb-16 max-w-6xl"
           >
-            <div className="relative w-full max-w-4xl rounded-2xl border border-slate-200/80 bg-white/90 p-2.5 shadow-xl shadow-blue-900/10 backdrop-blur-md sm:p-3.5">
-              <div className="mb-2 flex items-center gap-2 px-1.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-red-300" />
-                <span className="h-2.5 w-2.5 rounded-full bg-amber-300" />
-                <span className="h-2.5 w-2.5 rounded-full bg-emerald-300" />
+            <div className="relative overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-3 sm:p-5 shadow-[0_15px_45px_rgba(15,23,42,0.08)] backdrop-blur-xl">
+              <div className="mb-3 flex items-center gap-2 px-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-slate-300" />
+                <span className="h-2.5 w-2.5 rounded-full bg-slate-300" />
+                <span className="h-2.5 w-2.5 rounded-full bg-slate-300" />
                 <div className="ml-2 h-2 flex-1 rounded-full bg-slate-100" />
               </div>
 
-              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-white border border-slate-200/60 flex items-center justify-center">
                 <video
                   autoPlay
                   loop
                   muted
                   playsInline
-                  className="h-full w-full object-cover object-center"
+                  className="h-full w-full object-contain object-center"
                 >
                   <source src="/video/UXHeader.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
@@ -234,130 +229,96 @@ export default function UxUiDesign() {
               </div>
             </div>
           </motion.div>
+
+          {/* Three Standard Light Glassmorphism Feature Cards */}
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
+            {/* Card 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.05 }}
+              className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-7 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-[0_20px_50px_rgba(37,99,235,0.08)]"
+            >
+              <div>
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
+                  <Zap className="h-5 w-5" />
+                </div>
+                <h3 className="mb-2 text-xl font-bold tracking-tight text-slate-900">
+                  30–80% Faster Delivery
+                </h3>
+                <p className="text-sm font-medium leading-relaxed text-slate-600">
+                  We use AI-assisted workflows across design, engineering, and QA
+                  — so your product reaches users faster and with less rework.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Card 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-7 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-[0_20px_50px_rgba(37,99,235,0.08)]"
+            >
+              <div>
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
+                  <DollarSign className="h-5 w-5" />
+                </div>
+                <h3 className="mb-2 text-xl font-bold tracking-tight text-slate-900">
+                  Cut Dev Costs by 50%
+                </h3>
+                <p className="text-sm font-medium leading-relaxed text-slate-600">
+                  AI-driven automation handles repetitive build and testing tasks,
+                  so your budget goes further without cutting scope or quality.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Card 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.15 }}
+              className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-7 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-[0_20px_50px_rgba(37,99,235,0.08)]"
+            >
+              <div>
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
+                  <Users className="h-5 w-5" />
+                </div>
+                <h3 className="mb-2 text-xl font-bold tracking-tight text-slate-900">
+                  Half Team, Same Output
+                </h3>
+                <p className="text-sm font-medium leading-relaxed text-slate-600">
+                  Our AI-augmented delivery model compresses what normally
+                  requires a large team, so you ship the same scope with fewer
+                  people and lower overhead.
+                </p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* THREE FEATURE CARDS */}
-      <div className="relative z-30 mx-auto -mt-24 max-w-5xl px-6 sm:-mt-28 sm:px-8 lg:-mt-32">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {/* Card 1 */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.05 }}
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/80 bg-white/70 p-6 shadow-lg shadow-blue-900/5 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-          >
-            <div className="relative z-10">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50/80 text-blue-600 ring-1 ring-blue-100/80 transition-colors group-hover:bg-blue-100/80">
-                <Zap className="h-5 w-5" />
-              </div>
-              <h3 className="mb-2 text-lg font-bold tracking-tight text-slate-900 sm:text-xl">
-                30–80% Faster Delivery
-              </h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                We use AI-assisted workflows across design, engineering, and QA
-                — so your product reaches users faster and with less rework.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Card 2 */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 p-6 text-white shadow-lg shadow-slate-950/20 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-          >
-            <div
-              className="pointer-events-none absolute inset-0 z-0 opacity-20"
-              style={{
-                backgroundImage:
-                  "radial-gradient(circle, #cbd5e1 1px, transparent 1px)",
-                backgroundSize: "18px 18px",
-              }}
-            />
-            <div className="pointer-events-none absolute -right-10 -top-10 z-0 h-28 w-28 rounded-full bg-blue-500/20 blur-2xl" />
-
-            <div className="relative z-10">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-slate-800 text-blue-400 ring-1 ring-slate-700 transition-colors group-hover:bg-slate-700">
-                <DollarSign className="h-5 w-5" />
-              </div>
-              <h3 className="mb-2 text-lg font-bold tracking-tight text-white sm:text-xl">
-                Cut Dev Costs by 50%
-              </h3>
-              <p className="text-sm leading-relaxed text-slate-300">
-                AI-driven automation handles repetitive build and testing tasks,
-                so your budget goes further without cutting scope or quality.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Card 3 */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/80 bg-white/70 p-6 shadow-lg shadow-blue-900/5 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-          >
-            <div className="relative z-10">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50/80 text-indigo-600 ring-1 ring-indigo-100/80 transition-colors group-hover:bg-indigo-100/80">
-                <Users className="h-5 w-5" />
-              </div>
-              <h3 className="mb-2 text-lg font-bold tracking-tight text-slate-900 sm:text-xl">
-                Half Team, Same Output
-              </h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Our AI-augmented delivery model compresses what normally
-                requires a large team, so you ship the same scope with fewer
-                people and lower overhead.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
       {/* SECTION 2 & 3 CONTAINER */}
-      <div className="relative w-full bg-gradient-to-b from-slate-50 via-blue-50/30 to-slate-50">
-        {/* Isolated Background Decorative Layer */}
-        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-          <div
-            className="absolute inset-0 opacity-[0.28]"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
-              backgroundSize: "28px 28px",
-              maskImage:
-                "radial-gradient(ellipse 90% 85% at 50% 10%, black 30%, transparent 100%)",
-              WebkitMaskImage:
-                "radial-gradient(ellipse 90% 85% at 50% 10%, black 30%, transparent 100%)",
-            }}
-          />
-          <div className="absolute left-1/2 top-20 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-blue-300/20 blur-[120px]" />
-          <div className="absolute right-10 top-1/3 h-[400px] w-[400px] rounded-full bg-indigo-300/20 blur-[120px]" />
-        </div>
-
-        {/* SECTION 2: Header for Services */}
-        <section className="relative z-10 w-full pt-28 pb-10 sm:pt-32 lg:pt-36">
-          <div className="mx-auto w-full max-w-[1400px] px-6 sm:px-10 lg:px-12">
+      <div className="contents">
+        {/* SECTION 2: Header for Services (Wide Centered Description) */}
+        <section className="relative z-10 w-full">
+          <div className="mx-auto w-full max-w-[120rem] px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="lg:text-left"
+              className="mx-auto max-w-5xl text-center"
             >
-              <h2 className="mb-4 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
-                <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-                  Comprehensive UI/UX Design Services{" "}
-                </span>
-                <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                  for Market Success
-                </span>
+              <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+                Comprehensive UI/UX Design Services{" "}
+                <span className="text-blue-600">for Market Success</span>
               </h2>
-              <p className="w-full max-w-2xl text-base leading-relaxed text-zinc-600 sm:text-lg">
+              <p className="mx-auto max-w-4xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg lg:text-xl">
                 Our vetted UI/UX design team bridges the gap between complex
                 software backend logic and seamless human interaction. We
                 provide end-to-end, customized UI/UX solutions across every
@@ -367,103 +328,179 @@ export default function UxUiDesign() {
           </div>
         </section>
 
-        {/* SECTION 3: STACKING STICKY CARDS */}
-        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 pb-20 sm:px-10 lg:px-12">
-          {uiUxServices.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <div
-                key={service.title}
-                className="sticky top-20 mb-16 flex min-h-[85vh] items-center justify-center"
-                style={{
-                  zIndex: index + 10,
-                }}
-              >
-                <div className="relative flex min-h-[85vh] w-full flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-2xl shadow-slate-900/10 transition-colors duration-300 lg:flex-row">
-                  {/* Ambient Dots & Background Glow */}
-                  <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-                    <div
-                      className={`absolute -right-20 -top-20 h-96 w-96 rounded-full bg-gradient-to-br ${service.color} opacity-15 blur-3xl`}
-                    />
-                    <div
-                      className="absolute inset-0 opacity-10"
-                      style={{
-                        backgroundImage:
-                          "radial-gradient(circle, #64748b 1px, transparent 1px)",
-                        backgroundSize: "24px 24px",
-                      }}
-                    />
-                  </div>
+        {/* SECTION 3: SCROLL-SYNCED SERVICES – pinned image on the left, services on the right */}
+        <div className="relative z-10 mx-auto w-full max-w-[120rem] px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
+            {/* ───────── Left: pinned image (desktop) – large, whole image always visible ───────── */}
+            <div className="hidden lg:col-span-7 lg:block">
+              <div className="sticky top-24 flex h-[calc(100vh-7rem)] items-center justify-center">
+                <div
+                  className="relative"
+                  style={{ width: "min(100%, 900px, calc(100vh - 10.5rem))" }}
+                >
+                  <div className="pointer-events-none absolute -inset-8 rounded-[3rem] bg-blue-400/15 blur-3xl" />
 
-                  {/* LEFT SIDE: CARD TEXT CONTENT */}
-                  <div className="relative z-10 flex w-full flex-col justify-center p-8 sm:p-12 md:p-16 lg:w-1/2">
-                    {/* Badge / Service Counter */}
-                    <div className="mb-6 flex items-center gap-3">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-md shadow-blue-500/20">
-                        <Icon className="h-3.5 w-3.5" />
-                        {service.phase} — UI/UX Service
-                      </span>
-                      <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                        0{index + 1} / 0{uiUxServices.length}
-                      </span>
+                  {/* Frame: square image area that fills the card edge to edge */}
+                  <div className="relative rounded-[2rem] bg-white/70 p-2 shadow-[0_30px_70px_rgba(15,23,42,0.12)] ring-1 ring-white/80 backdrop-blur-xl">
+                    <div className="relative aspect-square w-full overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-blue-50 via-white to-slate-50">
+                      {uiUxServices.map((service, i) => (
+                        <motion.div
+                          key={service.title}
+                          initial={false}
+                          animate={{
+                            opacity: active === i ? 1 : 0,
+                            scale: active === i ? 1 : 1.04,
+                          }}
+                          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                          className="absolute inset-0"
+                          aria-hidden={active !== i}
+                        >
+                          <Image
+                            src={service.image}
+                            alt={service.imageAlt}
+                            fill
+                            priority={i === 0}
+                            sizes="(min-width: 1024px) 900px, 100vw"
+                            className="object-cover object-center"
+                          />
+                        </motion.div>
+                      ))}
+
+                      {/* Small counter chip (top-left corner) */}
+                      <div className="absolute left-3 top-3 flex items-center gap-2 rounded-full bg-white/85 py-1.5 pl-1.5 pr-3.5 shadow-md shadow-slate-900/10 ring-1 ring-white/80 backdrop-blur-xl">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white">
+                          <CurrentIcon className="h-3.5 w-3.5" strokeWidth={2.25} />
+                        </span>
+                        <span className="font-mono text-xs font-semibold tabular-nums text-slate-700">
+                          {pad(active + 1)} / {pad(uiUxServices.length)}
+                        </span>
+                      </div>
                     </div>
-
-                    {/* Title */}
-                    <h3 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-                      {service.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="max-w-2xl text-lg leading-relaxed font-medium text-slate-700 sm:text-xl">
-                      {service.description}
-                    </p>
                   </div>
 
-                  {/* RIGHT SIDE: IMAGE CONTAINER WITH VISIBILITY FADE (RIGHT TO LEFT) */}
-                  <div className="relative h-[400px] w-full overflow-hidden bg-slate-100 lg:h-auto lg:min-h-full lg:w-1/2">
-                    <Image
-                      src={service.image}
-                      alt={service.imageAlt}
-                      fill
-                      priority={index === 0}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="object-cover object-center transition-transform duration-700 hover:scale-105"
-                    />
-
-                    {/* Left-to-Right Edge Fade Gradient */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white via-white/30 to-transparent lg:bg-gradient-to-r lg:from-white lg:via-white/40 lg:to-transparent" />
+                  {/* Segmented progress / quick navigation */}
+                  <div className="mt-4 flex gap-1.5 px-1" role="tablist" aria-label="Services">
+                    {uiUxServices.map((service, i) => (
+                      <button
+                        key={service.title}
+                        type="button"
+                        role="tab"
+                        aria-selected={active === i}
+                        aria-label={service.title}
+                        onClick={() => goTo(i)}
+                        className="group h-5 flex-1 focus:outline-none"
+                      >
+                        <span
+                          className={`block h-1.5 rounded-full transition-all duration-500 group-focus-visible:ring-2 group-focus-visible:ring-blue-500 ${
+                            i < active
+                              ? "bg-blue-300"
+                              : i === active
+                              ? "bg-blue-600"
+                              : "bg-slate-200 group-hover:bg-slate-300"
+                          }`}
+                        />
+                      </button>
+                    ))}
                   </div>
                 </div>
               </div>
-            );
-          })}
+            </div>
+
+            {/* ───────── Right: service list ───────── */}
+            <ol className="relative space-y-6 lg:col-span-5 lg:space-y-10 lg:pl-10">
+              {/* Timeline line (desktop) */}
+              <span className="pointer-events-none absolute bottom-6 left-[0.5625rem] top-6 hidden w-px bg-slate-200 lg:block" />
+
+              {uiUxServices.map((service, i) => {
+                const Icon = service.icon;
+                const isActive = active === i;
+                return (
+                  <li
+                    key={service.title}
+                    ref={(el) => (itemRefs.current[i] = el)}
+                    data-index={i}
+                    className={`relative scroll-mt-32 transition-opacity duration-500 ${
+                      isActive ? "" : "lg:opacity-60"
+                    }`}
+                  >
+                    {/* Timeline dot (desktop) */}
+                    <span
+                      className={`absolute -left-10 top-9 z-10 hidden h-[1.125rem] w-[1.125rem] rounded-full border-4 transition-all duration-500 lg:block ${
+                        isActive
+                          ? "border-blue-100 bg-blue-600 shadow-md shadow-blue-600/40"
+                          : "border-slate-50 bg-slate-300"
+                      }`}
+                    />
+
+                    <motion.article
+                      initial={{ opacity: 0, y: 24 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.15 }}
+                      transition={{ duration: 0.5 }}
+                      className={`rounded-3xl p-6 backdrop-blur-xl transition-all duration-500 sm:p-8 lg:flex lg:min-h-[20rem] lg:flex-col lg:justify-center lg:p-10 ${
+                        isActive
+                          ? "bg-white/90 shadow-[0_24px_60px_rgba(37,99,235,0.12)] ring-1 ring-blue-200"
+                          : "bg-white/70 shadow-[0_12px_32px_rgba(15,23,42,0.05)] ring-1 ring-white/80"
+                      }`}
+                    >
+                      {/* Mobile / tablet: image with its own card, shown whole */}
+                      <div className="relative mb-6 aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 via-white to-slate-50 lg:hidden">
+                        <Image
+                          src={service.image}
+                          alt={service.imageAlt}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 760px"
+                          className="object-cover object-center"
+                        />
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-md shadow-blue-600/25">
+                          <Icon className="h-5 w-5" strokeWidth={1.75} />
+                        </span>
+                        <span className="font-mono text-sm font-semibold text-blue-600">
+                          {service.phase}
+                        </span>
+                        <span className="text-xs font-semibold text-slate-400">
+                          / {pad(uiUxServices.length)}
+                        </span>
+                      </div>
+
+                      <h3 className="mt-5 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+                        {service.title}
+                      </h3>
+
+                      <p className="mt-3 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
+                        {service.description}
+                      </p>
+                    </motion.article>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
         </div>
 
         {/* SECTION 4: FREQUENTLY ASKED QUESTIONS */}
-        <section className="relative z-10 w-full pt-16 pb-28 lg:pt-20 lg:pb-36">
-          <div className="mx-auto w-full max-w-[1200px] px-6 sm:px-10 lg:px-12">
+        <section className="relative z-10 w-full">
+          <div className="mx-auto w-full max-w-[120rem] px-4 sm:px-6 lg:px-8">
             {/* FAQ Header */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="mb-12 text-left"
+              className="mb-12 text-left max-w-3xl"
             >
-              <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/90 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-600 shadow-sm backdrop-blur-md">
-                <HelpCircle className="h-3.5 w-3.5" />
+              <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-600 backdrop-blur-md">
+                <HelpCircle className="h-3.5 w-3.5 text-blue-500" />
                 Got Questions?
               </span>
 
-              <h2 className="mb-4 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
-                <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-                  Frequently Asked{" "}
-                </span>
-                <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                  Questions
-                </span>
+              <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl mb-4">
+                Frequently asked <span className="text-blue-600">questions</span>
               </h2>
-              <p className="max-w-2xl text-base leading-relaxed text-zinc-600 sm:text-lg">
+              <p className="max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
                 Everything you need to know about our design process,
                 deliverables, and how we help products scale through
                 user-centered UX/UI.
@@ -480,12 +517,8 @@ export default function UxUiDesign() {
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.08 }}
-                    className={`overflow-hidden rounded-2xl border transition-all duration-300 ${
-                      isOpen
-                        ? "border-blue-300 bg-white shadow-xl shadow-blue-900/5 ring-1 ring-blue-200"
-                        : "border-slate-200/90 bg-white/80 shadow-sm hover:border-slate-300 hover:bg-white"
-                    }`}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    className="overflow-hidden rounded-3xl border border-white/80 bg-white/80 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-xl transition-all duration-300 hover:border-blue-200 hover:bg-white hover:shadow-[0_20px_50px_rgba(37,99,235,0.08)]"
                   >
                     <button
                       type="button"
@@ -496,13 +529,13 @@ export default function UxUiDesign() {
                         {faq.question}
                       </span>
                       <div
-                        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 ${
+                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
                           isOpen
-                            ? "rotate-180 bg-blue-50 text-blue-600"
-                            : "bg-slate-100 text-slate-500"
+                            ? "rotate-180 bg-blue-600 text-white shadow-md shadow-blue-600/30"
+                            : "bg-blue-50 text-blue-600 ring-1 ring-blue-100"
                         }`}
                       >
-                        <ChevronDown className="h-5 w-5" />
+                        <ChevronDown className="h-4 w-4" strokeWidth={2.5} />
                       </div>
                     </button>
 
@@ -514,8 +547,8 @@ export default function UxUiDesign() {
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.3, ease: "easeInOut" }}
                         >
-                          <div className="border-t border-slate-100 px-6 pb-6 pt-4 sm:px-7 sm:pb-7">
-                            <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
+                          <div className="border-t border-slate-100/80 px-6 pb-6 pt-4 sm:px-7 sm:pb-7">
+                            <p className="text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
                               {faq.answer}
                             </p>
                           </div>
@@ -529,7 +562,9 @@ export default function UxUiDesign() {
           </div>
         </section>
       </div>
-      <StartProjectCTA />
+
+      <StartProjectCTA embedded />
+      </div>
     </div>
   );
 }
